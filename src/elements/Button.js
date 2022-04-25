@@ -21,7 +21,6 @@ const Button =(props) =>{
         hover,
         display,
         is_S,
-        position,
         _disabled} =props;
         
 
@@ -40,7 +39,6 @@ const Button =(props) =>{
         right,
         hover,
         display,
-        position,
 
     }
     if(is_S){
@@ -80,7 +78,6 @@ Button.defaultProps ={
   right: null,
   hover: null,
   display: null, 
-  position:null,
 };
 
 const ButtonBox = styled.button`
@@ -112,7 +109,6 @@ const ButtonBox = styled.button`
   bottom: ${(props) => props.bottom};
   left: ${(props) => props.left};
   right: ${(props) => props.right};
-  position: ${(props) => props.position};
   flex-shrink: 0;
   display: ${props => props.display};
 `;

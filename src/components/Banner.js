@@ -1,8 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css"
-import { Grid,Button } from "../elements";
+import { Grid} from "../elements";
 import styled from 'styled-components';
 
 const Banner = (props) => {
@@ -35,7 +35,6 @@ const Banner = (props) => {
   
 }
 const StyledSlider = styled(Slider)`
-   //슬라이드 컨테이너 영역
    height: 250px; 
    width: 100vw;
    position:relative;
