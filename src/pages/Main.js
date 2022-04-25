@@ -1,9 +1,13 @@
 import React from 'react';
+import {Header,Banner,MainPost,Honey} from '../components/home';
 
 function Main() {
   return (
     <React.Fragment>
-        <p>메인~</p>
+      <Header/>
+      <Banner/>
+      <MainPost/>
+      <Honey/>
     </React.Fragment>
   );
 }
