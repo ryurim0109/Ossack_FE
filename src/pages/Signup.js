@@ -200,7 +200,7 @@ const Signup = () => {
               회원가입
             </Button>
           </FormControl>
-          <FormHelperTexts>{registerError}</FormHelperTexts>
+          <FormHelperTexts>{signupError}</FormHelperTexts>
         </Boxs>
       </Box>
     </Container>
