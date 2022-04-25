@@ -21,6 +21,7 @@ const Button =(props) =>{
         hover,
         display,
         is_S,
+        position,
         _disabled} =props;
         
 
@@ -39,6 +40,7 @@ const Button =(props) =>{
         right,
         hover,
         display,
+        position,
 
     }
     if(is_S){
@@ -77,7 +79,8 @@ Button.defaultProps ={
   left: null,
   right: null,
   hover: null,
-  display: null,  
+  display: null, 
+  position:null,
 };
 
 const ButtonBox = styled.button`
@@ -87,6 +90,7 @@ const ButtonBox = styled.button`
   height: ${(props) => props.height};
   font-size: ${(props) => props.fontSize};
   margin: ${(props) => props.margin};
+  position: ${props => props.position};
   ${(props) =>
     props.backgroundColor
       ? `background-color:${props.backgroundColor}`

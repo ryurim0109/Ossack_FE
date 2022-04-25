@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import {Grid} from '../elements/index'
+import {Grid} from '../elements/index';
+
 
 function Header() {
   return (
@@ -8,7 +9,7 @@ function Header() {
         <Outter>
             <Grid  bg="yellow" display="flex" alignItems="center" justifyContent="space-between">
                 <H1>창준생</H1>
-                <Grid width="33.3%" display="flex" bg="orange" alignItems="center" justifyContent="space-between">
+                <Grid width="33.3%" display="flex" bg="orange" alignItems="center" justifyContent="space-between" hover="green">
                     <Li>상권정보</Li>
                     <Li>게시글</Li>
                     <Li>고민상담</Li>
@@ -31,15 +32,15 @@ const Outter =styled.header`
     background:red;
     box-sizing:border-box;
     padding: 0 16px;
+    position:relative;
 
 `;
 const H1 = styled.h1`
-    width:33.3%;
+    width:30%;
     font-size:1.750rem;
     cursor:pointer;
 `;
 const Li = styled.div`
-    width:100px;
     cursor:pointer;
     text-align:center;
     font-size:1rem;

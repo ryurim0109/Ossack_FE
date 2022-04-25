@@ -170,17 +170,6 @@ const GridBox = styled.div`
     ${props => (props.hover_font ? `color : ${props.hover_font}` : null)}
   }
 
-  ::-webkit-scrollbar {
-    width: 5px;
-  }
-  ::-webkit-scrollbar-thumb {
-    background-color: #2f3542;
-    border-radius: 15px;
-  }
-  ::-webkit-scrollbar-track {
-    background-color: grey;
-    border-radius: 15px;
-  }
 
   
 `;

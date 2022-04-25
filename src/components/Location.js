@@ -1,4 +1,4 @@
-// MapContainer.js
+// 카카오 지도 가져오기
 
 import React, { useEffect } from 'react';
 
