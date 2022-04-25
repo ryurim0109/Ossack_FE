@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css"
-import { Grid } from "../elements";
+import { Grid,Button } from "../elements";
+import styled from 'styled-components';
 
 const Banner = (props) => {
     
@@ -13,23 +14,31 @@ const Banner = (props) => {
         slideToScroll: 1,
         autoplay: true,
         autoplaySpeed: 5000,
+         arrows: false,
+         dots: false,
     }
     return (
       <>
-        <h2> 배너</h2>
-        <Slider {...settings}>
-          <Grid width="100%" height="250px" bg="green">
+        <StyledSlider {...settings} >
+          <Grid  height="250px" bg="green">
             <h3>1</h3>
           </Grid >
-          <Grid width="100%" height="250px" bg="red">
+          <Grid height="250px" bg="red">
             <h3>2</h3>
           </Grid>
-          <Grid width="100%" height="250px" bg="yellow">
+          <Grid  height="250px" bg="yellow">
             <h3>3</h3>
           </Grid>
-        </Slider>
+        </StyledSlider>
       </>
     );
   
 }
+const StyledSlider = styled(Slider)`
+   //슬라이드 컨테이너 영역
+   height: 250px; 
+   width: 100vw;
+   position:relative;
+
+}`
 export default Banner;
