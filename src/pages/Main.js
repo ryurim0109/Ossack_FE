@@ -1,13 +1,11 @@
 import React from 'react';
-import {Header,Banner,MainPost,Honey} from '../components/home';
+import {Header,Banner} from '../components/home';
 
 function Main() {
   return (
     <React.Fragment>
       <Header/>
       <Banner/>
-      <MainPost/>
-      <Honey/>
     </React.Fragment>
   );
 }
