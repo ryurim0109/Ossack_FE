@@ -13,7 +13,7 @@ function Honey() {
     </React.Fragment>
   );
 };
-const Outter =styled.header`
+const Outter =styled.div`
     width:100%;
     height:500px;
     background:#eee;

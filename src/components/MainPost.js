@@ -11,7 +11,7 @@ function MainPost() {
     </React.Fragment>
   );
 };
-const Outter =styled.header`
+const Outter =styled.div`
     width:100%;
     height:200px;
     background:orange;
