@@ -80,7 +80,6 @@ Input.defaultProps = {
   margin: 0,
   padding: false,
   width: '100%',
-  height: false,
   border: false,
   borderRadius: false,
   bg: false,

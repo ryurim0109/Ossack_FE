@@ -1,11 +1,11 @@
 import React from 'react';
-import {Header,Banner} from '../components/home';
+import {Sale,Bar} from '../components/home'
 
 function Main() {
   return (
     <React.Fragment>
-      <Header/>
-      <Banner/>
+      <Sale/>
+      <Bar/>
     </React.Fragment>
   );
 }
