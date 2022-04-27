@@ -18,7 +18,7 @@ const Banner = (props) => {
          dots: false,
     }
     return (
-      <>
+      <React.Fragment>
         <StyledSlider {...settings} >
           <Grid  height="250px" bg="green">
             <h3>1</h3>
@@ -30,7 +30,7 @@ const Banner = (props) => {
             <h3>3</h3>
           </Grid>
         </StyledSlider>
-      </>
+      </React.Fragment>
     );
   
 }

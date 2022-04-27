@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import styled from "styled-components"
-import { Map, MapMarker } from "react-kakao-maps-sdk"
+import { Map, MapMarker,ZoomControl,MapTypeControl } from "react-kakao-maps-sdk"
 
 const MainMap = (props)=> {
+  
+  const { kakao } = window;
 
   const [state, setState] = useState({
       center: {
@@ -12,8 +14,8 @@ const MainMap = (props)=> {
       errMsg: null,
       isLoading: true,
   })
-  const [draggable, setDraggable] = useState(false)
-  const [zoomable, setZoomable] = useState(false) 
+  // const [draggable, setDraggable] = useState(true)
+  // const [zoomable, setZoomable] = useState(false) 
 
   useEffect(() => {
     if (navigator.geolocation) {
@@ -51,17 +53,21 @@ const MainMap = (props)=> {
   }
 
   return (
-    <>
+    <React.Fragment>
     <MainContent>
       <Map center={state.center} onCreate={sendLoca} style={{width: "100%", height: "inherit"}}
-        level={3} draggable={draggable} zoomable={zoomable}>
+        level={3} 
+        // draggable={draggable} zoomable={zoomable}
+        >
         {!state.isLoading && (
           <MapMarker position={state.center}></MapMarker>
         )}
+          <ZoomControl position={kakao.maps.ControlPosition.TOPRIGHT} />
+          <MapTypeControl position={kakao.maps.ControlPosition.TOPRIGHT}/>
       </Map>
       
     </MainContent>
-    </>
+    </React.Fragment>
   )
 }
 

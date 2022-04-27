@@ -7,7 +7,7 @@ function Sale() {
     console.log('서치버튼 클릭')
   }
   return (
-    <>
+    <React.Fragment>
       <Outter>
         <Grid width="100%" margin="30px 0" bg="#c4c4c4">
           <Text size="1.7rem">네이밍</Text>
@@ -25,7 +25,7 @@ function Sale() {
           
         </Grid>
       </Outter>
-    </>
+    </React.Fragment>
   );
 }
 const Outter=styled.div`
