@@ -1,10 +1,14 @@
-import React from 'react';
+import React,{useState} from 'react';
 import {Location} from '../components/home'
 
-function SaleMap() {
+function SaleMap(props) {
+    const [nowLoca,setNowLoca] = useState();
+    const receiveLoca = (Loca) => {
+        setNowLoca(Loca)
+    }
   return (
     <>
-        <Location/>
+        <Location defaultLoca={receiveLoca}/>
     </>
   );
 }
