@@ -1,5 +1,7 @@
 import Bar from './Bar';
-import Location from './Location';
+import Location from './map/Location';
 import MobileFrame from './MobileFrame';
+import Sale from './Sale';
 
-export { Bar,Location,MobileFrame };
+
+export { Bar,Location,MobileFrame,Sale };
