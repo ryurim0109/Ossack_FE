@@ -1,7 +1,7 @@
 import { createAction, handleActions } from "redux-actions";
 import produce from "immer";
 import axios from "axios";
-import { setCookie, deleteCookie } from "../../shared/cookie";
+//import { setCookie, deleteCookie } from "../../shared/cookie";
 
 // actions
 const SET_USER = "SET_USER";
@@ -109,13 +109,13 @@ export default handleActions(
   {
     [SET_USER]: (state, action) =>
       produce(state, (draft) => {
-        setCookie("is_login", "success");
+       // setCookie("is_login", "success");
         draft.is_login = true;
         draft.user = action.payload.user;
       }),
     [LOG_OUT]: (state, action) =>
       produce(state, (draft) => {
-        deleteCookie("is_login");
+        //deleteCookie("is_login");
         draft.is_login = false;
         draft.user = null;
       }),
