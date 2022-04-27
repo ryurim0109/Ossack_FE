@@ -17,18 +17,11 @@ import {
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import styled from "styled-components";
 
-const FormHelperTexts = styled(FormHelperText)`
-  width: 100%;
-  padding-left: 16px;
-  font-weight: 700;
-  color: #d32f2f;
-`;
-
-const Boxs = styled(Box)`
-  padding-bottom: 40px;
-`;
+import { actionCreators as userActions } from "../redux/modules/user";
+import { useDispatch } from "react-redux";
 
 const Signup = () => {
+  const dispatch = useDispatch();
   const [checked, setChecked] = useState(false);
   const [emailError, setEmailError] = useState("");
   const [passwordState, setPasswordState] = useState("");
@@ -107,7 +100,7 @@ const Signup = () => {
       nicknameRegex.test(nickname) &&
       checked
     ) {
-      onhandlePost(joinData);
+      dispatch(userActions.signUpApi(joinData));
     }
   };
 
@@ -142,7 +135,7 @@ const Signup = () => {
                   type="email"
                   id="email"
                   name="email"
-                  label="이메일 주소"
+                  label="Email Address"
                   error={emailError !== "" || false}
                 />
               </Grid>
@@ -153,7 +146,7 @@ const Signup = () => {
                   fullWidth
                   id="nickname"
                   name="nickname"
-                  label="닉네임"
+                  label="nickname"
                   error={nickNameError !== "" || false}
                 />
               </Grid>
@@ -165,7 +158,7 @@ const Signup = () => {
                   type="password"
                   id="password"
                   name="password"
-                  label="비밀번호 (숫자+영문자+특수문자 8자리 이상)"
+                  label="password (숫자+영문자+특수문자 8자리 이상)"
                   error={passwordState !== "" || false}
                 />
               </Grid>
@@ -177,7 +170,7 @@ const Signup = () => {
                   type="password"
                   id="rePassword"
                   name="rePassword"
-                  label="비밀번호 재입력"
+                  label="Re-password"
                   error={passwordError !== "" || false}
                 />
               </Grid>
@@ -186,7 +179,7 @@ const Signup = () => {
               <Grid item xs={12}>
                 <FormControlLabel
                   control={<Checkbox onChange={handleAgree} color="primary" />}
-                  label="회원가입 약관에 동의합니다."
+                  label="I agree to the membership terms and conditions."
                 />
               </Grid>
             </Grid>
@@ -197,7 +190,7 @@ const Signup = () => {
               sx={{ mt: 3, mb: 2 }}
               size="large"
             >
-              회원가입
+              Sign Up
             </Button>
           </FormControl>
           <FormHelperTexts>{signupError}</FormHelperTexts>
@@ -206,5 +199,16 @@ const Signup = () => {
     </Container>
   );
 };
+
+const FormHelperTexts = styled(FormHelperText)`
+  width: 100%;
+  padding-left: 16px;
+  font-weight: 700;
+  color: #d32f2f;
+`;
+
+const Boxs = styled(Box)`
+  padding-bottom: 40px;
+`;
 
 export default Signup;
