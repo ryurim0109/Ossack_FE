@@ -14,9 +14,10 @@ function App() {
     <>
     <Wrap>
       <ConnectedRouter history={history}>
+      <MobileFrame className="MobileFramePage">
         <Route path='/' exact component={Login}  />
         <Route path='/signup' exact component={Signup} />
-        <MobileFrame className="MobileFramePage">
+       
           <Route path='/main' exact component={Main} />
           <Route path='/map' exact component={SaleMap} />
         </MobileFrame>
