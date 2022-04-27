@@ -7,9 +7,9 @@ function SaleMap(props) {
         setNowLoca(Loca)
     }
   return (
-    <>
+    <React.Fragment>
         <Location defaultLoca={receiveLoca}/>
-    </>
+    </React.Fragment>
   );
 }
 

@@ -6,7 +6,7 @@ import {history} from '../redux/configStore';
 
 function Bar() {
   return (
-    <>
+    <React.Fragment>
         <Container>
             <Grid width="25%" textAlign="center" display="flex" justifyContent="center" alignItems="center">
                 <Button backgroundColor="none">홈</Button>
@@ -21,7 +21,7 @@ function Bar() {
                 <Button backgroundColor="none">더보기</Button>
             </Grid>
         </Container>
-    </>
+    </React.Fragment>
   );
 }
 
