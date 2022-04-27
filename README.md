@@ -34,3 +34,16 @@
 |chore|빌드 업무 수정, 패키지 매니저 수정|
 |docs|문서 수정(md, git관련 파일, 이미지파일 수정)|
 |style|코드 formatting, 세미콜론(;) 누락, 코드 변경이 없는 경우|
+
+### 👀 사용 라이브러리 👀
+
+<div>
+<img src="https://img.shields.io/badge/react-1496FF?style=flat&logo=react&logoColor=white">
+<img src="https://img.shields.io/badge/axios-yellow?style=flat&logo=axios&logoColor=white">
+<img src="https://img.shields.io/badge/redux-764ABC?style=flat&logo=redux&logoColor=EF2D5E">
+<img src="https://img.shields.io/badge/immer-106ece?style=flat&logo=immer&logoColor=immer">
+<img src="https://img.shields.io/badge/styledcomponents-DB7093?style=flat&logo=styledcomponents&logoColor=white">
+<img src="https://img.shields.io/badge/sockjs-1877F2?style=flat&logo=ssockjs&logoColor=white">
+<img src='https://img.shields.io/badge/yarn-v1.22.17-yellow?logo=yarn'/>
+  <img src='https://img.shields.io/badge/AWS-Amazon AWS-yellow?logo=Amazon AWS'/>
+</div>

@@ -77,7 +77,7 @@ Button.defaultProps ={
   left: null,
   right: null,
   hover: null,
-  display: null,  
+  display: null, 
 };
 
 const ButtonBox = styled.button`
@@ -87,6 +87,7 @@ const ButtonBox = styled.button`
   height: ${(props) => props.height};
   font-size: ${(props) => props.fontSize};
   margin: ${(props) => props.margin};
+  position: ${props => props.position};
   ${(props) =>
     props.backgroundColor
       ? `background-color:${props.backgroundColor}`
@@ -108,7 +109,6 @@ const ButtonBox = styled.button`
   bottom: ${(props) => props.bottom};
   left: ${(props) => props.left};
   right: ${(props) => props.right};
-  position: ${(props) => props.position};
   flex-shrink: 0;
   display: ${props => props.display};
 `;

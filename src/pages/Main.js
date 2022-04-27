@@ -1,9 +1,11 @@
 import React from 'react';
+import {Header,Banner} from '../components/home';
 
 function Main() {
   return (
     <React.Fragment>
-        <p>메인~</p>
+      <Header/>
+      <Banner/>
     </React.Fragment>
   );
 }

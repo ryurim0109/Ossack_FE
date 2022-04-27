@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { MainGrid } from './index';
+import { Grid } from './index';
 
 const Input = props => {
   const {
@@ -10,7 +10,6 @@ const Input = props => {
     onSubmit,
     type,
     multiLine,
-    edit,
     value,
     margin,
     width,
@@ -41,15 +40,15 @@ const Input = props => {
   };
   if (multiLine) {
     return (
-      <MainGrid>
+      <Grid>
         {label && <p>{label}</p>}
         <Textarea backgroundColor={backgroundColor} value={value} rows={10} placeholder={placeholder} onChange={_onChange}></Textarea>
-      </MainGrid>
+      </Grid>
     );
   }
 
   return (
-    <MainGrid>
+    <Grid>
       {label && <p>{label}</p>}
       <In
         {...styles}
@@ -68,7 +67,7 @@ const Input = props => {
           }
         }}
       />
-    </MainGrid>
+    </Grid>
   );
 };
 
