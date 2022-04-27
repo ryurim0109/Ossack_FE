@@ -1,5 +1,5 @@
-import Header from './Header';
-import Banner from './Banner';
+import Bar from './Bar';
 import Location from './Location';
+import MobileFrame from './MobileFrame';
 
-export { Header,Banner,Location };
+export { Bar,Location,MobileFrame };
