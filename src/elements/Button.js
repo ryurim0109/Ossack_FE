@@ -12,7 +12,6 @@ const Button =(props) =>{
         padding,
         backgroundColor,
         height,
-        fontSize,
         borderRadius,
         top,
         bottom,
@@ -21,6 +20,7 @@ const Button =(props) =>{
         hover,
         display,
         is_S,
+        fontSize,
         _disabled} =props;
         
 
@@ -31,7 +31,6 @@ const Button =(props) =>{
         backgroundColor,
         color,
         height,
-        fontSize,
         borderRadius,
         top,
         bottom,
@@ -39,6 +38,7 @@ const Button =(props) =>{
         right,
         hover,
         display,
+        fontSize,
 
     }
     if(is_S){
@@ -78,6 +78,7 @@ Button.defaultProps ={
   right: null,
   hover: null,
   display: null, 
+  fontSize:null,
 };
 
 const ButtonBox = styled.button`

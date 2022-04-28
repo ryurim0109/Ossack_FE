@@ -5,6 +5,7 @@ import { Map, MapMarker,ZoomControl,MapTypeControl } from "react-kakao-maps-sdk"
 const MainMap = (props)=> {
   
   const { kakao } = window;
+  const [level, setLevel] = useState(3);
 
   const [state, setState] = useState({
       center: {
@@ -51,28 +52,70 @@ const MainMap = (props)=> {
     const loca=state.center
     props.defaultLoca(loca)
   }
+  
+  console.log(`현재 지도레벨은 ${level}입니다`)
 
   return (
     <React.Fragment>
     <MainContent>
       <Map center={state.center} onCreate={sendLoca} style={{width: "100%", height: "inherit"}}
-        level={3} 
+        level={level} 
         // draggable={draggable} zoomable={zoomable}
         >
         {!state.isLoading && (
           <MapMarker position={state.center}></MapMarker>
         )}
-          <ZoomControl position={kakao.maps.ControlPosition.TOPRIGHT} />
+          {/* <ZoomControl position={kakao.maps.ControlPosition.TOPRIGHT} /> */}
+
           <MapTypeControl position={kakao.maps.ControlPosition.TOPRIGHT}/>
+
+          <Lev >
+            <button
+                    onClick={() =>
+                      setLevel(level + 1)
+                    }
+                  >
+                    +
+                  </button>
+                  <button
+                    onClick={() =>
+                      setLevel(level - 1)
+                    }
+                  >
+                    -
+              </button>
+          </Lev>
+         
       </Map>
-      
+       
     </MainContent>
     </React.Fragment>
   )
 }
-
-export default MainMap
-
 const MainContent = styled.div`
   height: inherit;
+  position:relative;
+
+
 `
+const Lev =styled.div`
+  width:25px;
+  height:50px;
+  position:absolute;
+  bottom:0;
+  left:0;
+  z-index:99;
+  display:flex;
+  flex-direction:column;
+  gap:5px;
+
+  & button{
+    width:25px;
+    height:25px;
+    background:pink;
+    border:none;
+  } 
+
+`;
+export default MainMap;
+

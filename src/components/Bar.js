@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import {Grid,Button} from '../elements/index';
+import {Grid,Button,Text} from '../elements/index';
 import {history} from '../redux/configStore';
 
 
@@ -8,17 +8,21 @@ function Bar() {
   return (
     <React.Fragment>
         <Container>
-            <Grid width="25%" textAlign="center" display="flex" justifyContent="center" alignItems="center">
-                <Button backgroundColor="none">홈</Button>
+            <Grid width="25%" textAlign="center" display="flex" flexDirection="column" justifyContent="center" alignItems="center">
+                <Grid width="24px" height="24px" bg="red"></Grid>
+                <Text color="#111" size="12px">홈</Text>
             </Grid>
-            <Grid  width="25%" textAlign="center" display="flex" justifyContent="center" alignItems="center">
-                <Button backgroundColor="none">찜</Button>
+            <Grid width="25%" textAlign="center" display="flex" flexDirection="column" justifyContent="center" alignItems="center">
+                <Grid width="24px" height="24px" bg="red"></Grid>
+                <Text color="#111" size="12px">찜</Text>
             </Grid>
-            <Grid  width="25%" textAlign="center" display="flex" justifyContent="center" alignItems="center">
-                <Button backgroundColor="none">마이페이지</Button>
+            <Grid width="25%" textAlign="center" display="flex" flexDirection="column" justifyContent="center" alignItems="center">
+                <Grid width="24px" height="24px" bg="red"></Grid>
+                <Text color="#111" size="12px">마이페이지</Text>
             </Grid>
-            <Grid  width="25%" textAlign="center" display="flex" justifyContent="center" alignItems="center">
-                <Button backgroundColor="none">더보기</Button>
+            <Grid width="25%" textAlign="center" display="flex" flexDirection="column" justifyContent="center" alignItems="center">
+                <Grid width="24px" height="24px" bg="red"></Grid>
+                <Text color="#111" size="12px">더보기</Text>
             </Grid>
         </Container>
     </React.Fragment>

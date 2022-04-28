@@ -11,6 +11,7 @@ const Grid = props => {
     width,
     height,
     bg,
+    color,
     display,
     justifyContent,
     alignItems,
@@ -31,15 +32,16 @@ const Grid = props => {
     minHeight,
     maxHeight,
     boxShadow,
-    backgroundColor,
     lineHeight,
     boxSizing,
     position,
+    textIn,
     top,
     bottom,
     left,
     right,
     hover,
+    cursor,
   } = props;
 
   const styles = {
@@ -69,8 +71,8 @@ const Grid = props => {
     minHeight,
     maxHeight,
     boxShadow,
-    backgroundColor,
     lineHeight,
+    color,
     boxSizing,
     position,
     top,
@@ -78,6 +80,8 @@ const Grid = props => {
     left,
     right,
     hover,
+    textIn,
+    cursor,
   };
   return (
     <GridBox {...styles} onClick={_onClick} id={id}>
@@ -94,6 +98,7 @@ Grid.defaultProps = {
   width: '100%',
   height: '100%',
   bg: null,
+  cursor:null,
   display: null,
   justifyContent: null,
   gap:null,
@@ -122,6 +127,8 @@ Grid.defaultProps = {
   right: null,
   hover: null,
   lh:null,
+  color:null,
+  textIn:null,
   _onClick: () => {},
 };
 
@@ -153,13 +160,15 @@ const GridBox = styled.div`
   max-height: ${props => props.maxHeight};
   background-color: ${props => props.bg};
   box-sizing: border-box;
+  cursor: ${props => props.cursor};
+  text-indent:${props => props.textIn};
   box-shadow: ${props => props.boxShadow};
   position: ${props => props.position};
   top: ${props => props.top};
   bottom: ${props => props.bottom};
   left: ${props => props.left};
   right: ${props => props.right};
-  background-color: ${props => props.backgroundColor};
+  color: ${props => props.color};
 
   :hover {
     ${props =>
