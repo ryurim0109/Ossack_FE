@@ -116,6 +116,7 @@ margin: ${props => props.margin};
   background: ${props => props.bg};
   padding: ${props => props.padding};
   background-image: ${props => props.backgroundImage};
+  background-repeat:no-repeat;
   box-sizing: border-box;
   border-radius: 5px;
   background-color: ${props => props.backgroundColor};
