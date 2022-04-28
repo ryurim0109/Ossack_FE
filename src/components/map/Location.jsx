@@ -6,6 +6,7 @@ const MainMap = (props)=> {
   
   const { kakao } = window;
   const [level, setLevel] = useState(3);
+  const [map, setMap] = useState();
 
   const [state, setState] = useState({
       center: {
@@ -48,17 +49,28 @@ const MainMap = (props)=> {
     }
   }, [])
 
-  const sendLoca = () => {
-    const loca=state.center
-    props.defaultLoca(loca)
-  }
+  // const sendLoca = () => {
+  //   const loca=state.center
+  //   props.defaultLoca(loca)
+  // }
+  function setLocation() {
+		if (navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition(function(position) {
+				map.setCenter(new kakao.maps.LatLng(position.coords.latitude, position.coords.longitude));
+			});
+		}
+	}
+	
   
   console.log(`현재 지도레벨은 ${level}입니다`)
+  console.log()
 
   return (
     <React.Fragment>
     <MainContent>
-      <Map center={state.center} onCreate={sendLoca} style={{width: "100%", height: "inherit"}}
+      <Map center={state.center} onCreate={(map) => setMap(map)}
+    
+      style={{width: "100%", height: "inherit"}}
         level={level} 
         // draggable={draggable} zoomable={zoomable}
         >
@@ -72,17 +84,22 @@ const MainMap = (props)=> {
           <Lev >
             <button
                     onClick={() =>
-                      setLevel(level + 1)
+                      setLevel(level - 1)
                     }
                   >
                     +
                   </button>
                   <button
                     onClick={() =>
-                      setLevel(level - 1)
+                      setLevel(level + 1)
                     }
                   >
                     -
+              </button>
+              <button
+                    onClick={setLocation}
+                  >
+                    🤩
               </button>
           </Lev>
          
@@ -102,7 +119,7 @@ const Lev =styled.div`
   width:25px;
   height:50px;
   position:absolute;
-  bottom:0;
+  bottom:100px;
   left:0;
   z-index:99;
   display:flex;
