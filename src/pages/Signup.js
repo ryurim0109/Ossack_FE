@@ -56,17 +56,17 @@ const Signup = () => {
 
     const data = new FormData(e.currentTarget);
     const joinData = {
-      email: data.get("email"),
+      userEmail: data.get("userEmail"),
       nickname: data.get("nickname"),
       password: data.get("password"),
-      rePassword: data.get("rePassword"),
+      passwordCheck: data.get("passwordCheck"),
     };
-    const { email, nickname, password, rePassword } = joinData;
+    const { userEmail, nickname, password, passwordCheck } = joinData;
 
     // 이메일 유효성 체크
     const emailRegex =
       /([\w-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
-    if (!emailRegex.test(email))
+    if (!emailRegex.test(userEmail))
       setEmailError("올바른 이메일 형식이 아닙니다.");
     else setEmailError("");
 
@@ -80,7 +80,7 @@ const Signup = () => {
     else setPasswordState("");
 
     // 비밀번호 같은지 체크
-    if (password !== rePassword)
+    if (password !== passwordCheck)
       setPasswordError("비밀번호가 일치하지 않습니다.");
     else setPasswordError("");
 
@@ -94,9 +94,9 @@ const Signup = () => {
     if (!checked) alert("회원가입 약관에 동의해주세요.");
 
     if (
-      emailRegex.test(email) &&
+      emailRegex.test(userEmail) &&
       passwordRegex.test(password) &&
-      password === rePassword &&
+      password === passwordCheck &&
       nicknameRegex.test(nickname) &&
       checked
     ) {
@@ -133,8 +133,8 @@ const Signup = () => {
                   autoFocus
                   fullWidth
                   type="email"
-                  id="email"
-                  name="email"
+                  id="userEmail"
+                  name="userEmail"
                   label="Email Address"
                   error={emailError !== "" || false}
                 />
@@ -168,9 +168,9 @@ const Signup = () => {
                   required
                   fullWidth
                   type="password"
-                  id="rePassword"
-                  name="rePassword"
-                  label="Re-password"
+                  id="passwordCheck"
+                  name="passwordCheck"
+                  label="passwordCheck"
                   error={passwordError !== "" || false}
                 />
               </Grid>
