@@ -7,6 +7,8 @@ const MainMap = (props)=> {
   const { kakao } = window;
   const [level, setLevel] = useState(3);
   const [map, setMap] = useState();
+  const [info, setInfo] = useState();
+  const [pos, setPos] = useState()
 
   const [state, setState] = useState({
       center: {
@@ -18,7 +20,6 @@ const MainMap = (props)=> {
   })
   // const [draggable, setDraggable] = useState(true)
   // const [zoomable, setZoomable] = useState(false) 
-
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition( 
@@ -47,13 +48,19 @@ const MainMap = (props)=> {
         isLoading: false,
       }))
     }
+    //위도 경eh
+
+
   }, [])
+
+  
 
   // const sendLoca = () => {
   //   const loca=state.center
   //   props.defaultLoca(loca)
   // }
   function setLocation() {
+    console.log(`현재 지도레벨은 ${level}입니다`)
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition(function(position) {
 				map.setCenter(new kakao.maps.LatLng(position.coords.latitude, position.coords.longitude));
@@ -62,14 +69,16 @@ const MainMap = (props)=> {
 	}
 	
   
-  console.log(`현재 지도레벨은 ${level}입니다`)
-  console.log()
+  
 
   return (
     <React.Fragment>
     <MainContent>
       <Map center={state.center} onCreate={(map) => setMap(map)}
-    
+        onDragEnd={(map) => setPos({
+          lat: map.getCenter().getLat(),
+          lng: map.getCenter().getLng(),
+        })}
       style={{width: "100%", height: "inherit"}}
         level={level} 
         // draggable={draggable} zoomable={zoomable}
@@ -84,14 +93,17 @@ const MainMap = (props)=> {
           <Lev >
             <button
                     onClick={() =>
-                      setLevel(level - 1)
+                      level > 1 ?
+                       (setLevel(level - 1) ):(null)
+
                     }
                   >
                     +
                   </button>
                   <button
                     onClick={() =>
-                      setLevel(level + 1)
+                      level < 15 ?
+                      (setLevel(level + 1)):(null)
                     }
                   >
                     -
@@ -104,7 +116,7 @@ const MainMap = (props)=> {
           </Lev>
          
       </Map>
-       
+      {pos && console.log('변경된 지도 중심좌표는 ' + pos.lat + ' 이고, 경도는 ' + pos.lng + ' 입니다')}
     </MainContent>
     </React.Fragment>
   )
