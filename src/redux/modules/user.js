@@ -1,6 +1,7 @@
 import { createAction, handleActions } from "redux-actions";
 import produce from "immer";
 import axios from "axios";
+//import { RESP } from "../../response";
 //import { setCookie, deleteCookie } from "../../shared/cookie";
 
 // actions
@@ -19,45 +20,54 @@ const logOut = createAction(LOG_OUT, () => {});
 
 // middleWares
 const signUpApi = (user) => {
+  console.log("user : ", user);
   return async function (dispatch, getState, { history }) {
     try {
-      const join = await axios.post("http://54.180.96.119/api/signup", {
-        username: user.user_name,
+      const response = await axios.post("http://54.180.102.156/user/signup", {
+        userEmail: user.userEmail,
         nickname: user.nickname,
-        password: user.pwd,
+        password: user.password,
       });
-      if (join.data === "회원가입이 완료되었습니다.") {
-        alert(`${user.nickname}님 ${join.data}`);
-        history.replace("/login");
+      //const response = RESP.USERSIGNUPPOST;
+      console.log("response : ", response);
+
+      if (response.status === 200) {
+        //   if (response.data === "회원가입에 성공하였습니다") {
+        alert(`${user.nickname}님 ${response.data.message}`);
+        history.replace("/");
       } else {
-        alert("회원가입에 실패했습니다. 다시 시도해주세요.");
+        alert("회원가입에 실패했습니다. 다시 시도해주세요!!");
       }
     } catch (err) {
-      alert("회원가입에 실패했습니다. 다시 시도해주세요.");
+      alert("회원가입에 실패했습니다. 다시 시도해주세요~");
       console.log("에러발생", err);
     }
   };
 };
 
-const loginApi = (user) => {
+const loginApi = (userEmail, password) => {
+  console.log("userEmail : ", userEmail);
+  console.log("password : ", password);
   return async function (dispatch, getState, { history }) {
     try {
-      const login = await axios.post("http://54.180.96.119/user/login", {
-        username: user.user_name,
-        password: user.pwd,
+      const response = await axios.post("http://54.180.102.156/user/login", {
+        userEmail: userEmail,
+        password: password,
       });
-      if (!login.data) {
-        alert(`로그인 성공`);
-        history.replace("/");
+      //const response = RESP.USERLOGINPOST;
+      console.log("response : ", response);
 
-        const token = login.headers.authorization.split("BEARER ");
+      if (response.status === 200) {
+        alert(`로그인 성공`);
+        history.replace("/main");
+
+        const token = response.headers.authorization.split("BEARER ");
         localStorage.setItem("token", token[1]);
 
         dispatch(
           setUser({
             nickname: "",
-            username: user.user_name,
-            userId: "",
+            userEmail: userEmail,
           })
         );
       } else {
@@ -109,7 +119,7 @@ export default handleActions(
   {
     [SET_USER]: (state, action) =>
       produce(state, (draft) => {
-       // setCookie("is_login", "success");
+        // setCookie("is_login", "success");
         draft.is_login = true;
         draft.user = action.payload.user;
       }),

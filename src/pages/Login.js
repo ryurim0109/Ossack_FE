@@ -22,10 +22,10 @@ const Login = () => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log({
-      email: data.get("email"),
+      userEmail: data.get("userEmail"),
       password: data.get("password"),
     });
-    dispatch(userActions.loginApi(data));
+    dispatch(userActions.loginApi(data.get("userEmail"), data.get("password")));
   };
 
   return (
@@ -56,10 +56,10 @@ const Login = () => {
               margin="normal"
               required
               fullWidth
-              id="email"
+              id="userEmail"
               label="Email Address"
-              name="email"
-              autoComplete="email"
+              name="userEmail"
+              autoComplete="userEmail"
               autoFocus
             />
             <TextField
