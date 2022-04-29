@@ -1,5 +1,5 @@
 import React from 'react';
-import {Sale,Bar} from '../components/home'
+import {Sale,Bar} from '../components/home';
 
 function Main() {
   return (
