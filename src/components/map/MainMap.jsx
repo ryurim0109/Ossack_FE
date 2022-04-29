@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from 'react'
-import styled from "styled-components"
-import { Map, MapMarker,ZoomControl,MapTypeControl } from "react-kakao-maps-sdk"
+import React, { useEffect, useState } from 'react';
+import styled from "styled-components";
+import { useDispatch } from "react-redux";
+import {  actionCreators as  mapActions  } from "../../redux/modules/map";
+import { Map, MapMarker,ZoomControl,MapTypeControl } from "react-kakao-maps-sdk";
+import Position from './Position';
 
 const MainMap = (props)=> {
-  
+  const dispatch =useDispatch();
   const { kakao } = window;
   const [level, setLevel] = useState(3); //지도레벨
   const [map, setMap] = useState(); //지도
@@ -17,8 +20,8 @@ const MainMap = (props)=> {
       errMsg: null,
       isLoading: true,
   })
-  // const [draggable, setDraggable] = useState(true)
-  // const [zoomable, setZoomable] = useState(false) 
+ 
+  
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition( 
@@ -47,18 +50,9 @@ const MainMap = (props)=> {
         isLoading: false,
       }))
     }
-    //위도 경eh
-
-
+    //위도 경도
   }, [])
-
-  
-
-  // const sendLoca = () => {
-  //   const loca=state.center
-  //   props.defaultLoca(loca)
-  // }
-  function setLocation() {
+  const setLocation=()=> {
     console.log(`현재 지도레벨은 ${level}입니다`)
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition(function(position) {
@@ -67,6 +61,7 @@ const MainMap = (props)=> {
 		}
 	}
 	
+  
   
   
 
@@ -88,7 +83,6 @@ const MainMap = (props)=> {
         })}
       style={{width: "100%", height: "inherit"}}
         level={level} 
-        // draggable={draggable} zoomable={zoomable}
         >
         {!state.isLoading && (
           <MapMarker position={state.center}></MapMarker>
@@ -123,10 +117,11 @@ const MainMap = (props)=> {
           </Lev>
          
       </Map>
-      {pos && console.log('변경된 지도 중심좌표는 ' + pos.lat + ' 이고, 경도는 ' + pos.lng + ' 입니다', 
+      {/* {pos && console.log('변경된 지도 중심좌표는 ' + pos.lat + ' 이고, 경도는 ' + pos.lng + ' 입니다', 
       '남서쪽' + pos.swLatLng.lat ,pos.swLatLng.lng, '북동쪽좌표' + pos.neLatLng.lat ,pos.neLatLng.lng)
       
-      }
+      } */}
+      {pos && <Position pos={pos} map={map}/>}
     </MainContent>
     </React.Fragment>
   )
