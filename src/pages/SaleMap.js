@@ -7,8 +7,8 @@ function SaleMap(props) {
    
   return (
     <React.Fragment>
-        {/* <MainMap /> */}
-        <KakaoMap />
+        <MainMap />
+        {/* <KakaoMap /> */}
         
     </React.Fragment>
   );
