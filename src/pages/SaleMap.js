@@ -1,15 +1,14 @@
 import React,{useState} from 'react';
 import {MainMap} from '../components/home';
+import KakaoMap from '../components/map/KakaoMap';
 
 
 function SaleMap(props) {
-    const [nowLoca,setNowLoca] = useState();
-    const receiveLoca = (Loca) => {
-        setNowLoca(Loca)
-    }
+   
   return (
     <React.Fragment>
-        <MainMap defaultLoca={receiveLoca}/>
+        {/* <MainMap /> */}
+        <KakaoMap />
         
     </React.Fragment>
   );
