@@ -20,13 +20,13 @@ const Banner = (props) => {
     return (
       <React.Fragment>
         <StyledSlider {...settings} >
-          <Grid  height="250px" bg="green">
+          <Grid  height="100px" bg="green">
             <h3>1</h3>
           </Grid >
-          <Grid height="250px" bg="red">
+          <Grid height="100px" bg="red">
             <h3>2</h3>
           </Grid>
-          <Grid  height="250px" bg="yellow">
+          <Grid  height="100px" bg="yellow">
             <h3>3</h3>
           </Grid>
         </StyledSlider>
@@ -35,8 +35,8 @@ const Banner = (props) => {
   
 }
 const StyledSlider = styled(Slider)`
-   height: 250px; 
-   width: 100vw;
+   height: 100px; 
+   width: 100%;
    position:relative;
 
 }`

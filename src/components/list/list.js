@@ -1,5 +1,6 @@
 import SaleList from './SaleList';
-import PlaceList from './PlaceList';
+import HotPlaceList from './HotPlaceList';
+import Office  from './Office';
 
 
-export { SaleList,PlaceList };
+export { SaleList,HotPlaceList,Office };
