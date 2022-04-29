@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
+import { TiHeartOutline } from "react-icons/ti";
+
 
 
 const Button =(props) =>{
@@ -19,8 +21,10 @@ const Button =(props) =>{
         right,
         hover,
         display,
-        is_S,
+        is_like,
         fontSize,
+        position,
+        
         _disabled} =props;
         
 
@@ -28,6 +32,7 @@ const Button =(props) =>{
         margin,
         width,
         padding,
+        position,
         backgroundColor,
         color,
         height,
@@ -41,12 +46,12 @@ const Button =(props) =>{
         fontSize,
 
     }
-    if(is_S){
+    if(is_like){
         return (
             <React.Fragment>
-                <EditBox onClick={_onClick}>
-                   
-                </ EditBox>
+                <HeartBox onClick={_onClick} {...styles}>
+                   <Heart/>
+                </ HeartBox>
             </React.Fragment>
         )
     }
@@ -63,14 +68,14 @@ const Button =(props) =>{
 };
 
 Button.defaultProps ={
-  position: false,
+  position: null,
   children: null,
   _onClick: () => {},
   isFloat: false,
   margin: 'auto',
   width: '100%',
   padding: '12px 0px',
-  color: 'white',
+  color: 'black',
   height: '50px',
   top: null,
   bottom: null,
@@ -113,20 +118,26 @@ const ButtonBox = styled.button`
   flex-shrink: 0;
   display: ${props => props.display};
 `;
-const EditBox=styled.button`
-    width:41px;
-    height:41px;
-    background:#F5F6F7;
-    border-radius:25px;
+
+const HeartBox=styled.button`
+    background:none;
     border:none;
     cursor:pointer;
     display:flex;
     align-items:center;
     justify-content:center;
+    position: ${props => props.position};
+    top: ${props => props.top};
+    bottom: ${props => props.bottom};
+    left: ${props => props.left};
+    right: ${props => props.right};
+    color: ${(props) => props.color};
 
-    &:hover{
-        background:#e0e0e0;
-    }
+`;
+const Heart=styled(TiHeartOutline)`
+    width:24px;
+    height:24px;
+
 `;
 
 

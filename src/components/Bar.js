@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import {Grid,Button,Text} from '../elements/index';
+import {Grid,Button,Text,Image} from '../elements/index';
 import {history} from '../redux/configStore';
+import HomeImg from '../static/images/home.png'
 
 
 function Bar() {
@@ -9,7 +10,7 @@ function Bar() {
     <React.Fragment>
         <Container>
             <Grid width="25%" textAlign="center" display="flex" flexDirection="column" justifyContent="center" alignItems="center">
-                <Grid width="24px" height="24px" bg="red"></Grid>
+                <Grid width="24px" height="24px"><img src={HomeImg} alt="홈아이콘"/> </Grid>
                 <Text color="#111" size="12px">홈</Text>
             </Grid>
             <Grid width="25%" textAlign="center" display="flex" flexDirection="column" justifyContent="center" alignItems="center">
@@ -19,11 +20,11 @@ function Bar() {
             <Grid width="25%" textAlign="center" display="flex" flexDirection="column" justifyContent="center" alignItems="center">
                 <Grid width="24px" height="24px" bg="red"></Grid>
                 <Text color="#111" size="12px">마이페이지</Text>
-            </Grid>
+            </Grid>{/* 
             <Grid width="25%" textAlign="center" display="flex" flexDirection="column" justifyContent="center" alignItems="center">
                 <Grid width="24px" height="24px" bg="red"></Grid>
                 <Text color="#111" size="12px">더보기</Text>
-            </Grid>
+            </Grid> */}
         </Container>
     </React.Fragment>
   );

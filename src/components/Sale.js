@@ -3,18 +3,19 @@ import styled from 'styled-components';
 import {Grid,Text,Input,Button  } from '../elements/index';
 import {history} from '../redux/configStore';
 import SearchImg from '../static/images/searchicon.png';
-import {SaleList,PlaceList} from '../components/list/list';
+import {SaleList,HotPlaceList,Office} from '../components/list/list';
 
 
 function Sale() {
   return (
     <React.Fragment>
       <Outter>
-        <Grid width="100%" margin="30px 0" bg="#c4c4c4">
-          <Text size="1.7rem">네이밍</Text>
+        <Grid width="100%" margin="38px 0" display="flex" justifyContent="space-between">
+          <Text size="1.250rem" bold cursor="pointer">오싹</Text>
+          <Grid width="24px" height="24px" bg="#ccc"></Grid>
         </Grid>
-        <Grid width="100%" margin="25px 0" bg="#c4c4c4">
-          <Text size="1.85rem" bold> 닉네임님 어떤 오피스 공간을 <br/>찾고 계시나요?</Text>
+        <Grid width="100%" margin="22px 0" bg="#c4c4c4">
+          <Text size="1.250rem" bold> @@@님 어떤 🏢오피스를 <br/>찾고 계시나요?</Text>
         </Grid>
         <Grid width="100%" margin="16px 0" position="relative" >
          <Grid  width="50px" position="absolute" top="12px"  left="10px">
@@ -25,17 +26,23 @@ function Sale() {
            _onClick={()=>{
              history.push('/map')
           }}>
-            장소, 주소, 건물명 검색
+            장소, 주소, 건물명을 입력하세요.
           </Grid>
           
         </Grid>
         {/* 오피스구해요 박스 */}
         <SaleList/>
-        <Grid margin="16px 0 0 0 ">
-                <Text bold>📍성수동 근처</Text> 추천 공간
+        <Grid margin="24px 0 0 0 " width="100%" display="flex" justifyContent="space-between">
+                <Text bold size="1.250rem" cursor="pointer" >성수동 근처추천 오피스 📍 </Text>
+                <Grid width="50px" fontSize="0.750rem" cursor="pointer">내 위치</Grid>
         </Grid>
-        {/* 내근처매물 */}
-          <PlaceList/>
+        <Office/>
+        {/* 핫한 오피스 */}
+        <Grid margin="18px 0 0 0 " width="100%" display="flex" justifyContent="space-between">
+                <Text bold size="1.250rem" cursor="pointer">지금 가장 HOT한 오피스 🔥 </Text>
+                <Grid width="60px" fontSize="0.750rem" color="#828282" cursor="pointer" >전체보기</Grid>
+        </Grid>
+          <HotPlaceList/>
       </Outter>
     </React.Fragment>
   );
@@ -43,7 +50,7 @@ function Sale() {
 const Outter=styled.div`
   width:100%;
   position:relative;
-  padding:0 16px 58px 16px;
+  padding:0 16px 0px 16px;
 
 `;
 export default Sale;
