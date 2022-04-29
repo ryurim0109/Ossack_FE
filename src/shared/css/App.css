@@ -20,7 +20,7 @@ body {
   height: 100vh;
   background: #fcfcfc;
   font-size: 1.6rem;
-  font-family: "Noto Sans KR";
+  font-family: "Pretendard";
 }
 
 ::selection,
@@ -195,7 +195,7 @@ textarea {
 input,
 textarea {
   font-size: 1.6rem;
-  font-family: "Noto Sans KR";
+  font-family: "Pretendard";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -229,7 +229,7 @@ button {
   background-color: transparent;
   font-size: 1.6rem;
 
-  font-family: "Noto Sans KR";
+  font-family: "Pretendard";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 500;
@@ -239,7 +239,7 @@ button {
 
 input {
   /* padding: 0.2rem 1rem; */
-  font-family: "Noto Sans KR";
+  font-family: "Pretendard";
   border: 1px solid #dddddd;
 }
 input[type="text"] {
