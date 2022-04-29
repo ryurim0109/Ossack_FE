@@ -1,5 +1,6 @@
 import React,{useState} from 'react';
-import {Location} from '../components/home'
+import {MainMap} from '../components/home';
+
 
 function SaleMap(props) {
     const [nowLoca,setNowLoca] = useState();
@@ -8,7 +9,8 @@ function SaleMap(props) {
     }
   return (
     <React.Fragment>
-        <Location defaultLoca={receiveLoca}/>
+        <MainMap defaultLoca={receiveLoca}/>
+        
     </React.Fragment>
   );
 }

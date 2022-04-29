@@ -5,12 +5,11 @@ import { Map, MapMarker,ZoomControl,MapTypeControl } from "react-kakao-maps-sdk"
 const MainMap = (props)=> {
   
   const { kakao } = window;
-  const [level, setLevel] = useState(3);
-  const [map, setMap] = useState();
-  const [info, setInfo] = useState();
-  const [pos, setPos] = useState()
+  const [level, setLevel] = useState(3); //지도레벨
+  const [map, setMap] = useState(); //지도
+  const [pos, setPos] = useState(); //경도 위도
 
-  const [state, setState] = useState({
+  const [state, setState] = useState({ //기본 설정값
       center: {
         lat: 33.450701,
         lng: 126.570667,
@@ -78,6 +77,14 @@ const MainMap = (props)=> {
         onDragEnd={(map) => setPos({
           lat: map.getCenter().getLat(),
           lng: map.getCenter().getLng(),
+          swLatLng: {
+            lat: map.getBounds().getSouthWest().getLat(),
+            lng: map.getBounds().getSouthWest().getLng(),
+          },
+          neLatLng: {
+            lat: map.getBounds().getNorthEast().getLat(),
+            lng: map.getBounds().getNorthEast().getLng(),
+          },
         })}
       style={{width: "100%", height: "inherit"}}
         level={level} 
@@ -116,7 +123,10 @@ const MainMap = (props)=> {
           </Lev>
          
       </Map>
-      {pos && console.log('변경된 지도 중심좌표는 ' + pos.lat + ' 이고, 경도는 ' + pos.lng + ' 입니다')}
+      {pos && console.log('변경된 지도 중심좌표는 ' + pos.lat + ' 이고, 경도는 ' + pos.lng + ' 입니다', 
+      '남서쪽' + pos.swLatLng.lat ,pos.swLatLng.lng, '북동쪽좌표' + pos.neLatLng.lat ,pos.neLatLng.lng)
+      
+      }
     </MainContent>
     </React.Fragment>
   )
