@@ -51,6 +51,7 @@ const styles = {
     borderRadius: 0,
     outline: "none",
     cursor: "pointer",
+    boxShadow: "none",
   },
   text: {
     fontSize: "16px",
