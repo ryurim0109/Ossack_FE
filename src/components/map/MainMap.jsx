@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import styled from "styled-components";
-import { useDispatch } from "react-redux";
+import { useDispatch , useSelector  } from "react-redux";
 import {  actionCreators as  mapActions  } from "../../redux/modules/map";
 import { Map, MapMarker,ZoomControl,MapTypeControl } from "react-kakao-maps-sdk";
 import Position from './Position';
 
 const MainMap = (props)=> {
-  const dispatch =useDispatch();
+  const dispatch = useDispatch();
+  const getOffice = useSelector(state => state.map.office_list);
+  console.log("getOffice : ", getOffice);
+
   const { kakao } = window;
   const [level, setLevel] = useState(3); //지도레벨
   const [map, setMap] = useState(); //지도
@@ -84,9 +87,20 @@ const MainMap = (props)=> {
       style={{width: "100%", height: "inherit"}}
         level={level} 
         >
-        {!state.isLoading && (
-          <MapMarker position={state.center}></MapMarker>
-        )}
+        {getOffice?.map((position, index) => (
+        <MapMarker
+          key={`${position.title}-${position.latlng}`}
+          position={position.latlng} // 마커를 표시할 위치
+          image={{
+            src: "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png", // 마커이미지의 주소입니다
+            size: {
+              widht: 24,
+              height: 35
+            }, // 마커이미지의 크기입니다
+          }}
+          title={position.title} // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+        />
+      ))}
           {/* <ZoomControl position={kakao.maps.ControlPosition.TOPRIGHT} /> */}
 
           <MapTypeControl position={kakao.maps.ControlPosition.TOPRIGHT}/>
