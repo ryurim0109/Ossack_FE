@@ -77,7 +77,7 @@ Input.defaultProps = {
   placeholder: '텍스트를 입력해주세요.',
   type: 'text',
   value: '',
-  margin: 0,
+  margin: false,
   padding: false,
   width: '100%',
   border: false,
