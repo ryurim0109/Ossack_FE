@@ -2,6 +2,9 @@ import React from "react";
 import styled from "styled-components";
 
 import { TiHeartOutline } from "react-icons/ti";
+import { MdKeyboardArrowLeft } from "react-icons/md";
+
+import filterIcon from '../static/images/filterIcon.png'
 
 
 
@@ -24,7 +27,8 @@ const Button =(props) =>{
         is_like,
         fontSize,
         position,
-        
+        is_back,
+        is_filter,
         _disabled} =props;
         
 
@@ -49,9 +53,27 @@ const Button =(props) =>{
     if(is_like){
         return (
             <React.Fragment>
-                <HeartBox onClick={_onClick} {...styles}>
+                <BtnBox onClick={_onClick} {...styles}>
                    <Heart/>
-                </ HeartBox>
+                </ BtnBox>
+            </React.Fragment>
+        )
+    }
+    if(is_back){
+        return (
+            <React.Fragment>
+                <BtnBox onClick={_onClick} {...styles}>
+                   <Back/>
+                </ BtnBox>
+            </React.Fragment>
+        )
+    }
+    if(is_filter){
+        return (
+            <React.Fragment>
+                <BtnBox onClick={_onClick} {...styles}>
+                   <img src={filterIcon} alt="필터아이콘" />
+                </ BtnBox>
             </React.Fragment>
         )
     }
@@ -119,7 +141,7 @@ const ButtonBox = styled.button`
   display: ${props => props.display};
 `;
 
-const HeartBox=styled.button`
+const BtnBox=styled.button`
     background:none;
     border:none;
     cursor:pointer;
@@ -139,7 +161,10 @@ const Heart=styled(TiHeartOutline)`
     height:24px;
 
 `;
-
+const Back=styled(MdKeyboardArrowLeft)`
+    width:24px;
+    height:24px;
+`
 
 
 
