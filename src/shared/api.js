@@ -27,7 +27,7 @@ instance.interceptors.request.use(
     config.headers = {
       'content-type': 'application/json;charset=UTF-8',
       accept: 'application/json',
-      Authorization: `${Token}`,
+      Authorization: `Bearer ${Token}`,
     };
     return config;
   },
@@ -42,7 +42,7 @@ instance.interceptors.response.use(
   success => {
     const response = success.data;
 
-    if (response.statusCode === 200 && response.responseMessage === '게시글 조회 성공') {
+    if (response.statusCode === 200 && response.responseMessage === '조회 성공') {
       return response.posts;
     }
 
