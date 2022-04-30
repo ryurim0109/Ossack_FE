@@ -1,5 +1,6 @@
 import { createAction, handleActions } from "redux-actions";
 import produce from "immer";
+import { RESP } from "../../response";
 
 const SET_MAP = "SET_MAP";
 const SET_OFFICE_LIST = "SET_OFFICE_LIST";
@@ -34,38 +35,40 @@ const getOfficeData = (pos) => {
       //     },
       //   }
       // // );
-      // const response = RESP.GETOFFICE;
-      // console.log(response.data);
-      // dispatch(setOfficeList({}));
+      const response = RESP.GETOFFICE;
+      console.log("response : ", response);
+      dispatch(setOfficeList(response));
     } catch (err) {
       console.log("에러발생", err);
       alert("로그인 여부 확인에 문제가 생겼습니다.");
     }
   };
 };
-export default handleActions ({
+export default handleActions(
+  {
     [SET_MAP]: (state, action) =>
-    produce(state, (draft) => {
-        draft.list.map=action.payload.list.map
-    }),
+      produce(state, (draft) => {
+        draft.map = action.payload.map;
+      }),
     [SET_OFFICE_LIST]: (state, action) =>
-    produce(state, (draft) => {
-        draft.list.office_list=action.payload.list.office_list;
-    }),
+      produce(state, (draft) => {
+        console.log("action : ", action);
+        draft.office_list = action.payload.office_list;
+      }),
     [ADD_MARKER]: (state, action) =>
-    produce(state, (draft) => {
-        draft.list.marker=action.payload.list.marker
-        draft.list.overlay=action.payload.list.overlay
-    }),
-},
-initialState
+      produce(state, (draft) => {
+        draft.marker = action.payload.marker;
+        draft.overlay = action.payload.overlay;
+      }),
+  },
+  initialState
 );
-    
-  const actionCreators = {
-    setMap,
-    setOfficeList,
-    addMarker,
-    getOfficeData,
-  };
-  
-  export { actionCreators };
+
+const actionCreators = {
+  setMap,
+  setOfficeList,
+  addMarker,
+  getOfficeData,
+};
+
+export { actionCreators };
