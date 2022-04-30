@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { useDispatch, useSelector } from "react-redux";
-import { actionCreators as mapActions } from "../../redux/modules/map";
-import {
-  Map,
-  MapMarker,
-  ZoomControl,
-  MapTypeControl,
-} from "react-kakao-maps-sdk";
-import Position from "./Position";
+
+import { useDispatch , useSelector  } from "react-redux";
+import {  actionCreators as  mapActions  } from "../../redux/modules/map";
+//아이콘
+import { TiPlus,TiMinus } from "react-icons/ti";
+import { MdMyLocation } from "react-icons/md";
+
+import { Map, MapMarker } from "react-kakao-maps-sdk";
+import Position from './Position';
+import Search from '../Search';
+
 
 /** ListMotion-pts20220430  start */
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
@@ -183,6 +185,76 @@ const MainMap = (props) => {
       
       } */}
         {pos && <Position pos={pos} map={map} />}
+
+  }, [])
+  const setLocation=()=> {
+    console.log(`현재 지도레벨은 ${level}입니다`)
+		if (navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition(function(position) {
+				map.setCenter(new kakao.maps.LatLng(position.coords.latitude, position.coords.longitude));
+			});
+		}
+	}
+  return (
+    <React.Fragment>
+      <Search/>
+      <MainContent>
+        <Map center={state.center} onCreate={(map) => setMap(map)}
+          onDragEnd={(map) => setPos({
+            lat: map.getCenter().getLat(),
+            lng: map.getCenter().getLng(),
+            swLatLng: {
+              lat: map.getBounds().getSouthWest().getLat(),
+              lng: map.getBounds().getSouthWest().getLng(),
+            },
+            neLatLng: {
+              lat: map.getBounds().getNorthEast().getLat(),
+              lng: map.getBounds().getNorthEast().getLng(),
+            },
+          })}
+        style={{width: "100%", height: "inherit"}}
+          level={level} 
+          >
+          {getOffice?.map((position, index) => (
+          <MapMarker
+            key={`${position.title}-${position.latlng}`}
+            position={position.latlng} // 마커를 표시할 위치
+            image={{
+              src: "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png", // 마커이미지의 주소입니다
+              size: {
+                widht: 24,
+                height: 35
+              }, // 마커이미지의 크기입니다
+            }}
+            title={position.title} // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+          />
+        ))}
+            {/* <ZoomControl position={kakao.maps.ControlPosition.TOPRIGHT} /> */}
+            {/* <MapTypeControl position={kakao.maps.ControlPosition.TOPRIGHT}/> */}
+
+            <Lev >
+              <button onClick={setLocation}>
+                    <MdMyLocation size="24px" />
+                  </button>
+              <button onClick={() =>
+                        level > 1 ?
+                        (setLevel(level - 1) ):(null)}>
+                      <TiPlus size="21px"/>
+                    </button>
+                    <button onClick={() =>
+                        level < 15 ?
+                        (setLevel(level + 1)):(null)}>
+                      <TiMinus size="21px"/>
+                </button>
+            </Lev>
+          
+        </Map>
+        {/* {pos && console.log('변경된 지도 중심좌표는 ' + pos.lat + ' 이고, 경도는 ' + pos.lng + ' 입니다', 
+        '남서쪽' + pos.swLatLng.lat ,pos.swLatLng.lng, '북동쪽좌표' + pos.neLatLng.lat ,pos.neLatLng.lng)
+        
+        } */}
+        {pos && <Position pos={pos} map={map}/>}
+
       </MainContent>
     </React.Fragment>
   );
@@ -191,16 +263,17 @@ const MainContent = styled.div`
   height: inherit;
   position: relative;
 `;
-const Lev = styled.div`
-  width: 25px;
-  height: 105px;
-  position: absolute;
-  bottom: 100px;
-  left: 0;
-  z-index: 99;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
+
+const Lev =styled.div`
+  width:40px;
+  height:125px;
+  position:absolute;
+  bottom:96px;
+  left:16px;
+  z-index:99;
+  display:flex;
+  flex-direction:column;
+  gap:5px;
 
   & button {
     width: 25px;
