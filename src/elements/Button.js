@@ -2,131 +2,117 @@ import React from "react";
 import styled from "styled-components";
 
 import { TiHeartOutline } from "react-icons/ti";
-import { MdKeyboardArrowLeft,MdKeyboardArrowRight } from "react-icons/md";
+import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 
-import filterIcon from '../static/images/filterIcon.png';
-import pro_edit from '../static/images/pro_edit.svg'
+import pro_edit from "../static/images/pro_edit.svg";
 
+const Button = (props) => {
+  const {
+    color,
+    _onClick,
+    children,
+    margin,
+    width,
+    is_right,
+    padding,
+    backgroundColor,
+    height,
+    borderRadius,
+    top,
+    bottom,
+    left,
+    right,
+    hover,
+    display,
+    is_like,
+    fontSize,
+    position,
+    is_back,
+    is_edit,
+    _disabled,
+  } = props;
 
-
-const Button =(props) =>{
-    const {color,
-        _onClick,
-        children,
-        margin,
-        width,
-        is_right,
-        padding,
-        backgroundColor,
-        height,
-        borderRadius,
-        top,
-        bottom,
-        left,
-        right,
-        hover,
-        display,
-        is_like,
-        fontSize,
-        position,
-        is_back,
-        is_filter,
-        is_edit,
-        _disabled} =props;
-        
-
-    const styles={
-        margin,
-        width,
-        padding,
-        position,
-        backgroundColor,
-        color,
-        height,
-        borderRadius,
-        top,
-        bottom,
-        left,
-        right,
-        hover,
-        display,
-        fontSize,
-
-    }
-    if(is_like){
-        return (
-            <React.Fragment>
-                <BtnBox onClick={_onClick} {...styles}>
-                   <Heart/>
-                </ BtnBox>
-            </React.Fragment>
-        )
-    }
-    if(is_right){
-        return (
-            <React.Fragment>
-                <BtnBox onClick={_onClick} {...styles}>
-                   <Right/>
-                </ BtnBox>
-            </React.Fragment>
-        )
-    }
-    if(is_back){
-        return (
-            <React.Fragment>
-                <BtnBox onClick={_onClick} {...styles}>
-                   <Back/>
-                </ BtnBox>
-            </React.Fragment>
-        )
-    }
-    if(is_filter){
-        return (
-            <React.Fragment>
-                <BtnBox onClick={_onClick} {...styles}>
-                   <img src={filterIcon} alt="필터아이콘" />
-                </ BtnBox>
-            </React.Fragment>
-        )
-    }
-    if(is_edit){
-        return (
-            <React.Fragment>
-                <BBox onClick={_onClick} {...styles}>
-                   <img src={pro_edit} alt="수정 아이콘" />
-                </ BBox>
-            </React.Fragment>
-        )
-    }
-    
-
-   
-    return(
-        <React.Fragment>
-            <ButtonBox {...styles} onClick={_onClick} disabled={_disabled}>
-                {children}
-            </ButtonBox>
-        </React.Fragment>
+  const styles = {
+    margin,
+    width,
+    padding,
+    position,
+    backgroundColor,
+    color,
+    height,
+    borderRadius,
+    top,
+    bottom,
+    left,
+    right,
+    hover,
+    display,
+    fontSize,
+  };
+  if (is_like) {
+    return (
+      <React.Fragment>
+        <BtnBox onClick={_onClick} {...styles}>
+          <Heart />
+        </BtnBox>
+      </React.Fragment>
     );
+  }
+  if (is_right) {
+    return (
+      <React.Fragment>
+        <BtnBox onClick={_onClick} {...styles}>
+          <Right />
+        </BtnBox>
+      </React.Fragment>
+    );
+  }
+  if (is_back) {
+    return (
+      <React.Fragment>
+        <BtnBox onClick={_onClick} {...styles}>
+          <Back />
+        </BtnBox>
+      </React.Fragment>
+    );
+  }
+
+  if (is_edit) {
+    return (
+      <React.Fragment>
+        <BBox onClick={_onClick} {...styles}>
+          <img src={pro_edit} alt="수정 아이콘" />
+        </BBox>
+      </React.Fragment>
+    );
+  }
+
+  return (
+    <React.Fragment>
+      <ButtonBox {...styles} onClick={_onClick} disabled={_disabled}>
+        {children}
+      </ButtonBox>
+    </React.Fragment>
+  );
 };
 
-Button.defaultProps ={
+Button.defaultProps = {
   position: null,
   children: null,
   _onClick: () => {},
   isFloat: false,
-  margin: 'auto',
-  width: '100%',
-  padding: '12px 0px',
-  color: 'black',
-  height: '50px',
+  margin: "auto",
+  width: "100%",
+  padding: "12px 0px",
+  color: "black",
+  height: "50px",
   top: null,
   bottom: null,
   left: null,
   right: null,
   hover: null,
-  display: null, 
-  fontSize:null,
+  display: null,
+  fontSize: null,
 };
 
 const ButtonBox = styled.button`
@@ -136,18 +122,18 @@ const ButtonBox = styled.button`
   height: ${(props) => props.height};
   font-size: ${(props) => props.fontSize};
   margin: ${(props) => props.margin};
-  position: ${props => props.position};
+  position: ${(props) => props.position};
   ${(props) =>
     props.backgroundColor
       ? `background-color:${props.backgroundColor}`
-      : 'background-color: #ccc'};
+      : "background-color: #ccc"};
   box-sizing: border-box;
   font-weight: bold;
   border: none;
   ${(props) =>
     props.borderRadius
       ? `border-radius:${props.borderRadius}`
-      : 'border-radius: 0px'};
+      : "border-radius: 0px"};
   cursor: pointer;
   flex-shrink: 0;
   &:hover {
@@ -159,61 +145,55 @@ const ButtonBox = styled.button`
   left: ${(props) => props.left};
   right: ${(props) => props.right};
   flex-shrink: 0;
-  display: ${props => props.display};
+  display: ${(props) => props.display};
 `;
 
-const BtnBox=styled.button`
-    background:none;
-    border:none;
-    cursor:pointer;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    position: ${props => props.position};
-    top: ${props => props.top};
-    bottom: ${props => props.bottom};
-    left: ${props => props.left};
-    right: ${props => props.right};
-    color: ${(props) => props.color};
-
+const BtnBox = styled.button`
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: ${(props) => props.position};
+  top: ${(props) => props.top};
+  bottom: ${(props) => props.bottom};
+  left: ${(props) => props.left};
+  right: ${(props) => props.right};
+  color: ${(props) => props.color};
 `;
-const BBox=styled.button`
-    ${(props) =>
+const BBox = styled.button`
+  ${(props) =>
     props.backgroundColor
       ? `background-color:${props.backgroundColor}`
-      : 'background-color: #494949'};
-    border:2px solid #fff;
-    box-sizing:border-box;
-    cursor:pointer;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    position: ${props => props.position};
-    top: ${props => props.top};
-    bottom: ${props => props.bottom};
-    left: ${props => props.left};
-    right: ${props => props.right};
-    color: ${(props) => props.color};
-    width:28px;
-    height:28px;
-    border-radius:14px;
-
+      : "background-color: #494949"};
+  border: 2px solid #fff;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: ${(props) => props.position};
+  top: ${(props) => props.top};
+  bottom: ${(props) => props.bottom};
+  left: ${(props) => props.left};
+  right: ${(props) => props.right};
+  color: ${(props) => props.color};
+  width: 28px;
+  height: 28px;
+  border-radius: 14px;
 `;
-const Heart=styled(TiHeartOutline)`
-    width:24px;
-    height:24px;
-
+const Heart = styled(TiHeartOutline)`
+  width: 24px;
+  height: 24px;
 `;
-const Back=styled(MdKeyboardArrowLeft)`
-    width:24px;
-    height:24px;
-`
-const Right=styled(MdKeyboardArrowRight)`
-    width:24px;
-    height:24px;
-`
-
-
-
+const Back = styled(MdKeyboardArrowLeft)`
+  width: 24px;
+  height: 24px;
+`;
+const Right = styled(MdKeyboardArrowRight)`
+  width: 24px;
+  height: 24px;
+`;
 
 export default Button;
