@@ -56,14 +56,28 @@ const Search = () => {
           inputFocusOutline="none"
           placeholder="장소, 근처 역을 입력하세요."
         />
+        <Button
+          is_filter
+          _onClick={() => {
+            console.log("test filter");
+            <MuiThemeProvider>
+              {console.log("test filter1")}
+              <BottomSheet
+                items={items}
+                startHidden={true}
+                //buttonElement={<Button is_filter />}
+              />
+            </MuiThemeProvider>;
+          }}
+        ></Button>
 
-        <MuiThemeProvider>
+        {/* <MuiThemeProvider>
           <BottomSheet
             items={items}
             startHidden={true}
             buttonElement={<Button is_filter />}
           />
-        </MuiThemeProvider>
+        </MuiThemeProvider> */}
       </Grid>
     </React.Fragment>
   );
