@@ -2,7 +2,8 @@ import React from 'react';
 import {Button,Grid,Text} from '../../elements/index';
 import { history } from '../../redux/configStore';
 
-const MyHeader = () => {
+const MyHeader = (props) => {
+    const {children} =props;
     return (
         <React.Fragment>
              <Grid
@@ -24,11 +25,13 @@ const MyHeader = () => {
                         />
             </Grid>
             <Grid width="95%" display="flex" alignItems="center"justifyContent="center">
-                    <Text size="1.250rem" bold cursor="pointer">마이 페이지</Text>
+                    <Text size="1.250rem" bold cursor="pointer">{children}</Text>
             </Grid>
             </Grid>
         </React.Fragment>
     );
 };
-
+MyHeader.defaultProps = {
+    children: null,
+}
 export default MyHeader;
