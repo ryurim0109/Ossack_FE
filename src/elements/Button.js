@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import { TiHeartOutline } from "react-icons/ti";
-import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
+import { MdKeyboardArrowLeft, MdKeyboardArrowRight,MdClose } from "react-icons/md";
 
 import pro_edit from "../static/images/pro_edit.svg";
 
@@ -29,6 +29,7 @@ const Button = (props) => {
     position,
     is_back,
     is_edit,
+    is_close,
     _disabled,
   } = props;
 
@@ -54,6 +55,15 @@ const Button = (props) => {
       <React.Fragment>
         <BtnBox onClick={_onClick} {...styles}>
           <Heart />
+        </BtnBox>
+      </React.Fragment>
+    );
+  }  
+  if (is_close) {
+    return (
+      <React.Fragment>
+        <BtnBox onClick={_onClick} {...styles}>
+          <X />
         </BtnBox>
       </React.Fragment>
     );
@@ -195,5 +205,9 @@ const Right = styled(MdKeyboardArrowRight)`
   width: 24px;
   height: 24px;
 `;
+const X=styled(MdClose)`
+  width: 24px;
+  height: 24px;
+`
 
 export default Button;

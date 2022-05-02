@@ -3,11 +3,11 @@ import styled from 'styled-components';
 import {Bar} from '../components/home';
 import {MyHeader,MyProfile,MyContent,MyLogout} from '../components/my/index'
 
-const MyPage = () => {
+const MyPage = (props) => {
     return (
         <React.Fragment>
             <Outter>
-                <MyHeader/>
+                <MyHeader>마이 페이지</MyHeader>
                 <MyProfile/>
                 <MyContent/>
                 <MyLogout/>
