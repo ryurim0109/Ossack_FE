@@ -24,7 +24,7 @@ const styles = {
   },
   list: {
     position: "relative",
-    zIndex: 2,
+    zIndex: 9999,
     listStyle: "none",
     margin: 0,
     padding: 0,
