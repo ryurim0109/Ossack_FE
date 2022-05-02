@@ -1,7 +1,12 @@
-import React from 'react';
-import {Button,Grid,Image,Text} from '../../elements/index';
+import React,{useState} from 'react';
+import {Button,Grid,Image,Text,ProfileModal} from '../../elements/index';
 
 const MyProfile = () => {
+
+    const [isOpen,setIsOpen] =useState(false);
+    const openModalHandler=()=>{
+        setIsOpen(!isOpen);
+    };
     return (
         <React.Fragment>
             <Grid width="100%" margin="40px 0" height="180px" 
