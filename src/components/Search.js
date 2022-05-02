@@ -1,37 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { Grid, Button, Input } from "../elements/index";
 import { history } from "../redux/configStore";
 
-/** ListMotion-pts20220430  start */
-import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
-import ActionHome from "material-ui/svg-icons/action/home";
-import ActionFlightTakeoff from "material-ui/svg-icons/action/flight-takeoff";
-import FileCloudDownload from "material-ui/svg-icons/file/cloud-download";
-import BottomSheet from "./motion/BottomSheet";
 import filterIcon from "../static/images/filterIcon.png";
-
-const items = [
-  {
-    text: "Editar",
-    icon: <ActionHome />,
-    onClick: (toggleAnimation) => {
-      alert("Editar");
-      toggleAnimation();
-    },
-  },
-  {
-    text: "Pesar",
-    icon: <ActionFlightTakeoff />,
-    onClick: () => alert("Pesar"),
-  },
-  {
-    text: "Classificar",
-    icon: <FileCloudDownload />,
-    onClick: () => alert("Classificar"),
-  },
-];
+import Price from "./Price";
 
 const Search = () => {
+  const [openModal, setModal] = useState(false);
+
+  const modalOpen = () => {
+    setModal(true);
+  };
+
   return (
     <React.Fragment>
       <Grid
@@ -58,26 +38,20 @@ const Search = () => {
           placeholder="장소, 근처 역을 입력하세요."
         />
 
-        <MuiThemeProvider>
-          <BottomSheet
-            items={items}
-            startHidden={true}
-            buttonElement={
-              <button
-                style={{
-                  background: "none",
-                  border: "none",
-                  cursor: "pointer",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <img src={filterIcon} alt="필터아이콘" />
-              </button>
-            }
-          />
-        </MuiThemeProvider>
+        <button
+          style={{
+            background: "none",
+            border: "none",
+            cursor: "pointer",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+          onClick={modalOpen}
+        >
+          <img src={filterIcon} alt="필터아이콘" />
+        </button>
+        <Price openModal={openModal} setModal={setModal} />
       </Grid>
     </React.Fragment>
   );
