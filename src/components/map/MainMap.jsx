@@ -153,31 +153,6 @@ const MainMap = (props) => {
             <button onClick={() => (level < 15 ? setLevel(level + 1) : null)}>
               <TiMinus size="21px" />
             </button>
-            <MuiThemeProvider>
-              <BottomSheet
-                items={items}
-                startHidden={true}
-                buttonElement={
-                  <button
-                    style={{
-                      margin: "20px auto",
-                      display: "block",
-                      backgroundColor: "cadetblue",
-                      border: "none",
-                      padding: "16px 24px",
-                      color: "#fff",
-                      fontWeight: "bold",
-                      cursor: "pointer",
-                      borderRadius: 6,
-                      fontSize: "20px",
-                      fontFamily: "'Pangolin', cursive",
-                    }}
-                  >
-                    Click me!
-                  </button>
-                }
-              />
-            </MuiThemeProvider>
           </Lev>
         </Map>
         {/* {pos && console.log('변경된 지도 중심좌표는 ' + pos.lat + ' 이고, 경도는 ' + pos.lng + ' 입니다', 
@@ -200,7 +175,7 @@ const Lev = styled.div`
   position: absolute;
   bottom: 96px;
   left: 16px;
-  z-index: 99;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   gap: 5px;
