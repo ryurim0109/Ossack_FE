@@ -2,44 +2,52 @@ import React,{useState} from 'react';
 import styled from 'styled-components';
 import {Grid,Button,Text,Image} from '../elements/index';
 import {history} from '../redux/configStore';
-import HomeImg from '../static/images/home.png'
+import { useSelector } from "react-redux";
+import home from '../static/images/home.png';
+import active_home from '../static/images/active_home.png';
 
 
 function Bar() {
-  const [activeNav, setActiveNav] = useState(1);
+
+  const gnbClick=(e,gnbname)=>{
+    if(gnbname==="home"){
+      history.push('/main');
+    }else if(gnbname==="like"){
+      history.push('/like')
+    }else if(gnbname==="mypage"){
+      history.push('/mypage')
+    }
+  }
+  const router = useSelector((state) => state.router.location.pathname);
+  const [params, setParams] = useState(window.location.pathname);
+  //const [activeNav, setActiveNav] = useState(1);
+  React.useEffect(() => {
+    setParams(router);
+  }, [router]);
   return (
     <React.Fragment>
         <Container>
-            <Grid  _onClick={() => {
-              setActiveNav(1)
-              history.push('/main')
+            <Grid  _onClick={(e) => {
+              gnbClick(e,"home")
           }}
             width="25%" textAlign="center" display="flex" flexDirection="column" justifyContent="center" alignItems="center">
-                <Grid width="24px" height="24px"><img src={HomeImg} alt="홈아이콘"/> </Grid>
-                {activeNav===1 ?  (<Text cursor="pointer" color="red" size="12px">홈</Text>) :
-                 (<Text cursor="pointer" color="#111" size="12px">홈</Text>)
-                }
+                <Grid width="24px" height="24px"><img src={params==='/main'?active_home:home} alt="홈아이콘"/> </Grid>
+                <Text cursor="pointer" color={params==='/main'?'red':"#111"} size="12px">홈</Text>
                <div/>
             </Grid>
-            <Grid  _onClick={() => {
-              setActiveNav(2)
-              history.push('/main')
+            <Grid  _onClick={(e) => {
+              gnbClick(e,"like")
           }}
             width="25%" textAlign="center" display="flex" flexDirection="column" justifyContent="center" alignItems="center">
                 <Grid width="24px" height="24px" bg="red"></Grid>
-                {activeNav===2 ?  (<Text cursor="pointer" color="red" size="12px">찜</Text>) :
-                 (<Text cursor="pointer" color="#111" size="12px">찜</Text>)
-                }
+               <Text cursor="pointer" color={params==='/like'?'red':"#111"} size="12px">찜</Text>
             </Grid>
-            <Grid _onClick={() => {
-              setActiveNav(3)
-              history.push('/mypage')
+            <Grid _onClick={(e) => {
+               gnbClick(e,"mypage")
           }}
             width="25%" textAlign="center" display="flex" flexDirection="column" justifyContent="center" alignItems="center">
                 <Grid width="24px" height="24px" bg="red"></Grid>
-                {activeNav===3 ?  (<Text cursor="pointer" color="red" size="12px">마이페이지</Text>) :
-                 (<Text cursor="pointer" color="#111" size="12px">마이페이지</Text>)
-                }
+               <Text cursor="pointer" color={params==='/mypage'?'red':"#111"}  size="12px">마이페이지</Text>
             </Grid>
             {/* 
             <Grid width="25%" textAlign="center" display="flex" flexDirection="column" justifyContent="center" alignItems="center">

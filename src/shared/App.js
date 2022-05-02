@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Route } from "react-router-dom";
 import { ConnectedRouter } from "connected-react-router";
 import { history } from "../redux/configStore";
-import { Login, Main, Signup, SaleMap,MyPage } from "../pages/index";
+import { Login, Main, Signup, SaleMap,MyPage,Like } from "../pages/index";
 import { MobileFrame } from "../components/home";
 
 //css
@@ -21,6 +21,7 @@ function App() {
             <Route path="/main" exact component={Main} />
             <Route path="/map" exact component={SaleMap} />
             <Route path="/mypage" exact component={MyPage} />
+            <Route path="/like" exact component={Like} />
           </MobileFrame>
         </ConnectedRouter>
       </Wrap>
