@@ -8,6 +8,7 @@ import ActionHome from "material-ui/svg-icons/action/home";
 import ActionFlightTakeoff from "material-ui/svg-icons/action/flight-takeoff";
 import FileCloudDownload from "material-ui/svg-icons/file/cloud-download";
 import BottomSheet from "./motion/BottomSheet";
+import filterIcon from "../static/images/filterIcon.png";
 
 const items = [
   {
@@ -56,28 +57,27 @@ const Search = () => {
           inputFocusOutline="none"
           placeholder="장소, 근처 역을 입력하세요."
         />
-        <Button
-          is_filter
-          _onClick={() => {
-            console.log("test filter");
-            <MuiThemeProvider>
-              {console.log("test filter1")}
-              <BottomSheet
-                items={items}
-                startHidden={true}
-                //buttonElement={<Button is_filter />}
-              />
-            </MuiThemeProvider>;
-          }}
-        ></Button>
 
-        {/* <MuiThemeProvider>
+        <MuiThemeProvider>
           <BottomSheet
             items={items}
             startHidden={true}
-            buttonElement={<Button is_filter />}
+            buttonElement={
+              <button
+                style={{
+                  background: "none",
+                  border: "none",
+                  cursor: "pointer",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <img src={filterIcon} alt="필터아이콘" />
+              </button>
+            }
           />
-        </MuiThemeProvider> */}
+        </MuiThemeProvider>
       </Grid>
     </React.Fragment>
   );
