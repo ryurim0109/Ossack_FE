@@ -6,7 +6,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-const Office = () => {
+const OfficeLike = () => {
   const settings = {
     infinite: true,
     speed: 500,
@@ -112,4 +112,4 @@ const Span = styled.span`
   font-size: 0.625rem;
 `;
 
-export default Office;
+export default OfficeLike;
