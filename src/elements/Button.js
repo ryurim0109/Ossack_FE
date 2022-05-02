@@ -140,7 +140,7 @@ const ButtonBox = styled.button`
   ${(props) =>
     props.backgroundColor
       ? `background-color:${props.backgroundColor}`
-      : 'background-color: #1b74e4'};
+      : 'background-color: #ccc'};
   box-sizing: border-box;
   font-weight: bold;
   border: none;
