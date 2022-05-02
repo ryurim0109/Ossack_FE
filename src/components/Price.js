@@ -1,7 +1,6 @@
 import React from "react";
 import Sheet from "react-modal-sheet";
 import styled from "styled-components";
-import MobileFrame from "./MobileFrame";
 
 const CustomSheet = styled(Sheet)`
   .react-modal-sheet-backdrop {
