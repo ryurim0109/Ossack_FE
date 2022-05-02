@@ -82,6 +82,26 @@ class BottomSheet extends Component {
                   transform: `translateY(${translate}%)`,
                 })}
               >
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    paddingTop: "0.5rem",
+                    paddingBottom: "1rem",
+                  }}
+                >
+                  <span
+                    style={{
+                      display: "block",
+                      height: "3px",
+                      width: "28px",
+                      backgroundColor: "rgba(0, 0, 0, 0.3)",
+                      borderRadius: "10px",
+                      margin: "auto",
+                    }}
+                  ></span>
+                </div>
                 {this.props.items.map((item, index) => {
                   return (
                     <li key={index}>
