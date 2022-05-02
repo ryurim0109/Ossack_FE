@@ -33,7 +33,7 @@ const styles = {
     padding: "8px 0",
     transform: "translateY(0%)",
     height: "200px",
-    borderRadius: "10px 10px 0px 0px",
+    borderRadius: "12px 12px 0px 0px",
   },
   button: {
     backgroundColor: "#fff",
