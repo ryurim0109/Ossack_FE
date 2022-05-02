@@ -33,9 +33,8 @@ const Banner = (props) => {
   );
 };
 const StyledSlider = styled(Slider)`
-   height: 100px; 
-   width: 100%;
-   position:relative;
-
-}`;
+  height: 100px;
+  width: 100%;
+  position: relative;
+`;
 export default Banner;
