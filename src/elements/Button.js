@@ -2,9 +2,10 @@ import React from "react";
 import styled from "styled-components";
 
 import { TiHeartOutline } from "react-icons/ti";
-import { MdKeyboardArrowLeft } from "react-icons/md";
+import { MdKeyboardArrowLeft,MdKeyboardArrowRight } from "react-icons/md";
 
-import filterIcon from '../static/images/filterIcon.png'
+import filterIcon from '../static/images/filterIcon.png';
+import pro_edit from '../static/images/pro_edit.svg'
 
 
 
@@ -14,6 +15,7 @@ const Button =(props) =>{
         children,
         margin,
         width,
+        is_right,
         padding,
         backgroundColor,
         height,
@@ -29,6 +31,7 @@ const Button =(props) =>{
         position,
         is_back,
         is_filter,
+        is_edit,
         _disabled} =props;
         
 
@@ -59,6 +62,15 @@ const Button =(props) =>{
             </React.Fragment>
         )
     }
+    if(is_right){
+        return (
+            <React.Fragment>
+                <BtnBox onClick={_onClick} {...styles}>
+                   <Right/>
+                </ BtnBox>
+            </React.Fragment>
+        )
+    }
     if(is_back){
         return (
             <React.Fragment>
@@ -74,6 +86,15 @@ const Button =(props) =>{
                 <BtnBox onClick={_onClick} {...styles}>
                    <img src={filterIcon} alt="필터아이콘" />
                 </ BtnBox>
+            </React.Fragment>
+        )
+    }
+    if(is_edit){
+        return (
+            <React.Fragment>
+                <BBox onClick={_onClick} {...styles}>
+                   <img src={pro_edit} alt="수정 아이콘" />
+                </ BBox>
             </React.Fragment>
         )
     }
@@ -119,7 +140,7 @@ const ButtonBox = styled.button`
   ${(props) =>
     props.backgroundColor
       ? `background-color:${props.backgroundColor}`
-      : 'background-color: #1b74e4'};
+      : 'background-color: #ccc'};
   box-sizing: border-box;
   font-weight: bold;
   border: none;
@@ -156,12 +177,38 @@ const BtnBox=styled.button`
     color: ${(props) => props.color};
 
 `;
+const BBox=styled.button`
+    ${(props) =>
+    props.backgroundColor
+      ? `background-color:${props.backgroundColor}`
+      : 'background-color: #494949'};
+    border:2px solid #fff;
+    box-sizing:border-box;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position: ${props => props.position};
+    top: ${props => props.top};
+    bottom: ${props => props.bottom};
+    left: ${props => props.left};
+    right: ${props => props.right};
+    color: ${(props) => props.color};
+    width:28px;
+    height:28px;
+    border-radius:14px;
+
+`;
 const Heart=styled(TiHeartOutline)`
     width:24px;
     height:24px;
 
 `;
 const Back=styled(MdKeyboardArrowLeft)`
+    width:24px;
+    height:24px;
+`
+const Right=styled(MdKeyboardArrowRight)`
     width:24px;
     height:24px;
 `
