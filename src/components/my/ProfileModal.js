@@ -83,7 +83,7 @@ const ProfileModal = (props) => {
             (<Outter>
                 <Grid width="100%" height="500px" margin="16px" bg="#fff" position="relative">
                 <Button is_close position="absolute" right="8px" top="8px" _onClick={ModalClose}/>
-               <Grid display="flex" flexDirection="column" alignItems="center" >
+                <Grid display="flex" flexDirection="column" alignItems="center" >
                     
                         <Grid width="200px" height="200px" margin="50px 0">
                         <Image
@@ -122,12 +122,13 @@ const ProfileModal = (props) => {
 };
 const Outter=styled.div`
 
-  width:90%;
+  width:100%;
   position: absolute;
   top:50%;
   left:0;
   transform: translate(0, -50%) ;
   z-index:4;
+  display:flex;
 
 `
 const Label=styled.label`
