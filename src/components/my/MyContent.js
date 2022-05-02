@@ -4,7 +4,7 @@ import {Button,Grid,Text} from '../../elements/index';
 const MyContent = () => {
     return (
         <React.Fragment>
-            <Grid width="100%" height="135px" bg="#ccc" padding="0 16px"
+            <Grid width="100%" height="135px" padding="0 16px"
             position="relative" display="flex" flexDirection="column" alignItems="center" justifyContent="center"
             >
                 <Grid display="flex" alignItems="center" justifyContent="space-between">
