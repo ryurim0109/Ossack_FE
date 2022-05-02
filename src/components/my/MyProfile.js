@@ -27,10 +27,14 @@ const MyProfile = () => {
                     </Grid>
                 </Grid>
                     {isOpen ? 
-                    (<ModalBackdrop onClick={()=>{setIsOpen(true)}}>
-                        <ProfileModal isOpen={isOpen} setIsOpen={setIsOpen}/>
+                    (<>
+                    <ModalBackdrop onClick={openModalHandler}>
                         
-                    </ModalBackdrop> )
+                        
+                    </ModalBackdrop>
+                    <ProfileModal isOpen={isOpen} setIsOpen={setIsOpen}/>
+                    </>
+                    )
                     : null}
             </Grid>
            
