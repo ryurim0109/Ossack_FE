@@ -1,7 +1,7 @@
 import React from "react";
 import Sheet from "react-modal-sheet";
 import styled from "styled-components";
-import { Button, Grid, Text } from "../../elements/index";
+import { Button, Grid, Text } from "../elements/index";
 
 const CustomSheet = styled(Sheet)`
   .react-modal-sheet-backdrop {
@@ -60,7 +60,7 @@ const CustomSheet = styled(Sheet)`
     bottom: 0 !important;
     left: 50% !important;
     /* transform: translateX(-50%); */
-    /* transition: all 600ms cubic-bezier(0.86, 0, 0.07, 1) !important; */
+    transition: all 600ms cubic-bezier(0.86, 0, 0.07, 1) !important;
     width: 375px;
     height: 50% !important;
     margin: 0 auto;
@@ -115,7 +115,7 @@ const CustomSheet = styled(Sheet)`
   }
 `;
 
-const Price = (props) => {
+const PriceWrap = (props) => {
   const { openModal, setModal } = props;
   //   console.log("isOpen : ", openModal);
   //   console.log("setOpen : ", setModal);
@@ -123,11 +123,11 @@ const Price = (props) => {
     <CustomSheet isOpen={openModal} onClose={() => setModal(false)}>
       <CustomSheet.Container>
         <CustomSheet.Header />
-        <CustomSheet.Content>{<Grid>aaaa</Grid>}</CustomSheet.Content>
+        <CustomSheet.Content>{<Grid></Grid>}</CustomSheet.Content>
       </CustomSheet.Container>
       <CustomSheet.Backdrop />
     </CustomSheet>
   );
 };
 
-export default Price;
+export default PriceWrap;

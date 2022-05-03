@@ -7,8 +7,10 @@ import { actionCreators as mapActions } from "../../redux/modules/map";
 import { TiPlus, TiMinus } from "react-icons/ti";
 import { MdMyLocation } from "react-icons/md";
 
+
 import { Map, MapMarker, CustomOverlayMap } from "react-kakao-maps-sdk";
-import {Position,Search} from "./index";
+import { Position, Search } from "./index";
+
 
 const MainMap = (props) => {
   const dispatch = useDispatch();
