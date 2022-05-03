@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { MainMap } from "../components/home";
-import KakaoMap from "../components/map/KakaoMap";
+import {MainMap}  from "../components/map/index";
 
 function SaleMap(props) {
   return (

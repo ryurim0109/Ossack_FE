@@ -7,7 +7,7 @@ import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import ActionHome from "material-ui/svg-icons/action/home";
 import ActionFlightTakeoff from "material-ui/svg-icons/action/flight-takeoff";
 import FileCloudDownload from "material-ui/svg-icons/file/cloud-download";
-import BottomSheet from "./motion/BottomSheet";
+import BottomSheet from "../components/motion/BottomSheet";
 import filterIcon from "../static/images/filterIcon.png";
 
 const items = [

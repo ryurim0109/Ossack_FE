@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { Grid, Button, Input } from "../elements/index";
-import { history } from "../redux/configStore";
+import { Grid, Button, Input } from "../../elements/index";
+import { history } from "../../redux/configStore";
 
-import filterIcon from "../static/images/filterIcon.png";
+import filterIcon from "../../static/images/filterIcon.png";
 import Price from "./PriceWrap";
 
 const Search = () => {

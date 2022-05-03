@@ -4,7 +4,7 @@ import { Route } from "react-router-dom";
 import { ConnectedRouter } from "connected-react-router";
 import { history } from "../redux/configStore";
 import { Login, Main, Signup, SaleMap,MyPage,Like,Start } from "../pages/index";
-import { MobileFrame } from "../components/home";
+import { MobileFrame } from "../components/shared/home";
 
 //css
 import "../shared/css/App.css";

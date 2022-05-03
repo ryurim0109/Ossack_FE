@@ -1,11 +1,11 @@
 import React,{useState} from 'react';
 import styled from 'styled-components';
-import {Grid,Button,Text,Image} from '../elements/index';
-import {history} from '../redux/configStore';
+import {Grid,Button,Text,Image} from '../../elements/index';
+import {history} from '../../redux/configStore';
 import { useSelector } from "react-redux";
 //아이콘
-import home from '../static/images/home.png';
-import active_home from '../static/images/active_home.png';
+import home from '../../static/images/home.png';
+import active_home from '../../static/images/active_home.png';
 
 
 function Bar() {

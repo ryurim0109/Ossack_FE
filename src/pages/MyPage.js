@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import {Bar} from '../components/home';
+import {Bar} from '../components/shared/home';
 import {MyHeader,MyProfile,MyContent,MyLogout} from '../components/my/index'
 
 const MyPage = (props) => {
