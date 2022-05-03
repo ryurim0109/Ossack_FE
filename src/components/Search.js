@@ -3,7 +3,7 @@ import { Grid, Button, Input } from "../elements/index";
 import { history } from "../redux/configStore";
 
 import filterIcon from "../static/images/filterIcon.png";
-import Price from "./Price";
+import Price from "./PriceWrap";
 
 const Search = () => {
   const [openModal, setModal] = useState(false);

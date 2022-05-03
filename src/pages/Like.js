@@ -2,12 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Bar } from "../components/home";
 import { MyHeader } from "../components/my/index";
-import {
-  SaleList,
-  HotPlaceList,
-  Office,
-  OfficeLike,
-} from "../components/list/index";
+import { OfficeLike } from "../components/list/index";
 
 const Like = (props) => {
   return (
