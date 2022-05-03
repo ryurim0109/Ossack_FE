@@ -96,6 +96,8 @@ const MainMap = (props) => {
           }
           style={{ width: "100%", height: "inherit" }}
           level={level}
+          minLevel={1}
+          maxLevel={10}
         >
           {/* 커스텀 마커부분 */}
           <CustomOverlayMap position={ state.center}>
@@ -132,7 +134,7 @@ const MainMap = (props) => {
             <button onClick={() => (level > 1 ? setLevel(level - 1) : null)}>
               <TiPlus size="21px" />
             </button>
-            <button onClick={() => (level < 15 ? setLevel(level + 1) : null)}>
+            <button onClick={() => (level < 10 ? setLevel(level + 1) : null)}>
               <TiMinus size="21px" />
             </button>
           </Lev>
@@ -141,7 +143,7 @@ const MainMap = (props) => {
         '남서쪽' + pos.swLatLng.lat ,pos.swLatLng.lng, '북동쪽좌표' + pos.neLatLng.lat ,pos.neLatLng.lng)
         
         } */}
-        {pos && <Position pos={pos} map={map} />}
+        {pos && <Position pos={pos} map={map} level={level}/>}
         
       </MainContent>
     </React.Fragment>
