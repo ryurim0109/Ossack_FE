@@ -34,7 +34,7 @@ const signUpApi = (user) => {
       if (response.status === 200) {
         //   if (response.data === "회원가입에 성공하였습니다") {
         alert(`${user.nickname}님 ${response.data.message}`);
-        history.replace("/");
+        history.replace("/login");
       } else {
         alert("회원가입에 실패했습니다. 다시 시도해주세요!!");
       }

@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Route } from "react-router-dom";
 import { ConnectedRouter } from "connected-react-router";
 import { history } from "../redux/configStore";
-import { Login, Main, Signup, SaleMap,MyPage,Like } from "../pages/index";
+import { Login, Main, Signup, SaleMap,MyPage,Like,Start } from "../pages/index";
 import { MobileFrame } from "../components/home";
 
 //css
@@ -15,7 +15,8 @@ function App() {
       <Wrap>
         <ConnectedRouter history={history}>
           <MobileFrame className="MobileFramePage">
-            <Route path="/" exact component={Login} />
+            <Route path="/" exact component={Start} />
+            <Route path="/login" exact component={Login} />
             <Route path="/signup" exact component={Signup} />
 
             <Route path="/main" exact component={Main} />
