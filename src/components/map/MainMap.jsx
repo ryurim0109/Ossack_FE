@@ -7,7 +7,7 @@ import { actionCreators as mapActions } from "../../redux/modules/map";
 import { TiPlus, TiMinus } from "react-icons/ti";
 import { MdMyLocation } from "react-icons/md";
 
-import { Map, MapMarker } from "react-kakao-maps-sdk";
+import { Map, MapMarker, CustomOverlayMap } from "react-kakao-maps-sdk";
 import {Position,Search} from "./index";
 
 const MainMap = (props) => {
@@ -96,13 +96,26 @@ const MainMap = (props) => {
           }
           style={{ width: "100%", height: "inherit" }}
           level={level}
+          minLevel={1}
+          maxLevel={10}
         >
+          {/* 커스텀 마커부분 */}
+          <CustomOverlayMap position={ state.center}>
+            <div
+              style={{width:"54px", height:"65px", borderRadius:"8px",
+              backgroundColor:"#000", color:"#fff"}}
+            >
+              Custom Overlay!
+            </div>
+          </CustomOverlayMap>
+          {/* 커스텀 마커부분 */}
+          
           {getOffice?.map((position, index) => (
             <MapMarker
               key={`${position.title}-${position.latlng}`}
               position={position.latlng} // 마커를 표시할 위치
               image={{
-                src: "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png", // 마커이미지의 주소입니다
+                src: "https://velog.velcdn.com/images/ryurim0109/post/7ab30362-ea36-4fec-941a-a83b7ed687ed/image.png", // 마커이미지의 주소입니다
                 size: {
                   widht: 24,
                   height: 35,
@@ -121,7 +134,7 @@ const MainMap = (props) => {
             <button onClick={() => (level > 1 ? setLevel(level - 1) : null)}>
               <TiPlus size="21px" />
             </button>
-            <button onClick={() => (level < 15 ? setLevel(level + 1) : null)}>
+            <button onClick={() => (level < 10 ? setLevel(level + 1) : null)}>
               <TiMinus size="21px" />
             </button>
           </Lev>
@@ -130,7 +143,8 @@ const MainMap = (props) => {
         '남서쪽' + pos.swLatLng.lat ,pos.swLatLng.lng, '북동쪽좌표' + pos.neLatLng.lat ,pos.neLatLng.lng)
         
         } */}
-        {pos && <Position pos={pos} map={map} />}
+        {pos && <Position pos={pos} map={map} level={level}/>}
+        
       </MainContent>
     </React.Fragment>
   );

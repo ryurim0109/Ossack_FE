@@ -7,8 +7,8 @@ const Position = (props) => {
   const { kakao } = window;
   const dispatch = useDispatch();
 
-  const { pos, map } = props;
-  //console.log(pos,map)
+  const { pos, map,level } = props;
+  console.log(pos,map,level)
   let kakaoMap = map;
   useEffect(() => {
     // console.log(pos)
