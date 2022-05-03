@@ -105,11 +105,10 @@ const MainMap = (props) => {
               <Overlay/>
           </CustomOverlayMap>
           {/* 커스텀 마커부분 */}
-          
           {getOffice?.map((position, index) => (
             <CustomOverlayMap
-              key={`${position.title}-${position.latlng}`}
-              position={position.latlng} // 마커를 표시할 위치
+              key={`${position.title}-${position.coordinate}`}
+              position={position.coordinate} // 마커를 표시할 위치
               
               title={position.title} // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
             >

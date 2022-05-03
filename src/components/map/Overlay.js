@@ -1,7 +1,9 @@
 import React from 'react';
 import { Grid,Text } from '../../elements/index';
  
-const Overlay = () => {
+const Overlay = (props) => {
+    const {position} =props;
+  // console.log(position?.estate[0]?.type, "????")
     return (
         <React.Fragment>
               <Grid
@@ -9,7 +11,7 @@ const Overlay = () => {
               bg="#000" color="#fff" position="relative"
             >
               <Grid display="flex" flexDirection="column"  alignItems="center" padding="10px 0" >
-                <Text bold size="10px">@@ 동</Text>
+                <Text bold size="10px">{position?.title}</Text>
                 <Text bold size="14px">999만</Text>
               </Grid>
               

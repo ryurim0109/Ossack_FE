@@ -8,11 +8,16 @@ const Position = (props) => {
   const dispatch = useDispatch();
 
   const { pos, map,level } = props;
-  console.log(pos,map,level)
+  //console.log(pos,map,level)
   let kakaoMap = map;
+ 
+  kakao.maps.event.addListener(map, 'bounds_changed', function() {
+    alert('bounds changed!');
+});
+
   useEffect(() => {
     // console.log(pos)
-    dispatch(mapActions.getOfficeData(pos));
+    dispatch(mapActions.getOfficeData(pos,level));
   }, [pos]);
 
   return <React.Fragment></React.Fragment>;
