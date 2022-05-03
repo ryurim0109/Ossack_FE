@@ -22,12 +22,16 @@ const initialState = {
     overlay: [],
   },
 };
-const getOfficeData = (pos) => {
-  console.log("pos : ", pos);
+const getOfficeData = (pos,level) => {
+  console.log("pos : ", pos,  "level : ",level);
+  // const SWlat=pos.swLatLng.lat;
+  // const SWlng=pos.swLatLng.lng;
+  // const NElat=pos.neLatLng.lat;
+  // const NElng=pos.neLatLng.lng;
   return async function (dispatch, getState, { history }) {
     try {
       // const response = await axios.post(
-      //   "http://54.180.96.119/api/login",
+      //   "http://54.180.96.119/api/{level}/map?SWlat={pos.SWlat}&SWlng={SWlng}&NElat={NElat}&NElng={NElng}"
       //   {},
       //   {
       //     headers: {

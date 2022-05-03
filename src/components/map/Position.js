@@ -7,12 +7,15 @@ const Position = (props) => {
   const { kakao } = window;
   const dispatch = useDispatch();
 
-  const { pos, map,level } = props;
-  console.log(pos,map,level)
+  const { pos, map,_level } = props;
+  console.log(pos,map,_level )
   let kakaoMap = map;
+ 
+
+
   useEffect(() => {
     // console.log(pos)
-    dispatch(mapActions.getOfficeData(pos));
+    dispatch(mapActions.getOfficeData(pos,_level));
   }, [pos]);
 
   return <React.Fragment></React.Fragment>;
