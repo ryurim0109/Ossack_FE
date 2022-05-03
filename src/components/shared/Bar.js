@@ -13,6 +13,8 @@ function Bar() {
   const gnbClick=(e,gnbname)=>{
     if(gnbname==="home"){
       history.push('/main');
+    }else if(gnbname==="map"){
+      history.push('/map')
     }else if(gnbname==="like"){
       history.push('/like')
     }else if(gnbname==="mypage"){
@@ -37,6 +39,14 @@ function Bar() {
                <div/>
             </Grid>
             <Grid  _onClick={(e) => {
+              gnbClick(e,"map")
+          }}
+            width="25%" textAlign="center" display="flex" flexDirection="column" justifyContent="center" alignItems="center">
+                <Grid width="24px" height="24px"><img src={params==='/map'?active_home:home} alt="홈아이콘"/> </Grid>
+                <Text cursor="pointer" color={params==='/map'?'red':"#111"} size="12px">지도</Text>
+               <div/>
+            </Grid>
+            <Grid  _onClick={(e) => {
               gnbClick(e,"like")
           }}
             width="25%" textAlign="center" display="flex" flexDirection="column" justifyContent="center" alignItems="center">
@@ -50,11 +60,6 @@ function Bar() {
                 <Grid width="24px" height="24px" bg="red"></Grid>
                <Text cursor="pointer" color={params==='/mypage'?'red':"#111"}  size="12px">마이페이지</Text>
             </Grid>
-            {/* 
-            <Grid width="25%" textAlign="center" display="flex" flexDirection="column" justifyContent="center" alignItems="center">
-                <Grid width="24px" height="24px" bg="red"></Grid>
-                <Text color="#111" size="12px">더보기</Text>
-            </Grid> */}
         </Container>
     </React.Fragment>
   );
