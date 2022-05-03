@@ -9,6 +9,7 @@ import { MdMyLocation } from "react-icons/md";
 
 import { Map, MapMarker, CustomOverlayMap } from "react-kakao-maps-sdk";
 import { Position, Search, Overlay } from "./index";
+import _ from "lodash";
 
 
 const MainMap = (props) => {
@@ -20,6 +21,7 @@ const MainMap = (props) => {
   const [level, setLevel] = useState(3); //지도레벨
   const [map, setMap] = useState(); //지도
   const [pos, setPos] = useState(); //경도 위도
+  const [_level, _setLevel] = useState()
 
   const [state, setState] = useState({
     //기본 설정값
@@ -81,6 +83,7 @@ const MainMap = (props) => {
         <Map
           center={state.center}
           onCreate={(map) => setMap(map)}
+          onZoomChanged={(map) => _setLevel(map.getLevel())}
           onDragEnd={(map) =>
             setPos({
               lat: map.getCenter().getLat(),
@@ -132,7 +135,7 @@ const MainMap = (props) => {
         '남서쪽' + pos.swLatLng.lat ,pos.swLatLng.lng, '북동쪽좌표' + pos.neLatLng.lat ,pos.neLatLng.lng)
         
         } */}
-        {pos && <Position pos={pos} map={map} level={level}/>}
+        {pos && <Position pos={pos} map={map} _level={_level}/>}
         
       </MainContent>
     </React.Fragment>
