@@ -7,8 +7,10 @@ import { actionCreators as mapActions } from "../../redux/modules/map";
 import { TiPlus, TiMinus } from "react-icons/ti";
 import { MdMyLocation } from "react-icons/md";
 
-import { Map, MapMarker } from "react-kakao-maps-sdk";
-import {Position,Search} from "./index";
+import { Map, MapMarker, CustomOverlayMap } from "react-kakao-maps-sdk";
+import { Position, Search, Overlay } from "./index";
+import _ from "lodash";
+
 
 const MainMap = (props) => {
   const dispatch = useDispatch();
@@ -19,6 +21,7 @@ const MainMap = (props) => {
   const [level, setLevel] = useState(3); //지도레벨
   const [map, setMap] = useState(); //지도
   const [pos, setPos] = useState(); //경도 위도
+  const [_level, _setLevel] = useState()
 
   const [state, setState] = useState({
     //기본 설정값
@@ -80,6 +83,7 @@ const MainMap = (props) => {
         <Map
           center={state.center}
           onCreate={(map) => setMap(map)}
+          onZoomChanged={(map) => _setLevel(map.getLevel())}
           onDragEnd={(map) =>
             setPos({
               lat: map.getCenter().getLat(),
@@ -96,23 +100,24 @@ const MainMap = (props) => {
           }
           style={{ width: "100%", height: "inherit" }}
           level={level}
+          minLevel={1}
+          maxLevel={10}
         >
+          {/* 커스텀 마커부분 */}
+          <CustomOverlayMap position={ state.center}>
+              <Overlay/>
+          </CustomOverlayMap>
+          {/* 커스텀 마커부분 */}
           {getOffice?.map((position, index) => (
-            <MapMarker
-              key={`${position.title}-${position.latlng}`}
-              position={position.latlng} // 마커를 표시할 위치
-              image={{
-                src: "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png", // 마커이미지의 주소입니다
-                size: {
-                  widht: 24,
-                  height: 35,
-                }, // 마커이미지의 크기입니다
-              }}
+            <CustomOverlayMap
+              key={`${position.title}-${position.coordinate}`}
+              position={position.coordinate} // 마커를 표시할 위치
+              
               title={position.title} // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-            />
+            >
+              <Overlay position={position}/>
+            </CustomOverlayMap>
           ))}
-          {/* <ZoomControl position={kakao.maps.ControlPosition.TOPRIGHT} /> */}
-          {/* <MapTypeControl position={kakao.maps.ControlPosition.TOPRIGHT}/> */}
 
           <Lev>
             <button onClick={setLocation}>
@@ -121,7 +126,7 @@ const MainMap = (props) => {
             <button onClick={() => (level > 1 ? setLevel(level - 1) : null)}>
               <TiPlus size="21px" />
             </button>
-            <button onClick={() => (level < 15 ? setLevel(level + 1) : null)}>
+            <button onClick={() => (level < 10 ? setLevel(level + 1) : null)}>
               <TiMinus size="21px" />
             </button>
           </Lev>
@@ -130,7 +135,8 @@ const MainMap = (props) => {
         '남서쪽' + pos.swLatLng.lat ,pos.swLatLng.lng, '북동쪽좌표' + pos.neLatLng.lat ,pos.neLatLng.lng)
         
         } */}
-        {pos && <Position pos={pos} map={map} />}
+        {pos && <Position pos={pos} map={map} _level={_level}/>}
+        
       </MainContent>
     </React.Fragment>
   );
