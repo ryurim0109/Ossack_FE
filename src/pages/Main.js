@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import {Sale,Bar,Banner} from '../components/home';
+import {Sale} from '../components/main/index';
+import {Bar,Banner} from '../components/shared/home';
 
 function Main() {
   return (

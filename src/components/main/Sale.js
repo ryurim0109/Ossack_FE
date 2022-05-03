@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import { Grid, Text, Input, Button } from "../elements/index";
-import { history } from "../redux/configStore";
-import SearchImg from "../static/images/searchicon.png";
-import { SaleList, HotPlaceList, Office } from "../components/list/index";
+import { Grid, Text, Input, Button } from "../../elements/index";
+import { history } from "../../redux/configStore";
+import SearchImg from "../../static/images/searchicon.png";
+import { SaleList, HotPlaceList, Office } from "./index";
 
 function Sale() {
   return (

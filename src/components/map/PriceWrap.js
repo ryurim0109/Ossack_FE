@@ -1,7 +1,7 @@
 import React from "react";
 import Sheet from "react-modal-sheet";
 import styled from "styled-components";
-import { Button, Grid, Text } from "../elements/index";
+import { Button, Grid, Text } from "../../elements/index";
 
 const CustomSheet = styled(Sheet)`
   .react-modal-sheet-backdrop {

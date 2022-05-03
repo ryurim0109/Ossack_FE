@@ -8,8 +8,7 @@ import { TiPlus, TiMinus } from "react-icons/ti";
 import { MdMyLocation } from "react-icons/md";
 
 import { Map, MapMarker } from "react-kakao-maps-sdk";
-import Position from "./Position";
-import Search from "../Search";
+import {Position,Search} from "./index";
 
 const MainMap = (props) => {
   const dispatch = useDispatch();
