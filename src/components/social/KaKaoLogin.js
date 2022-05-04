@@ -9,7 +9,6 @@ const KaKaoLogin = (props) => {
   let code = new URL(window.location.href).searchParams.get("code");
 
   React.useEffect( () => {
-    console.log(code)
      dispatch(userActions.loginBykakao(code));
   }, []);
 

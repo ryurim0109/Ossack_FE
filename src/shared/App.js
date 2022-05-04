@@ -11,6 +11,7 @@ import {
   MyPage,
   Like,
   Start,
+  SearchPage,
 } from "../pages/index";
 import { MobileFrame } from "../components/shared/home";
 import KaKaoLogin from '../components/social/KaKaoLogin'
@@ -33,6 +34,7 @@ function App() {
             <Route path="/user/kakao/callback" exact component={KaKaoLogin} />
 
             <Route path="/main" exact component={Main} />
+            <Route path="/search" exact component={SearchPage} />
             <Route path="/map" exact component={SaleMap} />
             <Route path="/mypage" exact component={MyPage} />
             <Route path="/like" exact component={Like} />

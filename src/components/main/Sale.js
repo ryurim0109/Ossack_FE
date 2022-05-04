@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Grid, Text, Input, Button } from "../../elements/index";
+import { Grid, Text } from "../../elements/index";
 import { history } from "../../redux/configStore";
 import SearchImg from "../../static/images/searchicon.png";
 import { SaleList, HotPlaceList, Office } from "./index";
@@ -42,7 +42,7 @@ function Sale() {
             color="#999"
             borderRadius="10px"
             _onClick={() => {
-              history.push("/map");
+              history.push("/search");
             }}
           >
             장소, 주소, 건물명을 입력하세요.
