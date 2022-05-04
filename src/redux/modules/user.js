@@ -8,6 +8,8 @@ import { instance } from "../../shared/api";
 // actions
 const SET_USER = "SET_USER";
 const LOG_OUT = "LOG_OUT";
+const USER_IMG ="USER_IMG";
+ 
 
 // initialState
 const initialState = {
@@ -21,6 +23,7 @@ const setUser = createAction(SET_USER, (user, is_login) => ({
   is_login,
 }));
 const logOut = createAction(LOG_OUT, () => {});
+const user_img =createAction(USER_IMG,(userImage)=>(userImage));
 
 // middleWares
 const signUpApi = (user) => {
@@ -189,7 +192,29 @@ const loginBygoogle = (code) => {
       });
   };
 };
+//유저 프로필 변경
+const userImgDB = (image) => {
+  const file = new FormData();
 
+  file.append("imageFile", image);
+  return function (dispatch, getState, { history }) {
+    
+    axios.put(
+      "http://15.165.160.109:8080/api/user/profile",file,{
+        
+        headers: { Authorization: `BEARER ${localStorage.getItem("token")}`,
+          "Content-Type":"multipart/form-data", },
+      }
+      ).then((res)=>{
+        console.log(res.data,"이미지 데이터")
+        window.alert('이미지 등록이 완료되었습니다.');
+        dispatch(user_img(res.data));
+        
+      }).catch((err) => {
+        console.log("프로필 업로드 에러다!!!!", err.response);
+      }); 
+  };
+};
 // reducer
 export default handleActions(
   {
@@ -205,6 +230,12 @@ export default handleActions(
         draft.is_login = false;
         draft.user = null;
       }),
+      [USER_IMG]: (state, action) =>
+      produce(state, (draft) => {
+          console.log(action.payload)
+          draft.user.userImage = action.payload.userImage;
+
+    }),
   },
   initialState
 );
@@ -216,6 +247,7 @@ const actionCreators = {
   logOutApi,
   loginBykakao,
   loginBygoogle,
+  userImgDB,
 };
 
 export { actionCreators };
