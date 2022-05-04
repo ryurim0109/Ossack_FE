@@ -9,6 +9,7 @@ export const RESP = {
   },
   GETOFFICE: [
     {
+      level:2,
       title: "은평병원",
       coordinate: { lat: 37.592113779824636, lng: 126.92199098323738},
       estate: [{
@@ -26,6 +27,7 @@ export const RESP = {
       mylike:true,
     },
     {
+      level:3,
       title: "생태연못",
       coordinate: { lat:37.59251112267921, lng:126.92337479833523 },
       estate: [{
@@ -43,6 +45,7 @@ export const RESP = {
       mylike:true,
     },
     {
+      level:5,
       title: "텃밭",
       coordinate: { lat: 37.58555886656804, lng: 37.58555886656804 },
       estate: [{
@@ -60,6 +63,7 @@ export const RESP = {
       mylike:true,
     },
     {
+      level:3,
       title: "근린공원",
       coordinate: { lat: 37.597291805618035, lng: 126.92481083291669 },
       estate: [{
