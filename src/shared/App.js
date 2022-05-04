@@ -13,6 +13,7 @@ import {
   Start,
 } from "../pages/index";
 import { MobileFrame } from "../components/shared/home";
+import KaKaoLogin from '../components/social/KaKaoLogin'
 
 import GoogleLogin from "../components/social/GoogleLogin";
 
@@ -28,7 +29,9 @@ function App() {
             <Route path="/" exact component={Start} />
             <Route path="/login" exact component={Login} />
             <Route path="/signup" exact component={Signup} />
-            <Route path="/user/google/callback" component={GoogleLogin} />
+            <Route path="/user/google/callback" exact component={GoogleLogin} />
+            <Route path="/user/kakao/callback" exact component={KaKaoLogin} />
+
             <Route path="/main" exact component={Main} />
             <Route path="/map" exact component={SaleMap} />
             <Route path="/mypage" exact component={MyPage} />
