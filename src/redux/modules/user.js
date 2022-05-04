@@ -194,8 +194,8 @@ const loginBygoogle = (code) => {
 };
 //유저 프로필 변경
 const userImgDB = (image) => {
+  console.log(image)
   const file = new FormData();
-
   file.append("imageFile", image);
   return function (dispatch, getState, { history }) {
     
