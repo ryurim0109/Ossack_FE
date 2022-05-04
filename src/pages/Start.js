@@ -26,7 +26,7 @@ const Start = () => {
                                 borderRadius="20px"
                                 fontSize="8px"
                                 >
-                                 <A href={KAKAO_AUTH_URL}>   kakao</A></Button>
+                                 <A href={KAKAO_AUTH_URL}>kakao</A></Button>
                                 <Button width="40px" height="40px" backgroundColor="green"
                                 borderRadius="20px"
                                 fontSize="8px"
