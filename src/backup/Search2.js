@@ -31,7 +31,7 @@ const items = [
   },
 ];
 
-const Search = () => {
+const Search2 = () => {
   return (
     <React.Fragment>
       <Grid
@@ -83,4 +83,4 @@ const Search = () => {
   );
 };
 
-export default Search;
+export default Search2;
