@@ -3,9 +3,9 @@ import { Grid, Button, Input } from "../../elements/index";
 import { history } from "../../redux/configStore";
 
 import filterIcon from "../../static/images/filterIcon.png";
-import Price from "./PriceWrap";
+import PriceWrap from "./PriceWrap";
 
-//import Price1 from "../../backup/Price1";
+import Price1 from "../../backup/Price1";
 
 const Search = () => {
   const [openModal, setModal] = useState(false);
@@ -53,7 +53,7 @@ const Search = () => {
         >
           <img src={filterIcon} alt="필터아이콘" />
         </button>
-        <Price openModal={openModal} setModal={setModal} />
+        <PriceWrap openModal={openModal} setModal={setModal} />
       </Grid>
     </React.Fragment>
   );
