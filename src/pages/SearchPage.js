@@ -1,14 +1,19 @@
-import React from 'react';
+import React,{useState} from 'react';
 import styled from "styled-components";
 import { MyHeader } from '../components/my/index';
-import {Input} from '../elements/index';
+import { Input } from '../elements/index';
 
 const SearchPage = () => {
+    const [keyword, setKeyword] = useState("");
+    
+    const onChangeData = (e)=>{
+        setKeyword(e.currentTarget.value)
+    }
     return (
         <React.Fragment>
             <Outter>
                 <MyHeader>검색</MyHeader>
-                <Input padding="10px" placeholder="지역, 역, 등록번호로 찾아보세요." />
+                <Input margin="16px 0" padding="10px" placeholder="지역, 역, 등록번호로 찾아보세요." border="1px solid #000"/>
             </Outter>
         </React.Fragment>
     );
