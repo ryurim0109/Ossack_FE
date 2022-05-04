@@ -77,9 +77,9 @@ const ProfileModal = (props) => {
             // reader.result는 파일의 컨텐츠(내용물)입니다!
             setPreview(reader.result);
           };
-          if (file) {
-            setImage(file);
-          }
+          // if (file) {
+          //   setImage(file);
+          // }
         }
       };
       const editProfile =()=>{
@@ -90,6 +90,7 @@ const ProfileModal = (props) => {
         setImage("");
         return false;
         }
+        
         dispatch(userActions.userImgDB(image));
         ModalClose()
       }
