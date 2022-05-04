@@ -2,6 +2,7 @@ import React from 'react';
 import {Grid,Button,Text} from '../elements/index';
 import styled from 'styled-components';
 import {history} from '../redux/configStore';
+import { KAKAO_AUTH_URL } from '../shared/SocialOAuth';
 
 const Start = () => {
     return (
@@ -24,7 +25,8 @@ const Start = () => {
                                 <Button width="40px" height="40px" backgroundColor="yellow"
                                 borderRadius="20px"
                                 fontSize="8px"
-                                >kakao</Button>
+                                >
+                                 <A href={KAKAO_AUTH_URL}>kakao</A></Button>
                                 <Button width="40px" height="40px" backgroundColor="green"
                                 borderRadius="20px"
                                 fontSize="8px"
@@ -47,6 +49,10 @@ const Outter=styled.div`
   width:100%;
   padding:0 16px 68px;
   
+
+`;
+const A=styled.a`
+ color:#000;
 
 `;
 export default Start;
