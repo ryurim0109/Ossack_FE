@@ -5,6 +5,7 @@ import { ConnectedRouter } from "connected-react-router";
 import { history } from "../redux/configStore";
 import { Login, Main, Signup, SaleMap,MyPage,Like,Start } from "../pages/index";
 import { MobileFrame } from "../components/shared/home";
+import KaKaoLogin from '../components/social/KaKaoLogin'
 
 //css
 import "../shared/css/App.css";
@@ -18,6 +19,7 @@ function App() {
             <Route path="/" exact component={Start} />
             <Route path="/login" exact component={Login} />
             <Route path="/signup" exact component={Signup} />
+            <Route path="/user/kakao/callback" exact  component={KaKaoLogin} />
 
             <Route path="/main" exact component={Main} />
             <Route path="/map" exact component={SaleMap} />

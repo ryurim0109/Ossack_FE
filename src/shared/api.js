@@ -3,10 +3,9 @@ import axios from 'axios';
 //1. axios 인터셉터 생성 
 export const instance = axios.create({
 
-  //15.164.96.141:8080
-  //52.79.228.83:8080
+  //54.180.102.156 다빈님
 
-  baseURL: 'http://',
+  baseURL: 'http://15.165.160.109:8080',
   headers: {
     'content-type': 'application/json; charset=UTF-8',
     accept: 'application/json',

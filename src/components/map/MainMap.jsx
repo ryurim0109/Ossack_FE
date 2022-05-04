@@ -116,7 +116,7 @@ const MainMap = (props) => {
               position={position.coordinate} // 마커를 표시할 위치
               title={position.title} // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
             >
-              <Overlay position={position} />
+              <Overlay position={position} index={index}/>
             </CustomOverlayMap>
           ))}
 

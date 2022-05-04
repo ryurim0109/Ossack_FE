@@ -8,7 +8,6 @@ import {instance} from '../../shared/api';
 // actions
 const SET_USER = "SET_USER";
 const LOG_OUT = "LOG_OUT";
-const ISLOGIN = "ISLOGIN";
 
 // initialState
 const initialState = {
@@ -19,7 +18,6 @@ const initialState = {
 // actionCreators
 const setUser = createAction(SET_USER, (user,is_login) => ({ user,is_login }));
 const logOut = createAction(LOG_OUT, () => {});
-const isLogin = createAction(ISLOGIN, (token) => ({ token }));
 
 // middleWares
 const signUpApi = (user) => {
@@ -99,7 +97,7 @@ const loginCheckApi = () => {
         setUser({
           nickname: check.data.nickname,
           username: check.data.username,
-          userId: check.data.userId,
+          profile:check.data.profile,
         })
       );
     } catch (err) {
@@ -119,24 +117,23 @@ const logOutApi = () => {
 //카카오 로그인
 const loginBykakao = (code) => {
   return function (dispatch, getState, { history }) {
+    // axios.get(`http://15.165.160.109:8080/user/kakao/callback?code=${code}`)
     instance.get(`/user/kakao/callback?code=${code}`)
       .then((res) => {
         const token = res.headers.authorization.split("BEARER ");
         localStorage.setItem("token", token[1]);
-        history.push("/"); // 토큰 받았고 로그인됐으니 화면 전환시켜줌(메인으로)
+        history.push("/main"); // 토큰 받았고 로그인됐으니 화면 전환시켜줌(메인으로)
         // 바로 유저정보 저장하기
         
         instance.get("/api/islogin")
           .then((res) => {
-            // if (!localStorage.getItem("token")) {
-            //   localStorage.setItem("token", res.data.userId);
-            // }
             console.log(res, "나는 로그인체크 응답")
             dispatch(
               setUser({
                 //유저정보를 다시 세팅
                 nickname: res.data.nickname,
                 username: res.data.username,
+                profile:res.data.profile
               })
             );
           })

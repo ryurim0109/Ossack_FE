@@ -8,8 +8,9 @@ const KaKaoLogin = (props) => {
   // 인가코드
   let code = new URL(window.location.href).searchParams.get("code");
 
-  React.useEffect(async () => {
-    await dispatch(userActions.loginBykakao(code));
+  React.useEffect( () => {
+    console.log(code)
+     dispatch(userActions.loginBykakao(code));
   }, []);
 
   return null;
