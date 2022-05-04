@@ -5,5 +5,6 @@ import SaleMap from './SaleMap';
 import MyPage from './MyPage';
 import Like from './Like';
 import Start from './Start';
+import SearchPage from './SearchPage';
 
-export { Login, Main, Signup ,SaleMap,MyPage,Like,Start};
+export { Login, Main, Signup ,SaleMap,MyPage,Like,Start,SearchPage };
