@@ -12,7 +12,7 @@ const GoogleLogin = (props) => {
 
   React.useEffect(() => {
     dispatch(userActions.loginBygoogle(code));
-  }, []);
+  }, [code, dispatch]);
 
   return null;
 };
