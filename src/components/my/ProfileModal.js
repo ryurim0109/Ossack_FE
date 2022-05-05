@@ -17,7 +17,8 @@ const ProfileModal = (props) => {
         setIsOpen(!isOpen)
     }
 
-   // const user_info=useSelector((state)=>state.user.user);
+   const user_info=useSelector((state)=>state.user.user);
+   console.log(user_info)
  
     const fileInput = useRef();
 
@@ -77,19 +78,20 @@ const ProfileModal = (props) => {
             // reader.result는 파일의 컨텐츠(내용물)입니다!
             setPreview(reader.result);
           };
-          // if (file) {
-          //   setImage(file);
-          // }
+          if (file) {
+            setImage(e.target.files[0])
+          }
         }
+       
       };
       const editProfile =()=>{
-        let maxSize = 10 * 1024 * 1024;
-        let fileSize=image.size;
-        if(fileSize > maxSize){
-        window.alert("첨부파일 사이즈는 10MB 이내로 등록 가능합니다.");
-        setImage("");
-        return false;
-        }
+        // let maxSize = 10 * 1024 * 1024;
+        // let fileSize=image.size;
+        // if(fileSize > maxSize){
+        // window.alert("첨부파일 사이즈는 10MB 이내로 등록 가능합니다.");
+        // setImage("");
+        // return false;
+        // }
         
         dispatch(userActions.userImgDB(image));
         ModalClose()
@@ -109,7 +111,7 @@ const ProfileModal = (props) => {
                             size="90"
                             radius="30px"
                             src={preview ? preview : 
-                                // userInfo.profileUrl ? userInfo.profileUrl :
+                              user_info?.profile ? user_info?.profile :
                                  defaultImg}
                         ></Image>
                                                     

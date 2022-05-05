@@ -129,9 +129,9 @@ const loginBykakao = (code) => {
       .then((res) => {
         const token = res.headers.authorization.split("BEARER ");
         localStorage.setItem("token", token[1]);
-        history.push("/"); // 토큰 받았고 로그인됐으니 화면 전환시켜줌(메인으로)
+        history.push("/main"); // 토큰 받았고 로그인됐으니 화면 전환시켜줌(메인으로)
         // 바로 유저정보 저장하기
-
+        window.alert('로그인 성공!')
         instance
           .get("/api/islogin")
           .then((res) => {
@@ -141,7 +141,7 @@ const loginBykakao = (code) => {
                 //유저정보를 다시 세팅
                 nickname: res.data.nickname,
                 username: res.data.username,
-                 profile:res.data.profile,
+                 profile:res.data.imageUrl,
               })
             );
           })
@@ -179,7 +179,7 @@ const loginBygoogle = (code) => {
                 //유저정보를 다시 세팅
                 nickname: res.data.nickname,
                 username: res.data.username,
-                profile:res.data.profile
+                profile:res.data.imageUrl
               })
             );
           })
@@ -233,7 +233,7 @@ export default handleActions(
       [USER_IMG]: (state, action) =>
       produce(state, (draft) => {
           console.log(action.payload)
-          draft.user.userImage = action.payload.userImage;
+          draft.user.userImage = action.payload.imageUrl;
 
     }),
   },
