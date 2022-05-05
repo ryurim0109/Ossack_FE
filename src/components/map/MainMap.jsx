@@ -12,6 +12,9 @@ import { Position, Search, Overlay } from "./index";
 
 // import _ from "lodash";
 import Search2 from "../../backup/Search2";
+import Price1 from "../../backup/Price1";
+import Sheet from "react-modal-sheet";
+import { Button, Grid, Text } from "../../elements/index";
 
 const MainMap = (props) => {
   const dispatch = useDispatch();
@@ -79,9 +82,8 @@ const MainMap = (props) => {
   };
   return (
     <React.Fragment>
-      {/* <Search /> */}
-      <Search />
       <MainContent>
+        <Search />
         <Map
           center={state.center}
           onCreate={(map) => setMap(map)}
@@ -116,7 +118,7 @@ const MainMap = (props) => {
               position={position.coordinate} // 마커를 표시할 위치
               title={position.title} // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
             >
-              <Overlay position={position} index={index}/>
+              <Overlay position={position} index={index} />
             </CustomOverlayMap>
           ))}
 
@@ -132,6 +134,7 @@ const MainMap = (props) => {
             </button>
           </Lev>
         </Map>
+
         {/* {pos && console.log('변경된 지도 중심좌표는 ' + pos.lat + ' 이고, 경도는 ' + pos.lng + ' 입니다', 
         '남서쪽' + pos.swLatLng.lat ,pos.swLatLng.lng, '북동쪽좌표' + pos.neLatLng.lat ,pos.neLatLng.lng)
         
