@@ -3,7 +3,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
 import { Grid,Text } from '../../elements/index';
-import _ from 'lodash';
 
 import styled from 'styled-components';
 
@@ -21,9 +20,6 @@ const Filter=()=> {
   const classes = useStyles();
   const [value, setValue] = useState([0,100]);
 
-
-  
-  
 
   const handleChange = (e, newValue) => {
     setValue(newValue);

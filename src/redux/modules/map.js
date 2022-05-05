@@ -1,5 +1,6 @@
 import { createAction, handleActions } from "redux-actions";
 import produce from "immer";
+import { instance } from "../../shared/api";
 import { RESP } from "../../response";
 
 const SET_MAP = "SET_MAP";
@@ -23,15 +24,16 @@ const initialState = {
   },
 };
 const getOfficeData = (pos,level) => {
-  console.log("pos : ", pos,  "level : ",level);
+  //console.log("pos : ", pos,  "level : ",level);
   // const SWlat=pos.swLatLng.lat;
   // const SWlng=pos.swLatLng.lng;
   // const NElat=pos.neLatLng.lat;
   // const NElng=pos.neLatLng.lng;
   return async function (dispatch, getState, { history }) {
     try {
-      // const response = await axios.post(
-      //   "http://54.180.96.119/api/{level}/map?SWlat={pos.SWlat}&SWlng={SWlng}&NElat={NElat}&NElng={NElng}"
+      // const response = await instance.post(
+      //   "http://54.180.96.119/api/${level}/map?SWlat=${pos.SWlat}&SWlng=${SWlng}&NElat=${NElat}&NElng=${NElng}"
+      //  
       //   {},
       //   {
       //     headers: {
@@ -39,8 +41,10 @@ const getOfficeData = (pos,level) => {
       //     },
       //   }
       // // );
+    //   const response = await instance
+    // .post(`/api/${level}/map?SWlat=${SWlat}&SWlng=${SWlng}&NElat=${NElat}&NElng=${NElng}`)
       const response = RESP.GETOFFICE;
-      console.log("response : ", response);
+      console.log("지도 위도,경도 response : ", response);
       dispatch(setOfficeList(response));
     } catch (err) {
       console.log("에러발생", err);

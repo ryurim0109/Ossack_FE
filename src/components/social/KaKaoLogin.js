@@ -10,7 +10,7 @@ const KaKaoLogin = (props) => {
 
   React.useEffect( () => {
      dispatch(userActions.loginBykakao(code));
-  }, []);
+  }, [code,dispatch]);
 
   return null;
 };

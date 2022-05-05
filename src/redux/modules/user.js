@@ -2,6 +2,7 @@ import { createAction, handleActions } from "redux-actions";
 import produce from "immer";
 import axios from "axios";
 import { instance } from "../../shared/api";
+import Swal from 'sweetalert2'
 //import { RESP } from "../../response";
 //import { setCookie, deleteCookie } from "../../shared/cookie";
 
@@ -29,7 +30,7 @@ const signUpApi = (user) => {
   console.log("user : ", user);
   return async function (dispatch, getState, { history }) {
     try {
-      const response = await axios.post("http://54.180.102.156/user/signup", {
+      const response = await axios.post("http://15.165.160.109:8080/user/signup", {
         userEmail: user.userEmail,
         nickname: user.nickname,
         password: user.password,
@@ -56,7 +57,7 @@ const loginApi = (userEmail, password) => {
   console.log("password : ", password);
   return async function (dispatch, getState, { history }) {
     try {
-      const response = await axios.post("http://54.180.102.156/user/login", {
+      const response = await axios.post("http://15.165.160.109:8080/user/login", {
         userEmail: userEmail,
         password: password,
       });
@@ -64,7 +65,7 @@ const loginApi = (userEmail, password) => {
       console.log("response : ", response);
 
       if (response.status === 200) {
-        alert(`로그인 성공`);
+        Swal.fire('로그인 성공');
         history.replace("/main");
 
         const token = response.headers.authorization.split("BEARER ");
@@ -77,10 +78,10 @@ const loginApi = (userEmail, password) => {
           })
         );
       } else {
-        alert("이메일과 패스워드를 다시 확인해주세요.");
+        Swal.fire('이메일과 패스워드를 다시 확인해주세요.');
       }
     } catch (err) {
-      window.alert("이메일과 패스워드를 다시 확인해주세요.");
+      Swal.fire('이메일과 패스워드를 다시 확인해주세요.');
       console.log("에러발생", err);
     }
   };
@@ -90,7 +91,7 @@ const loginCheckApi = () => {
   return async function (dispatch, getState, { history }) {
     try {
       const check = await axios.post(
-        "http://54.180.96.119/api/login",
+        "http://15.165.160.109:8080/api/islogin",
         {},
         {
           headers: {
@@ -102,12 +103,13 @@ const loginCheckApi = () => {
         setUser({
           nickname: check.data.nickname,
           username: check.data.username,
-          profile: check.data.profile,
+          imageUrl: check.data.imageUrl,
         })
       );
     } catch (err) {
       console.log("에러발생", err);
-      alert("로그인 여부 확인에 문제가 생겼습니다.");
+      Swal.fire('로그인 여부 확인에 문제가 생겼습니다. 로그인을 다시 해주세요!');
+      history.replace('/')
     }
   };
 };
@@ -116,6 +118,7 @@ const logOutApi = () => {
   return function (dispatch, getState, { history }) {
     localStorage.removeItem("token");
     history.replace("/");
+    Swal.fire('로그인 기간 만료!');
     dispatch(logOut());
   };
 };
@@ -130,7 +133,7 @@ const loginBykakao = (code) => {
         localStorage.setItem("token", token[1]);
         history.push("/main"); // 토큰 받았고 로그인됐으니 화면 전환시켜줌(메인으로)
         // 바로 유저정보 저장하기
-        window.alert('로그인 성공!')
+        Swal.fire('로그인 성공 !');
         instance
           .get("/api/islogin")
           .then((res) => {
@@ -150,7 +153,7 @@ const loginBykakao = (code) => {
       })
       .catch((err) => {
         console.log("소셜로그인 에러", err);
-        window.alert("로그인에 실패하였습니다.");
+        Swal.fire('로그인 실패 !');
         history.replace("/"); // 로그인 실패하면 처음화면으로 돌려보냄
       });
   };
@@ -170,9 +173,10 @@ const loginBygoogle = (code) => {
         console.log("token : ", token);
 
         localStorage.setItem("token", token[1]);
+        Swal.fire('로그인 성공!');
         history.push("/main"); // 토큰 받았고 로그인됐으니 화면 전환시켜줌(메인으로)
         // 바로 유저정보 저장하기
-
+        
         instance
           .get("/api/islogin")
           .then((res) => {
@@ -183,7 +187,8 @@ const loginBygoogle = (code) => {
                 //유저정보를 다시 세팅
                 nickname: res.data.nickname,
                 username: res.data.username,
-                //imageUrl:res.data.imageUrl
+                //imageUrl:res.data.imageUrl,
+                email: res.data.email,
 
               })
             );
@@ -192,7 +197,7 @@ const loginBygoogle = (code) => {
       })
       .catch((err) => {
         console.log("소셜로그인 에러", err);
-        window.alert("로그인에 실패하였습니다.");
+        Swal.fire('로그인에 실패하였습니다.');
         history.replace("/"); // 로그인 실패하면 처음화면으로 돌려보냄
       });
   };
@@ -212,7 +217,7 @@ const userImgDB = (image) => {
       })
       .then((res) => {
         console.log(res.data, "이미지 데이터");
-        window.alert("이미지 등록이 완료되었습니다.");
+        Swal.fire('이미지 등록이 완료되었습니다.');
         dispatch(user_img(res.data));
       })
       .catch((err) => {
@@ -234,6 +239,7 @@ export default handleActions(
         //deleteCookie("is_login");
         draft.is_login = false;
         draft.user = null;
+        localStorage.clear();
       }),
     [USER_IMG]: (state, action) =>
       produce(state, (draft) => {

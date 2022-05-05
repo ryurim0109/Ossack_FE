@@ -4,17 +4,15 @@ import { createBrowserHistory } from 'history';
 import { connectRouter } from 'connected-react-router';
 
 import Map from './modules/map';
-import User from '../redux/modules/user';
+import User from './modules/user';
+import Office from './modules/office';
 
 export const history = createBrowserHistory();
 
 const rootReducer = combineReducers({
    map:  Map,
-//   Login: Login,
    user: User,
-//   Chat:  Chat,
-//   Comment : Comment,
-//   curinput : curinput,
+   office:  Office,
   router: connectRouter(history),
 });
 

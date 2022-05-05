@@ -1,12 +1,22 @@
-import React from "react";
+import React,{useEffect} from "react";
 import styled from "styled-components";
 import { Grid, Text } from "../../elements/index";
 import { history } from "../../redux/configStore";
 import SearchImg from "../../static/images/searchicon.png";
 import { SaleList, HotPlaceList, Office } from "./index";
 import { Banner } from '../shared/home';
+import { actionCreators as officeActions} from '../../redux/modules/office';
+import { useDispatch, useSelector } from "react-redux";
 
 function Sale() {
+
+  const dispatch =useDispatch();
+  const user_info=useSelector((state)=>state.user.user);
+  const dong = "성수동"
+
+  useEffect(()=>{
+    dispatch(officeActions.getMainOfficeDB(dong))
+  },[])
   return (
     <React.Fragment>
       <Outter>
@@ -25,7 +35,7 @@ function Sale() {
         </Grid>
         <Grid width="100%" >
           <Text size="1.250rem" bold>
-            @@@님 어떤 🏢오피스를 <br />
+           {user_info?.nickname? user_info?.nickname: "게스트"}님 어떤 🏢오피스를 <br />
             찾고 계시나요?
           </Text>
         </Grid>

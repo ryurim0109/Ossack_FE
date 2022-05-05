@@ -27,10 +27,10 @@ const MyProfile = () => {
                         <Button is_edit position="absolute" top="80px" right="35%" _onClick={openModalHandler}/>
                     </Grid>
                     <Grid width="100%" display="flex" padding="12px 0" justifyContent="center">
-                        <Text  size="1.250rem" cursor="pointer">{user_info?.nickname}님</Text>
+                        <Text  size="1.250rem" cursor="pointer">{user_info?.nickname? user_info?.nickname : "게스트"}님</Text>
                     </Grid>
                     <Grid width="100%" display="flex" justifyContent="center">
-                        <Text  size="0.85rem" cursor="pointer">alskldskf123@naver.com</Text>
+                        <Text  size="0.85rem" cursor="pointer">{user_info?.email? user_info?.email : "이메일 없음"}</Text>
                     </Grid>
                 </Grid>
                     {isOpen ? 
