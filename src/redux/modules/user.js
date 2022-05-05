@@ -30,7 +30,7 @@ const signUpApi = (user) => {
   console.log("user : ", user);
   return async function (dispatch, getState, { history }) {
     try {
-      const response = await axios.post("http://54.180.102.156/user/signup", {
+      const response = await axios.post("http://15.165.160.109:8080/user/signup", {
         userEmail: user.userEmail,
         nickname: user.nickname,
         password: user.password,
@@ -57,7 +57,7 @@ const loginApi = (userEmail, password) => {
   console.log("password : ", password);
   return async function (dispatch, getState, { history }) {
     try {
-      const response = await axios.post("http://54.180.102.156/user/login", {
+      const response = await axios.post("http://15.165.160.109:8080/user/login", {
         userEmail: userEmail,
         password: password,
       });
@@ -91,7 +91,7 @@ const loginCheckApi = () => {
   return async function (dispatch, getState, { history }) {
     try {
       const check = await axios.post(
-        "http://54.180.96.119/api/login",
+        "http://15.165.160.109:8080/api/islogin",
         {},
         {
           headers: {
@@ -117,6 +117,7 @@ const logOutApi = () => {
   return function (dispatch, getState, { history }) {
     localStorage.removeItem("token");
     history.replace("/");
+    Swal.fire('로그인 기간 만료!');
     dispatch(logOut());
   };
 };
@@ -236,6 +237,7 @@ export default handleActions(
         //deleteCookie("is_login");
         draft.is_login = false;
         draft.user = null;
+        localStorage.clear();
       }),
     [USER_IMG]: (state, action) =>
       produce(state, (draft) => {

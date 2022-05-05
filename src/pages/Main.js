@@ -1,13 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import {Sale} from '../components/main/index';
 import {Bar} from '../components/shared/home';
+import { actionCreators as userActions } from '../redux/modules/user';
 
 
 
 
 
 function Main() {
+  const dispatch=useDispatch();
+  useEffect(()=>{
+    dispatch(userActions.loginCheckApi());
+  },[])
  
   return (
     <React.Fragment>
