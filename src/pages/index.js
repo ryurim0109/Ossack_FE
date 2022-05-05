@@ -6,5 +6,6 @@ import MyPage from './MyPage';
 import Like from './Like';
 import Start from './Start';
 import SearchPage from './SearchPage';
+import NotFound from './NotFound';
 
-export { Login, Main, Signup ,SaleMap,MyPage,Like,Start,SearchPage };
+export { Login, Main, Signup ,SaleMap,MyPage,Like,Start,SearchPage,NotFound };

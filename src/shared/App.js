@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Route } from "react-router-dom";
+import { Route,Switch } from "react-router-dom";
 import { ConnectedRouter } from "connected-react-router";
 import { history } from "../redux/configStore";
 import {
@@ -12,6 +12,7 @@ import {
   Like,
   Start,
   SearchPage,
+  NotFound
 } from "../pages/index";
 import { MobileFrame } from "../components/shared/home";
 import KaKaoLogin from '../components/social/KaKaoLogin'
@@ -26,19 +27,23 @@ function App() {
     <>
       <Wrap>
         <ConnectedRouter history={history}>
+         
           <MobileFrame className="MobileFramePage">
+          <Switch>
             <Route path="/" exact component={Start} />
             <Route path="/login" exact component={Login} />
             <Route path="/signup" exact component={Signup} />
             <Route path="/user/google/callback" exact component={GoogleLogin} />
             <Route path="/user/kakao/callback" exact component={KaKaoLogin} />
-
             <Route path="/main" exact component={Main} />
             <Route path="/search" exact component={SearchPage} />
             <Route path="/map" exact component={SaleMap} />
             <Route path="/mypage" exact component={MyPage} />
             <Route path="/like" exact component={Like} />
+            <Route component={NotFound} />
+            </Switch>
           </MobileFrame>
+          
         </ConnectedRouter>
       </Wrap>
     </>
