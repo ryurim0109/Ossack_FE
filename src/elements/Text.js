@@ -14,6 +14,7 @@ const Text = (props) => {
     border,
     _onClick,
     cursor,
+    lingH,
     textIndent,
   } = props;
   const styles = {
@@ -26,6 +27,7 @@ const Text = (props) => {
     family,
     border,
     cursor,
+    lingH,
     textIndent,
   };
   return (
@@ -46,6 +48,7 @@ Text.defaultProps = {
   family: false, //폰트 타입
   border: null,
   textIndent:null,
+  lingH:null,
   _onClick: () => {},
   cursor: null,
 };
@@ -61,6 +64,7 @@ const ElText = styled.span`
   family: ${(props) => props.family};
   border: ${(props) => props.border};
   cursor: ${(props) => props.cursor};
+  line-height: ${(props) => props.lingH};
 `;
 
 export default Text;

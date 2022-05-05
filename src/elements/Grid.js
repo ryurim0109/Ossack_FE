@@ -42,6 +42,7 @@ const Grid = props => {
     right,
     hover,
     cursor,
+    fontSize,
   } = props;
 
   const styles = {
@@ -82,6 +83,7 @@ const Grid = props => {
     hover,
     textIn,
     cursor,
+    fontSize,
   };
   return (
     <GridBox {...styles} onClick={_onClick} id={id}>
@@ -93,6 +95,7 @@ const Grid = props => {
 Grid.defaultProps = {
   children: null,
   id: null,
+  fontSize:null,
   margin: null,
   padding: null,
   width: '100%',
@@ -169,6 +172,7 @@ const GridBox = styled.div`
   left: ${props => props.left};
   right: ${props => props.right};
   color: ${props => props.color};
+  font-size: ${props => props.fontSize};
 
   :hover {
     ${props =>
