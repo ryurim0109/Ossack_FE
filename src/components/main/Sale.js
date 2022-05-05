@@ -1,9 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import { Grid, Text, Input, Button } from "../../elements/index";
+import { Grid, Text } from "../../elements/index";
 import { history } from "../../redux/configStore";
 import SearchImg from "../../static/images/searchicon.png";
 import { SaleList, HotPlaceList, Office } from "./index";
+import { Banner } from '../shared/home';
 
 function Sale() {
   return (
@@ -11,23 +12,24 @@ function Sale() {
       <Outter>
         <Grid
           width="100%"
-          margin="38px 0"
+          margin="0 0 24px 0 "
+          height="56px"
           display="flex"
           justifyContent="space-between"
+          alignItems="center"
         >
           <Text size="1.250rem" bold cursor="pointer">
             오싹
           </Text>
           <Grid width="24px" height="24px" bg="#ccc"></Grid>
         </Grid>
-        <Grid width="100%" margin="22px 0" bg="#c4c4c4">
+        <Grid width="100%" >
           <Text size="1.250rem" bold>
-            {" "}
             @@@님 어떤 🏢오피스를 <br />
             찾고 계시나요?
           </Text>
         </Grid>
-        <Grid width="100%" margin="16px 0" position="relative">
+        <Grid width="100%" margin="12px 0 16px 0" position="relative">
           <Grid width="50px" position="absolute" top="12px" left="10px">
             <img src={SearchImg} alt="검색" />
           </Grid>
@@ -42,7 +44,7 @@ function Sale() {
             color="#999"
             borderRadius="10px"
             _onClick={() => {
-              history.push("/map");
+              history.push("/search");
             }}
           >
             장소, 주소, 건물명을 입력하세요.
@@ -51,22 +53,22 @@ function Sale() {
         {/* 오피스구해요 박스 */}
         <SaleList />
         <Grid
-          margin="24px 0 0 0 "
+          
           width="100%"
           display="flex"
           justifyContent="space-between"
         >
           <Text bold size="1.250rem" cursor="pointer">
-            성수동 근처추천 오피스 📍{" "}
+            텍스트 텍스트 오피스 📍
           </Text>
-          <Grid width="50px" fontSize="0.750rem" cursor="pointer">
-            내 위치
-          </Grid>
         </Grid>
         <Office />
+    </Outter>
+        <Banner/>
         {/* 핫한 오피스 */}
+    <Outter>
         <Grid
-          margin="18px 0 0 0 "
+          margin="32px 0 0 0 "
           width="100%"
           display="flex"
           justifyContent="space-between"
@@ -74,14 +76,7 @@ function Sale() {
           <Text bold size="1.250rem" cursor="pointer">
             지금 가장 HOT한 오피스 🔥{" "}
           </Text>
-          <Grid
-            width="60px"
-            fontSize="0.750rem"
-            color="#828282"
-            cursor="pointer"
-          >
-            전체보기
-          </Grid>
+          
         </Grid>
         <HotPlaceList />
       </Outter>

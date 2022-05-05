@@ -69,7 +69,7 @@ const AspectInner = styled.div`
   background-size: cover;
   background-position: center;
   border-radius: ${(props) => props.radius};
-  background-color: #f2f2f2;
+  background-color: linear-gradient(0deg, rgba(0, 0, 0, 0.8) 5.74%, rgba(108, 108, 108, 0.0421707) 86.75%, rgba(118, 118, 118, 0) 93.49%);
   overflow: ${(props) => props.className === "edit"? "hidden" : "initial"};
   
 `;

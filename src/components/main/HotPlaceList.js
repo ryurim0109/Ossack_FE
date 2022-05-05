@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import {Grid} from '../../elements/index';
+import {Grid,Image,Text} from '../../elements/index';
 import {XScrollDrag} from '../shared/home';
 
 const PlaceList = () => {
@@ -9,20 +9,56 @@ const PlaceList = () => {
    
     return (
         <React.Fragment>
-            <Grid margin="8px 0 0 0" display="flex" alignItems="center">
-                <Grid width="88px" height="25px" bg="#ccc" borderRadius="100px" 
-                display="flex" alignItems="center" justifyContent="center" margin="0 4px 0 0">#맛집 근처</Grid>
-                <Grid width="88px" height="25px" bg="#ccc" borderRadius="100px" 
-                display="flex" alignItems="center" justifyContent="center">#역 근처</Grid>
-            </Grid>
+           
             <Grid overflow="hidden" width="100%">
             <XScrollDrag>
                 <FlexBox  >
-                    <Grid width="160px" height="165px" bg="red" borderRadius="8px"></Grid>
-                    <Grid width="160px" height="165px" bg="green" borderRadius="8px"></Grid>
-                    <Grid width="160px" height="165px" bg="yellow" borderRadius="8px"></Grid>
-                    <Grid width="160px" height="165px" bg="yellow" borderRadius="8px"></Grid>
-                    <Grid width="160px" height="165px" bg="yellow" borderRadius="8px"></Grid>
+                    {/* map돌릴 부분 */}
+                    <Grid width="160px" height="180px" bg="red" borderRadius="8px" position="relative" overflow="hidden">
+                        <Image padding="180px" src="https://velog.velcdn.com/images/ryurim0109/post/6435c602-4d7e-4018-81fa-269d93d5d351/image.jpg" shape="rectangle" position="absolute"/>
+                        <Grid  position="absolute" bottom="0" width="100%" height="68px" bg="rgba(0, 0, 0, 0.35)" padding="8px 16px 16px">
+                            <Grid width="42px" height="20px" bg="#fff" borderRadius="42px" display="flex" alignItems="center" justifyContent="center">
+                                <Text color="#111" size="10px">연남동</Text>
+                            </Grid>
+                            <Grid color="#fff" fontSize="10px" padding="4px" >
+                                <Text bold>맛집거리가 눈앞에 펼쳐지는 맛집거리 오피스</Text>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                    {/* map돌릴 부분 */}
+                    <Grid width="160px" height="180px" bg="red" borderRadius="8px" position="relative" overflow="hidden">
+                        <Image padding="180px" src="https://velog.velcdn.com/images/ryurim0109/post/6435c602-4d7e-4018-81fa-269d93d5d351/image.jpg" shape="rectangle" position="absolute"/>
+                        <Grid  position="absolute" bottom="0" width="100%" height="68px" bg="rgba(0, 0, 0, 0.35)" padding="8px 16px 16px">
+                            <Grid width="42px" height="20px" bg="#fff" borderRadius="42px" display="flex" alignItems="center" justifyContent="center">
+                                <Text color="#111" size="10px">연남동</Text>
+                            </Grid>
+                            <Grid color="#fff" fontSize="10px" padding="4px" >
+                                <Text bold>맛집거리가 눈앞에 펼쳐지는 맛집거리 오피스</Text>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                    <Grid width="160px" height="180px" bg="red" borderRadius="8px" position="relative" overflow="hidden">
+                        <Image padding="180px" src="https://velog.velcdn.com/images/ryurim0109/post/6435c602-4d7e-4018-81fa-269d93d5d351/image.jpg" shape="rectangle" position="absolute"/>
+                        <Grid  position="absolute" bottom="0" width="100%" height="68px" bg="rgba(0, 0, 0, 0.35)" padding="8px 16px 16px">
+                            <Grid width="42px" height="20px" bg="#fff" borderRadius="42px" display="flex" alignItems="center" justifyContent="center">
+                                <Text color="#111" size="10px">연남동</Text>
+                            </Grid>
+                            <Grid color="#fff" fontSize="10px" padding="4px" >
+                                <Text bold>맛집거리가 눈앞에 펼쳐지는 맛집거리 오피스</Text>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                    <Grid width="160px" height="180px" bg="red" borderRadius="8px" position="relative" overflow="hidden">
+                        <Image padding="180px" src="https://velog.velcdn.com/images/ryurim0109/post/6435c602-4d7e-4018-81fa-269d93d5d351/image.jpg" shape="rectangle" position="absolute"/>
+                        <Grid  position="absolute" bottom="0" width="100%" height="68px" bg="rgba(0, 0, 0, 0.35)" padding="8px 16px 16px">
+                            <Grid width="42px" height="20px" bg="#fff" borderRadius="42px" display="flex" alignItems="center" justifyContent="center">
+                                <Text color="#111" size="10px">연남동</Text>
+                            </Grid>
+                            <Grid color="#fff" fontSize="10px" padding="4px" >
+                                <Text bold>맛집거리가 눈앞에 펼쳐지는 맛집거리 오피스</Text>
+                            </Grid>
+                        </Grid>
+                    </Grid>
                 </FlexBox>
                 </XScrollDrag>
             </Grid>
@@ -33,7 +69,7 @@ const PlaceList = () => {
 const FlexBox=styled.div`
  width:1000px;
  display:flex;
- margin: 24px 0;
+ margin: 16px 0 0 0;
  gap:10px;
 
 `;
