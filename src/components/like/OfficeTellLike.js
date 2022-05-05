@@ -7,7 +7,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "../../shared/css/dot.css";
 
-const OfficeLike = () => {
+const OfficeTellLike = () => {
   const settings = {
     infinite: true,
     speed: 500,
@@ -75,7 +75,7 @@ const OfficeLike = () => {
           height="40px"
         >
           <Text color="#000000" size="0.875rem">
-            트리플 역세권 사무실
+            트리플 역세권 오피스텔
           </Text>
           <Text color="#000000" size="0.875rem">
             <Span>월세</Span> 200만 <Span>보증금</Span> 3,000만
@@ -111,7 +111,7 @@ const OfficeLike = () => {
           height="40px"
         >
           <Text color="#000000" size="0.875rem">
-            트리플 역세권 사무실
+            트리플 역세권 오피스텔
           </Text>
           <Text color="#000000" size="0.875rem">
             <Span>월세</Span> 200만 <Span>보증금</Span> 3,000만
@@ -132,4 +132,4 @@ const Span = styled.span`
   font-size: 0.625rem;
 `;
 
-export default OfficeLike;
+export default OfficeTellLike;

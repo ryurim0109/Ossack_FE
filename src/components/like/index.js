@@ -1,3 +1,4 @@
 import OfficeLike from "./OfficeLike";
+import LikeTab from "./LikeTab";
 
-export { OfficeLike };
+export { OfficeLike, LikeTab };
