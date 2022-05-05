@@ -2,6 +2,7 @@ import { createAction, handleActions } from "redux-actions";
 import produce from "immer";
 import axios from "axios";
 import { instance } from "../../shared/api";
+import Swal from 'sweetalert2'
 //import { RESP } from "../../response";
 //import { setCookie, deleteCookie } from "../../shared/cookie";
 
@@ -64,7 +65,7 @@ const loginApi = (userEmail, password) => {
       console.log("response : ", response);
 
       if (response.status === 200) {
-        alert(`로그인 성공`);
+        Swal.fire('로그인 성공');
         history.replace("/main");
 
         const token = response.headers.authorization.split("BEARER ");
@@ -77,10 +78,10 @@ const loginApi = (userEmail, password) => {
           })
         );
       } else {
-        alert("이메일과 패스워드를 다시 확인해주세요.");
+        Swal.fire('이메일과 패스워드를 다시 확인해주세요.');
       }
     } catch (err) {
-      window.alert("이메일과 패스워드를 다시 확인해주세요.");
+      Swal.fire('이메일과 패스워드를 다시 확인해주세요.');
       console.log("에러발생", err);
     }
   };
@@ -102,12 +103,12 @@ const loginCheckApi = () => {
         setUser({
           nickname: check.data.nickname,
           username: check.data.username,
-          profile: check.data.profile,
+          imageUrl: check.data.imageUrl,
         })
       );
     } catch (err) {
       console.log("에러발생", err);
-      alert("로그인 여부 확인에 문제가 생겼습니다.");
+      Swal.fire('로그인 여부 확인에 문제가 생겼습니다.');
     }
   };
 };
@@ -130,7 +131,7 @@ const loginBykakao = (code) => {
         localStorage.setItem("token", token[1]);
         history.push("/main"); // 토큰 받았고 로그인됐으니 화면 전환시켜줌(메인으로)
         // 바로 유저정보 저장하기
-        window.alert('로그인 성공!')
+        Swal.fire('로그인 성공 !');
         instance
           .get("/api/islogin")
           .then((res) => {
@@ -150,7 +151,7 @@ const loginBykakao = (code) => {
       })
       .catch((err) => {
         console.log("소셜로그인 에러", err);
-        window.alert("로그인에 실패하였습니다.");
+        Swal.fire('로그인 실패 !');
         history.replace("/"); // 로그인 실패하면 처음화면으로 돌려보냄
       });
   };
@@ -170,9 +171,10 @@ const loginBygoogle = (code) => {
         console.log("token : ", token);
 
         localStorage.setItem("token", token[1]);
+        Swal.fire('로그인 성공!');
         history.push("/main"); // 토큰 받았고 로그인됐으니 화면 전환시켜줌(메인으로)
         // 바로 유저정보 저장하기
-
+        
         instance
           .get("/api/islogin")
           .then((res) => {
@@ -192,7 +194,7 @@ const loginBygoogle = (code) => {
       })
       .catch((err) => {
         console.log("소셜로그인 에러", err);
-        window.alert("로그인에 실패하였습니다.");
+        Swal.fire('로그인에 실패하였습니다.');
         history.replace("/"); // 로그인 실패하면 처음화면으로 돌려보냄
       });
   };
@@ -212,7 +214,7 @@ const userImgDB = (image) => {
       })
       .then((res) => {
         console.log(res.data, "이미지 데이터");
-        window.alert("이미지 등록이 완료되었습니다.");
+        Swal.fire('이미지 등록이 완료되었습니다.');
         dispatch(user_img(res.data));
       })
       .catch((err) => {
