@@ -2,14 +2,14 @@ import React from "react";
 import styled from "styled-components";
 import { Bar } from "../components/shared/home";
 import { MyHeader } from "../components/my/index";
-import { OfficeLike } from "../components/like/index";
+import { LikeTab } from "../components/like/index";
 
 const Like = (props) => {
   return (
     <React.Fragment>
       <Outter>
         <MyHeader>찜리스트</MyHeader>
-        <OfficeLike />
+        <LikeTab />
         <Bar />
       </Outter>
     </React.Fragment>

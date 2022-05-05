@@ -1,10 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import { Grid, Button, Text } from "../../elements/index";
+import { Grid, Button, Text, Image } from "../../elements/index";
 
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import "../../shared/css/dot.css";
 
 const OfficeLike = () => {
   const settings = {
@@ -12,7 +13,7 @@ const OfficeLike = () => {
     speed: 500,
     slideToShow: 1,
     slideToScroll: 1,
-    autoplay: true,
+    autoplay: false,
     autoplaySpeed: 5000,
     arrows: false,
     dots: true,
@@ -21,26 +22,48 @@ const OfficeLike = () => {
   return (
     <React.Fragment>
       <Grid>
-        <StyledSlider {...settings}>
-          <Grid
-            width="100%"
-            margin="16px 0"
-            height="235px"
-            bg="#999"
-            borderRadius="8px"
-            position="relative"
-          >
-            <Grid>
-              <Button
-                is_like
+        <Grid
+          width="100%"
+          margin="16px 0"
+          height="235px"
+          bg="#999"
+          borderRadius="8px"
+          position="relative"
+          overflow="hidden"
+        >
+          <Grid>
+            <StyledSlider {...settings} dotsClass="test-css">
+              <Image
+                padding="235px"
+                bottom="0"
+                src="https://velog.velcdn.com/images/ryurim0109/post/aa1c2d4c-3f28-4549-9c63-b1aeb96073a6/image.jpg"
+                shape="rectangle"
                 position="absolute"
-                right="8px"
-                top="8px"
-                color="#fff"
               />
-            </Grid>
+              <Image
+                padding="235px"
+                bottom="0"
+                src="https://velog.velcdn.com/images/ryurim0109/post/47929a13-bcc8-4e8a-a8a6-312c9db12651/image.jpg"
+                shape="rectangle"
+                position="absolute"
+              />
+              <Image
+                padding="235px"
+                bottom="0"
+                src="https://velog.velcdn.com/images/ryurim0109/post/6435c602-4d7e-4018-81fa-269d93d5d351/image.jpg"
+                shape="rectangle"
+                position="absolute"
+              />
+            </StyledSlider>
+            <Button
+              is_like
+              position="absolute"
+              right="8px"
+              top="8px"
+              color="#fff"
+            />
           </Grid>
-        </StyledSlider>
+        </Grid>
 
         <Grid
           bottom="0"
@@ -95,9 +118,6 @@ const OfficeLike = () => {
           </Text>
         </Grid>
       </Grid>
-      <Button backgroundColor="none" fontSize="0.875rem">
-        더보기
-      </Button>
     </React.Fragment>
   );
 };
