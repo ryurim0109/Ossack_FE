@@ -187,7 +187,8 @@ const loginBygoogle = (code) => {
                 //유저정보를 다시 세팅
                 nickname: res.data.nickname,
                 username: res.data.username,
-                //imageUrl:res.data.imageUrl
+                //imageUrl:res.data.imageUrl,
+                email: res.data.email,
 
               })
             );
