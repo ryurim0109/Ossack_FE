@@ -4,8 +4,8 @@ import { createBrowserHistory } from 'history';
 import { connectRouter } from 'connected-react-router';
 
 import Map from './modules/map';
-import User from '../redux/modules/user';
-import Office from '../redux/modules/office';
+import User from './modules/user';
+import Office from './modules/office';
 
 export const history = createBrowserHistory();
 
