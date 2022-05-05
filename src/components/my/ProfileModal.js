@@ -59,13 +59,16 @@ const ProfileModal = (props) => {
                 file = new File([resultBlob], file.name.split(".")[0] + ".jpg", {
                   type: "image/jpeg",
                   lastModified: new Date().getTime(),
+          
                 });
                 reader.readAsDataURL(file);
                 reader.onloadend = () => {
                   setPreview(reader.result);
                 };
                 if (file) {
-                  setImage(file);
+                  console.log(file)
+                  console.log(e.target.files[0])
+                  setImage(e.target.files[0])
                 }
               })
               .catch(function (err) {
