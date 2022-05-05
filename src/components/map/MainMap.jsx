@@ -7,7 +7,12 @@ import { actionCreators as mapActions } from "../../redux/modules/map";
 import { TiPlus, TiMinus } from "react-icons/ti";
 import { MdMyLocation } from "react-icons/md";
 
-import { Map, MapMarker, CustomOverlayMap } from "react-kakao-maps-sdk";
+import {
+  Map,
+  MapMarker,
+  CustomOverlayMap,
+  MarkerClusterer,
+} from "react-kakao-maps-sdk";
 import { Position, Search, Overlay } from "./index";
 
 // import _ from "lodash";
@@ -112,15 +117,33 @@ const MainMap = (props) => {
             <Overlay />
           </CustomOverlayMap>
           {/* 커스텀 마커부분 */}
-          {getOffice?.map((position, index) => (
-            <CustomOverlayMap
-              key={`${position.title}-${position.coordinate}`}
-              position={position.coordinate} // 마커를 표시할 위치
-              title={position.title} // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-            >
-              <Overlay position={position} index={index} />
-            </CustomOverlayMap>
-          ))}
+          <MarkerClusterer
+            averageCenter={true} // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정
+            minLevel={10} // 클러스터 할 최소 지도 레벨
+            // styles={[
+            //   {
+            //     // calculator 각 사이 값 마다 적용될 스타일을 지정한다
+            //     width: "30px",
+            //     height: "30px",
+            //     background: "#d80cf3",
+            //     borderRadius: "15px",
+            //     color: "#000",
+            //     textAlign: "center",
+            //     fontWeight: "bold",
+            //     lineHeight: "31px",
+            //   },
+            // ]}
+          >
+            {getOffice?.map((position, index) => (
+              <CustomOverlayMap
+                key={`${position.title}-${position.coordinate}`}
+                position={position.coordinate} // 마커를 표시할 위치
+                title={position.title} // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+              >
+                <Overlay position={position} index={index} />
+              </CustomOverlayMap>
+            ))}
+          </MarkerClusterer>
 
           <Lev>
             <button onClick={setLocation}>
