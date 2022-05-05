@@ -2,18 +2,16 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import { createBrowserHistory } from 'history';
 import { connectRouter } from 'connected-react-router';
-// import Login from './modules/Login_module';
+
 import Map from './modules/map';
-// import Comment from './modules/Comment_module'
-//import Chat from './modules/Chat_module'
-//import curinput from './modules/CurrentUserList_module';
+import User from '../redux/modules/user';
 
 export const history = createBrowserHistory();
 
 const rootReducer = combineReducers({
    map:  Map,
 //   Login: Login,
-//   user:  Login,
+   user: User,
 //   Chat:  Chat,
 //   Comment : Comment,
 //   curinput : curinput,

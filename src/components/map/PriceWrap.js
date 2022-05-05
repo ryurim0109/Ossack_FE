@@ -1,7 +1,8 @@
 import React from "react";
 import Sheet from "react-modal-sheet";
 import styled from "styled-components";
-import { Button, Grid, Text } from "../../elements/index";
+import {  Grid } from "../../elements/index";
+import {Filter} from './index';
 
 const CustomSheet = styled(Sheet)`
   .react-modal-sheet-backdrop {
@@ -62,7 +63,7 @@ const CustomSheet = styled(Sheet)`
     /* transform: translateX(-50%); */
     /* transition: all 600ms cubic-bezier(0.86, 0, 0.07, 1) !important; */
     width: 375px;
-    height: 50% !important;
+    height: 77% !important;
     margin: 0 auto;
     background-color: #f4f6fa;
     box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.3);
@@ -123,7 +124,7 @@ const Price = (props) => {
     <CustomSheet isOpen={openModal} onClose={() => setModal(false)}>
       <CustomSheet.Container>
         <CustomSheet.Header />
-        <CustomSheet.Content>{<Grid>aaaa</Grid>}</CustomSheet.Content>
+        <CustomSheet.Content>{<Filter/>}</CustomSheet.Content>
       </CustomSheet.Container>
       <CustomSheet.Backdrop />
     </CustomSheet>

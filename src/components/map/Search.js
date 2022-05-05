@@ -5,7 +5,7 @@ import { history } from "../../redux/configStore";
 import filterIcon from "../../static/images/filterIcon.png";
 import PriceWrap from "./PriceWrap";
 
-import Price1 from "../../backup/Price1";
+//import Price1 from "../../backup/Price1";
 
 const Search = () => {
   const [openModal, setModal] = useState(false);
