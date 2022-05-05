@@ -3,8 +3,19 @@ import styled from "styled-components";
 import { Route } from "react-router-dom";
 import { ConnectedRouter } from "connected-react-router";
 import { history } from "../redux/configStore";
-import { Login, Main, Signup, SaleMap,MyPage,Like,Start } from "../pages/index";
+import {
+  Login,
+  Main,
+  Signup,
+  SaleMap,
+  MyPage,
+  Like,
+  Start,
+} from "../pages/index";
 import { MobileFrame } from "../components/shared/home";
+import KaKaoLogin from '../components/social/KaKaoLogin'
+
+import GoogleLogin from "../components/social/GoogleLogin";
 
 //css
 import "../shared/css/App.css";
@@ -18,6 +29,8 @@ function App() {
             <Route path="/" exact component={Start} />
             <Route path="/login" exact component={Login} />
             <Route path="/signup" exact component={Signup} />
+            <Route path="/user/google/callback" exact component={GoogleLogin} />
+            <Route path="/user/kakao/callback" exact component={KaKaoLogin} />
 
             <Route path="/main" exact component={Main} />
             <Route path="/map" exact component={SaleMap} />

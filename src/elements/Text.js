@@ -14,6 +14,7 @@ const Text = (props) => {
     border,
     _onClick,
     cursor,
+    textIndent,
   } = props;
   const styles = {
     color,
@@ -25,6 +26,7 @@ const Text = (props) => {
     family,
     border,
     cursor,
+    textIndent,
   };
   return (
     <ElText {...styles} onClick={_onClick}>
@@ -43,6 +45,7 @@ Text.defaultProps = {
   padding: false,
   family: false, //폰트 타입
   border: null,
+  textIndent:null,
   _onClick: () => {},
   cursor: null,
 };
@@ -54,6 +57,7 @@ const ElText = styled.span`
   text-align: ${(props) => props.align};
   margin: ${(props) => props.margin};
   padding: ${(props) => props.padding};
+  text-indent: ${(props) => props.textIndent};
   family: ${(props) => props.family};
   border: ${(props) => props.border};
   cursor: ${(props) => props.cursor};

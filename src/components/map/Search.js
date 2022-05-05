@@ -53,7 +53,7 @@ const Search = () => {
         >
           <img src={filterIcon} alt="필터아이콘" />
         </button>
-        <PriceWrap openModal={openModal} setModal={setModal} />
+        <Price1 openModal={openModal} setModal={setModal} />
       </Grid>
     </React.Fragment>
   );

@@ -29,6 +29,7 @@
     "nouislider-react": "^3.4.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
+    "react-google-login": "^5.2.2",
     "react-icons": "^4.3.1",
     "react-kakao-maps-sdk": "^1.0.6",
     "react-modal-sheet": "^1.5.1",
