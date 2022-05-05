@@ -23,7 +23,7 @@ const CustomSheet = styled(Sheet)`
     /* transition: all 0.5; */
     @media screen and (max-width: 500px) {
       position: inherit !;
-      width: 100%;important
+      width: 100%;
       height: 100vh;
       min-width: 340px;
       left: 50% !important;

@@ -8,8 +8,7 @@ import { instance } from "../../shared/api";
 // actions
 const SET_USER = "SET_USER";
 const LOG_OUT = "LOG_OUT";
-const USER_IMG ="USER_IMG";
- 
+const USER_IMG = "USER_IMG";
 
 // initialState
 const initialState = {
@@ -23,7 +22,7 @@ const setUser = createAction(SET_USER, (user, is_login) => ({
   is_login,
 }));
 const logOut = createAction(LOG_OUT, () => {});
-const user_img =createAction(USER_IMG,(userImage)=>(userImage));
+const user_img = createAction(USER_IMG, (userImage) => userImage);
 
 // middleWares
 const signUpApi = (user) => {
@@ -103,7 +102,7 @@ const loginCheckApi = () => {
         setUser({
           nickname: check.data.nickname,
           username: check.data.username,
-          profile:check.data.profile,
+          profile: check.data.profile,
         })
       );
     } catch (err) {
@@ -141,7 +140,9 @@ const loginBykakao = (code) => {
                 //유저정보를 다시 세팅
                 nickname: res.data.nickname,
                 username: res.data.username,
-                 profile:res.data.imageUrl,
+                imageUrl:res.data.imageUrl,
+                email: res.data.email,
+               
               })
             );
           })
@@ -159,12 +160,15 @@ const loginBykakao = (code) => {
 const loginBygoogle = (code) => {
   console.log("code : ", code);
   return function (dispatch, getState, { history }) {
-
     // axios.get(`http://15.165.160.109:8080/user/kakao/callback?code=${code}`)
-    instance.get(`/user/kakao/callback?code=${code}`)
-
+    instance
+      .get(`/user/google/callback?code=${code}`)
       .then((res) => {
+        console.log("res : ", res);
+
         const token = res.headers.authorization.split("BEARER ");
+        console.log("token : ", token);
+
         localStorage.setItem("token", token[1]);
         history.push("/main"); // 토큰 받았고 로그인됐으니 화면 전환시켜줌(메인으로)
         // 바로 유저정보 저장하기
@@ -179,7 +183,8 @@ const loginBygoogle = (code) => {
                 //유저정보를 다시 세팅
                 nickname: res.data.nickname,
                 username: res.data.username,
-                profile:res.data.imageUrl
+                //imageUrl:res.data.imageUrl
+
               })
             );
           })
@@ -194,25 +199,25 @@ const loginBygoogle = (code) => {
 };
 //유저 프로필 변경
 const userImgDB = (image) => {
-  console.log(image)
+  console.log(image);
   const file = new FormData();
   file.append("imageFile", image);
   return function (dispatch, getState, { history }) {
-    
-    axios.put(
-      "http://15.165.160.109:8080/api/user/profile",file,{
-        
-        headers: { Authorization: `BEARER ${localStorage.getItem("token")}`,
-          "Content-Type":"multipart/form-data", },
-      }
-      ).then((res)=>{
-        console.log(res.data,"이미지 데이터")
-        window.alert('이미지 등록이 완료되었습니다.');
+    axios
+      .put("http://15.165.160.109:8080/api/user/profile", file, {
+        headers: {
+          Authorization: `BEARER ${localStorage.getItem("token")}`,
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then((res) => {
+        console.log(res.data, "이미지 데이터");
+        window.alert("이미지 등록이 완료되었습니다.");
         dispatch(user_img(res.data));
-        
-      }).catch((err) => {
+      })
+      .catch((err) => {
         console.log("프로필 업로드 에러다!!!!", err.response);
-      }); 
+      });
   };
 };
 // reducer
@@ -230,7 +235,7 @@ export default handleActions(
         draft.is_login = false;
         draft.user = null;
       }),
-      [USER_IMG]: (state, action) =>
+    [USER_IMG]: (state, action) =>
       produce(state, (draft) => {
           console.log(action.payload)
           draft.user.userImage = action.payload.imageUrl;
