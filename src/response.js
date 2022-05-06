@@ -37,6 +37,78 @@ export const RESP = {
       mylike:true
   },
 ],
+HOT:[
+  {
+  estateid:12323,
+  type:"중소형사무실",
+  monthly:"월세",
+  deposit:"1억",
+  rent_fee:300,
+  buildingFloor:3,
+  roomFloor:2,
+  buildingInfo:"맛집거리가 눈앞에 펼쳐지는 맛집거리 오피스",
+  area:"120/105㎡(전용률 88%)",
+  images:["https://velog.velcdn.com/images/ryurim0109/post/6435c602-4d7e-4018-81fa-269d93d5d351/image.jpg"],
+  subways:[{station:"홍대입구"}],
+    mylike:true
+},
+{
+  estateid:12323,
+  type:"중소형사무실",
+  monthly:"월세",
+  deposit:"1억",
+  rent_fee:300,
+  buildingFloor:3,
+  roomFloor:2,
+  buildingInfo:"맛집거리가 눈앞에 펼쳐지는 맛집거리 오피스",
+  area:"120/105㎡(전용률 88%)",
+  images:["https://velog.velcdn.com/images/ryurim0109/post/6435c602-4d7e-4018-81fa-269d93d5d351/image.jpg"],
+  subways:[{station:"홍대입구"}],
+    mylike:true
+},
+{
+  estateid:12323,
+  type:"중소형사무실",
+  monthly:"월세",
+  deposit:"1억",
+  rent_fee:300,
+  buildingFloor:3,
+  roomFloor:2,
+  buildingInfo:"맛집거리가 눈앞에 펼쳐지는 맛집거리 오피스",
+  area:"120/105㎡(전용률 88%)",
+  images:["https://velog.velcdn.com/images/ryurim0109/post/6435c602-4d7e-4018-81fa-269d93d5d351/image.jpg"],
+  subways:[{station:"홍대입구"}],
+    mylike:true
+},
+{
+  estateid:12323,
+  type:"중소형사무실",
+  monthly:"월세",
+  deposit:"1억",
+  rent_fee:300,
+  buildingFloor:3,
+  roomFloor:2,
+  buildingInfo:"맛집거리가 눈앞에 펼쳐지는 맛집거리 오피스",
+  area:"120/105㎡(전용률 88%)",
+  images:["https://velog.velcdn.com/images/ryurim0109/post/6435c602-4d7e-4018-81fa-269d93d5d351/image.jpg"],
+  subways:[{station:"홍대입구"}],
+    mylike:true
+},
+{
+  estateid:12323,
+  type:"중소형사무실",
+  monthly:"월세",
+  deposit:"1억",
+  rent_fee:300,
+  buildingFloor:3,
+  roomFloor:2,
+  buildingInfo:"맛집거리가 눈앞에 펼쳐지는 맛집거리 오피스",
+  area:"120/105㎡(전용률 88%)",
+  images:["https://velog.velcdn.com/images/ryurim0109/post/6435c602-4d7e-4018-81fa-269d93d5d351/image.jpg"],
+  subways:[{station:"홍대입구"}],
+    mylike:true
+},
+],
 
   GETOFFICE: [
     {
