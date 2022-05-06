@@ -1,8 +1,8 @@
 import React from "react";
 import Sheet from "react-modal-sheet";
 import styled from "styled-components";
-import {  Grid } from "../../elements/index";
-import {Filter} from './index';
+import { Grid } from "../../elements/index";
+import { Filter } from "./index";
 
 const CustomSheet = styled(Sheet)`
   .react-modal-sheet-backdrop {
@@ -54,7 +54,7 @@ const CustomSheet = styled(Sheet)`
     }
   }
   .react-modal-sheet-container {
-    position: absolute !important;
+    //position: absolute !important;
     align-items: center;
     justify-content: center;
     vertical-align: middle;
@@ -62,6 +62,7 @@ const CustomSheet = styled(Sheet)`
     left: 50% !important;
     /* transform: translateX(-50%); */
     /* transition: all 600ms cubic-bezier(0.86, 0, 0.07, 1) !important; */
+    transition: height 2s !important;
     width: 375px;
     height: 77% !important;
     margin: 0 auto;
@@ -77,32 +78,38 @@ const CustomSheet = styled(Sheet)`
       min-width: 340px;
       left: 50% !important;
       transform: translateX(-50%) !important;
+      transition: height 2s !important;
     }
 
     @media screen and (min-width: 500px) {
       /* top: 50% !important; */
       transform: translateX(-40%) !important;
+      transition: height 2s !important;
       max-width: 375px;
     }
 
     @media screen and (min-width: 900px) {
       /* top: 50% !important; */
       transform: translateX(-15%) !important;
+      transition: height 2s !important;
     }
 
     @media screen and (min-width: 1120px) {
       /* top: 50% !important; */
       transform: translateX(-5%) !important;
+      transition: height 2s !important;
     }
 
     @media screen and (min-width: 1700px) {
       /* top: 50% !important; */
       transform: translateX(30%) !important;
+      transition: height 2s !important;
     }
 
     @media screen and (min-width: 2000px) {
       /* top: 50% !important; */
       transform: translateX(50%) !important;
+      transition: height 2s !important;
     }
   }
   .react-modal-sheet-header {
@@ -124,7 +131,7 @@ const Price = (props) => {
     <CustomSheet isOpen={openModal} onClose={() => setModal(false)}>
       <CustomSheet.Container>
         <CustomSheet.Header />
-        <CustomSheet.Content>{<Filter/>}</CustomSheet.Content>
+        <CustomSheet.Content>{<Filter />}</CustomSheet.Content>
       </CustomSheet.Container>
       <CustomSheet.Backdrop />
     </CustomSheet>
