@@ -2,13 +2,9 @@ import React, { useState } from "react";
 import OfficeLike from "./OfficeLike";
 import OfficeTellLike from "./OfficeTellLike";
 
-//import { Grid } from "../../elements/index";
-
 import Tab from "@material-ui/core/Tab";
 import Tabs from "@material-ui/core/Tabs";
 import Box from "@mui/material/Box";
-
-import { styled } from "@mui/material/styles";
 
 const LikeTab = () => {
   const tabTitle = ["찜한 오피스", "찜한 오피스텔"];
@@ -45,7 +41,6 @@ const LikeTab = () => {
               {/* <Tab
                 key={idx}
                 label={title}
-                c
               ></Tab> */}
             </Box>
           );
