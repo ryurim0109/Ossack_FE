@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Grid, Button, Text, Image } from "../../elements/index";
+import { Grid } from "../../elements/index";
 import XScrollDrag from "../shared/XScrollDrag";
 import {OfficeList,NearStation} from "./index";
 
@@ -23,20 +23,13 @@ const Office = () => {
                       display="flex" alignItems="center" color={openTab===idx?"#fff":"#444"} justifyContent="center" margin="0 4px 0 0">#{title}근처</Grid>
                     );
                   })}
-                
-              
         </Grid>
-        
         <Grid overflow="hidden" width="100%">
             <XScrollDrag>
                 <FlexBox  >
-                  
-                    {/* map돌릴 부분 */}
                     {tab[openTab]}
-                  {/* map돌릴 부분 */}
-   
                 </FlexBox>
-                </XScrollDrag>
+              </XScrollDrag>
             </Grid>
         </React.Fragment>
   );
@@ -46,9 +39,6 @@ const FlexBox=styled.div`
  display:flex;
  gap:10px;
 
-`;
-const Span = styled.span`
-  font-size: 0.625rem;
 `;
 
 export default Office;
