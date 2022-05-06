@@ -6,6 +6,7 @@ import { actionCreators as mapActions } from "../../redux/modules/map";
 //아이콘
 import { TiPlus, TiMinus } from "react-icons/ti";
 import { MdMyLocation } from "react-icons/md";
+import Spinner from "../shared/Spinner";
 
 import {
   Map,
@@ -21,6 +22,8 @@ import { Button, Grid, Text } from "../../elements/index";
 const MainMap = (props) => {
   const dispatch = useDispatch();
   const getOffice = useSelector((state) => state.map.office_list);
+  const is_loaded = useSelector((state) => state.map.is_loaded);
+  console.log(is_loaded)
   console.log("getOffice : ", getOffice);
 
   const { kakao } = window;
@@ -111,6 +114,7 @@ const MainMap = (props) => {
           {/* 커스텀 마커부분 */}
           <CustomOverlayMap position={state.center}>
             <Overlay />
+            {/* {!is_loaded && <Spinner />}  */}
           </CustomOverlayMap>
           {/* 커스텀 마커부분 */}
           <MarkerClusterer

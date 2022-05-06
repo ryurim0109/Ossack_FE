@@ -6,8 +6,10 @@ import { RESP } from "../../response";
 const GET_MAIN_OFFICE = "GET_MAIN_OFFICE";
 const GET_HOT = "GET_HOT";
 
+
 const getMainOffice = createAction(GET_MAIN_OFFICE, (list)=> ({list}));
 const getHot = createAction(GET_HOT, (hot_list)=> ({hot_list}));
+
 
 const initialState = {
     list: [],
