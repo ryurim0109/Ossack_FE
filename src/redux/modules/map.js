@@ -28,33 +28,28 @@ const initialState = {
 };
 const getOfficeData = (pos,level) => {
   //console.log("pos : ", pos,  "level : ",level);
-  // const SWlat=pos.swLatLng.lat;
-  // const SWlng=pos.swLatLng.lng;
-  // const NElat=pos.neLatLng.lat;
-  // const NElng=pos.neLatLng.lng;
-  return async function (dispatch, getState, { history }) {
+  const SWlat=pos.swLatLng.lat;
+  const SWlng=pos.swLatLng.lng;
+  const NElat=pos.neLatLng.lat;
+  const NElng=pos.neLatLng.lng;
+  
+  return function (dispatch, getState, { history }) {
     dispatch(isLoaded(false));
-    try {
-      // const response = await instance.post(
-      //   "http://54.180.96.119/api/${level}/map?SWlat=${pos.SWlat}&SWlng=${SWlng}&NElat=${NElat}&NElng=${NElng}"
-      //  
-      //   {},
-      //   {
-      //     headers: {
-      //       Authorization: `BEARER ${localStorage.getItem("token")}`,
-      //     },
-      //   }
-      // // );
-    //   const response = await instance
-    // .post(`/api/${level}/map?SWlat=${SWlat}&SWlng=${SWlng}&NElat=${NElat}&NElng=${NElng}`)
-      const response = RESP.GETOFFICE;
-      console.log("지도 위도,경도 response : ", response);
-      dispatch(setOfficeList(response));
-    } catch (err) {
-      console.log("에러발생", err);
-      alert("로그인 여부 확인에 문제가 생겼습니다.");
-    }
-  };
+    
+      instance.get(`/api/${level}/map?SWlat=${SWlat}&SWlng=${SWlng}&NElat=${NElat}&NElng=${NElng}`)
+     
+      // const res=RESP.OFFICE
+      // dispatch(getMainOffice(res));
+        .then((res) => {
+          
+          console.log(res.data,"나는 메인 오피스 DB");
+          dispatch(setOfficeList(res.data));
+        })
+        .catch((err) => {
+          console.log(err.response,"나는 메인 오피스 DB 오류");
+          console.log(err,"나는 메인 오피스 DB 오류");
+        });
+    };
 };
 export default handleActions(
   {

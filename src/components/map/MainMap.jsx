@@ -25,12 +25,12 @@ const MainMap = (props) => {
   const is_loaded = useSelector((state) => state.map.is_loaded);
   console.log(is_loaded)
   console.log("getOffice : ", getOffice);
+  const OverLavel=getOffice?.level;
 
   const { kakao } = window;
   const [level, setLevel] = useState(3); //지도레벨
   const [map, setMap] = useState(); //지도
   const [pos, setPos] = useState(); //경도 위도
-  const [_level, _setLevel] = useState();
 
   const [state, setState] = useState({
     //기본 설정값
@@ -91,7 +91,7 @@ const MainMap = (props) => {
         <Map
           center={state.center}
           onCreate={(map) => setMap(map)}
-          onZoomChanged={(map) => _setLevel(map.getLevel())}
+          onZoomChanged={(map) => setLevel(map.getLevel())}
           onDragEnd={(map) =>
             setPos({
               lat: map.getCenter().getLat(),
@@ -114,36 +114,37 @@ const MainMap = (props) => {
           {/* 커스텀 마커부분 */}
           <CustomOverlayMap position={state.center}>
             <Overlay />
-            {/* {!is_loaded && <Spinner />}  */}
+            
           </CustomOverlayMap>
           {/* 커스텀 마커부분 */}
-          <MarkerClusterer
+          {/* <MarkerClusterer
             averageCenter={true} // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정
             minLevel={10} // 클러스터 할 최소 지도 레벨
-            // styles={[
-            //   {
-            //     // calculator 각 사이 값 마다 적용될 스타일을 지정한다
-            //     width: "30px",
-            //     height: "30px",
-            //     background: "#d80cf3",
-            //     borderRadius: "15px",
-            //     color: "#000",
-            //     textAlign: "center",
-            //     fontWeight: "bold",
-            //     lineHeight: "31px",
-            //   },
-            // ]}
-          >
-            {getOffice?.map((position, index) => (
+            styles={[
+              {
+                // calculator 각 사이 값 마다 적용될 스타일을 지정한다
+                width: "30px",
+                height: "30px",
+                background: "#d80cf3",
+                borderRadius: "15px",
+                color: "#000",
+                textAlign: "center",
+                fontWeight: "bold",
+                lineHeight: "31px",
+              },
+            ]}
+          > */}
+            {getOffice?.cityResponseDtoList?.map((position, index) => (
               <CustomOverlayMap
                 key={`${position.title}-${position.coordinate}`}
                 position={position.coordinate} // 마커를 표시할 위치
                 title={position.title} // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
               >
-                <Overlay position={position} index={index} />
+                
+                <Overlay position={position} OverLavel={OverLavel} index={index} />
               </CustomOverlayMap>
             ))}
-          </MarkerClusterer>
+          {/* </MarkerClusterer> */}
 
           <Lev>
             <button onClick={setLocation}>
@@ -162,7 +163,7 @@ const MainMap = (props) => {
         '남서쪽' + pos.swLatLng.lat ,pos.swLatLng.lng, '북동쪽좌표' + pos.neLatLng.lat ,pos.neLatLng.lng)
         
         } */}
-        {pos && <Position pos={pos} map={map} _level={_level} />}
+        {pos && <Position pos={pos} map={map} level={level} />}
       </MainContent>
     </React.Fragment>
   );

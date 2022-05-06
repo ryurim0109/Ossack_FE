@@ -1,13 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import  defaultProfile from "../static/images/default.svg";
+
 
 const Image = (props) => {
-  const { shape, src, size, profile, radius, align, inline_block, padding , ranking, level} = props;
+  const { shape, src, size, radius, align, inline_block, padding , ranking, level} = props;
   const styles = {
     src: src,
     size: size,
-    profile: profile,
     radius: radius,
     inline_block: inline_block,
     align: align,
@@ -46,7 +45,6 @@ Image.defaultProps = {
   shape: "circle",
   src: "",
   size: 40,
-  profile: defaultProfile,
   radius: "0",
   inline_block: false,
   is_preview: false,
@@ -83,7 +81,7 @@ const ImageCircle = styled.div`
   width: var(--size);
   height: var(--size);
   border-radius:  var(--size);
-  background-image: url("${(props) => props.profile}");
+  background-image: url("${(props) => props.src}");
   background-position: center;
   background-size: cover;
 `;

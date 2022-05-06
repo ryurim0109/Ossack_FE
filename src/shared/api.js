@@ -8,8 +8,11 @@ export const instance = axios.create({
 
 
   //54.180.102.156 다빈님
+  //15.165.158.5 민우님
 
-  baseURL: 'http://15.165.160.109:8080',
+
+
+  baseURL: 'http://15.165.158.5:8080',
   headers: {
     "content-type": "application/json; charset=UTF-8",
     accept: "application/json",
