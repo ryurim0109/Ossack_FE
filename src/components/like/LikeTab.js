@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import OfficeLike from "./OfficeLike";
 import OfficeTellLike from "./OfficeTellLike";
 
-import Tab from "@material-ui/core/Tab";
 import Tabs from "@material-ui/core/Tabs";
-import Box from "@mui/material/Box";
+
+import { Grid, Text } from "../../elements/index";
 
 const LikeTab = () => {
   const tabTitle = ["찜한 오피스", "찜한 오피스텔"];
@@ -21,28 +21,23 @@ const LikeTab = () => {
         {/* tab 메뉴 */}
         {tabTitle.map((title, idx) => {
           return (
-            <Box
-              sx={{
-                width: "100%",
-                height: "50px",
-                textAlign: "center",
-                color: "#6E2EF6",
-                fontWeight: "bold",
-                mx: 0.5,
-                fontSize: 14,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
+            <Grid
               key={idx}
-              onClick={() => onClickTab(idx)}
+              width="100%"
+              height="50px"
+              textAlign="center"
+              fontWeight="bold"
+              fontSize="14px"
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+              _onClick={() => onClickTab(idx)}
+              color={activeTab === idx ? "#303030" : "#E5E5EC"}
             >
-              {title}
-              {/* <Tab
-                key={idx}
-                label={title}
-              ></Tab> */}
-            </Box>
+              <Text bold cursor="pointer">
+                {title}
+              </Text>
+            </Grid>
           );
         })}
       </Tabs>
