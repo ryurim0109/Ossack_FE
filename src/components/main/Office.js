@@ -6,7 +6,6 @@ import {OfficeList,NearStation} from "./index";
 
 const Office = () => {
   const tabTitle = ['맛집', '역'];
-  const [bgColor,setBgColor]=useState(0)
   const tab = { 0: <OfficeList tabTitle={tabTitle}/>, 1: <NearStation tabTitle={tabTitle}/> };
   const [openTab, setOpenTab] =useState(0);
 

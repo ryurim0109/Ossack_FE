@@ -1,22 +1,17 @@
-import React,{useEffect} from "react";
+import React from "react";
 import styled from "styled-components";
 import { Grid, Text } from "../../elements/index";
 import { history } from "../../redux/configStore";
 import SearchImg from "../../static/images/searchicon.png";
 import { SaleList, HotPlaceList, Office } from "./index";
 import { Banner } from '../shared/home';
-import { actionCreators as officeActions} from '../../redux/modules/office';
+
 import { useDispatch, useSelector } from "react-redux";
 
 function Sale() {
 
-  const dispatch =useDispatch();
   const user_info=useSelector((state)=>state.user.user);
-  const dong = "맛집"
 
-  useEffect(()=>{
-    dispatch(officeActions.getMainOfficeDB(dong))
-  },[])
   return (
     <React.Fragment>
       <Outter>
