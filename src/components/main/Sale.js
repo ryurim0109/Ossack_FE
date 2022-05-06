@@ -12,7 +12,7 @@ function Sale() {
 
   const dispatch =useDispatch();
   const user_info=useSelector((state)=>state.user.user);
-  const dong = "성수동"
+  const dong = "맛집"
 
   useEffect(()=>{
     dispatch(officeActions.getMainOfficeDB(dong))
