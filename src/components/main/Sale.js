@@ -1,22 +1,21 @@
-import React,{useEffect} from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { Grid, Text } from "../../elements/index";
 import { history } from "../../redux/configStore";
 import SearchImg from "../../static/images/searchicon.png";
 import { SaleList, HotPlaceList, Office } from "./index";
-import { Banner } from '../shared/home';
-import { actionCreators as officeActions} from '../../redux/modules/office';
+import { Banner } from "../shared/home";
+import { actionCreators as officeActions } from "../../redux/modules/office";
 import { useDispatch, useSelector } from "react-redux";
 
 function Sale() {
+  const dispatch = useDispatch();
+  const user_info = useSelector((state) => state.user.user);
+  const dong = "성수동";
 
-  const dispatch =useDispatch();
-  const user_info=useSelector((state)=>state.user.user);
-  const dong = "성수동"
-
-  useEffect(()=>{
-    dispatch(officeActions.getMainOfficeDB(dong))
-  },[])
+  // useEffect(()=>{
+  //   dispatch(officeActions.getMainOfficeDB(dong))
+  // },[])
   return (
     <React.Fragment>
       <Outter>
@@ -33,9 +32,10 @@ function Sale() {
           </Text>
           <Grid width="24px" height="24px" bg="#ccc"></Grid>
         </Grid>
-        <Grid width="100%" >
+        <Grid width="100%">
           <Text size="1.250rem" bold>
-           {user_info?.nickname? user_info?.nickname: "게스트"}님 어떤 🏢오피스를 <br />
+            {user_info?.nickname ? user_info?.nickname : "게스트"}님 어떤
+            🏢오피스를 <br />
             찾고 계시나요?
           </Text>
         </Grid>
@@ -62,21 +62,16 @@ function Sale() {
         </Grid>
         {/* 오피스구해요 박스 */}
         <SaleList />
-        <Grid
-          
-          width="100%"
-          display="flex"
-          justifyContent="space-between"
-        >
+        <Grid width="100%" display="flex" justifyContent="space-between">
           <Text bold size="1.250rem" cursor="pointer">
             텍스트 텍스트 오피스 📍
           </Text>
         </Grid>
         <Office />
-    </Outter>
-        <Banner/>
-        {/* 핫한 오피스 */}
-    <Outter>
+      </Outter>
+      <Banner />
+      {/* 핫한 오피스 */}
+      <Outter>
         <Grid
           margin="32px 0 0 0 "
           width="100%"
@@ -86,7 +81,6 @@ function Sale() {
           <Text bold size="1.250rem" cursor="pointer">
             지금 가장 HOT한 오피스 🔥{" "}
           </Text>
-          
         </Grid>
         <HotPlaceList />
       </Outter>
