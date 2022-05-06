@@ -1,7 +1,8 @@
 import React,{useState,useRef} from 'react';
 import styled from 'styled-components';
 import {Button,Grid,Image} from '../../elements/index';
-import defaultImg from '../../static/images/default.svg'
+import defaultImg from '../../static/images/default.svg';
+import Swal from 'sweetalert2';
 
 import { useSelector,useDispatch } from 'react-redux';
 import { actionCreators as userActions } from '../../redux/modules/user';
@@ -15,11 +16,11 @@ const ProfileModal = (props) => {
     }
 
    const user_info=useSelector((state)=>state.user.user);
-   console.log(user_info)
+   //console.log(user_info)
  
     const fileInput = useRef();
 
-    const [image, setImage] = useState(null);
+    const [image, setImage] = useState("");
     const [preview, setPreview] = useState(null);
 
     //사진 미리보기
@@ -36,10 +37,11 @@ const ProfileModal = (props) => {
     });
   };
       const editProfile =()=>{
-        let maxSize = 10 * 1024 * 1024;
+        let maxSize = 5 * 1024 * 1024;
         let fileSize=image.size;
+        console.log(fileSize)
         if(fileSize > maxSize){
-        window.alert("첨부파일 사이즈는 10MB 이내로 등록 가능합니다.");
+          Swal.fire("첨부파일 사이즈는 5MB 이내로 등록 가능합니다.");
         setImage("");
         return false;
         }
@@ -62,7 +64,7 @@ const ProfileModal = (props) => {
                             size="90"
                             radius="30px"
                             src={preview ? preview : 
-                              user_info?.profile ? user_info?.profile :
+                              user_info?.imageUrl ? user_info?.imageUrl :
                                  defaultImg}
                         ></Image>
                                                     

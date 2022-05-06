@@ -3,10 +3,10 @@ import { Grid, Text } from "../../elements/index";
 import pin from "../../static/images/pin.svg";
 
 const Overlay = (props) => {
-  const { position } = props;
+  const { position,OverLavel } = props;
   //console.log(position?.estate[0]?.type, "????")
-  //console.log(position?.level, "????")
-  if (position?.level === 2) {
+  console.log(OverLavel, "나는 레벨인데????")
+  if (OverLavel === 4) {
     return (
       <React.Fragment>
         <Grid

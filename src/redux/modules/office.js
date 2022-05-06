@@ -19,37 +19,37 @@ const initialState = {
 const getMainOfficeDB = (dong)=>{
     console.log(dong)
     return (dispatch) => {
-        // instance.get(`/api/list?query=${dong}`)
+        instance.get(`/api/list?query=${dong}`)
      
-        const res=RESP.OFFICE
-        dispatch(getMainOffice(res));
-        //   .then((res) => {
+        // const res=RESP.OFFICE
+        // dispatch(getMainOffice(res));
+          .then((res) => {
             
-        //     console.log(res.data,"나는 메인 오피스 DB");
-        //     dispatch(getMainOffice(res.data));
-        //   })
-        //   .catch((err) => {
-        //     console.log(err.response,"나는 메인 오피스 DB 오류");
-        //     console.log(err,"나는 메인 오피스 DB 오류");
-        //   });
+            console.log(res.data,"나는 메인 오피스 DB");
+            dispatch(getMainOffice(res.data));
+          })
+          .catch((err) => {
+            console.log(err.response,"나는 메인 오피스 DB 오류");
+            console.log(err,"나는 메인 오피스 DB 오류");
+          });
       };
 }
 /* 핫한 오피스 조회 */
 const getHotDB = ()=>{
     return (dispatch) => {
-        // instance.get(`/api/list/hot`)
+        instance.get(`/api/list/hot`)
      
-        const res=RESP.HOT
-        dispatch(getHot(res));
-        //   .then((res) => {
+        // const res=RESP.HOT
+        // dispatch(getHot(res));
+          .then((res) => {
             
-        //     console.log(res.data,"나는 메인 오피스 DB");
-        //     dispatch(getHot(res.data));
-        //   })
-        //   .catch((err) => {
-        //     console.log(err.response,"나는 핫한 오피스 DB 오류");
-        //     console.log(err,"나는 핫한 오피스 DB 오류");
-        //   });
+            console.log(res.data,"나는 메인 오피스 DB");
+            dispatch(getHot(res.data));
+          })
+          .catch((err) => {
+            console.log(err.response,"나는 핫한 오피스 DB 오류");
+            console.log(err,"나는 핫한 오피스 DB 오류");
+          });
       };
 }
 export default handleActions ({

@@ -2,7 +2,7 @@ import { createAction, handleActions } from "redux-actions";
 import produce from "immer";
 import axios from "axios";
 import { instance } from "../../shared/api";
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
 //import { RESP } from "../../response";
 //import { setCookie, deleteCookie } from "../../shared/cookie";
 
@@ -23,14 +23,14 @@ const setUser = createAction(SET_USER, (user, is_login) => ({
   is_login,
 }));
 const logOut = createAction(LOG_OUT, () => {});
-const user_img = createAction(USER_IMG, (userImage) => userImage);
+const user_img = createAction(USER_IMG, (userImage) => ({userImage}));
 
 // middleWares
 const signUpApi = (user) => {
   console.log("user : ", user);
   return async function (dispatch, getState, { history }) {
     try {
-      const response = await axios.post("http://15.165.160.109:8080/user/signup", {
+      const response = await axios.post("http://15.165.158.5:8080/user/signup", {
         userEmail: user.userEmail,
         nickname: user.nickname,
         password: user.password,
@@ -57,7 +57,7 @@ const loginApi = (userEmail, password) => {
   console.log("password : ", password);
   return async function (dispatch, getState, { history }) {
     try {
-      const response = await axios.post("http://15.165.160.109:8080/user/login", {
+      const response = await axios.post("http://15.165.158.5:8080/user/login", {
         userEmail: userEmail,
         password: password,
       });
@@ -89,29 +89,49 @@ const loginApi = (userEmail, password) => {
 
 const loginCheckApi = () => {
   return async function (dispatch, getState, { history }) {
-    try {
-      const check = await axios.post(
-        "http://15.165.160.109:8080/api/islogin",
-        {},
-        {
-          headers: {
-            Authorization: `BEARER ${localStorage.getItem("token")}`,
-          },
-        }
-      );
+  //   try {
+  //     const check = await axios.get(
+  //       // "http://15.165.160.109:8080/api/islogin",
+  //       "http://15.165.158.5:8080/api/islogin",
+  //       {},
+  //       {
+  //         headers: {
+  //           Authorization: `BEARER ${localStorage.getItem("token")}`,
+  //         },
+  //       }
+  //     );
+  //     console.log(check)
+  //     dispatch(
+  //       setUser({
+  //         nickname: check.data.nickname,
+  //         userEmail: check.data.userEmail,
+  //         imageUrl: check.data.imageUrl,
+  //       })
+  //     );
+  //   } catch (err) {
+  //     console.log("에러발생", err);
+  //     Swal.fire('로그인 여부 확인에 문제가 생겼습니다. 로그인을 다시 해주세요!');
+  //     history.replace('/')
+  //   }
+  // };
+  instance.get(
+    "/api/islogin"
+    ).then((res)=>{
+      console.log(res)
       dispatch(
-        setUser({
-          nickname: check.data.nickname,
-          username: check.data.username,
-          imageUrl: check.data.imageUrl,
-        })
+        setUser(
+         { 
+          nickname: res.data.nickname,
+          userEmail: res.data.userEmail,
+          imageUrl: res.data.imageUrl,
+        }
+        )
       );
-    } catch (err) {
-      console.log("에러발생", err);
+    }).catch((err) => {
+      console.log("체크에러다!!!!", err.response);
       Swal.fire('로그인 여부 확인에 문제가 생겼습니다. 로그인을 다시 해주세요!');
-      history.replace('/')
-    }
-  };
+    }); 
+  }
 };
 
 const logOutApi = () => {
@@ -209,7 +229,7 @@ const userImgDB = (image) => {
   file.append("imageFile", image);
   return function (dispatch, getState, { history }) {
     axios
-      .put("http://15.165.160.109:8080/api/user/profile", file, {
+      .put("http://15.165.158.5:8080/api/user/profile", file, {
         headers: {
           Authorization: `BEARER ${localStorage.getItem("token")}`,
           "Content-Type": "multipart/form-data",
@@ -218,7 +238,7 @@ const userImgDB = (image) => {
       .then((res) => {
         console.log(res.data, "이미지 데이터");
         Swal.fire('이미지 등록이 완료되었습니다.');
-        dispatch(user_img(res.data));
+        dispatch(user_img(res.data.imageUrl));
       })
       .catch((err) => {
         console.log("프로필 업로드 에러다!!!!", err.response);
@@ -243,8 +263,8 @@ export default handleActions(
       }),
     [USER_IMG]: (state, action) =>
       produce(state, (draft) => {
-          console.log(action.payload)
-          draft.user.userImage = action.payload.imageUrl;
+        console.log( action.payload.userImage)
+          draft.user={...state.user, imageUrl : action.payload.userImage};
 
     }),
   },

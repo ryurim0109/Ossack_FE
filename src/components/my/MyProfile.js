@@ -1,18 +1,23 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import {Button,Grid,Image,Text} from '../../elements/index';
 import {ProfileModal} from './index';
 import styled from 'styled-components';
 import { useSelector,useDispatch } from 'react-redux';
-import defaultImg from '../../static/images/default.svg'
+import defaultImg from '../../static/images/default.svg';
+import { actionCreators as userActions } from '../../redux/modules/user';
 
 const MyProfile = () => {
-
+    const dispatch=useDispatch()
     const [isOpen,setIsOpen] =useState(false);
     const openModalHandler=()=>{
         setIsOpen(!isOpen);
     };
     const user_info=useSelector((state)=>state.user.user);
-    console.log(user_info)
+    //console.log(user_info)
+
+    useEffect(()=>{
+        dispatch(userActions.loginCheckApi())
+    },[])
     
     return (
         <React.Fragment>
@@ -22,15 +27,14 @@ const MyProfile = () => {
                 >
                     <Grid width="100%" display="flex" justifyContent="center"  position="relative">
                         <Image type="circle" size="112" src={
-                              user_info?.userImage ? user_info?.userImage :
-                                 defaultImg} />
+                              user_info?.imageUrl?user_info?.imageUrl:defaultImg} />
                         <Button is_edit position="absolute" top="80px" right="35%" _onClick={openModalHandler}/>
                     </Grid>
                     <Grid width="100%" display="flex" padding="12px 0" justifyContent="center">
                         <Text  size="1.250rem" cursor="pointer">{user_info?.nickname? user_info?.nickname : "게스트"}님</Text>
                     </Grid>
                     <Grid width="100%" display="flex" justifyContent="center">
-                        <Text  size="0.85rem" cursor="pointer">{user_info?.email? user_info?.email : "이메일 없음"}</Text>
+                        <Text  size="0.85rem" cursor="pointer">{user_info?.userEmail? user_info?.userEmail : "이메일 없음"}</Text>
                     </Grid>
                 </Grid>
                     {isOpen ? 
