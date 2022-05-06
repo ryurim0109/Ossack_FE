@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import {MainMap}  from "../components/map/index";
+import { MainMap,Search }  from "../components/map/index";
 import {Spinner} from "../components/shared/home";
 
 function SaleMap(props) {
   return (
     <React.Fragment>
+      <Search/>
       <MainMap />
       {/* <KakaoMap /> */}
     </React.Fragment>
