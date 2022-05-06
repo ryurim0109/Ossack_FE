@@ -12,7 +12,7 @@ export const history = createBrowserHistory();
 const rootReducer = combineReducers({
    map:  Map,
    user: User,
-   office:  Office,
+   office: Office,
   router: connectRouter(history),
 });
 
