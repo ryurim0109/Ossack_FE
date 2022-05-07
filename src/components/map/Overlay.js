@@ -5,7 +5,7 @@ import pin from "../../static/images/pin.svg";
 const Overlay = (props) => {
   const { position,OverLavel } = props;
   //console.log(position?.estate[0]?.type, "????")
-  console.log(OverLavel, "나는 레벨인데????")
+  //console.log(OverLavel, "나는 레벨인데????")
   if (OverLavel === 4) {
     return (
       <React.Fragment>
