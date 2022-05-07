@@ -13,7 +13,7 @@ const NearStation = (props) => {
 
     useEffect(()=>{
       dispatch(officeActions.getMainOfficeDB(tabTitle[1]))
-    },[])
+    },[dispatch,tabTitle])
   
     return (
         <React.Fragment>

@@ -14,7 +14,7 @@ const OfficeList = (props) => {
 
   useEffect(()=>{
     dispatch(officeActions.getMainOfficeDB(tabTitle[0]))
-  },[])
+  },[dispatch,tabTitle])
     return (
         <React.Fragment>
           {/* map돌리기 */}
