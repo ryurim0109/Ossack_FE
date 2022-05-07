@@ -128,7 +128,7 @@ const MainMap = (props) => {
               },
             ]}
           > */}
-            { getOffice?.cityResponseDtoList.length ===0? null:
+            { getOffice?.cityResponseDtoList?.length ===0? null:
             getOffice?.cityResponseDtoList?.map((position, index) => (
               <CustomOverlayMap
                 key={`${position.title}-${position.coordinate}`}
