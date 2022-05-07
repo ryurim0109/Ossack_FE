@@ -56,11 +56,12 @@ const OfficeLike = () => {
               />
             </StyledSlider>
             <Button
-              is_like
+              //is_like
               position="absolute"
               right="8px"
               top="8px"
-              color="#fff"
+              color="#FF679E"
+              fill_like
             />
           </Grid>
         </Grid>
