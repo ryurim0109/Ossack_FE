@@ -6,8 +6,14 @@ import { Input } from "../elements/index";
 //** 최근 검색 기능 추가 - pts20220505 */
 import SearchHistory from "../components/search/SearchHistory";
 import SearchBar from "../components/search/SearchBar";
+import { actionCreators as mapActions } from "../redux/modules/map";
+
+import { useDispatch } from "react-redux";
+import { history } from "../redux/configStore";
 
 const SearchPage = () => {
+  const dispatch = useDispatch();
+
   const [keywords, setKeywords] = useState(
     JSON.parse(localStorage.getItem("keywords") || "[]")
   );
@@ -26,6 +32,10 @@ const SearchPage = () => {
       text: text,
     };
     setKeywords([newKeyword, ...keywords]);
+
+    dispatch(mapActions.seachGetOffice(newKeyword));
+
+    history.push("/map");
   };
 
   // 검색어 삭제

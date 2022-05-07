@@ -111,12 +111,6 @@ const MainMap = (props) => {
           minLevel={1}
           maxLevel={10}
         >
-          {/* 커스텀 마커부분 */}
-          <CustomOverlayMap position={state.center}>
-            <Overlay />
-            
-          </CustomOverlayMap>
-          {/* 커스텀 마커부분 */}
           {/* <MarkerClusterer
             averageCenter={true} // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정
             minLevel={10} // 클러스터 할 최소 지도 레벨
@@ -134,7 +128,8 @@ const MainMap = (props) => {
               },
             ]}
           > */}
-            {getOffice?.cityResponseDtoList?.map((position, index) => (
+            { getOffice?.cityResponseDtoList.length ===0? null:
+            getOffice?.cityResponseDtoList?.map((position, index) => (
               <CustomOverlayMap
                 key={`${position.title}-${position.coordinate}`}
                 position={position.coordinate} // 마커를 표시할 위치
