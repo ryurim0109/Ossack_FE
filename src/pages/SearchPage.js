@@ -33,7 +33,7 @@ const SearchPage = () => {
     };
     setKeywords([newKeyword, ...keywords]);
 
-    dispatch(mapActions.seachGetOffice(newKeyword));
+    dispatch(mapActions.seachGetOffice(newKeyword.text));
 
     history.push("/map");
   };
