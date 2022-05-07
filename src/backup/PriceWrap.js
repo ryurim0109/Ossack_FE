@@ -1,8 +1,8 @@
 import React from "react";
 import Sheet from "react-modal-sheet";
 import styled from "styled-components";
-import { Grid } from "../../elements/index";
-import { Filter } from "./index";
+import { Grid } from "../elements/index";
+import { Filter } from "../components/map/index";
 
 const CustomSheet = styled(Sheet)`
   .react-modal-sheet-backdrop {
