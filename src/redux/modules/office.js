@@ -5,15 +5,19 @@ import { RESP } from "../../response";
 
 import Swal from "sweetalert2";
 
+// Action type
 const GET_MAIN_OFFICE = "GET_MAIN_OFFICE";
 const GET_HOT = "GET_HOT";
 const CLICK_LIKE = "CLICK_LIKE"; //좋아요
 const DELETE_LIKE = "DELETE_LIKE"; //좋아요 취소
+const GET_OFFICE_LIKE = "GET_OFFICE_LIKE"; // 찜한 매물 조회
 
+// Action Creator
 const getMainOffice = createAction(GET_MAIN_OFFICE, (list) => ({ list }));
 const getHot = createAction(GET_HOT, (hot_list) => ({ hot_list }));
 const clickLike = createAction(CLICK_LIKE, (estate_id) => ({ estate_id }));
 const deleteLike = createAction(DELETE_LIKE, (estate_id) => ({ estate_id }));
+const getOfficeLike = createAction(GET_OFFICE_LIKE, () => ({}));
 
 const initialState = {
   list: [],
@@ -92,6 +96,24 @@ const deleteLikeDB = (estateId) => {
   };
 };
 
+/* 찜한 매물 조회 */
+const getOfficeLikeDB = (estateId) => {
+  console.log("estateId", estateId);
+  return (dispatch) => {
+    instance
+      .delete(`/api/list/favorite`)
+      .then((res) => {
+        console.log("res : ", res);
+
+        //Swal.fire("좋아요를 취소하셨습니다.");
+        dispatch(deleteLike(estateId));
+      })
+      .catch((err) => {
+        console.log("Error Message: ", err.message);
+      });
+  };
+};
+
 // Reducer
 export default handleActions(
   {
@@ -132,6 +154,7 @@ const actionCreators = {
   getHotDB,
   clickLikeDB,
   deleteLikeDB,
+  getOfficeLikeDB,
 };
 
 export { actionCreators };
