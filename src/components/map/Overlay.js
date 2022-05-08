@@ -34,7 +34,7 @@ const Overlay = (props) => {
             <Text>99</Text>
           </Grid>
           <Text color="#fff" bold textIndent="28px" size="14px">
-            응암동 225
+          {position?.title}
           </Text>
         </Grid>
         <Grid display="flex" justifyContent="center" alignItems="center">
