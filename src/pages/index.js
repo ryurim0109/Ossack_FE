@@ -8,6 +8,7 @@ import Start from "./Start";
 import SearchPage from "./SearchPage";
 import NotFound from "./NotFound";
 import SearchList from "./SearchList";
+import SearchMap from "./SearchMap";
 
 export {
   Login,
@@ -20,4 +21,5 @@ export {
   SearchPage,
   NotFound,
   SearchList,
+  SearchMap,
 };

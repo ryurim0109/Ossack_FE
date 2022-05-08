@@ -14,6 +14,7 @@ import {
   SearchPage,
   NotFound,
   SearchList,
+  SearchMap,
 } from "../pages/index";
 import { MobileFrame } from "../components/shared/home";
 import KaKaoLogin from "../components/social/KaKaoLogin";
@@ -33,11 +34,7 @@ function App() {
               <Route path="/" exact component={Start} />
               <Route path="/login" exact component={Login} />
               <Route path="/signup" exact component={Signup} />
-              <Route
-                path="/user/google/callback"
-                exact
-                component={GoogleLogin}
-              />
+              <Route path="/user/google/callback" exact component={GoogleLogin}/>
               <Route path="/user/kakao/callback" exact component={KaKaoLogin} />
               <Route path="/main" exact component={Main} />
               <Route path="/search" exact component={SearchPage} />
@@ -45,6 +42,7 @@ function App() {
               <Route path="/mypage" exact component={MyPage} />
               <Route path="/like" exact component={Like} />
               <Route path="/searchlist" exact component={SearchList} />
+              <Route path="/searchmap/:estateId/" exact  component={SearchMap}/>
               <Route component={NotFound} />
             </Switch>
           </MobileFrame>
