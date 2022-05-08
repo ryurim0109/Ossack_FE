@@ -164,7 +164,7 @@ const loginBykakao = (code) => {
                 nickname: res.data.nickname,
                 username: res.data.username,
                 imageUrl:res.data.imageUrl,
-                email: res.data.email,
+                userEmail: res.data.userEmail,
                
               })
             );
@@ -208,7 +208,7 @@ const loginBygoogle = (code) => {
                 nickname: res.data.nickname,
                 username: res.data.username,
                 //imageUrl:res.data.imageUrl,
-                email: res.data.email,
+                userEmail: res.data.userEmail,
 
               })
             );
