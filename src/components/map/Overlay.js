@@ -6,7 +6,7 @@ const Overlay = (props) => {
   const { position,OverLavel } = props;
   //console.log(position?.estate[0]?.type, "????")
   //console.log(OverLavel, "나는 레벨인데????")
-  if (OverLavel === 4) {
+  if (OverLavel === 5) {
     return (
       <React.Fragment>
         <Grid
@@ -31,7 +31,7 @@ const Overlay = (props) => {
             position="absolute"
             bg="#fff"
           >
-            <Text>99</Text>
+            <Text> {position.estate.length}</Text>
           </Grid>
           <Text color="#fff" bold textIndent="28px" size="14px">
           {position?.title}
@@ -63,7 +63,7 @@ const Overlay = (props) => {
               {position?.title}
             </Text>
             <Text bold size="14px">
-              999만
+              {position.estate.length}
             </Text>
           </Grid>
 
@@ -81,7 +81,7 @@ const Overlay = (props) => {
             justifyContent="center"
           >
             <Text color="#000" size="8px">
-              999
+             {position.estate.length}
             </Text>
           </Grid>
           <Grid
@@ -97,7 +97,7 @@ const Overlay = (props) => {
             justifyContent="center"
           >
             <Text color="#000" size="10px">
-              999
+            {position.estate.length}
             </Text>
           </Grid>
         </Grid>

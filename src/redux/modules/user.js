@@ -162,10 +162,10 @@ const loginBykakao = (code) => {
             dispatch(
               setUser({
                 //유저정보를 다시 세팅
-                nickname: res.data.nickname,
-                username: res.data.username,
-                imageUrl:res.data.imageUrl,
-                userEmail: res.data.userEmail,
+                nickname: res.data.data.nickname,
+                username: res.data.data.username,
+                imageUrl:res.data.data.imageUrl,
+                userEmail: res.data.data.userEmail,
                
               })
             );
@@ -202,14 +202,16 @@ const loginBygoogle = (code) => {
           .get("/api/islogin")
           .then((res) => {
             console.log(res, "나는 로그인체크 응답");
+            const nick=res.data.data.nickname
+            console.log(nick.split('_')[0], "나는스플릿");
 
             dispatch(
               setUser({
                 //유저정보를 다시 세팅
-                nickname: res.data.nickname,
-                username: res.data.username,
+                nickname: nick.split('_')[0],
+                username: res.data.data.username,
                 //imageUrl:res.data.imageUrl,
-                userEmail: res.data.userEmail,
+                userEmail: res.data.data.userEmail,
 
               })
             );
