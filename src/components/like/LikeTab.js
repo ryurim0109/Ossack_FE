@@ -7,8 +7,11 @@ import Tabs from "@material-ui/core/Tabs";
 import { Grid, Text } from "../../elements/index";
 
 const LikeTab = () => {
-  const tabTitle = ["찜한 오피스", "찜한 오피스텔"];
-  const tab = { 0: <OfficeLike />, 1: <OfficeTellLike /> };
+  const tabTitle = ["오피스", "오피스텔"];
+  const tab = {
+    0: <OfficeLike tabTitle={tabTitle} />,
+    1: <OfficeTellLike tabTitle={tabTitle} />,
+  };
   const [activeTab, setActiveTab] = useState(0);
 
   const onClickTab = (idx) => {
@@ -35,7 +38,7 @@ const LikeTab = () => {
               color={activeTab === idx ? "#303030" : "#E5E5EC"}
             >
               <Text bold cursor="pointer">
-                {title}
+                찜한{title}
               </Text>
             </Grid>
           );
