@@ -11,7 +11,7 @@ const KakaoMap = (props) => {
   const {estateid} =props
   console.log(estateid)
   const list =[]
-//   const list = useSelector((state) => state.search.list);
+//   const list = useSelector((state) => state.office.office_list);
 //   const officeData = list?.filter((a) => a.estateid === +estateid);
 //   const firstY = officeData?.map((a) => a.coordinate.lat);
 //   const firstX = officeData?.map((a) => a.coordinate.lng);
@@ -45,9 +45,9 @@ const KakaoMap = (props) => {
     //     map: map,
     //     //마커가 표시 될 위치
     //     position: new kakao.maps.LatLng(firstY, firstX),
-    //     image: a.storeId === +estateid ? markerImage : markerImage,
+    //     image: a.estateid === +estateid ? markerImage : markerImage,
     //     title: a.title,
-    //     zIndex: a.storeId === +estateid ? 1 : 0,
+    //     zIndex: a.estateid === +estateid ? 1 : 0,
     //   });
     // });
     new kakao.maps.Marker({
