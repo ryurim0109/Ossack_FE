@@ -3,7 +3,7 @@ import produce from "immer";
 import { instance } from "../../shared/api";
 import { RESP } from "../../response";
 
-//type
+// Action type
 const SET_MAP = "SET_MAP";
 const SET_OFFICE_LIST = "SET_OFFICE_LIST";
 const ADD_MARKER = "ADD_MARKER";
@@ -29,6 +29,7 @@ const initialState = {
   is_loaded: false,
 };
 
+// middleWares
 const getOfficeData = (pos, level) => {
   //console.log("pos : ", pos,  "level : ",level);
   const SWlat = pos.swLatLng.lat;
@@ -57,7 +58,7 @@ const getOfficeData = (pos, level) => {
   };
 };
 
-// seachGetOfffice
+// seachGetOffice
 const seachGetOffice = (keyword) => {
   console.log("keyword : ", keyword);
 

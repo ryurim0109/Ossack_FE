@@ -2,9 +2,8 @@ import axios from "axios";
 
 //1. axios 인터셉터 생성
 export const instance = axios.create({
-
-
   //baseURL: "http://15.165.160.109",
+
 
 
  
