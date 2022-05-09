@@ -29,14 +29,18 @@ const Search = () => {
             history.push("/main");
           }}
         />
-        <Input
+        <Button
           height="48px"
-          width="90%"
+          width="248px"
           margin="16px 5%"
-          padding=" 0 5px"
-          inputFocusOutline="none"
-          placeholder="장소, 근처 역을 입력하세요."
-        />
+          fontSize="16px"
+          borderRadius="8px"
+          color="#767676"
+          backgroundColor="#F5F5F5"
+          _onClick={()=>{
+            history.push('/search')
+          }}
+        >장소, 근처 역을 입력하세요.</Button>
 
         <button
           style={{

@@ -1,9 +1,13 @@
 import React from 'react';
+import { MyHeader } from '../components/my/index';
+import { OneMap } from '../components/map/index';
 
 const SearchMap = () => {
     return (
         <React.Fragment>
-            나는 지도맵이당
+            <MyHeader>리스트</MyHeader>
+            <OneMap/>
+            
         </React.Fragment>
     );
 };

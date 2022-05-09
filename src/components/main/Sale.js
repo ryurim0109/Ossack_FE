@@ -41,9 +41,9 @@ function Sale() {
           <Grid
             width="100%"
             height="48px"
-            border="1px solid #111"
             textIn="40px"
             display="flex"
+            bg="#F5F5F5"
             cursor="pointer"
             alignItems="center"
             color="#999"
