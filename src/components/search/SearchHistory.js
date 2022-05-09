@@ -33,8 +33,8 @@ const KeywordContainer = styled.li`
 
 const RemoveButton = styled.button`
   float: right;
-  color: #680cf37d;
-  border: 1px solid #680cf37d;
+  color: #ccc;
+  border: 1px solid #ccc;
   padding: 5px;
   border-radius: 15px;
   font-size: 15px;

@@ -4,16 +4,10 @@ import axios from "axios";
 export const instance = axios.create({
   //baseURL: "http://15.165.160.109",
 
+  // 다빈님 최신 54.180.80.167
+  // 민우님 초신 3.39.177.59:8080
 
-
- 
-  //다빈님 최신 54.180.80.167
-  
-  //15.165.158.5 민우님
-
-
-
-  baseURL: 'http://54.180.80.167:8080',
+  baseURL: "http://3.39.177.59:8080",
   headers: {
     "content-type": "application/json; charset=UTF-8",
     accept: "application/json",

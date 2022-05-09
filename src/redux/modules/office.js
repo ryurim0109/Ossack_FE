@@ -11,6 +11,7 @@ const GET_HOT = "GET_HOT";
 const CLICK_LIKE = "CLICK_LIKE"; //좋아요
 const DELETE_LIKE = "DELETE_LIKE"; //좋아요 취소
 const GET_LIKE = "GET_LIKE"; // 찜한 매물 조회
+const GET_SEARCH_OFFICE_LIST = "GET_SEARCH_OFFICE_LIST";
 
 // Action Creator
 const getMainOffice = createAction(GET_MAIN_OFFICE, (list) => ({ list }));
@@ -18,6 +19,9 @@ const getHot = createAction(GET_HOT, (hot_list) => ({ hot_list }));
 const clickLike = createAction(CLICK_LIKE, (estate_id) => ({ estate_id }));
 const deleteLike = createAction(DELETE_LIKE, (estate_id) => ({ estate_id }));
 const getOfficeLike = createAction(GET_LIKE, (like_list) => ({ like_list }));
+const getSOList = createAction(GET_SEARCH_OFFICE_LIST, (office_list) => ({
+  office_list,
+}));
 
 const initialState = {
   list: [],
@@ -113,6 +117,22 @@ const getOfficeLikeDB = (type) => {
   };
 };
 
+/* 검색 리스트 조회 */
+const getSOListDB = (keyword) => {
+  console.log("keyword : ", keyword);
+  return (dispatch) => {
+    instance
+      .get(`/api/list/search?query=${keyword}`)
+      .then((res) => {
+        console.log("res : ", res);
+        dispatch(getSOList(res.data));
+      })
+      .catch((err) => {
+        console.log("Error Message: ", err.message);
+      });
+  };
+};
+
 // Reducer
 export default handleActions(
   {
@@ -148,6 +168,11 @@ export default handleActions(
       produce(state, (draft) => {
         draft.like_list = action.payload.like_list;
       }),
+
+    [GET_SEARCH_OFFICE_LIST]: (state, action) =>
+      produce(state, (draft) => {
+        draft.office_list = action.payload.office_list;
+      }),
   },
   initialState
 );
@@ -158,6 +183,7 @@ const actionCreators = {
   clickLikeDB,
   deleteLikeDB,
   getOfficeLikeDB,
+  getSOListDB,
 };
 
 export { actionCreators };
