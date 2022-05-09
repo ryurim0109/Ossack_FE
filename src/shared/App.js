@@ -43,8 +43,8 @@ function App() {
               <Route path="/mypage" exact component={MyPage} />
               <Route path="/like" exact component={Like} />
               <Route path="/searchlist" exact component={SearchList} />
-              <Route path="/searchmap/:estateId/" exact  component={SearchMap}/>
-              <Route path="/detail/:estateId/" exact  component={DetailOffice}/>
+              <Route path="/searchmap/:estateId" exact  component={SearchMap}/>
+              <Route path="/detail/:estateId" exact  component={DetailOffice}/>
               <Route component={NotFound} />
             </Switch>
           </MobileFrame>
