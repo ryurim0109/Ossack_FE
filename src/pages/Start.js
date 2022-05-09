@@ -19,7 +19,7 @@ const Start = () => {
           </Text>
           <Grid width="100%" margin="26px 0" height="400px" bg="#ccc"></Grid>
           <Grid width="100%" height="120px" bg="#ccc">
-            <Grid display="flex">
+            <Grid display="flex" justifyContent="space-around" alignItems="center">
               <Button
                 width="40px"
                 height="40px"
