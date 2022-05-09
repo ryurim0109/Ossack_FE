@@ -58,29 +58,6 @@ const getOfficeData = (pos, level) => {
   };
 };
 
-// seachGetOffice
-const seachGetOffice = (keyword) => {
-  console.log("keyword : ", keyword);
-
-  return function (dispatch, getState, { history }) {
-    dispatch(isLoaded(false));
-
-    //instance.get(`/api/map/search?query=${keyword}`)
-
-    const res = RESP.GETOFFICE;
-    dispatch(setOfficeList(res));
-    //     .then((res) => {
-
-    //       console.log(res.data,"나는 검색 오피스 DB");
-    //       dispatch(setOfficeList(res.data));
-    //     })
-    //     .catch((err) => {
-    //       console.log(err.response,"나는 검색 오피스 DB 오류");
-    //       console.log(err,"나는 검색 오피스 DB 오류");
-    //     });
-  };
-};
-
 // reducer
 export default handleActions(
   {
@@ -112,7 +89,6 @@ const actionCreators = {
   setOfficeList,
   addMarker,
   getOfficeData,
-  seachGetOffice,
 };
 
 export { actionCreators };
