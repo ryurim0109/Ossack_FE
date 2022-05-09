@@ -34,6 +34,7 @@ const getMainOfficeDB = (dong) => {
       // dispatch(getMainOffice(res));
       .then((res) => {
         console.log(res.data, "나는 메인 오피스 DB");
+        console.log(res, "나는 메인 오피스 res");
         dispatch(getMainOffice(res.data));
       })
       .catch((err) => {
@@ -51,7 +52,7 @@ const getHotDB = () => {
       // const res=RESP.HOT
       // dispatch(getHot(res));
       .then((res) => {
-        console.log(res.data, "나는 메인 오피스 DB");
+        console.log(res.data, "나는 핫한 오피스 DB");
         dispatch(getHot(res.data));
       })
       .catch((err) => {

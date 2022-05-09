@@ -30,7 +30,7 @@ const signUpApi = (user) => {
   console.log("user : ", user);
   return async function (dispatch, getState, { history }) {
     try {
-      const response = await axios.post("http://15.165.158.5:8080/user/signup", {
+      const response = await axios.post("http://54.180.80.167:8080/user/signup", {
         userEmail: user.userEmail,
         nickname: user.nickname,
         password: user.password,
@@ -57,12 +57,12 @@ const loginApi = (userEmail, password) => {
   console.log("password : ", password);
   return async function (dispatch, getState, { history }) {
     try {
-      const response = await axios.post("http://15.165.158.5:8080/user/login", {
+      const response = await axios.post("http://54.180.80.167:8080/user/login", {
         userEmail: userEmail,
         password: password,
       });
       //const response = RESP.USERLOGINPOST;
-      console.log("response : ", response);
+      console.log("로그인체크", response);
 
       if (response.status === 200) {
         Swal.fire('로그인 성공');
@@ -121,9 +121,9 @@ const loginCheckApi = () => {
       dispatch(
         setUser(
          { 
-          nickname: res.data.nickname,
-          userEmail: res.data.userEmail,
-          imageUrl: res.data.imageUrl,
+          nickname: res.data.data.nickname,
+          userEmail: res.data.data.userEmail,
+          imageUrl: res.data.data.imageUrl,
         }
         )
       );
@@ -149,6 +149,7 @@ const loginBykakao = (code) => {
     instance
       .get(`/user/kakao/callback?code=${code}`)
       .then((res) => {
+        console.log(res)
         const token = res.headers.authorization.split("BEARER ");
         localStorage.setItem("token", token[1]);
         history.push("/main"); // 토큰 받았고 로그인됐으니 화면 전환시켜줌(메인으로)

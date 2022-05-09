@@ -47,12 +47,12 @@ const getOfficeData = (pos, level) => {
       // const res=RESP.OFFICE
       // dispatch(getMainOffice(res));
       .then((res) => {
-        console.log(res.data, "나는 메인 오피스 DB");
+        console.log(res.data, "나는 지도 오피스 DB");
         dispatch(setOfficeList(res.data));
       })
       .catch((err) => {
-        console.log(err.response, "나는 메인 오피스 DB 오류");
-        console.log(err, "나는 메인 오피스 DB 오류");
+        console.log(err.response, "나는 지도 오피스 DB 오류");
+        console.log(err, "나는 지도 오피스 DB 오류");
       });
   };
 };
