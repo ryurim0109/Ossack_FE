@@ -1,3 +1,4 @@
+
 import React from 'react';
 import styled from 'styled-components';
 import { MyHeader } from '../components/my/index';
@@ -33,7 +34,7 @@ const SearchMap = () => {
             </DetailWrap>
         </React.Fragment>
     );
-};
+
 const DetailWrap=styled.div`
     width:100%;
     height:100px;
@@ -44,5 +45,7 @@ const DetailWrap=styled.div`
     padding:0 16px;
     
 
+
 `;
 export default SearchMap;
+
