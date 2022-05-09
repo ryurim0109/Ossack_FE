@@ -108,7 +108,7 @@ const MainMap = (props) => {
           }
           style={{ width: "100%", height: "inherit" }}
           level={level}
-          minLevel={1}
+          minLevel={5}
           maxLevel={10}
         >
           {/* <MarkerClusterer
