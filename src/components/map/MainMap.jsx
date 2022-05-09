@@ -128,24 +128,30 @@ const MainMap = (props) => {
               },
             ]}
           > */}
+           
             { getOffice?.cityResponseDtoList?.length ===0? null:
             getOffice?.cityResponseDtoList?.map((position, index) => (
+             
               <CustomOverlayMap
                 key={`${position.title}-${position.coordinate}`}
                 position={position.coordinate} // 마커를 표시할 위치
                 title={position.title} // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
               >
                 
+                {!is_loaded && <Spinner/>}
                 <Overlay position={position} OverLavel={OverLavel} index={index} />
               </CustomOverlayMap>
+             
             ))}
+            
+             
           {/* </MarkerClusterer> */}
 
           <Lev>
             <button onClick={setLocation}>
               <MdMyLocation size="24px" />
             </button>
-            <button onClick={() => (level > 1 ? setLevel(level - 1) : null)}>
+            <button onClick={() => (level > 5 ? setLevel(level - 1) : null)}>
               <TiPlus size="21px" />
             </button>
             <button onClick={() => (level < 10 ? setLevel(level + 1) : null)}>
