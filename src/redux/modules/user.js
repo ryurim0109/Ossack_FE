@@ -131,6 +131,7 @@ const loginCheckApi = () => {
     }).catch((err) => {
       console.log("체크에러다!!!!", err.response);
       Swal.fire('로그인 여부 확인에 문제가 생겼습니다. 로그인을 다시 해주세요!');
+      history.replace("/"); 
     }); 
   }
   
@@ -233,7 +234,7 @@ const userImgDB = (image) => {
   file.append("imageFile", image);
   return function (dispatch, getState, { history }) {
     axios
-      .put("http://15.165.158.5:8080/api/user/profile", file, {
+      .put("http://3.39.177.59:8080/api/user/profile", file, {
         headers: {
           Authorization: `BEARER ${localStorage.getItem("token")}`,
           "Content-Type": "multipart/form-data",
