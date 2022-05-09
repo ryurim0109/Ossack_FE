@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
 import onePin from '../../static/images/onePin.svg';
@@ -8,7 +7,8 @@ import onePin from '../../static/images/onePin.svg';
 
 const KakaoMap = (props) => {
   const { kakao } = window;
-  const estateid = useParams().estateId;
+  //const estateid = useParams().estateId;
+  const {estateid} =props
   console.log(estateid)
   const list =[]
 //   const list = useSelector((state) => state.search.list);
