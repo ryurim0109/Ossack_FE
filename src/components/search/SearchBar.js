@@ -15,7 +15,7 @@ const horizontalCenter = css`
 const Container = styled.div`
   position: relative;
   width: 100%;
-  border-bottom: 2px solid #680cf37d;
+  border-bottom: 1px solid #ccc;
   background-color: #fff;
   padding: 20px 60px;
   box-sizing: border-box;
