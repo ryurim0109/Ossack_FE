@@ -30,14 +30,12 @@ const signUpApi = (user) => {
   console.log("user : ", user);
   return async function (dispatch, getState, { history }) {
     try {
-      const response = await axios.post(
-        "http://15.165.158.5:8080/user/signup",
-        {
-          userEmail: user.userEmail,
-          nickname: user.nickname,
-          password: user.password,
-        }
-      );
+
+      const response = await axios.post("http://54.180.80.167:8080/user/signup", {
+        userEmail: user.userEmail,
+        nickname: user.nickname,
+        password: user.password,
+      });
       //const response = RESP.USERSIGNUPPOST;
       console.log("response : ", response);
 
@@ -60,12 +58,12 @@ const loginApi = (userEmail, password) => {
   console.log("password : ", password);
   return async function (dispatch, getState, { history }) {
     try {
-      const response = await axios.post("http://15.165.158.5:8080/user/login", {
+      const response = await axios.post("http://54.180.80.167:8080/user/login", {
         userEmail: userEmail,
         password: password,
       });
       //const response = RESP.USERLOGINPOST;
-      console.log("response : ", response);
+      console.log("로그인체크", response);
 
       if (response.status === 200) {
         Swal.fire("로그인 성공");
@@ -92,50 +90,50 @@ const loginApi = (userEmail, password) => {
 
 const loginCheckApi = () => {
   return async function (dispatch, getState, { history }) {
-    //   try {
-    //     const check = await axios.get(
-    //       // "http://15.165.160.109:8080/api/islogin",
-    //       "http://15.165.158.5:8080/api/islogin",
-    //       {},
-    //       {
-    //         headers: {
-    //           Authorization: `BEARER ${localStorage.getItem("token")}`,
-    //         },
-    //       }
-    //     );
-    //     console.log(check)
-    //     dispatch(
-    //       setUser({
-    //         nickname: check.data.nickname,
-    //         userEmail: check.data.userEmail,
-    //         imageUrl: check.data.imageUrl,
-    //       })
-    //     );
-    //   } catch (err) {
-    //     console.log("에러발생", err);
-    //     Swal.fire('로그인 여부 확인에 문제가 생겼습니다. 로그인을 다시 해주세요!');
-    //     history.replace('/')
-    //   }
-    // };
-    instance
-      .get("/api/islogin")
-      .then((res) => {
-        console.log(res);
-        dispatch(
-          setUser({
-            nickname: res.data.nickname,
-            userEmail: res.data.userEmail,
-            imageUrl: res.data.imageUrl,
-          })
-        );
-      })
-      .catch((err) => {
-        console.log("체크에러다!!!!", err.response);
-        Swal.fire(
-          "로그인 여부 확인에 문제가 생겼습니다. 로그인을 다시 해주세요!"
-        );
-      });
-  };
+  //   try {
+  //     const check = await axios.get(
+  //       // "http://15.165.160.109:8080/api/islogin",
+  //       "http://15.165.158.5:8080/api/islogin",
+  //       {},
+  //       {
+  //         headers: {
+  //           Authorization: `BEARER ${localStorage.getItem("token")}`,
+  //         },
+  //       }
+  //     );
+  //     console.log(check)
+  //     dispatch(
+  //       setUser({
+  //         nickname: check.data.nickname,
+  //         userEmail: check.data.userEmail,
+  //         imageUrl: check.data.imageUrl,
+  //       })
+  //     );
+  //   } catch (err) {
+  //     console.log("에러발생", err);
+  //     Swal.fire('로그인 여부 확인에 문제가 생겼습니다. 로그인을 다시 해주세요!');
+  //     history.replace('/')
+  //   }
+  // };
+  instance.get(
+    "/api/islogin"
+    ).then((res)=>{
+      console.log(res)
+      dispatch(
+        setUser(
+         { 
+          nickname: res.data.data.nickname,
+          userEmail: res.data.data.userEmail,
+          imageUrl: res.data.data.imageUrl,
+        }
+        )
+      );
+    }).catch((err) => {
+      console.log("체크에러다!!!!", err.response);
+      Swal.fire('로그인 여부 확인에 문제가 생겼습니다. 로그인을 다시 해주세요!');
+    }); 
+  }
+  
 };
 
 const logOutApi = () => {
@@ -153,6 +151,7 @@ const loginBykakao = (code) => {
     instance
       .get(`/user/kakao/callback?code=${code}`)
       .then((res) => {
+        console.log(res)
         const token = res.headers.authorization.split("BEARER ");
         localStorage.setItem("token", token[1]);
         history.push("/main"); // 토큰 받았고 로그인됐으니 화면 전환시켜줌(메인으로)
@@ -165,10 +164,11 @@ const loginBykakao = (code) => {
             dispatch(
               setUser({
                 //유저정보를 다시 세팅
-                nickname: res.data.nickname,
-                username: res.data.username,
-                imageUrl: res.data.imageUrl,
-                email: res.data.email,
+                nickname: res.data.data.nickname,
+                username: res.data.data.username,
+                imageUrl:res.data.data.imageUrl,
+                userEmail: res.data.data.userEmail,
+
               })
             );
           })
@@ -204,14 +204,16 @@ const loginBygoogle = (code) => {
           .get("/api/islogin")
           .then((res) => {
             console.log(res, "나는 로그인체크 응답");
+            const nick=res.data.data.nickname
+            console.log(nick.split('_')[0], "나는스플릿");
 
             dispatch(
               setUser({
                 //유저정보를 다시 세팅
-                nickname: res.data.nickname,
-                username: res.data.username,
+                nickname: nick.split('_')[0],
+                username: res.data.data.username,
                 //imageUrl:res.data.imageUrl,
-                email: res.data.email,
+                userEmail: res.data.data.userEmail,
               })
             );
           })
