@@ -19,7 +19,7 @@ import "../shared/css/dot.css";
 
 const SearchPage = () => {
   const dispatch = useDispatch();
-  const OfficeSearchList = useSelector((state) => state.office.office_list);
+  const OfficeSearchList = useSelector((state) => state.office.list);
 
   const [keywords, setKeywords] = useState(
     JSON.parse(localStorage.getItem("keywords") || "[]")

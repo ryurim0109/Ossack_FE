@@ -4,12 +4,13 @@ import { useSelector,useDispatch } from "react-redux";
 import { Grid,Image,Button,Text } from '../elements/index';
 import  { actionCreators as officeActions } from '../redux/modules/office';
 import { MyHeader } from '../components/my/index';
+import { history } from '../redux/configStore';
 
 const MapOfficeList = (props) => {
     const dispatch = useDispatch();
     const search = (props.location.search).split("=")[1];
     console.log(search)
-    const officeData= useSelector((state)=>state.office.office_list)
+    const officeData= useSelector((state)=>state.office.list)
 
    useEffect(()=>{
     dispatch(officeActions.getSOListDB(search))
@@ -22,7 +23,9 @@ const MapOfficeList = (props) => {
         officeData.map((o, idx) => {
           return (
             <Grid 
-           
+            _onClick={()=>{
+              history.push(`/detail/${o.estateid}`)
+            }}
               key={idx}
               width="320px"
               margin="12px 0 32px 0"

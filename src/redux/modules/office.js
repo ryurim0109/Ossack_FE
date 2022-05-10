@@ -19,8 +19,8 @@ const getHot = createAction(GET_HOT, (hot_list) => ({ hot_list }));
 const clickLike = createAction(CLICK_LIKE, (estate_id) => ({ estate_id }));
 const deleteLike = createAction(DELETE_LIKE, (estate_id) => ({ estate_id }));
 const getOfficeLike = createAction(GET_LIKE, (like_list) => ({ like_list }));
-const getSOList = createAction(GET_SEARCH_OFFICE_LIST, (office_list) => ({
-  office_list,
+const getSOList = createAction(GET_SEARCH_OFFICE_LIST, (list) => ({
+  list,
 }));
 
 const initialState = {
@@ -171,7 +171,7 @@ export default handleActions(
 
     [GET_SEARCH_OFFICE_LIST]: (state, action) =>
       produce(state, (draft) => {
-        draft.office_list = action.payload.office_list;
+        draft.list = action.payload.list;
       }),
   },
   initialState

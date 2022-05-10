@@ -11,7 +11,7 @@ const KakaoMap = (props) => {
   const {estateid} =props
   console.log(estateid)
   const list =[]
-//   const list = useSelector((state) => state.office.office_list);
+//   const list = useSelector((state) => state.office.list);
 //   const officeData = list?.filter((a) => a.estateid === +estateid);
 //   const firstY = officeData?.map((a) => a.coordinate.lat);
 //   const firstX = officeData?.map((a) => a.coordinate.lng);
