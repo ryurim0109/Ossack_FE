@@ -8,7 +8,6 @@ import Start from "./Start";
 import SearchPage from "./SearchPage";
 import NotFound from "./NotFound";
 import SearchList from "./SearchList";
-import SearchMap from "./SearchMap";
 import DetailOffice from "./DetailOffice";
 import MapOfficeList from './MapOfficeList';
 
@@ -23,7 +22,6 @@ export {
   SearchPage,
   NotFound,
   SearchList,
-  SearchMap,
   DetailOffice,
   MapOfficeList,
 };
