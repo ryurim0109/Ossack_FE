@@ -113,7 +113,6 @@ function SearchBar({ onAddKeyword }) {
     if(e.key === 'Enter')
     {
       history.push(`/map/office?query=${keyword}`);
-     // dispatch(postActions.getSearchDB(userName))
       e.target.value = "";
     }
   }
