@@ -80,7 +80,12 @@ const SearchPage = () => {
         <InputContainer>
           <SearchBar onAddKeyword={handleAddKeyword}></SearchBar>
         </InputContainer>
-        {OfficeSearchList &&
+        <SearchHistory
+          keywords={keywords}
+          onClearKeywords={handleClearKeywords}
+          onRemoveKeyword={handleRemoveKeyword}
+        />
+        {/* {OfficeSearchList &&
           OfficeSearchList.map((office, idx) => {
             return (
               <Grid key={idx} _onClick={()=>{
@@ -142,12 +147,8 @@ const SearchPage = () => {
                 </Grid>
               </Grid>
             );
-          })}
-        <SearchHistory
-          keywords={keywords}
-          onClearKeywords={handleClearKeywords}
-          onRemoveKeyword={handleRemoveKeyword}
-        />
+          })} */}
+        
       </Outter>
     </React.Fragment>
   );

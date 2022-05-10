@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled, { css } from "styled-components";
 
 // import { Link } from "react-router-dom";
-import { Grid } from "../../elements/index";
+import { history } from "../../redux/configStore";
 
 import SearchImg from "../../static/images/searchicon.png";
 
@@ -109,6 +109,13 @@ function SearchBar({ onAddKeyword }) {
     }
   };
 
+  const Entercheck = (e) => {
+    if(e.key === 'Enter')
+    {
+      history.push(`/map/office?query=${keyword}`);
+      e.target.value = "";
+    }
+  }
   const handleClearKeyword = () => {
     setKeyword("");
   };
@@ -134,6 +141,7 @@ function SearchBar({ onAddKeyword }) {
           value={keyword}
           onChange={handleKeyword}
           onKeyDown={handleEnter}
+          onKeyUp={Entercheck}
         />
 
         {keyword && <RemoveIcon onClick={handleClearKeyword} />}
