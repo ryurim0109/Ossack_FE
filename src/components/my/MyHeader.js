@@ -14,7 +14,6 @@ const MyHeader = (props) => {
                 display="flex"
                 alignItems="center"
                 justifyContent="space-between"
-                boxShadow=" 0px 2px 2px rgba(0, 0, 0, 0.1)"
             >
             <Grid width="5%" display="flex" alignItems="center">
                     <Button

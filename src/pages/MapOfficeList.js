@@ -25,8 +25,8 @@ const MapOfficeList = (props) => {
         officeData.map((o, idx) => {
           return (
             <>
+            <Grid key={idx}>
             <Grid 
-              key={idx}
               width="100%"
               margin="16px 0"
               height="235px"
@@ -74,7 +74,7 @@ const MapOfficeList = (props) => {
                 />
               )}
             </Grid>
-            <Grid  _onClick={()=>{
+            <Grid _onClick={()=>{
               history.push(`/detail/${o.estateid}`)
             }} cursor="pointer"
              width="100%" height="76px" display="flex" flexDirection="column" justifyContent="center">
@@ -82,6 +82,7 @@ const MapOfficeList = (props) => {
                   <Text size="0.875rem">{o.type}</Text>
                     <Text size="0.875rem" bold><Span>월세</Span>{o.rent_fee}만원  <Span>보증금</Span>{o.deposit}만원</Text>
                  
+            </Grid>
             </Grid>
             </>
           );
