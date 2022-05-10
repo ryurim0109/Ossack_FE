@@ -37,11 +37,11 @@ const ProfileModal = (props) => {
     });
   };
       const editProfile =()=>{
-        let maxSize = 5 * 1024 * 1024;
+        let maxSize = 3 * 1024 * 1024;
         let fileSize=image.size;
         console.log(fileSize)
         if(fileSize > maxSize){
-          Swal.fire("첨부파일 사이즈는 5MB 이내로 등록 가능합니다.");
+          Swal.fire("첨부파일 사이즈는 3MB 이내로 등록 가능합니다.");
         setImage("");
         return false;
         }
