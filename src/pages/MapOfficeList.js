@@ -1,11 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useSelector,useDispatch } from "react-redux";
-
 import  { actionCreators as officeActions } from '../redux/modules/office';
+
 import { MyHeader } from '../components/my/index';
 import { MapOfficeResult } from '../components/search/index';
-
 import { Bar,Spinner } from '../components/shared/home';
 import InfinityScroll from '../shared/InfinityScroll';
 
@@ -50,15 +49,14 @@ const MapOfficeList = (props) => {
         </React.Fragment>
     );
 };
-const Outter=styled.div`
-  width:100%;
-  padding:0 16px;
-  padding-bottom:90px;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-
+const Outter = styled.div`
+  width: 100%;
+  padding: 0 16px;
+  padding-bottom: 90px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 
 
