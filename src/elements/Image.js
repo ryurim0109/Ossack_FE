@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 
 const Image = (props) => {
-  const { shape, src, size, radius, align, inline_block, padding , ranking, level} = props;
+  const { shape, src, size, radius, align, inline_block, padding , ranking, level,border} = props;
   const styles = {
     src: src,
     size: size,
@@ -12,6 +12,7 @@ const Image = (props) => {
     align: align,
     padding: padding,
     ranking:ranking,
+    border:border,
   };
 
 
@@ -52,6 +53,7 @@ Image.defaultProps = {
   children: null,
   ranking:false,
   padding: "100%",
+  border:null,
 };
 
 const AspectOutter = styled.div`
@@ -84,6 +86,7 @@ const ImageCircle = styled.div`
   background-image: url("${(props) => props.src}");
   background-position: center;
   background-size: cover;
+  border:${(props) => (props.border ? props.border : "")};
 `;
 
 const CircleWrap = styled.div`

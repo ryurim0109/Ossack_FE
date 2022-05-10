@@ -12,6 +12,7 @@ const CLICK_LIKE = "CLICK_LIKE"; //좋아요
 const DELETE_LIKE = "DELETE_LIKE"; //좋아요 취소
 const GET_LIKE = "GET_LIKE"; // 찜한 매물 조회
 const GET_SEARCH_OFFICE_LIST = "GET_SEARCH_OFFICE_LIST";
+const LOADING ="LOADING";
 
 // Action Creator
 const getMainOffice = createAction(GET_MAIN_OFFICE, (list) => ({ list }));
@@ -22,10 +23,12 @@ const getOfficeLike = createAction(GET_LIKE, (like_list) => ({ like_list }));
 const getSOList = createAction(GET_SEARCH_OFFICE_LIST, (list) => ({
   list,
 }));
+const loading =createAction(LOADING,(is_loading)=>({is_loading}));
 
 const initialState = {
   list: [],
   hot_list: [],
+  is_loading: false,
 };
 /* 맛집근처 역근처 */
 const getMainOfficeDB = (dong) => {
@@ -120,9 +123,11 @@ const getOfficeLikeDB = (type) => {
 /* 검색 리스트 조회 */
 const getSOListDB = (keyword) => {
   console.log("keyword : ", keyword);
-  return (dispatch) => {
+  return (dispatch,getState) => {
+    const officeList = getState().map.office_list.length;
+    dispatch(loading(true))
     instance
-      .get(`/api/list/search?query=${keyword}`)
+      .get(`/api/list/search/${officeList}?query=${keyword}`)
       .then((res) => {
         console.log("res : ", res);
         dispatch(getSOList(res.data));
@@ -172,6 +177,16 @@ export default handleActions(
     [GET_SEARCH_OFFICE_LIST]: (state, action) =>
       produce(state, (draft) => {
         draft.list = action.payload.list;
+        draft.is_loading =false;
+       //무한스크롤 draft.list.push(...action.payload.list);
+      //  draft.list = draft.list.reduce((acc, cur) => {
+      //   if (acc.findIndex((a) => a.postid === cur.postid) === -1) {
+      //     return [...acc, cur];
+      //   } else {
+      //     acc[acc.findIndex((a) => a.postid === cur.postid)] = cur;
+      //     return acc;
+      //   }
+      // }, []);
       }),
   },
   initialState
