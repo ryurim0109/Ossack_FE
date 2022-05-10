@@ -34,7 +34,7 @@ const SearchMap = () => {
             </DetailWrap>
         </React.Fragment>
     );
-
+}
 const DetailWrap=styled.div`
     width:100%;
     height:100px;

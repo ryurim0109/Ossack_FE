@@ -14,10 +14,11 @@ const horizontalCenter = css`
 
 const Container = styled.div`
   position: relative;
-  width: 100%;
-  border-bottom: 1px solid #ccc;
-  background-color: #fff;
-  padding: 20px 60px;
+  width: 92%;
+  margin: 10px 4%;
+  background: #f5f5f5;
+  border-radius: 8px;
+  padding: 15px 50px;
   box-sizing: border-box;
 `;
 
@@ -40,7 +41,7 @@ const Container = styled.div`
 const SearchIcon = styled.span`
   ${horizontalCenter}
   position: absolute;
-  left: 30px;
+  left: 19px;
   right: 18px;
   width: 24px;
   height: 24px;
@@ -75,7 +76,7 @@ const InputContainer = styled.div`
 
 const Input = styled.input`
   width: 100%;
-  background-color: #fff;
+  background-color: #f5f5f5;
   font-weight: 700;
   font-size: 20px;
   box-sizing: border-box;
@@ -123,7 +124,7 @@ function SearchBar({ onAddKeyword }) {
 
   return (
     <Container>
-      <SearchIcon width="50px" position="absolute" top="12px" left="10px">
+      <SearchIcon width="50px" position="absolute" top="12px" left="7px">
         <img src={SearchImg} alt="검색" />
       </SearchIcon>
       <InputContainer>
