@@ -10,6 +10,7 @@ import NotFound from "./NotFound";
 import SearchList from "./SearchList";
 import SearchMap from "./SearchMap";
 import DetailOffice from "./DetailOffice";
+import MapOfficeList from './MapOfficeList';
 
 export {
   Login,
@@ -24,4 +25,5 @@ export {
   SearchList,
   SearchMap,
   DetailOffice,
+  MapOfficeList,
 };
