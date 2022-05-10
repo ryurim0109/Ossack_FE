@@ -1,10 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import { Grid, Text } from "../../elements/index";
+import { Grid, Text, Image } from "../../elements/index";
 import { history } from "../../redux/configStore";
 import SearchImg from "../../static/images/searchicon.png";
 import { SaleList, HotPlaceList, Office } from "./index";
 import { Banner } from '../shared/home';
+import logo from '../../static/images/ossack.svg';
 
 import { useSelector } from "react-redux";
 
@@ -16,16 +17,14 @@ function Sale() {
       <Outter>
         <Grid
           width="100%"
-          margin="0 0 24px 0 "
+          margin="28px 0 "
           height="56px"
           display="flex"
           justifyContent="space-between"
           alignItems="center"
         >
-          <Text size="1.250rem" bold cursor="pointer">
-            오싹
-          </Text>
-          <Grid width="24px" height="24px" bg="#ccc"></Grid>
+         
+          <Grid width="86px" display="flex" alignItems="center" height="48px" > <img  src={logo} alt="로고이미지"/></Grid>
         </Grid>
         <Grid width="100%">
           <Text size="1.250rem" bold>

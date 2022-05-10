@@ -16,6 +16,7 @@ import {
   SearchList,
   SearchMap,
   DetailOffice,
+  MapOfficeList,
 } from "../pages/index";
 import { MobileFrame } from "../components/shared/home";
 import KaKaoLogin from "../components/social/KaKaoLogin";
@@ -43,8 +44,9 @@ function App() {
               <Route path="/mypage" exact component={MyPage} />
               <Route path="/like" exact component={Like} />
               <Route path="/searchlist" exact component={SearchList} />
-              <Route path="/searchmap/:estateId/" exact  component={SearchMap}/>
-              <Route path="/detail/:estateId/" exact  component={DetailOffice}/>
+              <Route path="/map/office" exact component={MapOfficeList} />
+              <Route path="/searchmap/:estateId" exact  component={SearchMap}/>
+              <Route path="/detail/:estateId" exact  component={DetailOffice}/>
               <Route component={NotFound} />
             </Switch>
           </MobileFrame>

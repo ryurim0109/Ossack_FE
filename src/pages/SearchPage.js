@@ -83,7 +83,9 @@ const SearchPage = () => {
         {OfficeSearchList &&
           OfficeSearchList.map((office, idx) => {
             return (
-              <Grid key={idx}>
+              <Grid key={idx} _onClick={()=>{
+                history.push(`/searchmap/${office.estateid}`)
+              }}>
                 <Grid
                   width="100%"
                   margin="16px 0"
