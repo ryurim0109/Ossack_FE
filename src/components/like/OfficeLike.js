@@ -62,14 +62,29 @@ const OfficeLike = (props) => {
                         );
                       })}
                   </StyledSlider>
-                  <Button
-                    //is_like
-                    position="absolute"
-                    right="8px"
-                    top="8px"
-                    color="#FF679E"
-                    fill_like
-                  />
+                  {office.mylike ? (
+                    <Button
+                      fill_like
+                      position="absolute"
+                      right="8px"
+                      top="8px"
+                      color="#FF0000"
+                      _onClick={() =>
+                        dispatch(officeActions.deleteLikeDB(office.estateid))
+                      }
+                    />
+                  ) : (
+                    <Button
+                      is_like
+                      position="absolute"
+                      right="8px"
+                      top="8px"
+                      color="#fff"
+                      _onClick={() =>
+                        dispatch(officeActions.clickLikeDB(office.estateid))
+                      }
+                    />
+                  )}
                 </Grid>
               </Grid>
               <Grid
