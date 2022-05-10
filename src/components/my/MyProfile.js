@@ -3,7 +3,7 @@ import {Button,Grid,Image,Text} from '../../elements/index';
 import {ProfileModal} from './index';
 import styled from 'styled-components';
 import { useSelector,useDispatch } from 'react-redux';
-import defaultImg from '../../static/images/default.svg';
+import defaultImg from '../../static/images/default.png';
 import { actionCreators as userActions } from '../../redux/modules/user';
 
 const MyProfile = () => {
@@ -15,9 +15,9 @@ const MyProfile = () => {
     const user_info=useSelector((state)=>state.user.user);
     //console.log(user_info)
 
-    useEffect(()=>{
-        dispatch(userActions.loginCheckApi())
-    },[])
+    // useEffect(()=>{
+    //     dispatch(userActions.loginCheckApi())
+    // },[])
     
     return (
         <React.Fragment>
@@ -26,7 +26,7 @@ const MyProfile = () => {
                 position="relative" display="flex" flexDirection="column" alignItems="start" justifyContent="center"
                 >
                     <Grid width="100%" display="flex" justifyContent="center"  position="relative">
-                        <Image type="circle" size="112" src={
+                        <Image border="2px solid #F3F3F3" type="circle" size="112" src={
                               user_info?.imageUrl?user_info?.imageUrl:defaultImg} />
                         <Button is_edit position="absolute" top="80px" right="35%" _onClick={openModalHandler}/>
                     </Grid>

@@ -1,7 +1,7 @@
 import React,{useState,useRef} from 'react';
 import styled from 'styled-components';
-import {Button,Grid,Image} from '../../elements/index';
-import defaultImg from '../../static/images/default.svg';
+import {Button,Grid,Image,Text} from '../../elements/index';
+import defaultImg from '../../static/images/default.png';
 import Swal from 'sweetalert2';
 
 import { useSelector,useDispatch } from 'react-redux';
@@ -53,15 +53,18 @@ const ProfileModal = (props) => {
         <React.Fragment>
             {isOpen ?
             (<Outter>
-                <Grid width="100%" height="500px" margin="16px" bg="#fff" position="relative">
+                <Grid width="100%" height="500px" margin="16px" bg="#fff" borderRadius="8px" position="relative">
+                  <Grid  width="100%" margin="8px 0"  height="56px"display="flex" alignItems="center"  justifyContent="center" >
+                    <Text bold size="1rem">프로필 이미지 변경</Text>
+                  </Grid>
                 <Button is_close position="absolute" right="8px" top="8px" _onClick={ModalClose}/>
-                <Grid display="flex" flexDirection="column" alignItems="center" >
+                <Grid display="flex"  height="200px"flexDirection="column" alignItems="center" >
                     
-                        <Grid width="200px" height="200px" margin="50px 0">
+                        <Grid width="200px" height="200px" margin="30px 0" display="flex" alignItems="center"  justifyContent="center" >
                         <Image
-                            className="edit"
-                            shape="rectangle"
-                            size="90"
+                            border="2px solid #F3F3F3" 
+                            shape="circle"
+                            size="190"
                             radius="30px"
                             src={preview ? preview : 
                               user_info?.imageUrl ? user_info?.imageUrl :
@@ -71,15 +74,13 @@ const ProfileModal = (props) => {
                         </Grid>
                 
                     
-                    <Grid width="200px" height="200px" display="flex" flexDirection="column" alignItems="start" >
+                    <Grid width="200px" height="200px" display="flex" flexDirection="column" alignItems="center" justifyContent="center" >
                         
                         <Label htmlFor="file_input" className="upload-box">
-                          <Grid>사진업로드</Grid>
+                          <Text bold size="0.875rem" color="#fff">사진업로드</Text>
                         </Label>
-                        <Button width="200px" height="24px" 
-                        padding="none" margin="10px 0"
-                         fontSize="1.25rem" backgroundColor="none">사진제거</Button>
-                        <Button width="200px" margin="none" padding="none" height="24px" fontSize="1.25rem" backgroundColor="none" _onClick={editProfile}>저장하기</Button>
+                        <Button width="230px" margin="10px 0" borderRadius="8px"
+                         padding="none" height="42px" fontSize="0.875rem" color="#fff" backgroundColor="#0373F3" _onClick={editProfile}>저장하기</Button>
                     </Grid>
                     <input type="file" id="file_input" ref={fileInput}  accept="image/jpeg, image/png, image/jpg"  onChange={(e)=>{
                           encodeFileToBase64(e.target.files[0]);
@@ -104,6 +105,17 @@ const Outter=styled.div`
   transform: translate(0, -50%) ;
   z-index:4;
   display:flex;
+
+  .upload-box{
+    width:230px;
+    height:42px;
+    background-color:#0373F3;
+    border-radius:8px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+  }
 
 `
 const Label=styled.label`
