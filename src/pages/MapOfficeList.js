@@ -19,14 +19,14 @@ const MapOfficeList = (props) => {
     const office_list = useSelector((state) => state.map.office_list);
 
     useEffect(() => {
-      if(office_list.length === 0){
+      if(office_list?.length === 0){
         dispatch(officeActions.getSOListDB(search,0))
       }
     }, [])
 
-    if(!office_list){
-        return <Spinner/>
-    }
+    // if(!office_list){
+    //     return <Spinner/>
+    // }
     
 
    /* useEffect(()=>{
@@ -40,7 +40,7 @@ const MapOfficeList = (props) => {
             <Outter>
             <InfinityScroll
               callNext={() => dispatch(officeActions.getSOListDB(search))}
-              is_next={office_list.length ? true : false}
+              is_next={office_list?.length ? true : false}
               loading={is_loading}
             >
               <MapOfficeResult/>
