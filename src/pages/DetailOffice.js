@@ -6,6 +6,7 @@ import { Grid, Image, Text, Button } from "../elements/index";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { history } from "../redux/configStore";
+import { SlickSlider } from "../components/shared/home";
 
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -17,21 +18,11 @@ const DetailOffice = () => {
   //   const list = useSelector((state) => state.search.list);
   //   const officeData = list?.filter((a) => a.estateid === +estateid);
 
-  const settings = {
-    infinite: true,
-    speed: 500,
-    slideToShow: 1,
-    slideToScroll: 1,
-    autoplay: false,
-    autoplaySpeed: 5000,
-    arrows: false,
-    dots: true,
-  };
   return (
     <React.Fragment>
       <MyHeader>매물번호 {estateid}</MyHeader>
       <Grid bg="#F5F5F5">
-        <Grid>
+        <Grid height="416px" bg="#fff" margin="0 0 10px 0">
           <Grid
             width="100%"
             margin="16px 0"
@@ -42,7 +33,7 @@ const DetailOffice = () => {
             overflow="hidden"
           >
             <Grid>
-              <StyledSlider {...settings} dotsClass="test-css">
+              <SlickSlider>
                 <Image
                   padding="235px"
                   bottom="0"
@@ -64,7 +55,7 @@ const DetailOffice = () => {
                   shape="rectangle"
                   position="absolute"
                 />
-              </StyledSlider>
+              </SlickSlider>
               <Button
                 is_like
                 position="absolute"
@@ -82,22 +73,128 @@ const DetailOffice = () => {
             flexDirection="column"
             justifyContent="center"
             width="100%"
-            height="40px"
+            height="70px"
           >
-            <Text color="#000000" size="0.875rem">
+            <Text color="#000000" size="0.875rem" border="1px solid red">
               트리플 역세권 사무실
             </Text>
             <Text color="#000000" size="0.875rem">
               <Span>월세</Span> 200만 <Span>보증금</Span> 3,000만
+            </Text>
+            <Text color="#0055FF" size="0.875rem">
+              권리금 없음
             </Text>
           </Grid>
-          <Grid>
-            <Text color="#000000" size="0.875rem">
-              트리플 역세권 사무실
-            </Text>
-            <Text color="#000000" size="0.875rem">
-              <Span>월세</Span> 200만 <Span>보증금</Span> 3,000만
-            </Text>
+          <Grid
+            bottom="0"
+            padding="0 16px"
+            display="flex"
+            flexDirection="column"
+            justifyContent="center"
+            width="100%"
+            height="60px"
+          >
+            <Grid display="flex" flexDirection="column" justifyContent="center">
+              <Span style={{ margin: "0 5px 5px 0" }}>
+                a
+                <Text color="#90969D" size="0.700rem">
+                  미사역, 도보 8분
+                </Text>
+              </Span>
+              <Span>
+                a
+                <Text color="#90969D" size="0.700rem">
+                  매물번호 9999999
+                </Text>
+              </Span>
+            </Grid>
+          </Grid>
+        </Grid>
+
+        <Grid height="200px" bg="#fff" margin="0 0 10px 0">
+          <Grid
+            bottom="0"
+            padding="0 16px"
+            display="flex"
+            flexDirection="column"
+            justifyContent="center"
+            width="100%"
+            height="200px"
+            border="1px solid red"
+          >
+            <Grid
+              display="flex"
+              flexDirection="column"
+              justifyContent="center"
+              border="1px solid red"
+              padding="16px 0"
+            >
+              <Bp>상세정보</Bp>
+            </Grid>
+            <Grid
+              display="flex"
+              flexDirection="column"
+              justifyContent="center"
+              border="1px solid red"
+            >
+              <Grid display="flex" margin="0 0 10px" border="1px solid red">
+                <P>건물층 / 해당층</P>
+                <Sp>15층 / 2층</Sp>
+              </Grid>
+              <Grid display="flex" margin="0 0 10px" border="1px solid red">
+                <P>전용 / 공급면적</P>
+                <Sp>4평 / 137평</Sp>
+              </Grid>
+              <Grid display="flex" margin="0 0 10px" border="1px solid red">
+                <P>엘레베이터</P>
+                <Sp>2대</Sp>
+              </Grid>
+              <Grid display="flex" margin="0 0 10px" border="1px solid red">
+                <P>즉시입주가능</P>
+                <Sp>협의가능</Sp>
+              </Grid>
+            </Grid>
+          </Grid>
+        </Grid>
+
+        <Grid height="516px" bg="#fff" margin="0 0 10px 0">
+          <Grid
+            bottom="0"
+            padding="0 16px"
+            display="flex"
+            flexDirection="column"
+            justifyContent="center"
+            width="100%"
+            height="200px"
+            border="1px solid red"
+          >
+            <Grid
+              display="flex"
+              flexDirection="column"
+              justifyContent="center"
+              border="1px solid red"
+              padding="16px 0"
+            >
+              <Bp>중개사 코멘트</Bp>
+            </Grid>
+            <Grid
+              display="flex"
+              flexDirection="column"
+              justifyContent="center"
+              border="1px solid red"
+            >
+              <Grid display="flex" margin="0 0 10px" border="1px solid red">
+                <Sp>강남역 10분, 역삼역 도보 12분, 신논현역 도보 15분</Sp>
+                <Ssp>지하철역 도보 15분 이내의 트리플</Ssp>
+              </Grid>
+              <Grid display="flex" margin="0 0 10px" border="1px solid red">
+                <P>
+                  해당 사무소는 공인중개사 자격중을 갖춘 인원으로만 구성되어
+                  있습니다.
+                </P>
+                <P>직접 방문 후 촬영한 100% 실매물 현장사진</P>
+              </Grid>
+            </Grid>
           </Grid>
         </Grid>
       </Grid>
@@ -164,6 +261,32 @@ const StyledSlider = styled(Slider)`
 
 const Span = styled.span`
   font-size: 0.625rem;
+`;
+
+const P = styled.p`
+  font-weight: bold;
+  width: 40%;
+  color: #000;
+  font-size: 0.975rem;
+`;
+
+const Sp = styled.p`
+  width: 60%;
+  color: #000;
+  font-size: 0.975rem;
+`;
+
+const Bp = styled.p`
+  font-weight: bold;
+  width: 60%;
+  color: #000;
+  font-size: 1.2rem;
+`;
+
+const Ssp = styled.p`
+  width: 60%;
+  color: #ccc;
+  font-size: 0.7rem;
 `;
 
 export default DetailOffice;
