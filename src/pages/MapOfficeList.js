@@ -5,50 +5,50 @@ import { Grid,Image,Button,Text } from '../elements/index';
 import  { actionCreators as officeActions } from '../redux/modules/office';
 import { MyHeader } from '../components/my/index';
 import { history } from '../redux/configStore';
+import { SlickSlider } from '../components/shared/home';
 
 const MapOfficeList = (props) => {
     const dispatch = useDispatch();
     const search = (props.location.search).split("=")[1];
-    console.log(search)
-    const officeData= useSelector((state)=>state.office.list)
+    //console.log(decodeURI(search))
+    const officeData= useSelector((state)=>state.office.list);
 
    useEffect(()=>{
     dispatch(officeActions.getSOListDB(search))
    },[search])
     return (
         <React.Fragment>
-            <MyHeader>{search} 리스트</MyHeader>
+            <MyHeader>{decodeURI(search)} 리스트</MyHeader>
             <Outter>
             {officeData &&
         officeData.map((o, idx) => {
           return (
+            <>
             <Grid 
-            _onClick={()=>{
-              history.push(`/detail/${o.estateid}`)
-            }}
               key={idx}
-              width="320px"
-              margin="12px 0 32px 0"
+              width="100%"
+              margin="16px 0"
               height="235px"
               bg="#999"
               borderRadius="8px"
               position="relative"
               overflow="hidden"
             >
-              <Image
-                padding="235px"
-                bottom="0"
-                src={o.images[0]}
-                shape="rectangle"
-                position="absolute"
-              />
-              <Grid
-                width="100%"
-                height="235px"
-                bottom="0"
-                position="absolute"
-                bg="linear-gradient(0deg, rgba(0, 0, 0, 0.8) 5.74%, rgba(108, 108, 108, 0.0421707) 86.75%, rgba(118, 118, 118, 0) 93.49%)"
-              ></Grid>
+              <SlickSlider>
+              {o.images &&
+                      o.images.map((image, idx) => {
+                        return (
+                          <Image
+                            key={idx}
+                            padding="235px"
+                            bottom="0"
+                            src={image}
+                            shape="rectangle"
+                            position="absolute"
+                          />
+                        );
+                      })}
+              </SlickSlider>
               {o.mylike ? (
                 <Button
                   fill_like
@@ -72,26 +72,17 @@ const MapOfficeList = (props) => {
                   }
                 />
               )}
-
-              <Grid
-                position="absolute"
-                bottom="0"
-                padding="0 16px"
-                display="flex"
-                flexDirection="column"
-                justifyContent="center"
-                width="100%"
-                height="60px"
-              >
-                <Text color="#fff" size="0.875rem">
-                  {o.type ? o.type : "트리플 역세권 사무실"}
-                </Text>
-                <Text color="#fff" size="0.875rem">
-                  <Span>월세</Span> {o.rent_fee ? o.rent_fee : 200}만
-                  <Span>보증금</Span> {o.deposit ? o.deposit : "3000만"}
-                </Text>
-              </Grid>
             </Grid>
+            <Grid  _onClick={()=>{
+              history.push(`/detail/${o.estateid}`)
+            }} cursor="pointer"
+             width="100%" height="76px" display="flex" flexDirection="column" justifyContent="center">
+                  <Text size="0.625rem" bold>{o.buildingInfo}</Text>
+                  <Text size="0.875rem">{o.type}</Text>
+                    <Text size="0.875rem" bold><Span>월세</Span>{o.rent_fee}만원  <Span>보증금</Span>{o.deposit}만원</Text>
+                 
+            </Grid>
+            </>
           );
         })}
         </Outter>
