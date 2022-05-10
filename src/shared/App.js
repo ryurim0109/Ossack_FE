@@ -35,7 +35,11 @@ function App() {
               <Route path="/" exact component={Start} />
               <Route path="/login" exact component={Login} />
               <Route path="/signup" exact component={Signup} />
-              <Route path="/user/google/callback" exact component={GoogleLogin}/>
+              <Route
+                path="/user/google/callback"
+                exact
+                component={GoogleLogin}
+              />
               <Route path="/user/kakao/callback" exact component={KaKaoLogin} />
               <Route path="/main" exact component={Main} />
               <Route path="/search" exact component={SearchPage} />
@@ -44,7 +48,8 @@ function App() {
               <Route path="/like" exact component={Like} />
               <Route path="/searchlist" exact component={SearchList} />
               <Route path="/map/office" exact component={MapOfficeList} />
-              <Route path="/detail/:estateId" exact  component={DetailOffice}/>
+              {/* <Route path="/detail/:estateId" exact  component={DetailOffice}/> */}
+              <Route path="/detail/" exact component={DetailOffice} />
               <Route component={NotFound} />
             </Switch>
           </MobileFrame>
