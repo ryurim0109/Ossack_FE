@@ -5,7 +5,8 @@ import { Grid,Image,Button,Text } from '../elements/index';
 import  { actionCreators as officeActions } from '../redux/modules/office';
 import { MyHeader } from '../components/my/index';
 import { history } from '../redux/configStore';
-import { SlickSlider } from '../components/shared/home';
+import { SlickSlider,Bar } from '../components/shared/home';
+
 
 const MapOfficeList = (props) => {
     const dispatch = useDispatch();
@@ -86,6 +87,7 @@ const MapOfficeList = (props) => {
           );
         })}
         </Outter>
+        <Bar/>
         </React.Fragment>
     );
 };
