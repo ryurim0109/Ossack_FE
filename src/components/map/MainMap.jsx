@@ -8,6 +8,8 @@ import { TiPlus, TiMinus } from "react-icons/ti";
 import { MdMyLocation } from "react-icons/md";
 import Spinner from "../shared/Spinner";
 
+import { history } from "../../redux/configStore";
+
 import {
   Map,
   MapMarker,
@@ -111,6 +113,7 @@ const MainMap = (props) => {
           minLevel={5}
           maxLevel={10}
         >
+           
           {/* <MarkerClusterer
             averageCenter={true} // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정
             minLevel={10} // 클러스터 할 최소 지도 레벨
@@ -128,25 +131,26 @@ const MainMap = (props) => {
               },
             ]}
           > */}
-           
+               {is_loaded?
+             (<>
+         
             { getOffice?.cityResponseDtoList?.length ===0? null:
             getOffice?.cityResponseDtoList?.map((position, index) => (
              
-              <CustomOverlayMap
+              <CustomOverlayMap 
                 key={`${position.title}-${position.coordinate}`}
                 position={position.coordinate} // 마커를 표시할 위치
                 title={position.title} // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
               >
-                
-                {!is_loaded && <Spinner/>}
-                <Overlay position={position} OverLavel={OverLavel} index={index} />
+                <div onClick={() => history.push(`/map/office?query=${position.title}`)} >
+                    <Overlay position={position} OverLavel={OverLavel} index={index} />
+                  </div>
               </CustomOverlayMap>
-             
             ))}
-            
+            </> ):(<Spinner/>)}
              
           {/* </MarkerClusterer> */}
-
+     
           <Lev>
             <button onClick={setLocation}>
               <MdMyLocation size="24px" />
@@ -158,8 +162,10 @@ const MainMap = (props) => {
               <TiMinus size="21px" />
             </button>
           </Lev>
-        </Map>
+         
 
+        </Map>
+        
         {/* {pos && console.log('변경된 지도 중심좌표는 ' + pos.lat + ' 이고, 경도는 ' + pos.lng + ' 입니다', 
         '남서쪽' + pos.swLatLng.lat ,pos.swLatLng.lng, '북동쪽좌표' + pos.neLatLng.lat ,pos.neLatLng.lng)
         

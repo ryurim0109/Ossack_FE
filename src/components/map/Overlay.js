@@ -31,7 +31,7 @@ const Overlay = (props) => {
             position="absolute"
             bg="#fff"
           >
-            <Text> {position.estate.length}</Text>
+            <Text> {position?.estate_cnt}</Text>
           </Grid>
           <Text color="#fff" bold textIndent="28px" size="14px">
           {position?.title}
@@ -63,7 +63,7 @@ const Overlay = (props) => {
               {position?.title}
             </Text>
             <Text bold size="14px">
-              {position.estate.length}
+              {position?.estate_cnt}
             </Text>
           </Grid>
 
@@ -81,7 +81,7 @@ const Overlay = (props) => {
             justifyContent="center"
           >
             <Text color="#000" size="8px">
-             {position.estate.length}
+             {position?.estate_cnt}
             </Text>
           </Grid>
           <Grid
@@ -97,7 +97,7 @@ const Overlay = (props) => {
             justifyContent="center"
           >
             <Text color="#000" size="10px">
-            {position.estate.length}
+            {position?.average}
             </Text>
           </Grid>
         </Grid>
