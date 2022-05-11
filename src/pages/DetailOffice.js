@@ -1,18 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { MyHeader } from "../components/my/index";
 import { OneMap } from "../components/map/index";
 import { Grid, Image, Text, Button } from "../elements/index";
 import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { history } from "../redux/configStore";
 import { SlickSlider } from "../components/shared/home";
 import Bar from "../components/shared/Bar";
+import { actionCreators as officeActions } from "../redux/modules/office";
 
 const DetailOffice = () => {
+  const dispatch = useDispatch();
   const estateid = useParams().estateId;
   //   const list = useSelector((state) => state.search.list);
   //   const officeData = list?.filter((a) => a.estateid === +estateid);
+  // useEffect(() => {
+  //   dispatch(officeActions.getOneOfficeDB(estateid));
+  // }, [estateid]);
 
   return (
     <React.Fragment>
