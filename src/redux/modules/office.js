@@ -22,8 +22,8 @@ const getHot = createAction(GET_HOT, (hot_list) => ({ hot_list }));
 const clickLike = createAction(CLICK_LIKE, (estate_id) => ({ estate_id }));
 const deleteLike = createAction(DELETE_LIKE, (estate_id) => ({ estate_id }));
 const getOfficeLike = createAction(GET_LIKE, (like_list) => ({ like_list }));
-const getSOList = createAction(GET_SEARCH_OFFICE_LIST, (list,page) => ({
-  list,page
+const getSOList = createAction(GET_SEARCH_OFFICE_LIST, (list,page,keyword) => ({
+  list,page,keyword
 }));
 const loading = createAction(LOADING, (is_loading) => ({ is_loading }));
 const getOneOffice = createAction(GET_ONE_OFFICE, (one_list) => ({
@@ -135,7 +135,8 @@ const getSOListDB = (keyword,pageno) => {
       .get(`/api/list/search/${pageno}?query=${keyword}`)
       .then((res) => {
         console.log("res : ", res);
-        dispatch(getSOList(res.data.estateResponseDtoList,res.data.totalpage));
+        const key=decodeURI(keyword)
+        dispatch(getSOList(res.data.estateResponseDtoList,res.data.totalpage,key));
       })
       .catch((err) => {
         console.log("Error Message: ", err.message);
@@ -201,13 +202,13 @@ export default handleActions(
 
     [GET_SEARCH_OFFICE_LIST]: (state, action) =>
       produce(state, (draft) => {
-        console.log(state,"난검색스테이트")
-        if (action.payload.page > 1) {
+        if (action.payload.page > 1 && action.payload.keyword===draft.keyword) {
           draft.list.unshift(...action.payload.list);
         } else {
           draft.list = action.payload.list;
         }
         draft.page = action.payload.page;
+        draft.keyword = action.payload.keyword;
         
       }),
   },
