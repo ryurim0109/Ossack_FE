@@ -26,8 +26,8 @@ const getSOList = createAction(GET_SEARCH_OFFICE_LIST, (list,page) => ({
   list,page
 }));
 const loading = createAction(LOADING, (is_loading) => ({ is_loading }));
-const getOneOffice = createAction(GET_ONE_OFFICE, (estate_id) => ({
-  estate_id,
+const getOneOffice = createAction(GET_ONE_OFFICE, (one_list) => ({
+  one_list,
 }));
 
 const initialState = {
@@ -127,7 +127,7 @@ const getOfficeLikeDB = (type) => {
 
 /* 검색 리스트 조회 */
 const getSOListDB = (keyword,pageno) => {
-  console.log("keyword : ", keyword);
+  //console.log("keyword : ", keyword);
   return (dispatch,getState) => {
 
     instance
@@ -164,7 +164,7 @@ export default handleActions(
   {
     [GET_ONE_OFFICE]: (state, action) =>
       produce(state, (draft) => {
-        draft.list = action.payload.estate_id;
+        draft.one_list = action.payload.one_list;
       }),
     [GET_MAIN_OFFICE]: (state, action) =>
       produce(state, (draft) => {
@@ -201,7 +201,12 @@ export default handleActions(
 
     [GET_SEARCH_OFFICE_LIST]: (state, action) =>
       produce(state, (draft) => {
-        draft.list.unshift(...action.payload.list);
+        console.log(state,"난검색스테이트")
+        if (action.payload.page > 1) {
+          draft.list.unshift(...action.payload.list);
+        } else {
+          draft.list = action.payload.list;
+        }
         draft.page = action.payload.page;
         
       }),
