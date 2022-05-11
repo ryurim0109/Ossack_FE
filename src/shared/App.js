@@ -48,7 +48,7 @@ function App() {
               <Route path="/like" exact component={Like} />
               <Route path="/searchlist" exact component={SearchList} />
               <Route path="/map/office" exact component={MapOfficeList} />
-              {/* <Route path="/detail/:estateId" exact  component={DetailOffice}/> */}
+              <Route path="/detail/:estateId" exact  component={DetailOffice}/>
               <Route path="/detail/" exact component={DetailOffice} />
               <Route component={NotFound} />
             </Switch>

@@ -6,13 +6,13 @@ import { RESP } from "../../response";
 import Swal from "sweetalert2";
 
 // Action type
-const GET_MAIN_OFFICE = "GET_MAIN_OFFICE";
-const GET_HOT = "GET_HOT";
+const GET_MAIN_OFFICE = "GET_MAIN_OFFICE";// 메인페이지 리스트 조회
+const GET_HOT = "GET_HOT"; // 핫한 지역
 const CLICK_LIKE = "CLICK_LIKE"; //좋아요
 const DELETE_LIKE = "DELETE_LIKE"; //좋아요 취소
 const GET_LIKE = "GET_LIKE"; // 찜한 매물 조회
-const GET_SEARCH_OFFICE_LIST = "GET_SEARCH_OFFICE_LIST";
-const LOADING ="LOADING";
+const GET_SEARCH_OFFICE_LIST = "GET_SEARCH_OFFICE_LIST"; //검색 리스트 조회
+const LOADING ="LOADING"; //무한스크롤 로딩
 
 // Action Creator
 const getMainOffice = createAction(GET_MAIN_OFFICE, (list) => ({ list }));
@@ -124,13 +124,14 @@ const getOfficeLikeDB = (type) => {
 const getSOListDB = (keyword) => {
   console.log("keyword : ", keyword);
   return (dispatch,getState) => {
-    const officeList = getState().map.office_list.length;
+    const officeList = getState().office?.list?.estateResponseDtoList?.length;
     dispatch(loading(true))
     instance
-      .get(`/api/list/search/${officeList}?query=${keyword}`)
+      // .get(`/api/list/search/${officeList}?query=${keyword}`)
+      .get(`/api/list/search/0?query=${keyword}`)
       .then((res) => {
         console.log("res : ", res);
-        dispatch(getSOList(res.data));
+        dispatch(getSOList(res.data.estateResponseDtoList));
       })
       .catch((err) => {
         console.log("Error Message: ", err.message);

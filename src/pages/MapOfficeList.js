@@ -14,13 +14,12 @@ const MapOfficeList = (props) => {
     const search = (props.location.search).split("=")[1];
     //console.log(decodeURI(search))
     const is_loading = useSelector((state) => state.office.is_loading);
-    console.log(is_loading)
-    const office_list = useSelector((state) => state.map.office_list);
+    // console.log(is_loading)
+    const office_list = useSelector((state) => state.office.list);
+    //console.log(office_list)
 
     useEffect(() => {
-      if(office_list?.length === 0){
-        dispatch(officeActions.getSOListDB(search,0))
-      }
+        dispatch(officeActions.getSOListDB(search))
     }, [])
 
     // if(!office_list){
@@ -37,13 +36,14 @@ const MapOfficeList = (props) => {
         <React.Fragment>
             <MyHeader>{decodeURI(search)} 리스트</MyHeader>
             <Outter>
-            <InfinityScroll
+            {/* <InfinityScroll
               callNext={() => dispatch(officeActions.getSOListDB(search))}
               is_next={office_list?.length ? true : false}
               loading={is_loading}
             >
               <MapOfficeResult/>
-              </InfinityScroll>
+              </InfinityScroll> */}
+              <MapOfficeResult/>
             </Outter>
              <Bar/>
         </React.Fragment>
