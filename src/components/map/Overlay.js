@@ -47,9 +47,9 @@ const Overlay = (props) => {
       <React.Fragment>
         <Grid
           width="54px"
-          height="65px"
+          height="49px"
           borderRadius="8px"
-          bg="#000"
+          bg="#0373F3"
           color="#fff"
           position="relative"
         >
@@ -60,10 +60,10 @@ const Overlay = (props) => {
             padding="10px 0"
           >
             <Text bold size="10px">
-              {position?.title}
+              {position?.title? position?.title: "서울시"}
             </Text>
             <Text bold size="14px">
-              {position?.estate_cnt}
+            {position?.average}만원
             </Text>
           </Grid>
 
@@ -75,29 +75,13 @@ const Overlay = (props) => {
             right="-10px"
             bg="#fff"
             borderRadius="27px"
-            border="1px solid #ccc"
+            border="1px solid #0055FF"
             display="flex"
             alignItems="center"
             justifyContent="center"
           >
             <Text color="#000" size="8px">
-             {position?.estate_cnt}
-            </Text>
-          </Grid>
-          <Grid
-            width="54px"
-            height="20px"
-            position="absolute"
-            bottom="0"
-            bg="#fff"
-            borderRadius="0 0 8px 8px"
-            border="1px solid #000"
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-          >
-            <Text color="#000" size="10px">
-            {position?.average}
+               {position?.estate_cnt}
             </Text>
           </Grid>
         </Grid>

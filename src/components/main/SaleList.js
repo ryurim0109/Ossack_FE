@@ -17,7 +17,7 @@ const SaleList = () => {
                     history.push('/map')
                 }}
                     boxShadow="0px 2px 4px rgba(105, 105, 105, 0.1)" padding="12px">
-                         <Text size="1.250rem" bold>오피스텔</Text>
+                         <Text size="1.250rem" bold>공유 오피스</Text>
                     </Grid>
                 </Grid>
             </Grid>

@@ -28,7 +28,7 @@ function Sale() {
         </Grid>
         <Grid width="100%">
           <Text size="1.250rem" bold>
-            {user_info?.nickname ? user_info?.nickname : "게스트"}님 어떤
+            <Text color="#0055FF" bold>{user_info?.nickname ? user_info?.nickname : "게스트"}님</Text> 어떤
             🏢오피스를 <br />
             찾고 계시나요?
           </Text>
@@ -73,7 +73,7 @@ function Sale() {
           justifyContent="space-between"
         >
           <Text bold size="1.250rem" cursor="pointer">
-            지금 가장 HOT한 오피스 🔥{" "}
+            지금 가장 HOT한 지역 🔥
           </Text>
         </Grid>
         <HotPlaceList />

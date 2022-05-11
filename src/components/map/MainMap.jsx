@@ -25,7 +25,7 @@ const MainMap = (props) => {
   const dispatch = useDispatch();
   const getOffice = useSelector((state) => state.map.office_list);
   const is_loaded = useSelector((state) => state.map.is_loaded);
-  console.log(is_loaded)
+  //console.log(is_loaded)
   console.log("getOffice : ", getOffice);
   const OverLavel=getOffice?.level;
 
@@ -43,7 +43,6 @@ const MainMap = (props) => {
     errMsg: null,
     isLoading: true,
   });
-
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -56,6 +55,7 @@ const MainMap = (props) => {
             },
             isLoading: false,
           }));
+          
         },
         (err) => {
           setState((prev) => ({
@@ -72,10 +72,25 @@ const MainMap = (props) => {
         isLoading: false,
       }));
     }
+    
     //위도 경도
   }, []);
+  const po =({
+    swLatLng: {
+      lat: map?.getBounds().getSouthWest().getLat(),
+      lng: map?.getBounds().getSouthWest().getLng(),
+    },
+    neLatLng: {
+      lat: map?.getBounds().getNorthEast().getLat(),
+      lng: map?.getBounds().getNorthEast().getLng(),
+    },
+  })
+
+  console.log(po,level)
+  useEffect(()=>{
+    dispatch(mapActions.getOfficeData(po,level));
+  },[])
   const setLocation = () => {
-    console.log(`현재 지도레벨은 ${level}입니다`);
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function (position) {
         map.setCenter(
@@ -87,6 +102,7 @@ const MainMap = (props) => {
       });
     }
   };
+
   return (
     <React.Fragment>
       <MainContent>
@@ -113,7 +129,6 @@ const MainMap = (props) => {
           minLevel={5}
           maxLevel={10}
         >
-           
           {/* <MarkerClusterer
             averageCenter={true} // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정
             minLevel={10} // 클러스터 할 최소 지도 레벨
@@ -131,12 +146,12 @@ const MainMap = (props) => {
               },
             ]}
           > */}
-               {is_loaded?
+           {  is_loaded? 
              (<>
          
             { getOffice?.cityResponseDtoList?.length ===0? null:
-            getOffice?.cityResponseDtoList?.map((position, index) => (
-             
+            getOffice?.cityResponseDtoList?.map((position, index) => {
+             return(
               <CustomOverlayMap 
                 key={`${position.title}-${position.coordinate}`}
                 position={position.coordinate} // 마커를 표시할 위치
@@ -145,9 +160,10 @@ const MainMap = (props) => {
                 <div onClick={() => history.push(`/map/office?query=${position.title}`)} >
                     <Overlay position={position} OverLavel={OverLavel} index={index} />
                   </div>
-              </CustomOverlayMap>
-            ))}
+              </CustomOverlayMap>)
+            })}
             </> ):(<Spinner/>)}
+
              
           {/* </MarkerClusterer> */}
      
