@@ -12,7 +12,8 @@ const CLICK_LIKE = "CLICK_LIKE"; //좋아요
 const DELETE_LIKE = "DELETE_LIKE"; //좋아요 취소
 const GET_LIKE = "GET_LIKE"; // 찜한 매물 조회
 const GET_SEARCH_OFFICE_LIST = "GET_SEARCH_OFFICE_LIST";
-const LOADING ="LOADING";
+const LOADING = "LOADING";
+const GET_ONE_OFFICE = "GET_ONE_OFFICE";
 
 // Action Creator
 const getMainOffice = createAction(GET_MAIN_OFFICE, (list) => ({ list }));
@@ -23,7 +24,10 @@ const getOfficeLike = createAction(GET_LIKE, (like_list) => ({ like_list }));
 const getSOList = createAction(GET_SEARCH_OFFICE_LIST, (list) => ({
   list,
 }));
-const loading =createAction(LOADING,(is_loading)=>({is_loading}));
+const loading = createAction(LOADING, (is_loading) => ({ is_loading }));
+const getOneOffice = createAction(GET_ONE_OFFICE, (estate_id) => ({
+  estate_id,
+}));
 
 const initialState = {
   list: [],
@@ -70,15 +74,15 @@ const getHotDB = () => {
 };
 
 /* 좋아요 조회 */
-const clickLikeDB = (estateid) => {
-  console.log("estateId", estateid);
+const clickLikeDB = (estateId) => {
+  console.log("estateid", estateId);
   return (dispatch) => {
     instance
-      .post(`/api/favorite/${estateid}`)
+      .post(`/api/favorite/${estateId}`)
       .then((res) => {
         console.log("res : ", res);
         Swal.fire("좋아요를 누르셨습니다.");
-        dispatch(clickLike(estateid));
+        dispatch(clickLike(estateId));
       })
       .catch((err) => {
         console.log("Error Message: ", err.message);
@@ -123,9 +127,9 @@ const getOfficeLikeDB = (type) => {
 /* 검색 리스트 조회 */
 const getSOListDB = (keyword) => {
   console.log("keyword : ", keyword);
-  return (dispatch,getState) => {
+  return (dispatch, getState) => {
     const officeList = getState().map.office_list.length;
-    dispatch(loading(true))
+    dispatch(loading(true));
     instance
       .get(`/api/list/search/${officeList}?query=${keyword}`)
       .then((res) => {
@@ -138,9 +142,29 @@ const getSOListDB = (keyword) => {
   };
 };
 
+/* 상세 조회 */
+const getOneOfficeDB = (estateId) => {
+  console.log("estateId : ", estateId);
+  return (dispatch) => {
+    instance
+      .get(`/api/detail/${estateId}`)
+      .then((res) => {
+        console.log("res : ", res);
+        dispatch(getOneOffice(res.data));
+      })
+      .catch((err) => {
+        console.log("Error Message: ", err.message);
+      });
+  };
+};
+
 // Reducer
 export default handleActions(
   {
+    [GET_ONE_OFFICE]: (state, action) =>
+      produce(state, (draft) => {
+        draft.list = action.payload.estate_id;
+      }),
     [GET_MAIN_OFFICE]: (state, action) =>
       produce(state, (draft) => {
         draft.list = action.payload.list;
@@ -177,16 +201,16 @@ export default handleActions(
     [GET_SEARCH_OFFICE_LIST]: (state, action) =>
       produce(state, (draft) => {
         draft.list = action.payload.list;
-        draft.is_loading =false;
-       //무한스크롤 draft.list.push(...action.payload.list);
-      //  draft.list = draft.list.reduce((acc, cur) => {
-      //   if (acc.findIndex((a) => a.postid === cur.postid) === -1) {
-      //     return [...acc, cur];
-      //   } else {
-      //     acc[acc.findIndex((a) => a.postid === cur.postid)] = cur;
-      //     return acc;
-      //   }
-      // }, []);
+        draft.is_loading = false;
+        //무한스크롤 draft.list.push(...action.payload.list);
+        //  draft.list = draft.list.reduce((acc, cur) => {
+        //   if (acc.findIndex((a) => a.postid === cur.postid) === -1) {
+        //     return [...acc, cur];
+        //   } else {
+        //     acc[acc.findIndex((a) => a.postid === cur.postid)] = cur;
+        //     return acc;
+        //   }
+        // }, []);
       }),
   },
   initialState
@@ -199,6 +223,7 @@ const actionCreators = {
   deleteLikeDB,
   getOfficeLikeDB,
   getSOListDB,
+  getOneOfficeDB,
 };
 
 export { actionCreators };
