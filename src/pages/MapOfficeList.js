@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useState } from "react";
 import styled from "styled-components";
 import { useSelector,useDispatch } from "react-redux";
 import  { actionCreators as officeActions } from '../redux/modules/office';
@@ -13,38 +13,62 @@ const MapOfficeList = (props) => {
     const dispatch = useDispatch();
     const search = (props.location.search).split("=")[1];
     //console.log(decodeURI(search))
-    const is_loading = useSelector((state) => state.office.is_loading);
-    console.log(is_loading)
-    const office_list = useSelector((state) => state.map.office_list);
+    const totalPage = useSelector((state)=>state?.office?.page);
+  
 
-    useEffect(() => {
-      if(office_list?.length === 0){
-        dispatch(officeActions.getSOListDB(search,0))
-      }
-    }, [])
+  const [pageno,setPageno] = useState(1);
+  const [target, setTarget] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
-    // if(!office_list){
-    //     return <Spinner/>
-    // }
+  const callback = async ([entry], observer) => {
+   // console.log(entry);
+    if (entry.isIntersecting && !isLoading) {
+      observer.unobserve(entry.target);
+      setIsLoading(true);
+      await new Promise((resolve) => {
+        setTimeout(resolve, 2000);
+      });
+       setPageno((pre) => pre + 1);
+      setIsLoading(false);
+      observer.observe(entry.target);
+    }
+  };
+
+  React.useEffect(() => {
+    let observer;
+    if (target) {
+      observer = new IntersectionObserver(callback, { threshold: 1 });
+      observer.observe(target);
+    }
+    return () => observer && observer.disconnect();
+  }, [target]);
+
+  React.useEffect(()=>{
     
-
-   /* useEffect(()=>{
-    dispatch(officeActions.getSOListDB(search))
-   },[search]) */
+      dispatch(officeActions.getSOListDB(search,pageno));
+      console.log(pageno)
+  },[pageno]);
 
 
     return (
         <React.Fragment>
             <MyHeader>{decodeURI(search)} 리스트</MyHeader>
             <Outter>
-            <InfinityScroll
+            {/* <InfinityScroll
               callNext={() => dispatch(officeActions.getSOListDB(search))}
               is_next={office_list?.length ? true : false}
               loading={is_loading}
             >
               <MapOfficeResult/>
-              </InfinityScroll>
+              </InfinityScroll> */}
+              <MapOfficeResult/>
             </Outter>
+            {isLoading ? (
+                    <Spinner />
+                  ): null }
+
+             {totalPage>pageno ?
+               (<div ref={setTarget}> </div>):(null)}
              <Bar/>
         </React.Fragment>
     );

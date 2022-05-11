@@ -86,10 +86,11 @@ const MainMap = (props) => {
     },
   })
 
-  console.log(po,level)
-  useEffect(()=>{
-    dispatch(mapActions.getOfficeData(po,level));
-  },[])
+  // console.log(po,level)
+  
+  // useEffect(()=>{
+  //   dispatch(mapActions.getOfficeData(po,level));
+  // },[])
   const setLocation = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function (position) {

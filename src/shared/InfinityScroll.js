@@ -43,7 +43,7 @@ const InfinityScroll = (props) => {
 
     return (
         <div>
-            {props.children}
+            {children}
             {is_next && (<Spinner />)}
         </div>
     )
