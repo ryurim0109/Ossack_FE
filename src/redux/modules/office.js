@@ -20,8 +20,8 @@ const getHot = createAction(GET_HOT, (hot_list) => ({ hot_list }));
 const clickLike = createAction(CLICK_LIKE, (estate_id) => ({ estate_id }));
 const deleteLike = createAction(DELETE_LIKE, (estate_id) => ({ estate_id }));
 const getOfficeLike = createAction(GET_LIKE, (like_list) => ({ like_list }));
-const getSOList = createAction(GET_SEARCH_OFFICE_LIST, (list) => ({
-  list,
+const getSOList = createAction(GET_SEARCH_OFFICE_LIST, (list,page) => ({
+  list,page
 }));
 const loading =createAction(LOADING,(is_loading)=>({is_loading}));
 
@@ -121,17 +121,15 @@ const getOfficeLikeDB = (type) => {
 };
 
 /* 검색 리스트 조회 */
-const getSOListDB = (keyword) => {
+const getSOListDB = (keyword,pageno) => {
   console.log("keyword : ", keyword);
   return (dispatch,getState) => {
-    const officeList = getState().office?.list?.estateResponseDtoList?.length;
-    dispatch(loading(true))
     instance
       // .get(`/api/list/search/${officeList}?query=${keyword}`)
-      .get(`/api/list/search/0?query=${keyword}`)
+      .get(`/api/list/search/${pageno}?query=${keyword}`)
       .then((res) => {
         console.log("res : ", res);
-        dispatch(getSOList(res.data.estateResponseDtoList));
+        dispatch(getSOList(res.data.estateResponseDtoList,res.data.totalpage));
       })
       .catch((err) => {
         console.log("Error Message: ", err.message);
@@ -177,17 +175,9 @@ export default handleActions(
 
     [GET_SEARCH_OFFICE_LIST]: (state, action) =>
       produce(state, (draft) => {
-        draft.list = action.payload.list;
-        draft.is_loading =false;
-       //무한스크롤 draft.list.push(...action.payload.list);
-      //  draft.list = draft.list.reduce((acc, cur) => {
-      //   if (acc.findIndex((a) => a.postid === cur.postid) === -1) {
-      //     return [...acc, cur];
-      //   } else {
-      //     acc[acc.findIndex((a) => a.postid === cur.postid)] = cur;
-      //     return acc;
-      //   }
-      // }, []);
+        draft.list.unshift(...action.payload.list);
+        draft.page = action.payload.page;
+        
       }),
   },
   initialState

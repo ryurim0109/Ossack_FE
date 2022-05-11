@@ -7,11 +7,9 @@ import { SlickSlider } from '../shared/home';
 import  { actionCreators as officeActions } from '../../redux/modules/office';
 
 const MapOfficeResult = (props) => {
+   
     const dispatch = useDispatch();
     const officeData= useSelector((state)=>state.office.list);
-    officeData?.map((o, idx)=>{
-      console.log(o.title)
-    })
     return (
         <React.Fragment>
         { officeData?.map((o, idx) => {
