@@ -9,11 +9,6 @@ import { history } from "../redux/configStore";
 import { SlickSlider } from "../components/shared/home";
 import Bar from "../components/shared/Bar";
 
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import "../shared/css/dot.css";
-
 const DetailOffice = () => {
   const estateid = useParams().estateId;
   //   const list = useSelector((state) => state.search.list);
@@ -265,12 +260,6 @@ const DetailWrap = styled.div`
   bottom: 0px;
   z-index: 1;
   padding: 0 16px;
-`;
-
-const StyledSlider = styled(Slider)`
-  height: 260px;
-  width: 100%;
-  position: relative;
 `;
 
 const Span = styled.span`
