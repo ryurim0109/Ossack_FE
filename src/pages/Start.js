@@ -3,29 +3,38 @@ import { Grid, Button, Text, Image } from "../elements/index";
 import styled from "styled-components";
 import { history } from "../redux/configStore";
 import { KAKAO_AUTH_URL, GOOGLE_AUTH_URL } from "../shared/SocialOAuth";
-import moomgu from '../static/images/logo01.svg';
-import ossack from '../static/images/logo02.svg';
+import moomgu from "../static/images/logo01.svg";
+import ossack from "../static/images/logo02.svg";
 
 const Start = () => {
   return (
     <React.Fragment>
-      
-        <Grid
-          width="100%"
-          padding="38px 0"
-          display="flex"
-          flexDirection="column"
-          bg="#3E00FF"
-        >
-          <Grid width="100%" margin="118px 0" height="237px" position="relative">
-            <img  src={ossack} alt="오싹 이미지"/>
-            <Grid width="217px" height="14px" position="absolute" top="0" right="15px">
-              <Image shape="rectangle" padding="14px" src={moomgu}/>
-            </Grid>
+      <Grid
+        width="100%"
+        padding="38px 0"
+        display="flex"
+        flexDirection="column"
+        bg="#3E00FF"
+      >
+        <Grid width="100%" margin="118px 0" height="237px" position="relative">
+          <img src={ossack} alt="오싹 이미지" />
+          <Grid
+            width="217px"
+            height="14px"
+            position="absolute"
+            top="0"
+            right="15px"
+          >
+            <Image shape="rectangle" padding="14px" src={moomgu} />
           </Grid>
-          <Outter>
+        </Grid>
+        <Outter>
           <Grid width="100%" height="120px" bg="#ccc">
-            <Grid display="flex" justifyContent="space-around" alignItems="center">
+            <Grid
+              display="flex"
+              justifyContent="space-around"
+              alignItems="center"
+            >
               <Button
                 width="100px"
                 height="100px"
@@ -58,9 +67,8 @@ const Start = () => {
               </Button>
             </Grid>
           </Grid>
-          </Outter>
-        </Grid>
-      
+        </Outter>
+      </Grid>
     </React.Fragment>
   );
 };
