@@ -7,6 +7,7 @@ import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { history } from "../redux/configStore";
 import { SlickSlider } from "../components/shared/home";
+import Bar from "../components/shared/Bar";
 
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -21,8 +22,8 @@ const DetailOffice = () => {
   return (
     <React.Fragment>
       <MyHeader>매물번호 {estateid}</MyHeader>
-      <Grid bg="#F5F5F5">
-        <Grid height="416px" bg="#fff" margin="0 0 10px 0">
+      <Grid bg="#F5F5F5" minHeight="1556px">
+        <Grid height="400px" bg="#fff" margin="0 0 10px 0">
           <Grid
             width="100%"
             margin="16px 0"
@@ -96,21 +97,20 @@ const DetailOffice = () => {
           >
             <Grid display="flex" flexDirection="column" justifyContent="center">
               <Span style={{ margin: "0 5px 5px 0" }}>
-                a
-                <Text color="#90969D" size="0.700rem">
+                <Ssp color="#90969D" size="0.700rem">
                   미사역, 도보 8분
-                </Text>
+                </Ssp>
               </Span>
               <Span>
-                a
-                <Text color="#90969D" size="0.700rem">
+                <Ssp color="#90969D" size="0.700rem">
                   매물번호 9999999
-                </Text>
+                </Ssp>
               </Span>
             </Grid>
           </Grid>
         </Grid>
 
+        {/* 상세정보 */}
         <Grid height="200px" bg="#fff" margin="0 0 10px 0">
           <Grid
             bottom="0"
@@ -120,7 +120,6 @@ const DetailOffice = () => {
             justifyContent="center"
             width="100%"
             height="200px"
-            border="1px solid red"
           >
             <Grid
               display="flex"
@@ -157,7 +156,13 @@ const DetailOffice = () => {
           </Grid>
         </Grid>
 
-        <Grid height="516px" bg="#fff" margin="0 0 10px 0">
+        {/* 중개사 코멘트 */}
+        <Grid
+          height="600px"
+          bg="#fff"
+          margin="0 0 10px 0"
+          border="1px solid red"
+        >
           <Grid
             bottom="0"
             padding="0 16px"
@@ -165,8 +170,7 @@ const DetailOffice = () => {
             flexDirection="column"
             justifyContent="center"
             width="100%"
-            height="200px"
-            border="1px solid red"
+            height="460px"
           >
             <Grid
               display="flex"
@@ -183,63 +187,73 @@ const DetailOffice = () => {
               justifyContent="center"
               border="1px solid red"
             >
-              <Grid display="flex" margin="0 0 10px" border="1px solid red">
-                <Sp>강남역 10분, 역삼역 도보 12분, 신논현역 도보 15분</Sp>
+              <Grid margin="0 0 10px" border="1px solid red">
+                <Text>강남역 10분, 역삼역 도보 12분, 신논현역 도보 15분</Text>
                 <Ssp>지하철역 도보 15분 이내의 트리플</Ssp>
               </Grid>
-              <Grid display="flex" margin="0 0 10px" border="1px solid red">
-                <P>
-                  해당 사무소는 공인중개사 자격중을 갖춘 인원으로만 구성되어
+              <Grid margin="0 0 10px" border="1px solid red">
+                <Text>
+                  ◎해당 사무소는 공인중개사 자격증을 갖춘 인원으로만 구성되어
                   있습니다.
-                </P>
-                <P>직접 방문 후 촬영한 100% 실매물 현장사진</P>
+                </Text>
+              </Grid>
+              <Grid margin="0 0 20px" border="1px solid red">
+                <Text>◎직접 방문 후 촬영한 100% 실매물 현장사진</Text>
+              </Grid>
+              <Grid margin="0 0 10px" border="1px solid red">
+                <Text>◼넓은 실내 구조</Text>
+              </Grid>
+              <Grid margin="0 0 10px" border="1px solid red">
+                <Text>◼한층 전체 단독사용</Text>
+              </Grid>
+              <Grid margin="0 0 10px" border="1px solid red">
+                <Text>◼분리공간 있음</Text>
+              </Grid>
+              <Grid margin="0 0 10px" border="1px solid red">
+                <Text>◼내부 화장실 남녀 분리 완비</Text>
+              </Grid>
+              <Grid margin="0 0 10px" border="1px solid red">
+                <Text>◼교동사거리, 매교역 인근으로 출퇴근 편리</Text>
+              </Grid>
+              <Grid margin="0 0 10px" border="1px solid red">
+                <Text>
+                  ◼분당선 도보 3분내 정류장을 통한 1호선 및 분당선 이용가능
+                </Text>
               </Grid>
             </Grid>
           </Grid>
         </Grid>
-      </Grid>
 
-      {/* <OneMap estateid={estateid} /> */}
-      <DetailWrap>
-        {/* 맵돌리기 */}
+        {/* 위치 */}
+
         <Grid
+          bottom="0"
+          //padding="0 16px"
           display="flex"
-          justifyContent="space-between"
-          alignItems="center"
-          _onClick={() => {
-            history.push(`/detail/${estateid}/`);
-          }}
+          flexDirection="column"
+          justifyContent="center"
+          width="100%"
+          height="260px"
+          // border="1px solid red"
+          bg="#fff"
         >
           <Grid
-            width="25%"
-            height="70px"
-            margin="0 5% 0 0"
-            overflow="hidden"
-            borderRadius="8px"
-          >
-            <Image
-              src="https://velog.velcdn.com/images/ryurim0109/post/6435c602-4d7e-4018-81fa-269d93d5d351/image.jpg"
-              shape="rectangle"
-            />
-          </Grid>
-          <Grid
-            width="80%"
-            height="70px"
             display="flex"
             flexDirection="column"
             justifyContent="center"
+            // border="1px solid red"
+            padding="16px 0"
+            bg="#fff"
           >
-            <Text bold size="0.625rem">
-              초역세권 텍스트
-            </Text>
-            <Text bold size="0.875rem">
-              트리플역세권사무실(광희동,장충동)
-            </Text>
-            <Text size="0.625rem">초역세권 텍스트</Text>
+            <Grid margin="0 0 10px" border="1px solid red">
+              <Bp style={{ padding: "3px 16px" }}>위치</Bp>
+              <Sp style={{ padding: "0 16px" }}> 서울시 강남구 대치동 </Sp>
+            </Grid>
+            <OneMap />
           </Grid>
         </Grid>
-        {/* 맵돌리기 */}
-      </DetailWrap>
+      </Grid>
+      <Bar />
     </React.Fragment>
   );
 };
@@ -290,3 +304,45 @@ const Ssp = styled.p`
 `;
 
 export default DetailOffice;
+
+// {/* <OneMap estateid={estateid} /> */}
+//       <DetailWrap>
+//         {/* 맵돌리기 */}
+//         <Grid
+//           display="flex"
+//           justifyContent="space-between"
+//           alignItems="center"
+//           _onClick={() => {
+//             history.push(`/detail/${estateid}/`);
+//           }}
+//         >
+//           <Grid
+//             width="25%"
+//             height="70px"
+//             margin="0 5% 0 0"
+//             overflow="hidden"
+//             borderRadius="8px"
+//           >
+//             <Image
+//               src="https://velog.velcdn.com/images/ryurim0109/post/6435c602-4d7e-4018-81fa-269d93d5d351/image.jpg"
+//               shape="rectangle"
+//             />
+//           </Grid>
+//           <Grid
+//             width="80%"
+//             height="70px"
+//             display="flex"
+//             flexDirection="column"
+//             justifyContent="center"
+//           >
+//             <Text bold size="0.625rem">
+//               초역세권 텍스트
+//             </Text>
+//             <Text bold size="0.875rem">
+//               트리플역세권사무실(광희동,장충동)
+//             </Text>
+//             <Text size="0.625rem">초역세권 텍스트</Text>
+//           </Grid>
+//         </Grid>
+//         {/* 맵돌리기 */}
+//       </DetailWrap>
