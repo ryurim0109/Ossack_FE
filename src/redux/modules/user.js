@@ -178,7 +178,7 @@ const loginBykakao = (code) => {
       .catch((err) => {
         console.log("소셜로그인 에러", err);
         Swal.fire("로그인 실패 !");
-        history.replace("/"); // 로그인 실패하면 처음화면으로 돌려보냄
+        history.replace("/start"); // 로그인 실패하면 처음화면으로 돌려보냄
       });
   };
 };
@@ -223,7 +223,7 @@ const loginBygoogle = (code) => {
       .catch((err) => {
         console.log("소셜로그인 에러", err);
         Swal.fire("로그인에 실패하였습니다.");
-        history.replace("/"); // 로그인 실패하면 처음화면으로 돌려보냄
+        history.replace("/start"); // 로그인 실패하면 처음화면으로 돌려보냄
       });
   };
 };
