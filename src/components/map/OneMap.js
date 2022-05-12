@@ -6,24 +6,18 @@ import onePin from "../../static/images/onePin.svg";
 
 const KakaoMap = (props) => {
   const { kakao } = window;
-  //const estateid = useParams().estateId;
-  const { estateid } = props;
-  console.log(estateid);
-  const list = [];
-  //   const list = useSelector((state) => state.office.list);
-  //   const officeData = list?.filter((a) => a.estateid === +estateid);
-  //   const firstY = officeData?.map((a) => a.coordinate.lat);
-  //   const firstX = officeData?.map((a) => a.coordinate.lng);
-  const firstY = 37.592113779824636;
-  const firstX = 126.92199098323738;
+  const list = useSelector((state) => state.office.one_office);
+ 
+    const firstY = list?.coordinateResponseDto.lat;
+    const firstX = list?.coordinateResponseDto.lng;
 
   useEffect(() => {
     let container = document.getElementById("map");
     container.style.width = "100%";
-    container.style.height = "88vh";
+    container.style.height = "100%";
     var options = {
       center: new kakao.maps.LatLng(firstY, firstX),
-      level: 3,
+      level: 8,
     };
 
     let imageSrc = onePin, // 마커이미지의 주소입니다
@@ -37,18 +31,7 @@ const KakaoMap = (props) => {
     );
 
     let map = new kakao.maps.Map(container, options);
-    // list.forEach((a) => {
-    //   // 마커를 생성합니다
-    //   new kakao.maps.Marker({
-    //     //마커가 표시 될 지도
-    //     map: map,
-    //     //마커가 표시 될 위치
-    //     position: new kakao.maps.LatLng(firstY, firstX),
-    //     image: a.estateid === +estateid ? markerImage : markerImage,
-    //     title: a.title,
-    //     zIndex: a.estateid === +estateid ? 1 : 0,
-    //   });
-    // });
+    
     new kakao.maps.Marker({
       map: map,
       position: new kakao.maps.LatLng(firstY, firstX),
@@ -65,7 +48,7 @@ const KakaoMap = (props) => {
 };
 
 const MapWrap = styled.div`
-  width: 500px;
+  width: 100%;
   height: 180px;
 `;
 

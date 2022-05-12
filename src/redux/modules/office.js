@@ -23,8 +23,8 @@ const getOfficeLike = createAction(GET_LIKE, (like_list) => ({ like_list }));
 const getSOList = createAction(GET_SEARCH_OFFICE_LIST, (list,page,keyword) => ({
   list,page,keyword
 }));
-const getOneOffice = createAction(GET_ONE_OFFICE, (one_list) => ({
-  one_list,
+const getOneOffice = createAction(GET_ONE_OFFICE, (one_office) => ({
+  one_office,
 }));
 
 const initialState = {
