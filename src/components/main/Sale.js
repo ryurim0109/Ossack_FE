@@ -29,7 +29,7 @@ function Sale() {
         </Grid> */}
         <Grid width="100%" margin="50px 0 0">
           <Text size="1.250rem" bold>
-            <Text color="#0497FF" bold>{user_info?.nickname ? user_info?.nickname : "게스트"}님</Text> 어떤
+            <Text color="#3E00FF" bold>{user_info?.nickname ? user_info?.nickname : "게스트"}님</Text> 어떤
             🏢오피스를 <br />
             찾고 계시나요?
           </Text>
