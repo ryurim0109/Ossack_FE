@@ -38,6 +38,7 @@ const Button = (props) => {
     _disabled,
     fill_like,
     alignItems,
+    border,
   } = props;
 
   const styles = {
@@ -58,6 +59,7 @@ const Button = (props) => {
     display,
     fontSize,
     alignItems,
+    border,
   };
   if (is_like) {
     return (
@@ -143,6 +145,7 @@ Button.defaultProps = {
   justifyContent: null,
   alignItems: false,
   fontSize: null,
+  border:null,
 };
 
 const ButtonBox = styled.button`
@@ -161,7 +164,7 @@ const ButtonBox = styled.button`
       : "background-color: #ccc"};
   box-sizing: border-box;
   font-weight: bold;
-  border: none;
+  ${(props) => (props.border ? `border: ${props.border};` : 'none')};
   ${(props) =>
     props.borderRadius
       ? `border-radius:${props.borderRadius}`
