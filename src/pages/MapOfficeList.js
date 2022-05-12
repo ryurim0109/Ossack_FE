@@ -5,8 +5,7 @@ import  { actionCreators as officeActions } from '../redux/modules/office';
 
 import { MyHeader } from '../components/my/index';
 import { MapOfficeResult } from '../components/search/index';
-import { Bar,Spinner } from '../components/shared/home';
-import InfinityScroll from '../shared/InfinityScroll';
+import { Bar,LoadSpinner } from '../components/shared/home';
 
 
 const MapOfficeList = (props) => {
@@ -14,7 +13,7 @@ const MapOfficeList = (props) => {
     const search = (props.location.search).split("=")[1];
     //console.log(decodeURI(search))
     const totalPage = useSelector((state)=>state?.office?.page);
-  
+  console.log(totalPage)
 
   const [pageno,setPageno] = useState(1);
   const [target, setTarget] = useState(null);
@@ -46,7 +45,7 @@ const MapOfficeList = (props) => {
   React.useEffect(()=>{
     
       dispatch(officeActions.getSOListDB(search,pageno));
-      console.log(pageno)
+      // console.log(pageno)
   },[pageno]);
 
 
@@ -64,7 +63,7 @@ const MapOfficeList = (props) => {
               <MapOfficeResult/>
             </Outter>
             {isLoading ? (
-                    <Spinner />
+                    <LoadSpinner />
                   ): null }
 
              {totalPage>pageno ?

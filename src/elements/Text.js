@@ -16,6 +16,7 @@ const Text = (props) => {
     cursor,
     lingH,
     textIndent,
+    borderBottom,
   } = props;
   const styles = {
     color,
@@ -26,6 +27,7 @@ const Text = (props) => {
     padding,
     family,
     border,
+    borderBottom,
     cursor,
     lingH,
     textIndent,
@@ -49,6 +51,7 @@ Text.defaultProps = {
   border: null,
   textIndent:null,
   lingH:null,
+  borderBottom:null,
   _onClick: () => {},
   cursor: null,
 };
@@ -65,6 +68,7 @@ const ElText = styled.span`
   border: ${(props) => props.border};
   cursor: ${(props) => props.cursor};
   line-height: ${(props) => props.lingH};
+  border-bottom: ${(props) => props.borderBottom};
 `;
 
 export default Text;

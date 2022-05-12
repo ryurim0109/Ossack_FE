@@ -243,7 +243,7 @@ const userImgDB = (image) => {
       .then((res) => {
         console.log(res.data, "이미지 데이터");
         Swal.fire("이미지 등록이 완료되었습니다.");
-        dispatch(user_img(res.data.imageUrl));
+        dispatch(user_img(res.data.data.imageUrl));
       })
       .catch((err) => {
         console.log("프로필 업로드 에러다!!!!", err.response);
@@ -268,7 +268,6 @@ export default handleActions(
       }),
     [USER_IMG]: (state, action) =>
       produce(state, (draft) => {
-        console.log(action.payload.userImage);
         draft.user = { ...state.user, imageUrl: action.payload.userImage };
       }),
   },
