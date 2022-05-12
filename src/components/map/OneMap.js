@@ -1,15 +1,17 @@
+/*global kakao*/
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 
 import onePin from "../../static/images/onePin.svg";
-
+const { kakao } = window;
 const KakaoMap = (props) => {
-  const { kakao } = window;
+
   const list = useSelector((state) => state?.office?.list);
 
   const firstY = list?.coordinateResponseDto?.lat;
   const firstX = list?.coordinateResponseDto?.lng;
+
 
   useEffect(() => {
     let container = document.getElementById("map");

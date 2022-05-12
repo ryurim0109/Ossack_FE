@@ -1,10 +1,11 @@
+/*global kakao*/
 import React, { useEffect } from "react";
 import Axios from "axios";
 import { useDispatch } from "react-redux";
 import { actionCreators as mapActions } from "../../redux/modules/map";
-
+const { kakao } = window;
 const Position = (props) => {
-  const { kakao } = window;
+  
   const dispatch = useDispatch();
 
   const { pos, map,level } = props;

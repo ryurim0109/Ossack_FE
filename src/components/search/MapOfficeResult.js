@@ -10,8 +10,16 @@ const MapOfficeResult = (props) => {
    
     const dispatch = useDispatch();
     const officeData= useSelector((state)=>state.office.list);
-    return (
+    if( officeData.length===0){
+      return(
         <React.Fragment>
+          검색리스트가 없아요!!
+        </React.Fragment>
+      )
+    }else{
+      return (
+        <React.Fragment>
+         
         { officeData?.map((o, idx) => {
           return (
             <Grid key={idx}>
@@ -77,6 +85,8 @@ const MapOfficeResult = (props) => {
         })}
         </React.Fragment>
     );
+    }
+    
 };
 const Span = styled.span`
   font-size: 0.625rem;

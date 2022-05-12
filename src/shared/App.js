@@ -16,6 +16,7 @@ import {
   SearchList,
   DetailOffice,
   MapOfficeList,
+  Splash,
 } from "../pages/index";
 import { MobileFrame } from "../components/shared/home";
 import KaKaoLogin from "../components/social/KaKaoLogin";
@@ -32,7 +33,8 @@ function App() {
         <ConnectedRouter history={history}>
           <MobileFrame className="MobileFramePage">
             <Switch>
-              <Route path="/" exact component={Start} />
+              <Route path="/" exact component={Splash} />
+              <Route path="/start" exact component={Start} />
               <Route path="/login" exact component={Login} />
               <Route path="/signup" exact component={Signup} />
               <Route
@@ -49,7 +51,6 @@ function App() {
               <Route path="/searchlist" exact component={SearchList} />
               <Route path="/map/office" exact component={MapOfficeList} />
               <Route path="/detail/:estateId" exact  component={DetailOffice}/>
-              <Route path="/detail/" exact component={DetailOffice} />
               <Route component={NotFound} />
             </Switch>
           </MobileFrame>

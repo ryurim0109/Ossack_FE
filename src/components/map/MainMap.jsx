@@ -1,3 +1,4 @@
+/*global kakao*/
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
@@ -34,44 +35,45 @@ const MainMap = (props) => {
   const [state, setState] = useState({
     //기본 설정값
     center: {
-      lat: 33.450701,
-      lng: 126.570667,
+      lat: 37.5173319258532,
+      lng: 127.047377408384,
     },
     errMsg: null,
     isLoading: true,
   });
-  useEffect(() => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          setState((prev) => ({
-            ...prev,
-            center: {
-              lat: position.coords.latitude, // 위도
-              lng: position.coords.longitude, // 경도
-            },
-            isLoading: false,
-          }));
+  //지도 키자마자 내 위치 찍어줌.
+  // useEffect(() => {
+  //   if (navigator.geolocation) {
+  //     navigator.geolocation.getCurrentPosition(
+  //       (position) => {
+  //         setState((prev) => ({
+  //           ...prev,
+  //           center: {
+  //             lat: position.coords.latitude, // 위도
+  //             lng: position.coords.longitude, // 경도
+  //           },
+  //           isLoading: false,
+  //         }));
           
-        },
-        (err) => {
-          setState((prev) => ({
-            ...prev,
-            errMsg: err.message,
-            isLoading: false,
-          }));
-        }
-      );
-    } else {
-      setState((prev) => ({
-        ...prev,
-        errMsg: "현재 위치를 표시할 수 없어요.",
-        isLoading: false,
-      }));
-    }
+  //       },
+  //       (err) => {
+  //         setState((prev) => ({
+  //           ...prev,
+  //           errMsg: err.message,
+  //           isLoading: false,
+  //         }));
+  //       }
+  //     );
+  //   } else {
+  //     setState((prev) => ({
+  //       ...prev,
+  //       errMsg: "현재 위치를 표시할 수 없어요.",
+  //       isLoading: false,
+  //     }));
+  //   }
     
-    //위도 경도
-  }, []);
+  //   //위도 경도
+  // }, []);
   const po =({
     swLatLng: {
       lat: map?.getBounds().getSouthWest().getLat(),
@@ -86,7 +88,7 @@ const MainMap = (props) => {
   console.log(po,level)
   
     useEffect(()=>{
-      const timeout = setTimeout(() =>  dispatch(mapActions.getOfficeData(po,level)), 3000);
+      const timeout = setTimeout(() =>  dispatch(mapActions.getOfficeData(po,level)), 7000);
     return () => clearTimeout(timeout);
     
   },[])

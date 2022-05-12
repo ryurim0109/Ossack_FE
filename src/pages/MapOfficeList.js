@@ -5,7 +5,7 @@ import { actionCreators as officeActions } from "../redux/modules/office";
 
 import { MyHeader } from "../components/my/index";
 import { MapOfficeResult } from "../components/search/index";
-import { Bar, LoadSpinner } from "../components/shared/home";
+import { Bar, Spinner } from "../components/shared/home";
 
 const MapOfficeList = (props) => {
   const dispatch = useDispatch();
@@ -59,7 +59,7 @@ const MapOfficeList = (props) => {
               </InfinityScroll> */}
         <MapOfficeResult />
       </Outter>
-      {isLoading ? <LoadSpinner /> : null}
+      {isLoading ? <Spinner /> : null}
 
       {totalPage > pageno ? <div ref={setTarget}> </div> : null}
       <Bar />

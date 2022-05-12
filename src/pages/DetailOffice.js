@@ -277,7 +277,7 @@ const DetailOffice = () => {
           >
             <Grid margin="0 0 10px" border="1px solid red" height="55px">
               <Bp style={{ padding: "3px 16px" }}>위치</Bp>
-              <Sp style={{ padding: "0 16px" }}> 서울시 강남구 대치동 </Sp>
+              <Sp style={{ padding: "0 16px" }}> {getOneOffice?.address} </Sp>
             </Grid>
 
             <OneMap />

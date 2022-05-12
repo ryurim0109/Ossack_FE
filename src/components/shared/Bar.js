@@ -1,6 +1,6 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import styled from 'styled-components';
-import {Grid,Button,Text,Image} from '../../elements/index';
+import {Grid,Text} from '../../elements/index';
 import {history} from '../../redux/configStore';
 import { useSelector } from "react-redux";
 //아이콘
@@ -15,7 +15,7 @@ import active_user from '../../static/images/active_user.svg';
 
 
 function Bar() {
-
+  
   const gnbClick=(e,gnbname)=>{
     if(gnbname==="home"){
       history.push('/main');
@@ -29,8 +29,9 @@ function Bar() {
   }
   const router = useSelector((state) => state.router.location.pathname);
   const [params, setParams] = useState(window.location.pathname);
+  
   //const [activeNav, setActiveNav] = useState(1);
-  React.useEffect(() => {
+  useEffect(() => {
     setParams(router);
   }, [router]);
   return (
@@ -41,15 +42,15 @@ function Bar() {
           }}
             width="25%" textAlign="center" display="flex" flexDirection="column" justifyContent="center" alignItems="center">
                 <Grid width="24px" height="24px"><img src={params==='/main'?active_home:home} alt="홈아이콘"/> </Grid>
-                <Text cursor="pointer" color={params==='/main'?'#0497FF':"#BEBDC4"} size="12px">홈</Text>
+                <Text cursor="pointer" color={params==='/main'?'#3E00FF':"#BEBDC4"} size="12px">홈</Text>
                <div/>
             </Grid>
             <Grid  _onClick={(e) => {
               gnbClick(e,"map")
           }}
             width="25%" textAlign="center" display="flex" flexDirection="column" justifyContent="center" alignItems="center">
-                <Grid width="24px" height="24px"><img src={params==='/map'?active_search:search} alt="검색아이콘"/> </Grid>
-                <Text cursor="pointer" color={params==='/map'?'#0497FF':"#BEBDC4"} size="12px">탐색</Text>
+                <Grid width="24px" height="24px"><img src={params.includes('/map') || params.includes('/search') || params.includes('/detail')?active_search:search} alt="검색아이콘"/> </Grid>
+                <Text cursor="pointer" color={params.includes('/map') || params.includes('/search') || params.includes('/detail')?'#3E00FF':"#BEBDC4"} size="12px">탐색</Text>
                <div/>
             </Grid>
             <Grid  _onClick={(e) => {
@@ -57,14 +58,14 @@ function Bar() {
           }}
             width="25%" textAlign="center" display="flex" flexDirection="column" justifyContent="center" alignItems="center">
                 <Grid width="24px" height="24px"><img src={params==='/like'?active_heart:heart} alt="하트아이콘"/> </Grid>
-               <Text cursor="pointer" color={params==='/like'?'#0497FF':"#BEBDC4"} size="12px">찜</Text>
+               <Text cursor="pointer" color={params==='/like'?'#3E00FF':"#BEBDC4"} size="12px">찜</Text>
             </Grid>
             <Grid _onClick={(e) => {
                gnbClick(e,"mypage")
           }}
             width="25%" textAlign="center" display="flex" flexDirection="column" justifyContent="center" alignItems="center">
                 <Grid width="24px" height="24px"><img src={params==='/mypage'?active_user:user} alt="유저아이콘"/> </Grid>
-               <Text cursor="pointer" color={params==='/mypage'?'#0497FF':"#BEBDC4"}  size="12px">마이페이지</Text>
+               <Text cursor="pointer" color={params==='/mypage'?'#3E00FF':"#BEBDC4"}  size="12px">마이페이지</Text>
             </Grid>
         </Container>
     </React.Fragment>

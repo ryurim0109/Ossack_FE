@@ -131,7 +131,7 @@ const loginCheckApi = () => {
     }).catch((err) => {
       console.log("체크에러다!!!!", err.response);
       Swal.fire('로그인 여부 확인에 문제가 생겼습니다. 로그인을 다시 해주세요!');
-      history.replace("/"); 
+      history.replace("/start"); 
     }); 
   }
   
@@ -140,7 +140,7 @@ const loginCheckApi = () => {
 const logOutApi = () => {
   return function (dispatch, getState, { history }) {
     localStorage.removeItem("token");
-    history.replace("/");
+    history.replace("/start");
     Swal.fire("로그인 기간 만료!");
     dispatch(logOut());
   };
@@ -178,7 +178,7 @@ const loginBykakao = (code) => {
       .catch((err) => {
         console.log("소셜로그인 에러", err);
         Swal.fire("로그인 실패 !");
-        history.replace("/"); // 로그인 실패하면 처음화면으로 돌려보냄
+        history.replace("/start"); // 로그인 실패하면 처음화면으로 돌려보냄
       });
   };
 };
@@ -223,7 +223,7 @@ const loginBygoogle = (code) => {
       .catch((err) => {
         console.log("소셜로그인 에러", err);
         Swal.fire("로그인에 실패하였습니다.");
-        history.replace("/"); // 로그인 실패하면 처음화면으로 돌려보냄
+        history.replace("/start"); // 로그인 실패하면 처음화면으로 돌려보냄
       });
   };
 };
