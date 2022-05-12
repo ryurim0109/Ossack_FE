@@ -18,15 +18,12 @@ import {
 } from "react-kakao-maps-sdk";
 import { Position, Overlay } from "./index";
 
-import Sheet from "react-modal-sheet";
-import { Button, Grid, Text } from "../../elements/index";
-
 const MainMap = (props) => {
   const dispatch = useDispatch();
   const getOffice = useSelector((state) => state.map.office_list);
   const is_loaded = useSelector((state) => state.map.is_loaded);
   //console.log(is_loaded)
-  console.log("getOffice : ", getOffice);
+  //console.log("getOffice : ", getOffice);
   const OverLavel=getOffice?.level;
 
   const { kakao } = window;
@@ -86,7 +83,13 @@ const MainMap = (props) => {
     },
   })
 
-  // console.log(po,level)
+  console.log(po,level)
+  
+    useEffect(()=>{
+      const timeout = setTimeout(() =>  dispatch(mapActions.getOfficeData(po,level)), 3000);
+    return () => clearTimeout(timeout);
+    
+  },[])
   
   // useEffect(()=>{
   //   dispatch(mapActions.getOfficeData(po,level));

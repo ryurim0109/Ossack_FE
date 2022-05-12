@@ -17,10 +17,10 @@ const Office = () => {
        <Grid margin="16px 0 0 0" display="flex" alignItems="center">
                 {tabTitle.map((title, idx) => {
                     return (
-                      <Grid width="88px" cursor="pointer"  key={idx} height="25px" bg={openTab===idx? "none":"#D1E1FF"} border={openTab===idx? "1px solid #0055FF":"none"}  borderRadius="100px" _onClick={()=>{
+                      <Grid width="88px" cursor="pointer"  key={idx} height="25px" bg={openTab===idx? "#0497FF":"none"} border={openTab===idx? "none":"1px solid #0497FF"}  borderRadius="100px" _onClick={()=>{
                         onClickTab(idx)
                       }}
-                      display="flex" alignItems="center" color={openTab===idx?"#0055FF":"#787878"} justifyContent="center" margin="0 4px 0 0">#{title}근처</Grid>
+                      display="flex" alignItems="center" color={openTab===idx?"#fff":"#0497FF"} justifyContent="center" margin="0 4px 0 0">#{title}근처</Grid>
                     );
                   })}
         </Grid>
