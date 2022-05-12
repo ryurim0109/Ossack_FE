@@ -20,11 +20,16 @@ const getHot = createAction(GET_HOT, (hot_list) => ({ hot_list }));
 const clickLike = createAction(CLICK_LIKE, (estate_id) => ({ estate_id }));
 const deleteLike = createAction(DELETE_LIKE, (estate_id) => ({ estate_id }));
 const getOfficeLike = createAction(GET_LIKE, (like_list) => ({ like_list }));
-const getSOList = createAction(GET_SEARCH_OFFICE_LIST, (list,page,keyword) => ({
-  list,page,keyword
-}));
-const getOneOffice = createAction(GET_ONE_OFFICE, (one_office) => ({
-  one_office,
+const getSOList = createAction(
+  GET_SEARCH_OFFICE_LIST,
+  (list, page, keyword) => ({
+    list,
+    page,
+    keyword,
+  })
+);
+const getOneOffice = createAction(GET_ONE_OFFICE, (list) => ({
+  list,
 }));
 
 const initialState = {
@@ -124,15 +129,17 @@ const getOfficeLikeDB = (type) => {
 
 /* 검색 리스트 조회 */
 
-const getSOListDB = (keyword,pageno) => {
+const getSOListDB = (keyword, pageno) => {
   //console.log("keyword : ", keyword);
-  return (dispatch,getState) => {
+  return (dispatch, getState) => {
     instance
       .get(`/api/list/search/${pageno}?query=${keyword}`)
       .then((res) => {
         console.log("res : ", res);
-        const key=decodeURI(keyword)
-        dispatch(getSOList(res.data.estateResponseDtoList,res.data.totalpage,key));
+        const key = decodeURI(keyword);
+        dispatch(
+          getSOList(res.data.estateResponseDtoList, res.data.totalpage, key)
+        );
       })
       .catch((err) => {
         console.log("Error Message: ", err.message);
@@ -162,8 +169,8 @@ export default handleActions(
     [GET_ONE_OFFICE]: (state, action) =>
       produce(state, (draft) => {
         console.log("state : ", state);
-        draft.one_office = action.payload.one_office;
-        console.log("action.payload.one_office : ", action.payload.one_office);
+        draft.list = action.payload.list;
+        console.log("action.payload.list : ", action.payload.list);
       }),
     [GET_MAIN_OFFICE]: (state, action) =>
       produce(state, (draft) => {
@@ -176,12 +183,21 @@ export default handleActions(
     [CLICK_LIKE]: (state, action) =>
       produce(state, (draft) => {
         let numArr = [];
+
+        console.log("draft.list.length : ", draft.list.length);
         draft.list.filter((val, idx) => {
           if (val.estateid === action.payload.estate_id) {
             return numArr.push(idx);
           }
         });
         draft.list[numArr[0]].mylike = true;
+
+        // draft.list.filter((val, idx) => {
+        //   if (val.estateid === action.payload.estate_id) {
+        //     return numArr.push(idx);
+        //   }
+        // });
+        // draft.list[numArr[0]].mylike = true;
       }),
     [DELETE_LIKE]: (state, action) =>
       produce(state, (draft) => {
@@ -200,7 +216,10 @@ export default handleActions(
 
     [GET_SEARCH_OFFICE_LIST]: (state, action) =>
       produce(state, (draft) => {
-        if (action.payload.page > 1 && action.payload.keyword===draft.keyword) {
+        if (
+          action.payload.page > 1 &&
+          action.payload.keyword === draft.keyword
+        ) {
           draft.list.push(...action.payload.list);
         } else {
           draft.list = action.payload.list;
