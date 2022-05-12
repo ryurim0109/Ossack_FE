@@ -13,8 +13,9 @@ import { actionCreators as officeActions } from "../redux/modules/office";
 const DetailOffice = () => {
   const dispatch = useDispatch();
   const estateid = useParams().estateId;
-  const getOneOffice = useSelector((state) => state.office.one_office);
+  const getOneOffice = useSelector((state) => state.office.list);
   console.log("getOneOffice : ", getOneOffice);
+
   // const getImage = getOneOffice.images.map((images) => images);
   // console.log("getImage : ", getImage);
 
@@ -26,13 +27,15 @@ const DetailOffice = () => {
   // console.log("buildingDetail : ", buildingDetail);
 
   useEffect(() => {
+    console.log(estateid);
     dispatch(officeActions.getOneOfficeDB(estateid));
+    console.log("2");
   }, [estateid]);
 
   return (
     <React.Fragment>
       <MyHeader>매물번호 {estateid}</MyHeader>
-      <Grid bg="#F5F5F5" minHeight="1950px" paddingBottom="90px">
+      <Grid bg="#F5F5F5" minHeight="1540px" paddingBottom="90px">
         <Grid height="400px" bg="#fff" margin="0 0 10px 0">
           <Grid
             width="100%"
@@ -46,7 +49,7 @@ const DetailOffice = () => {
             <Grid>
               <SlickSlider>
                 {getOneOffice?.images &&
-                  getOneOffice?.images.map((image, idx) => {
+                  getOneOffice?.images?.map((image, idx) => {
                     return (
                       <Image
                         key={idx}
@@ -59,13 +62,27 @@ const DetailOffice = () => {
                     );
                   })}
               </SlickSlider>
-              <Button
-                is_like
-                position="absolute"
-                right="8px"
-                top="8px"
-                color="#fff"
-              />
+              {getOneOffice?.mylike ? (
+                <Button
+                  fill_like
+                  position="absolute"
+                  right="8px"
+                  top="8px"
+                  color="#FF0000"
+                  _onClick={() =>
+                    dispatch(officeActions.deleteLikeDB(estateid))
+                  }
+                />
+              ) : (
+                <Button
+                  is_like
+                  position="absolute"
+                  right="8px"
+                  top="8px"
+                  color="#fff"
+                  _onClick={() => dispatch(officeActions.clickLikeDB(estateid))}
+                />
+              )}
             </Grid>
           </Grid>
 
@@ -173,10 +190,11 @@ const DetailOffice = () => {
 
         {/* 중개사 코멘트 */}
         <Grid
-          height="900px"
+          height="500px"
           bg="#fff"
           margin="0 0 10px 0"
           border="1px solid red"
+          overflow="scroll"
         >
           <Grid
             bottom="0"
@@ -220,13 +238,15 @@ const DetailOffice = () => {
               <Grid border="1px solid red">
                 <Text>
                   {/* {" "} */}
-                  {getOneOffice?.buildingDetail.split("\n").map((line, idx) => {
-                    return (
-                      <div key={idx}>
-                        {line} <br />
-                      </div>
-                    );
-                  })}
+                  {getOneOffice?.buildingDetail
+                    ?.split("\n")
+                    .map((line, idx) => {
+                      return (
+                        <div key={idx}>
+                          {line} <br />
+                        </div>
+                      );
+                    })}
                 </Text>
               </Grid>
             </Grid>
