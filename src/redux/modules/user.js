@@ -131,7 +131,7 @@ const loginCheckApi = () => {
     }).catch((err) => {
       console.log("체크에러다!!!!", err.response);
       Swal.fire('로그인 여부 확인에 문제가 생겼습니다. 로그인을 다시 해주세요!');
-      history.replace("/"); 
+      history.replace("/start"); 
     }); 
   }
   
@@ -140,7 +140,7 @@ const loginCheckApi = () => {
 const logOutApi = () => {
   return function (dispatch, getState, { history }) {
     localStorage.removeItem("token");
-    history.replace("/");
+    history.replace("/start");
     Swal.fire("로그인 기간 만료!");
     dispatch(logOut());
   };
