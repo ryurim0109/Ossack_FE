@@ -6,7 +6,7 @@ import { RESP } from "../../response";
 import Swal from "sweetalert2";
 
 // Action type
-const GET_MAIN_OFFICE = "GET_MAIN_OFFICE";// 메인페이지 리스트 조회
+const GET_MAIN_OFFICE = "GET_MAIN_OFFICE"; // 메인페이지 리스트 조회
 const GET_HOT = "GET_HOT"; // 핫한 지역
 const CLICK_LIKE = "CLICK_LIKE"; //좋아요
 const DELETE_LIKE = "DELETE_LIKE"; //좋아요 취소
@@ -15,19 +15,19 @@ const GET_SEARCH_OFFICE_LIST = "GET_SEARCH_OFFICE_LIST";
 const LOADING = "LOADING";
 const GET_ONE_OFFICE = "GET_ONE_OFFICE";
 
-
 // Action Creator
 const getMainOffice = createAction(GET_MAIN_OFFICE, (list) => ({ list }));
 const getHot = createAction(GET_HOT, (hot_list) => ({ hot_list }));
 const clickLike = createAction(CLICK_LIKE, (estate_id) => ({ estate_id }));
 const deleteLike = createAction(DELETE_LIKE, (estate_id) => ({ estate_id }));
 const getOfficeLike = createAction(GET_LIKE, (like_list) => ({ like_list }));
-const getSOList = createAction(GET_SEARCH_OFFICE_LIST, (list,page) => ({
-  list,page
+const getSOList = createAction(GET_SEARCH_OFFICE_LIST, (list, page) => ({
+  list,
+  page,
 }));
 const loading = createAction(LOADING, (is_loading) => ({ is_loading }));
-const getOneOffice = createAction(GET_ONE_OFFICE, (estate_id) => ({
-  estate_id,
+const getOneOffice = createAction(GET_ONE_OFFICE, (one_office) => ({
+  one_office,
 }));
 
 const initialState = {
@@ -126,16 +126,15 @@ const getOfficeLikeDB = (type) => {
 };
 
 /* 검색 리스트 조회 */
-const getSOListDB = (keyword,pageno) => {
+const getSOListDB = (keyword, pageno) => {
   console.log("keyword : ", keyword);
-  return (dispatch,getState) => {
-
+  return (dispatch, getState) => {
     instance
       // .get(`/api/list/search/${officeList}?query=${keyword}`)
       .get(`/api/list/search/${pageno}?query=${keyword}`)
       .then((res) => {
         console.log("res : ", res);
-        dispatch(getSOList(res.data.estateResponseDtoList,res.data.totalpage));
+        dispatch(getSOList(res.data.estateResponseDtoList, res.data.totalpage));
       })
       .catch((err) => {
         console.log("Error Message: ", err.message);
@@ -144,11 +143,11 @@ const getSOListDB = (keyword,pageno) => {
 };
 
 /* 상세 조회 */
-const getOneOfficeDB = (estateId) => {
-  console.log("estateId : ", estateId);
+const getOneOfficeDB = (estateid) => {
+  console.log("estateId : ", estateid);
   return (dispatch) => {
     instance
-      .get(`/api/detail/${estateId}`)
+      .get(`/api/detail/${estateid}`)
       .then((res) => {
         console.log("res : ", res);
         dispatch(getOneOffice(res.data));
@@ -164,7 +163,9 @@ export default handleActions(
   {
     [GET_ONE_OFFICE]: (state, action) =>
       produce(state, (draft) => {
-        draft.list = action.payload.estate_id;
+        console.log("state : ", state);
+        draft.one_office = action.payload.one_office;
+        console.log("action.payload.one_office : ", action.payload.one_office);
       }),
     [GET_MAIN_OFFICE]: (state, action) =>
       produce(state, (draft) => {
@@ -203,7 +204,6 @@ export default handleActions(
       produce(state, (draft) => {
         draft.list.unshift(...action.payload.list);
         draft.page = action.payload.page;
-        
       }),
   },
   initialState
