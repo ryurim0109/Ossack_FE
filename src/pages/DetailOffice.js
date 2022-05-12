@@ -13,16 +13,26 @@ import { actionCreators as officeActions } from "../redux/modules/office";
 const DetailOffice = () => {
   const dispatch = useDispatch();
   const estateid = useParams().estateId;
-  //   const list = useSelector((state) => state.search.list);
+  const getOneOffice = useSelector((state) => state.office.one_office);
+  console.log("getOneOffice : ", getOneOffice);
+  // const getImage = getOneOffice.images.map((images) => images);
+  // console.log("getImage : ", getImage);
+
+  //const list = useSelector((state) => state.search.list);
+  // console.log("list : ", list);
   //   const officeData = list?.filter((a) => a.estateid === +estateid);
-  // useEffect(() => {
-  //   dispatch(officeActions.getOneOfficeDB(estateid));
-  // }, [estateid]);
+
+  // const buildingDetail = getOneOffice?.buildingDetail.split("\n").map((v) => v);
+  // console.log("buildingDetail : ", buildingDetail);
+
+  useEffect(() => {
+    dispatch(officeActions.getOneOfficeDB(estateid));
+  }, [estateid]);
 
   return (
     <React.Fragment>
       <MyHeader>매물번호 {estateid}</MyHeader>
-      <Grid bg="#F5F5F5" minHeight="1556px">
+      <Grid bg="#F5F5F5" minHeight="1950px" paddingBottom="90px">
         <Grid height="400px" bg="#fff" margin="0 0 10px 0">
           <Grid
             width="100%"
@@ -35,27 +45,19 @@ const DetailOffice = () => {
           >
             <Grid>
               <SlickSlider>
-                <Image
-                  padding="235px"
-                  bottom="0"
-                  src="https://velog.velcdn.com/images/ryurim0109/post/aa1c2d4c-3f28-4549-9c63-b1aeb96073a6/image.jpg"
-                  shape="rectangle"
-                  position="absolute"
-                />
-                <Image
-                  padding="235px"
-                  bottom="0"
-                  src="https://velog.velcdn.com/images/ryurim0109/post/47929a13-bcc8-4e8a-a8a6-312c9db12651/image.jpg"
-                  shape="rectangle"
-                  position="absolute"
-                />
-                <Image
-                  padding="235px"
-                  bottom="0"
-                  src="https://velog.velcdn.com/images/ryurim0109/post/6435c602-4d7e-4018-81fa-269d93d5d351/image.jpg"
-                  shape="rectangle"
-                  position="absolute"
-                />
+                {getOneOffice?.images &&
+                  getOneOffice?.images.map((image, idx) => {
+                    return (
+                      <Image
+                        key={idx}
+                        padding="235px"
+                        bottom="0"
+                        src={image}
+                        shape="rectangle"
+                        position="absolute"
+                      />
+                    );
+                  })}
               </SlickSlider>
               <Button
                 is_like
@@ -76,11 +78,16 @@ const DetailOffice = () => {
             width="100%"
             height="70px"
           >
-            <Text color="#000000" size="0.875rem" border="1px solid red">
-              트리플 역세권 사무실
+            <Text color="#000000" size="0.875rem">
+              {getOneOffice?.type ? getOneOffice?.type : "트리플 역세권 사무실"}
             </Text>
             <Text color="#000000" size="0.875rem">
-              <Span>월세</Span> 200만 <Span>보증금</Span> 3,000만
+              <Span>
+                {getOneOffice?.monthly ? getOneOffice?.monthly : null}
+              </Span>{" "}
+              {getOneOffice?.rent_fee ? getOneOffice?.rent_fee : 200}만{""}
+              <Span>보증금</Span>
+              {getOneOffice?.deposit ? getOneOffice?.deposit : " 3,000만"}
             </Text>
             <Text color="#0055FF" size="0.875rem">
               권리금 없음
@@ -98,12 +105,14 @@ const DetailOffice = () => {
             <Grid display="flex" flexDirection="column" justifyContent="center">
               <Span style={{ margin: "0 5px 5px 0" }}>
                 <Ssp color="#90969D" size="0.700rem">
-                  미사역, 도보 8분
+                  {getOneOffice?.buildingInfo
+                    ? getOneOffice?.buildingInfo
+                    : "미사역, 도보 8분"}
                 </Ssp>
               </Span>
               <Span>
                 <Ssp color="#90969D" size="0.700rem">
-                  매물번호 9999999
+                  매물번호 {estateid ? estateid : null}
                 </Ssp>
               </Span>
             </Grid>
@@ -138,11 +147,17 @@ const DetailOffice = () => {
             >
               <Grid display="flex" margin="0 0 10px" border="1px solid red">
                 <P>건물층 / 해당층</P>
-                <Sp>15층 / 2층</Sp>
+                <Sp>
+                  {getOneOffice?.buildingFloor
+                    ? getOneOffice?.buildingFloor
+                    : "15층"}
+                  층 /{" "}
+                  {getOneOffice?.roomFloor ? getOneOffice?.roomFloor : "2층"}층
+                </Sp>
               </Grid>
               <Grid display="flex" margin="0 0 10px" border="1px solid red">
-                <P>전용 / 공급면적</P>
-                <Sp>4평 / 137평</Sp>
+                <P>공급면적</P>
+                <Sp>{getOneOffice?.area ? getOneOffice?.area : null}</Sp>
               </Grid>
               <Grid display="flex" margin="0 0 10px" border="1px solid red">
                 <P>엘레베이터</P>
@@ -158,7 +173,7 @@ const DetailOffice = () => {
 
         {/* 중개사 코멘트 */}
         <Grid
-          height="600px"
+          height="900px"
           bg="#fff"
           margin="0 0 10px 0"
           border="1px solid red"
@@ -170,7 +185,7 @@ const DetailOffice = () => {
             flexDirection="column"
             justifyContent="center"
             width="100%"
-            height="460px"
+            height="898px"
           >
             <Grid
               display="flex"
@@ -178,6 +193,7 @@ const DetailOffice = () => {
               justifyContent="center"
               border="1px solid red"
               padding="16px 0"
+              height="70px"
             >
               <Bp>중개사 코멘트</Bp>
             </Grid>
@@ -187,37 +203,30 @@ const DetailOffice = () => {
               justifyContent="center"
               border="1px solid red"
             >
-              <Grid margin="0 0 10px" border="1px solid red">
+              <Grid border="1px solid red" height="40px">
                 <Text>강남역 10분, 역삼역 도보 12분, 신논현역 도보 15분</Text>
                 <Ssp>지하철역 도보 15분 이내의 트리플</Ssp>
               </Grid>
-              <Grid margin="0 0 10px" border="1px solid red">
+              <Grid border="1px solid red" height="40px">
                 <Text>
                   ◎해당 사무소는 공인중개사 자격증을 갖춘 인원으로만 구성되어
                   있습니다.
                 </Text>
               </Grid>
-              <Grid margin="0 0 20px" border="1px solid red">
+              <Grid border="1px solid red" height="40px">
                 <Text>◎직접 방문 후 촬영한 100% 실매물 현장사진</Text>
               </Grid>
-              <Grid margin="0 0 10px" border="1px solid red">
-                <Text>◼넓은 실내 구조</Text>
-              </Grid>
-              <Grid margin="0 0 10px" border="1px solid red">
-                <Text>◼한층 전체 단독사용</Text>
-              </Grid>
-              <Grid margin="0 0 10px" border="1px solid red">
-                <Text>◼분리공간 있음</Text>
-              </Grid>
-              <Grid margin="0 0 10px" border="1px solid red">
-                <Text>◼내부 화장실 남녀 분리 완비</Text>
-              </Grid>
-              <Grid margin="0 0 10px" border="1px solid red">
-                <Text>◼교동사거리, 매교역 인근으로 출퇴근 편리</Text>
-              </Grid>
-              <Grid margin="0 0 10px" border="1px solid red">
+
+              <Grid border="1px solid red">
                 <Text>
-                  ◼분당선 도보 3분내 정류장을 통한 1호선 및 분당선 이용가능
+                  {/* {" "} */}
+                  {getOneOffice?.buildingDetail.split("\n").map((line, idx) => {
+                    return (
+                      <div key={idx}>
+                        {line} <br />
+                      </div>
+                    );
+                  })}
                 </Text>
               </Grid>
             </Grid>
@@ -233,7 +242,7 @@ const DetailOffice = () => {
           flexDirection="column"
           justifyContent="center"
           width="100%"
-          height="260px"
+          height="340px"
           // border="1px solid red"
           bg="#fff"
         >
@@ -244,11 +253,13 @@ const DetailOffice = () => {
             // border="1px solid red"
             padding="16px 0"
             bg="#fff"
+            minHeight="330px"
           >
-            <Grid margin="0 0 10px" border="1px solid red">
+            <Grid margin="0 0 10px" border="1px solid red" height="55px">
               <Bp style={{ padding: "3px 16px" }}>위치</Bp>
               <Sp style={{ padding: "0 16px" }}> 서울시 강남구 대치동 </Sp>
             </Grid>
+
             <OneMap />
           </Grid>
         </Grid>

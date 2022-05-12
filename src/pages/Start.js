@@ -3,14 +3,15 @@ import { Grid, Button, Text, Image } from "../elements/index";
 import styled from "styled-components";
 import { history } from "../redux/configStore";
 import { KAKAO_AUTH_URL, GOOGLE_AUTH_URL } from "../shared/SocialOAuth";
+
 import ossack from '../static/images/logo03.svg';
 import kakaoIcon from '../static/images/kakaoIcon.svg';
 import googleIcon from '../static/images/googleIcon.svg';
 
+
 const Start = () => {
   return (
     <React.Fragment>
-      
         <Grid
           width="100%"
           padding="38px 0"
@@ -71,9 +72,8 @@ const Start = () => {
                  {/* 소셜로그인 */}
             </Grid>
           </Grid>
-          </Outter>
-        </Grid>
-      
+        </Outter>
+      </Grid>
     </React.Fragment>
   );
 };

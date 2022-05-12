@@ -2,19 +2,18 @@ import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 
-import onePin from '../../static/images/onePin.svg';
-
+import onePin from "../../static/images/onePin.svg";
 
 const KakaoMap = (props) => {
   const { kakao } = window;
   //const estateid = useParams().estateId;
-  const {estateid} =props
-  console.log(estateid)
-  const list =[]
-//   const list = useSelector((state) => state.office.list);
-//   const officeData = list?.filter((a) => a.estateid === +estateid);
-//   const firstY = officeData?.map((a) => a.coordinate.lat);
-//   const firstX = officeData?.map((a) => a.coordinate.lng);
+  const { estateid } = props;
+  console.log(estateid);
+  const list = [];
+  //   const list = useSelector((state) => state.office.list);
+  //   const officeData = list?.filter((a) => a.estateid === +estateid);
+  //   const firstY = officeData?.map((a) => a.coordinate.lat);
+  //   const firstX = officeData?.map((a) => a.coordinate.lng);
   const firstY = 37.592113779824636;
   const firstX = 126.92199098323738;
 
@@ -51,11 +50,11 @@ const KakaoMap = (props) => {
     //   });
     // });
     new kakao.maps.Marker({
-        map: map,
-        position:new kakao.maps.LatLng(firstY, firstX),
-        image:markerImage,
-        zIndex:1,
-    })
+      map: map,
+      position: new kakao.maps.LatLng(firstY, firstX),
+      image: markerImage,
+      zIndex: 1,
+    });
   }, [firstY, firstX]);
 
   return (
@@ -66,8 +65,8 @@ const KakaoMap = (props) => {
 };
 
 const MapWrap = styled.div`
-    width: 500px;
-    height: 400px;
+  width: 500px;
+  height: 180px;
 `;
 
 export default KakaoMap;

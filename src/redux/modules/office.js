@@ -6,14 +6,13 @@ import { RESP } from "../../response";
 import Swal from "sweetalert2";
 
 // Action type
-const GET_MAIN_OFFICE = "GET_MAIN_OFFICE";// 메인페이지 리스트 조회
+const GET_MAIN_OFFICE = "GET_MAIN_OFFICE"; // 메인페이지 리스트 조회
 const GET_HOT = "GET_HOT"; // 핫한 지역
 const CLICK_LIKE = "CLICK_LIKE"; //좋아요
 const DELETE_LIKE = "DELETE_LIKE"; //좋아요 취소
 const GET_LIKE = "GET_LIKE"; // 찜한 매물 조회
 const GET_SEARCH_OFFICE_LIST = "GET_SEARCH_OFFICE_LIST";
 const GET_ONE_OFFICE = "GET_ONE_OFFICE";
-
 
 // Action Creator
 const getMainOffice = createAction(GET_MAIN_OFFICE, (list) => ({ list }));
@@ -124,12 +123,11 @@ const getOfficeLikeDB = (type) => {
 };
 
 /* 검색 리스트 조회 */
+
 const getSOListDB = (keyword,pageno) => {
   //console.log("keyword : ", keyword);
   return (dispatch,getState) => {
-
     instance
-      // .get(`/api/list/search/${officeList}?query=${keyword}`)
       .get(`/api/list/search/${pageno}?query=${keyword}`)
       .then((res) => {
         console.log("res : ", res);
@@ -143,11 +141,11 @@ const getSOListDB = (keyword,pageno) => {
 };
 
 /* 상세 조회 */
-const getOneOfficeDB = (estateId) => {
-  console.log("estateId : ", estateId);
+const getOneOfficeDB = (estateid) => {
+  console.log("estateId : ", estateid);
   return (dispatch) => {
     instance
-      .get(`/api/detail/${estateId}`)
+      .get(`/api/detail/${estateid}`)
       .then((res) => {
         console.log("res : ", res);
         dispatch(getOneOffice(res.data));
@@ -163,7 +161,9 @@ export default handleActions(
   {
     [GET_ONE_OFFICE]: (state, action) =>
       produce(state, (draft) => {
-        draft.one_list = action.payload.one_list;
+        console.log("state : ", state);
+        draft.one_office = action.payload.one_office;
+        console.log("action.payload.one_office : ", action.payload.one_office);
       }),
     [GET_MAIN_OFFICE]: (state, action) =>
       produce(state, (draft) => {
@@ -207,7 +207,6 @@ export default handleActions(
         }
         draft.page = action.payload.page;
         draft.keyword = action.payload.keyword;
-        
       }),
   },
   initialState
