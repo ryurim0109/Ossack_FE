@@ -42,7 +42,7 @@ function Bar() {
           }}
             width="25%" textAlign="center" display="flex" flexDirection="column" justifyContent="center" alignItems="center">
                 <Grid width="24px" height="24px"><img src={params==='/main'?active_home:home} alt="홈아이콘"/> </Grid>
-                <Text cursor="pointer" color={params==='/main'?'#0497FF':"#BEBDC4"} size="12px">홈</Text>
+                <Text cursor="pointer" color={params==='/main'?'#3E00FF':"#BEBDC4"} size="12px">홈</Text>
                <div/>
             </Grid>
             <Grid  _onClick={(e) => {
@@ -50,7 +50,7 @@ function Bar() {
           }}
             width="25%" textAlign="center" display="flex" flexDirection="column" justifyContent="center" alignItems="center">
                 <Grid width="24px" height="24px"><img src={params.includes('/map') || params.includes('/search') || params.includes('/detail')?active_search:search} alt="검색아이콘"/> </Grid>
-                <Text cursor="pointer" color={params.includes('/map') || params.includes('/search') || params.includes('/detail')?'#0497FF':"#BEBDC4"} size="12px">탐색</Text>
+                <Text cursor="pointer" color={params.includes('/map') || params.includes('/search') || params.includes('/detail')?'#3E00FF':"#BEBDC4"} size="12px">탐색</Text>
                <div/>
             </Grid>
             <Grid  _onClick={(e) => {
@@ -58,14 +58,14 @@ function Bar() {
           }}
             width="25%" textAlign="center" display="flex" flexDirection="column" justifyContent="center" alignItems="center">
                 <Grid width="24px" height="24px"><img src={params==='/like'?active_heart:heart} alt="하트아이콘"/> </Grid>
-               <Text cursor="pointer" color={params==='/like'?'#0497FF':"#BEBDC4"} size="12px">찜</Text>
+               <Text cursor="pointer" color={params==='/like'?'#3E00FF':"#BEBDC4"} size="12px">찜</Text>
             </Grid>
             <Grid _onClick={(e) => {
                gnbClick(e,"mypage")
           }}
             width="25%" textAlign="center" display="flex" flexDirection="column" justifyContent="center" alignItems="center">
                 <Grid width="24px" height="24px"><img src={params==='/mypage'?active_user:user} alt="유저아이콘"/> </Grid>
-               <Text cursor="pointer" color={params==='/mypage'?'#0497FF':"#BEBDC4"}  size="12px">마이페이지</Text>
+               <Text cursor="pointer" color={params==='/mypage'?'#3E00FF':"#BEBDC4"}  size="12px">마이페이지</Text>
             </Grid>
         </Container>
     </React.Fragment>
