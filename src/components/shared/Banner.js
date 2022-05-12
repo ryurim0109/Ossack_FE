@@ -59,7 +59,7 @@ const P=styled.p`
 const Div=styled.div`
   width:50%;
   height:58px;
-  padding:0 16px;
+  padding-left:32px;
   display:flex;
   flex-direction:column;
   justify-content:center;
