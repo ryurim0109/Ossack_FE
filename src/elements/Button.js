@@ -15,6 +15,7 @@ const Button = (props) => {
     color,
     _onClick,
     children,
+    justifyContent,
     margin,
     width,
     is_right,
@@ -36,6 +37,7 @@ const Button = (props) => {
     is_close,
     _disabled,
     fill_like,
+    alignItems,
   } = props;
 
   const styles = {
@@ -47,6 +49,7 @@ const Button = (props) => {
     color,
     height,
     borderRadius,
+    justifyContent,
     top,
     bottom,
     left,
@@ -54,6 +57,7 @@ const Button = (props) => {
     hover,
     display,
     fontSize,
+    alignItems,
   };
   if (is_like) {
     return (
@@ -136,6 +140,8 @@ Button.defaultProps = {
   right: null,
   hover: null,
   display: null,
+  justifyContent: null,
+  alignItems: false,
   fontSize: null,
 };
 
@@ -147,6 +153,8 @@ const ButtonBox = styled.button`
   font-size: ${(props) => props.fontSize};
   margin: ${(props) => props.margin};
   position: ${(props) => props.position};
+  ${(props) => (props.alignItems ? `align-items: ${props.alignItems};` : '')};
+  ${(props) => (props.justifyContent ? `justify-content: ${props.justifyContent};` : '')};
   ${(props) =>
     props.backgroundColor
       ? `background-color:${props.backgroundColor}`

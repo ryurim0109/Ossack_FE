@@ -3,8 +3,9 @@ import { Grid, Button, Text, Image } from "../elements/index";
 import styled from "styled-components";
 import { history } from "../redux/configStore";
 import { KAKAO_AUTH_URL, GOOGLE_AUTH_URL } from "../shared/SocialOAuth";
-import moomgu from '../static/images/logo01.svg';
-import ossack from '../static/images/logo02.svg';
+import ossack from '../static/images/logo03.svg';
+import kakaoIcon from '../static/images/kakaoIcon.svg';
+import googleIcon from '../static/images/googleIcon.svg';
 
 const Start = () => {
   return (
@@ -15,47 +16,59 @@ const Start = () => {
           padding="38px 0"
           display="flex"
           flexDirection="column"
-          bg="#3E00FF"
+          bg="#0497FF"
+          position="relative"
         >
-          <Grid width="100%" margin="118px 0" height="237px" position="relative">
-            <img  src={ossack} alt="오싹 이미지"/>
-            <Grid width="217px" height="14px" position="absolute" top="0" right="15px">
-              <Image shape="rectangle" padding="14px" src={moomgu}/>
+            <Outter>
+            <Grid  width="100%" height="412px" margin="24px 0" position="relative">
+                <Grid width="240px" top="152px" right="0" height="154px" position="absolute">
+                    <img  src={ossack} alt="오싹 이미지"/>
+                </Grid>
             </Grid>
-          </Grid>
-          <Outter>
-          <Grid width="100%" height="120px" bg="#ccc">
-            <Grid display="flex" justifyContent="space-around" alignItems="center">
-              <Button
-                width="100px"
-                height="100px"
-                backgroundColor="yellow"
-                borderRadius="20px"
-                fontSize="1.25rem"
-              >
-                <A href={KAKAO_AUTH_URL}>kakao</A>
-              </Button>
-              <Button
-                width="100px"
-                height="100px"
-                backgroundColor="red"
-                borderRadius="20px"
-                fontSize="1.25rem"
-              >
-                <A href={GOOGLE_AUTH_URL}>Google</A>
-              </Button>
-              <Button
-                width="100px"
-                height="100px"
-                backgroundColor="blue"
-                borderRadius="20px"
-                fontSize="1.25rem"
+          
+          <Grid width="100%" height="172px">
+            <Grid display="flex" justifyContent="space-around" flexDirection="column" alignItems="center">
+            <Button
+                width="100%"
+                height="48px"
+                backgroundColor="#fff"
+                borderRadius="8px"
+                display="flex"
+                alignItems="center"
+                justifyContent="center" 
                 _onClick={() => {
                   history.push("/login");
                 }}
               >
-                email
+               <Text size="0.875rem" color="#0497FF"> 로그인</Text>
               </Button>
+              {/* 회원가입 */}
+              <Grid width="100%" textAlign="center" margin="8px 0 0" _onClick={()=>{
+                  history.push('/signup')
+              }}>
+                    <P>아직 계정이 없으신가요?</P>
+                    <P><Text borderBottom="1px solid #fff">회원가입</Text> 하러가기</P>
+              </Grid>
+              {/* 소셜로그인 */}
+              <Grid width="100%" display="flex"justifyContent="center" alignItems="center" margin="24px 0 0">
+                  <Grid width="114px"display="flex"justifyContent="space-between">
+                    <Button
+                        width="46px"
+                        height="46px"
+                        borderRadius="46px"
+                    >
+                        <A href={KAKAO_AUTH_URL}><img src={kakaoIcon} alt="카카오로그인" /></A>
+                    </Button>
+                    <Button
+                         width="46px"
+                         height="46px"
+                         borderRadius="46px"
+                    >
+                        <A href={GOOGLE_AUTH_URL}><img src={googleIcon} alt="구글로그인" /></A>
+                    </Button>
+                    </Grid>
+                </Grid>
+                 {/* 소셜로그인 */}
             </Grid>
           </Grid>
           </Outter>
@@ -66,9 +79,15 @@ const Start = () => {
 };
 const Outter = styled.div`
   width: 100%;
-  padding: 0 16px 68px;
+  padding: 0 16px;
+  position:relative;
 `;
 const A = styled.a`
   color: #000;
+`;
+const P=styled.p`
+    color:#fff;
+    cursor:pointer;
+
 `;
 export default Start;
