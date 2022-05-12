@@ -15,7 +15,8 @@ function Sale() {
   return (
     <React.Fragment>
       <Outter>
-        <Grid
+        {/* logo */}
+        {/* <Grid
           width="100%"
           margin="28px 0 "
           height="56px"
@@ -25,10 +26,10 @@ function Sale() {
         >
          
           <Grid width="86px" display="flex" alignItems="center" height="48px" > <img  src={logo} alt="로고이미지"/></Grid>
-        </Grid>
-        <Grid width="100%">
+        </Grid> */}
+        <Grid width="100%" margin="50px 0 0">
           <Text size="1.250rem" bold>
-            <Text color="#0055FF" bold>{user_info?.nickname ? user_info?.nickname : "게스트"}님</Text> 어떤
+            <Text color="#0497FF" bold>{user_info?.nickname ? user_info?.nickname : "게스트"}님</Text> 어떤
             🏢오피스를 <br />
             찾고 계시나요?
           </Text>
