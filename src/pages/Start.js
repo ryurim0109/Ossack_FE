@@ -17,7 +17,7 @@ const Start = () => {
           padding="38px 0"
           display="flex"
           flexDirection="column"
-          bg="#0497FF"
+          bg="#fff"
           position="relative"
         >
             <Outter>
@@ -35,24 +35,28 @@ const Start = () => {
                 backgroundColor="#fff"
                 borderRadius="8px"
                 display="flex"
+                border="1px solid #3E00FF"
                 alignItems="center"
                 justifyContent="center" 
                 _onClick={() => {
                   history.push("/login");
                 }}
               >
-               <Text size="0.875rem" color="#0497FF"> 로그인</Text>
+               <Text size="0.875rem" color="#3E00FF"> 로그인</Text>
               </Button>
               {/* 회원가입 */}
               <Grid width="100%" textAlign="center" margin="8px 0 0" _onClick={()=>{
                   history.push('/signup')
               }}>
-                    <P>아직 계정이 없으신가요?</P>
-                    <P><Text borderBottom="1px solid #fff">회원가입</Text> 하러가기</P>
+                    <P>오싹이 처음이신가요?<Text borderBottom="1px solid #3E00FF" color="#3E00FF">회원가입</Text> 하러가기</P>
               </Grid>
               {/* 소셜로그인 */}
-              <Grid width="100%" display="flex"justifyContent="center" alignItems="center" margin="24px 0 0">
-                  <Grid width="114px"display="flex"justifyContent="space-between">
+              <Grid width="100%" display="flex"justifyContent="center" height="78px"
+               alignItems="center" margin="16px 0 0" position="relative">
+                <Talk >
+                  <Text color="#FF6868">3초면</Text> 빠른 로그인 완료!
+                </Talk>
+                  <Grid width="114px" display="flex"justifyContent="space-between">
                     <Button
                         width="46px"
                         height="46px"
@@ -86,8 +90,37 @@ const A = styled.a`
   color: #000;
 `;
 const P=styled.p`
-    color:#fff;
+    color:#999;
     cursor:pointer;
+    font-size:0.750rem;
 
+`;
+const Talk=styled.div`
+    color:#fff;
+     width: 134px; height: 28px; background-color: #3E00FF;top:-36px;
+     border:3px solid #3E00FF;
+     font-size:0.750rem;
+     display:flex;
+     justify-content:center;
+     align-items:center;
+    position: absolute; left: 50%; border-radius:10px; transform:translateX(-50%);
+    animation-duration:1s; animation-iteration-count: infinite; animation-name: bounceX;
+    z-index:99;
+
+      &:before{
+        content: '';
+              position: absolute;
+              bottom: 0;
+              left: 50%;
+              width: 0;
+              height: 0;
+              border: 9px solid transparent;
+              border-top-color: #3E00FF;
+              border-bottom: 0;
+              margin-left: -9px;
+              margin-bottom: -9px; }
+
+    @keyframes bounceX{ 50%{top: -30px;} 
+    100%{top: -36px;} }
 `;
 export default Start;
