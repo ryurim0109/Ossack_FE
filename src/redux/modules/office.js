@@ -12,7 +12,6 @@ const CLICK_LIKE = "CLICK_LIKE"; //좋아요
 const DELETE_LIKE = "DELETE_LIKE"; //좋아요 취소
 const GET_LIKE = "GET_LIKE"; // 찜한 매물 조회
 const GET_SEARCH_OFFICE_LIST = "GET_SEARCH_OFFICE_LIST";
-const LOADING = "LOADING";
 const GET_ONE_OFFICE = "GET_ONE_OFFICE";
 
 
@@ -25,7 +24,6 @@ const getOfficeLike = createAction(GET_LIKE, (like_list) => ({ like_list }));
 const getSOList = createAction(GET_SEARCH_OFFICE_LIST, (list,page,keyword) => ({
   list,page,keyword
 }));
-const loading = createAction(LOADING, (is_loading) => ({ is_loading }));
 const getOneOffice = createAction(GET_ONE_OFFICE, (one_list) => ({
   one_list,
 }));
@@ -203,7 +201,7 @@ export default handleActions(
     [GET_SEARCH_OFFICE_LIST]: (state, action) =>
       produce(state, (draft) => {
         if (action.payload.page > 1 && action.payload.keyword===draft.keyword) {
-          draft.list.unshift(...action.payload.list);
+          draft.list.push(...action.payload.list);
         } else {
           draft.list = action.payload.list;
         }
