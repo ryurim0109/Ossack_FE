@@ -1,4 +1,5 @@
 import React from "react";
+
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -11,9 +12,17 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
+import kakaoIcon from "../static/images/kakaoIcon.svg";
+import googleIcon from "../static/images/googleIcon.svg";
+
+import { Text } from "../elements/index";
+// import styled from "styled-components";
+import { history } from "../redux/configStore";
+import { KAKAO_AUTH_URL, GOOGLE_AUTH_URL } from "../shared/SocialOAuth";
 
 import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
+import { styled } from "@mui/system";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -28,21 +37,32 @@ const Login = () => {
     dispatch(userActions.loginApi(data.get("userEmail"), data.get("password")));
   };
 
+  const style = {
+    "& label.Mui-focused": {
+      color: "#3E00FF",
+    },
+    "& .MuiOutlinedInput-root": {
+      "&.Mui-focused fieldset": {
+        borderColor: "#3E00FF",
+      },
+    },
+  };
+
   return (
     <React.Fragment>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 8,
+            marginTop: 20,
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+          {/* <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
             <LockOutlinedIcon />
-          </Avatar>
+          </Avatar> */}
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
@@ -61,6 +81,7 @@ const Login = () => {
               name="userEmail"
               autoComplete="userEmail"
               autoFocus
+              sx={style}
             />
             <TextField
               margin="normal"
@@ -71,30 +92,64 @@ const Login = () => {
               type="password"
               id="password"
               autoComplete="current-password"
+              sx={style}
             />
-            <FormControlLabel
+            {/* <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
-            />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              Sign In
-            </Button>
+            /> */}
+
             <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
+              {/* 회원가입 */}
+              <Grid
+                width="100%"
+                textAlign="center"
+                margin="8px 0 0"
+                onClick={() => {
+                  history.push("/signup");
+                }}
+              >
+                <P>아직 계정이 없으신가요?</P>
+                <P>
+                  <Text borderBottom="1px solid #fff">회원가입</Text> 하러가기
+                </P>
               </Grid>
-              <Grid item>
-                <Link href="/signup" variant="body2">
-                  {"Don't have an account? Sign Up"}
-                </Link>
+              {/* 소셜로그인 */}
+              <Grid
+                width="100%"
+                display="flex"
+                justifyContent="center"
+                alignItems="center"
+                margin="24px 0 24px"
+              >
+                <Grid
+                  width="114px"
+                  display="flex"
+                  justifyContent="space-between"
+                >
+                  <MyBtn>
+                    <A href={KAKAO_AUTH_URL}>
+                      <img src={kakaoIcon} alt="카카오로그인" />
+                    </A>
+                  </MyBtn>
+                  <MyBtn>
+                    <A href={GOOGLE_AUTH_URL}>
+                      <img src={googleIcon} alt="구글로그인" />
+                    </A>
+                  </MyBtn>
+                </Grid>
               </Grid>
+              {/* 소셜로그인 */}
+
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+                style={{ backgroundColor: "#3E00FF" }}
+              >
+                Sign In
+              </Button>
             </Grid>
           </Box>
         </Box>
@@ -103,5 +158,36 @@ const Login = () => {
     </React.Fragment>
   );
 };
+
+// const A = styled.a`
+//   color: #000;
+// `;
+// const P = styled.p`
+//   color: #fff;
+//   cursor: pointer;
+// `;
+
+const A = styled("a")({
+  color: "#000",
+});
+
+const P = styled("p")({
+  color: "#878D96",
+  cursor: "pointer",
+});
+
+const MyBtn = styled("button")({
+  borderRadius: "46px",
+  height: "47px",
+  width: "47px",
+});
+
+const TF = styled("TextField")({
+  margin: "normal",
+  id: "userEmail",
+  label: "Email Address",
+  name: "userEmail",
+  autoComplete: "userEmail",
+});
 
 export default Login;
