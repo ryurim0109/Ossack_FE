@@ -28,8 +28,8 @@ const getSOList = createAction(
     keyword,
   })
 );
-const getOneOffice = createAction(GET_ONE_OFFICE, (list) => ({
-  list,
+const getOneOffice = createAction(GET_ONE_OFFICE, (one_office) => ({
+  one_office,
 }));
 
 const initialState = {
@@ -169,8 +169,8 @@ export default handleActions(
     [GET_ONE_OFFICE]: (state, action) =>
       produce(state, (draft) => {
         console.log("state : ", state);
-        draft.list = action.payload.list;
-        console.log("action.payload.list : ", action.payload.list);
+        draft.one_office = action.payload.one_office;
+        console.log("action.payload.one_office : ", action.payload.one_office);
       }),
     [GET_MAIN_OFFICE]: (state, action) =>
       produce(state, (draft) => {
