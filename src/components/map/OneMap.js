@@ -6,12 +6,10 @@ import styled from "styled-components";
 import onePin from "../../static/images/onePin.svg";
 const { kakao } = window;
 const KakaoMap = (props) => {
-
-  const list = useSelector((state) => state?.office?.list);
+  const list = useSelector((state) => state?.office?.one_office);
 
   const firstY = list?.coordinateResponseDto?.lat;
   const firstX = list?.coordinateResponseDto?.lng;
-
 
   useEffect(() => {
     let container = document.getElementById("map");
