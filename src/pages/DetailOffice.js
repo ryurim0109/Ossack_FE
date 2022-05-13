@@ -150,18 +150,12 @@ const DetailOffice = () => {
               display="flex"
               flexDirection="column"
               justifyContent="center"
-              border="1px solid red"
               padding="16px 0"
             >
               <Bp>상세정보</Bp>
             </Grid>
-            <Grid
-              display="flex"
-              flexDirection="column"
-              justifyContent="center"
-              border="1px solid red"
-            >
-              <Grid display="flex" margin="0 0 10px" border="1px solid red">
+            <Grid display="flex" flexDirection="column" justifyContent="center">
+              <Grid display="flex" margin="0 0 10px">
                 <P>건물층 / 해당층</P>
                 <Sp>
                   {getOneOffice?.buildingFloor
@@ -171,15 +165,15 @@ const DetailOffice = () => {
                   {getOneOffice?.roomFloor ? getOneOffice?.roomFloor : "2층"}층
                 </Sp>
               </Grid>
-              <Grid display="flex" margin="0 0 10px" border="1px solid red">
+              <Grid display="flex" margin="0 0 10px">
                 <P>공급면적</P>
                 <Sp>{getOneOffice?.area ? getOneOffice?.area : null}</Sp>
               </Grid>
-              <Grid display="flex" margin="0 0 10px" border="1px solid red">
+              <Grid display="flex" margin="0 0 10px">
                 <P>엘레베이터</P>
                 <Sp>2대</Sp>
               </Grid>
-              <Grid display="flex" margin="0 0 10px" border="1px solid red">
+              <Grid display="flex" margin="0 0 10px">
                 <P>즉시입주가능</P>
                 <Sp>협의가능</Sp>
               </Grid>
@@ -188,13 +182,7 @@ const DetailOffice = () => {
         </Grid>
 
         {/* 중개사 코멘트 */}
-        <Grid
-          height="500px"
-          bg="#fff"
-          margin="0 0 10px 0"
-          border="1px solid red"
-          overflow="scroll"
-        >
+        <Grid height="500px" bg="#fff" margin="0 0 10px 0" overflow="scroll">
           <Grid
             bottom="0"
             padding="0 16px"
@@ -208,33 +196,27 @@ const DetailOffice = () => {
               display="flex"
               flexDirection="column"
               justifyContent="center"
-              border="1px solid red"
               padding="16px 0"
               height="70px"
             >
               <Bp>중개사 코멘트</Bp>
             </Grid>
-            <Grid
-              display="flex"
-              flexDirection="column"
-              justifyContent="center"
-              border="1px solid red"
-            >
-              <Grid border="1px solid red" height="40px">
+            <Grid display="flex" flexDirection="column" justifyContent="center">
+              <Grid height="40px">
                 <Text>강남역 10분, 역삼역 도보 12분, 신논현역 도보 15분</Text>
                 <Ssp>지하철역 도보 15분 이내의 트리플</Ssp>
               </Grid>
-              <Grid border="1px solid red" height="40px">
+              <Grid height="40px">
                 <Text>
                   ◎해당 사무소는 공인중개사 자격증을 갖춘 인원으로만 구성되어
                   있습니다.
                 </Text>
               </Grid>
-              <Grid border="1px solid red" height="40px">
+              <Grid height="40px">
                 <Text>◎직접 방문 후 촬영한 100% 실매물 현장사진</Text>
               </Grid>
 
-              <Grid border="1px solid red">
+              <Grid>
                 <Text>
                   {/* {" "} */}
                   {getOneOffice?.buildingDetail
@@ -262,19 +244,17 @@ const DetailOffice = () => {
           justifyContent="center"
           width="100%"
           height="340px"
-          // border="1px solid red"
           bg="#fff"
         >
           <Grid
             display="flex"
             flexDirection="column"
             justifyContent="center"
-            // border="1px solid red"
             padding="16px 0"
             bg="#fff"
             minHeight="330px"
           >
-            <Grid margin="0 0 10px" border="1px solid red" height="55px">
+            <Grid margin="0 0 10px" height="55px">
               <Bp style={{ padding: "3px 16px" }}>위치</Bp>
               <Sp style={{ padding: "0 16px" }}> {getOneOffice?.address} </Sp>
             </Grid>
