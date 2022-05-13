@@ -29,7 +29,6 @@ const DetailOffice = () => {
   useEffect(() => {
     console.log(estateid);
     dispatch(officeActions.getOneOfficeDB(estateid));
-    console.log("2");
   }, [estateid]);
 
   return (
