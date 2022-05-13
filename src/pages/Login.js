@@ -54,18 +54,29 @@ const Login = () => {
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 20,
+            marginTop: 10,
             display: "flex",
             flexDirection: "column",
-            alignItems: "center",
+            alignItems: "flex-start",
           }}
         >
           {/* <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
             <LockOutlinedIcon />
           </Avatar> */}
-          <Typography component="h1" variant="h5">
-            Sign in
-          </Typography>
+          <Grid
+            display="flex"
+            flexDirection="column"
+            component="h1"
+            variant="h5"
+          >
+            <Text size="1.250rem" bold>
+              <Text color="#3E00FF" bold>
+                오싹
+              </Text>{" "}
+              서비스 이용을 위해 <br />
+              로그인 해주세요.
+            </Text>
+          </Grid>
           <Box
             component="form"
             onSubmit={handleSubmit}
@@ -180,14 +191,6 @@ const MyBtn = styled("button")({
   borderRadius: "46px",
   height: "47px",
   width: "47px",
-});
-
-const TF = styled("TextField")({
-  margin: "normal",
-  id: "userEmail",
-  label: "Email Address",
-  name: "userEmail",
-  autoComplete: "userEmail",
 });
 
 export default Login;
