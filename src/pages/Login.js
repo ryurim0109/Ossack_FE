@@ -23,6 +23,7 @@ import { KAKAO_AUTH_URL, GOOGLE_AUTH_URL } from "../shared/SocialOAuth";
 import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 import { styled } from "@mui/system";
+import { TalkTalk } from "../components/main/index";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -148,9 +149,12 @@ const Login = () => {
                 width="100%"
                 display="flex"
                 justifyContent="center"
+                height="78px"
                 alignItems="center"
-                margin="24px 0 24px"
+                margin="50px 0 0"
+                position="relative"
               >
+                <TalkTalk />
                 <Grid
                   width="114px"
                   display="flex"
