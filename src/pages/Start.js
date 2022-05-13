@@ -8,7 +8,7 @@ import { TalkTalk } from "../components/main/index";
 import ossack from "../static/images/logo03.svg";
 import kakaoIcon from "../static/images/kakaoIcon.svg";
 import googleIcon from "../static/images/googleIcon.svg";
-import ossacke from '../static/images/ossacke.svg';
+import ossacke from "../static/images/ossacke.svg";
 
 const Start = () => {
   return (
@@ -35,8 +35,14 @@ const Start = () => {
           </Grid>
 
           <Grid width="100%" height="172px" position="relative">
-            <Grid width="70px" height="34px" position="absolute" top="-34px" right="0">
-              <img src={ossacke} alt="오싹 캐릭터"/>
+            <Grid
+              width="70px"
+              height="34px"
+              position="absolute"
+              top="-34px"
+              right="0"
+            >
+              <img src={ossacke} alt="오싹 캐릭터" />
             </Grid>
             <Grid
               display="flex"
@@ -89,7 +95,7 @@ const Start = () => {
                 margin="16px 0 0"
                 position="relative"
               >
-                <TalkTalk/>
+                <TalkTalk />
                 <Grid
                   width="114px"
                   display="flex"
