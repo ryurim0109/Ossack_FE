@@ -13,7 +13,7 @@ import { actionCreators as officeActions } from "../redux/modules/office";
 const DetailOffice = () => {
   const dispatch = useDispatch();
   const estateid = useParams().estateId;
-  const getOneOffice = useSelector((state) => state.office.list);
+  const getOneOffice = useSelector((state) => state.office.one_office);
   console.log("getOneOffice : ", getOneOffice);
 
   // const getImage = getOneOffice.images.map((images) => images);
@@ -62,7 +62,7 @@ const DetailOffice = () => {
                     );
                   })}
               </SlickSlider>
-              {getOneOffice?.mylike ? (
+              {/* {getOneOffice?.mylike ? (
                 <Button
                   fill_like
                   position="absolute"
@@ -82,7 +82,7 @@ const DetailOffice = () => {
                   color="#fff"
                   _onClick={() => dispatch(officeActions.clickLikeDB(estateid))}
                 />
-              )}
+              )} */}
             </Grid>
           </Grid>
 
