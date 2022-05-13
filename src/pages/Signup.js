@@ -92,14 +92,14 @@ const Signup = () => {
     else setNickNameError("");
 
     // 회원가입 동의 체크
-    if (!checked) alert("회원가입 약관에 동의해주세요.");
+    // if (!checked) alert("회원가입 약관에 동의해주세요.");
 
     if (
       emailRegex.test(userEmail) &&
       passwordRegex.test(password) &&
       password === passwordCheck &&
-      nicknameRegex.test(nickname) &&
-      checked
+      nicknameRegex.test(nickname)
+      // &&checked
     ) {
       dispatch(userActions.signUpApi(joinData));
     }
@@ -153,7 +153,7 @@ const Signup = () => {
                   type="email"
                   id="userEmail"
                   name="userEmail"
-                  label="Email Address"
+                  label="이메일"
                   error={emailError !== "" || false}
                   sx={style}
                 />
@@ -165,7 +165,7 @@ const Signup = () => {
                   fullWidth
                   id="nickname"
                   name="nickname"
-                  label="nickname"
+                  label="닉네임"
                   error={nickNameError !== "" || false}
                   sx={style}
                 />
@@ -178,7 +178,7 @@ const Signup = () => {
                   type="password"
                   id="password"
                   name="password"
-                  label="password (숫자+영문자+특수문자 8자리 이상)"
+                  label="비밀번호 (숫자+영문자+특수문자 8자리 이상)"
                   error={passwordState !== "" || false}
                   sx={style}
                 />
@@ -191,7 +191,7 @@ const Signup = () => {
                   type="password"
                   id="passwordCheck"
                   name="passwordCheck"
-                  label="passwordCheck"
+                  label="비밀번호확인"
                   error={passwordError !== "" || false}
                   sx={style}
                 />
@@ -213,7 +213,7 @@ const Signup = () => {
               size="large"
               style={{ backgroundColor: "#3E00FF" }}
             >
-              Sign Up
+              회원가입
             </Button>
           </FormControl>
           <FormHelperTexts>{signupError}</FormHelperTexts>
