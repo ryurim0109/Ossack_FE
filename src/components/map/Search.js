@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Grid, Button, Input } from "../../elements/index";
 import { history } from "../../redux/configStore";
 import styled from 'styled-components';
-import filterIcon from "../../static/images/filterIcon.png";
+import filterIcon from "../../static/images/filter.svg";
 import { Filter } from '../map/index';
 
 
