@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Grid, Text, Button } from "../../elements/index";
 
 import styled, { keyframes } from "styled-components";
+import refresh from '../../static/images/refresh.svg';
 
 const Filter = (props) => {
   const { isOpen, setIsOpen } = props;
@@ -30,8 +31,8 @@ const Filter = (props) => {
       if (currentClick !== null) {
         let current = document.getElementById(currentClick);
         console.log(current.innerHTML);
-        current.style.backgroundColor = "#E3E3E3";
-        current.style.border = "1px solid #6C6C6C";
+        current.style.backgroundColor = "rgba(62, 0, 255, 0.1)";
+        current.style.border = "1px solid #3E00FF";
       }
 
       if (prevClick !== null) {
@@ -50,8 +51,8 @@ const Filter = (props) => {
       if (rentClick !== null) {
         let rent = document.getElementById(rentClick);
         console.log(rent.innerHTML);
-        rent.style.backgroundColor = "#E3E3E3";
-        rent.style.border = "1px solid #6C6C6C";
+        rent.style.backgroundColor = "rgba(62, 0, 255, 0.1)";
+        rent.style.border = "1px solid #3E00FF";
       }
 
       if (rentPrevClick !== null) {
@@ -65,14 +66,13 @@ const Filter = (props) => {
     [rentClick]
   );
 
-  const findOffice = () => {
-    console.log(currentClick);
-    console.log(rentClick);
-  };
+  // const findOffice = () => {
+  //   console.log(currentClick);
+  //   console.log(rentClick);
+  // };
   const refreshBtn = () => {
-    console.log("초기화");
-    console.log(setCurrentClick(null));
-    console.log(setRentClick(null));
+    setCurrentClick(null);
+    setRentClick(null);
   };
 
   return (
@@ -171,28 +171,39 @@ const Filter = (props) => {
               justifyContent="space-between"
               alignItems="center"
             >
-              <Button
-                width="92px"
-                height="24px"
-                backgroundColor="none"
-                color="#3F3F3F"
-                fontSize="0.875rem"
-                padding="0"
-                _onClick={refreshBtn}
-              >
-                가격 재설정
-              </Button>
+               <Grid
+              width="96px"
+              height="40px"
+              display="flex"
+              justifyContent="space-between"
+              alignItems="center"
+            >
+                <Grid width="24px" height="24px"><img src={refresh} alt="재설정 아이콘"/></Grid>
+                <Button
+                  width="64px"
+                  height="24px"
+                  backgroundColor="none"
+                  color="#3F3F3F"
+                  fontSize="0.875rem"
+                  padding="0"
+                  _onClick={refreshBtn}
+                  border="none"
+                >
+                  가격 재설정
+                </Button> 
+              </Grid>
+              
               <Button
                 width="212px"
                 height="40px"
-                backgroundColor="#3F3F3F"
+                backgroundColor="#3E00FF"
                 color="#fff"
                 borderRadius="8px"
                 padding="0"
                 fontSize="0.875rem"
-                _onClick={findOffice}
+                // _onClick={findOffice}
               >
-                매물찾기
+                매물보기
               </Button>
             </Grid>
           </Grid>

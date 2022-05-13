@@ -12,7 +12,7 @@ const MapOfficeList = (props) => {
   const search = props.location.search.split("=")[1];
   //console.log(decodeURI(search))
   const totalPage = useSelector((state) => state?.office?.page);
-  console.log(totalPage);
+  //console.log(totalPage);
 
   const [pageno, setPageno] = useState(1);
   const [target, setTarget] = useState(null);
@@ -32,7 +32,7 @@ const MapOfficeList = (props) => {
     }
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     let observer;
     if (target) {
       observer = new IntersectionObserver(callback, { threshold: 1 });
@@ -41,7 +41,7 @@ const MapOfficeList = (props) => {
     return () => observer && observer.disconnect();
   }, [target]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     dispatch(officeActions.getSOListDB(search, pageno));
     // console.log(pageno)
   }, [pageno]);

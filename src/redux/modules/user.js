@@ -31,7 +31,7 @@ const signUpApi = (user) => {
   return async function (dispatch, getState, { history }) {
     try {
 
-      const response = await axios.post("http://54.180.80.167:8080/user/signup", {
+      const response = await axios.post("http://3.39.177.59:8080/user/signup", {
         userEmail: user.userEmail,
         nickname: user.nickname,
         password: user.password,
@@ -58,7 +58,7 @@ const loginApi = (userEmail, password) => {
   console.log("password : ", password);
   return async function (dispatch, getState, { history }) {
     try {
-      const response = await axios.post("http://54.180.80.167:8080/user/login", {
+      const response = await axios.post("http://3.39.177.59:8080/user/login", {
         userEmail: userEmail,
         password: password,
       });

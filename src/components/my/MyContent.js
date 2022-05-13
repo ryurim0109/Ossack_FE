@@ -9,21 +9,21 @@ const MyContent = () => {
             >
                 <Grid display="flex" alignItems="center" justifyContent="space-between">
                     <Grid  display="flex" alignItems="center">
-                        <Grid width="24px" margin="0 10px 0 0" height="24px" bg="red"> </Grid>
-                        <Text size="1.250rem" cursor="pointer">오싹 이용 가이드</Text>
+                        {/* <Grid width="24px" margin="0 10px 0 0" height="24px" bg="red"> </Grid> */}
+                        <Text size="1.250rem" cursor="pointer">자주 하는 질문</Text>
                     </Grid>
                     <Button is_right/>
                 </Grid>
                 <Grid display="flex" alignItems="center" justifyContent="space-between">
                     <Grid  display="flex" alignItems="center">
-                        <Grid width="24px" margin="0 10px 0 0" height="24px" bg="red"> </Grid>
+                        {/* <Grid width="24px" margin="0 10px 0 0" height="24px" bg="red"> </Grid> */}
                         <Text size="1.250rem" cursor="pointer">팀원 소개</Text>
                     </Grid>
                     <Button is_right/>
                 </Grid>
                 <Grid display="flex" alignItems="center" justifyContent="space-between">
                     <Grid  display="flex" alignItems="center">
-                        <Grid width="24px" margin="0 10px 0 0" height="24px" bg="red"> </Grid>
+                        {/* <Grid width="24px" margin="0 10px 0 0" height="24px" bg="red"> </Grid> */}
                         <Text size="1.250rem" cursor="pointer">계정 엑세스</Text>
                     </Grid>
                     <Button is_right/>

@@ -80,7 +80,7 @@ const ProfileModal = (props) => {
                           <Text bold size="0.875rem" borderBottom="1px solid #5886FE" color="#5886FE">사진업로드</Text>
                         </Label>
                         <Button width="100%" margin="24px 0 0 0" borderRadius=" 0 0 4px 4px"
-                         padding="none" height="58px" fontSize="0.875rem" color="#fff" backgroundColor="#0373F3" _onClick={editProfile}>저장하기</Button>
+                         padding="none" height="58px" fontSize="0.875rem" border="none" color="#fff" backgroundColor="#0373F3" _onClick={editProfile}>저장하기</Button>
                     </Grid>
                     <input type="file" id="file_input" ref={fileInput}  accept="image/jpeg, image/png, image/jpg"  onChange={(e)=>{
                           encodeFileToBase64(e.target.files[0]);

@@ -4,5 +4,6 @@ import Office from "./Office";
 import Sale from "./Sale";
 import OfficeList from "./OfficeList";
 import NearStation from "./NearStation";
+import TalkTalk from "./TalkTalk";
 
-export { SaleList, HotPlaceList, Office, Sale, OfficeList, NearStation };
+export { SaleList, HotPlaceList, Office, Sale, OfficeList, NearStation,TalkTalk };

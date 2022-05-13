@@ -10,7 +10,7 @@ const MapOfficeResult = (props) => {
    
     const dispatch = useDispatch();
     const officeData= useSelector((state)=>state.office.list);
-    if( officeData.length===0){
+    if( officeData?.length===0){
       return(
         <React.Fragment>
           검색리스트가 없아요!!
