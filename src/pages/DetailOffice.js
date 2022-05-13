@@ -123,7 +123,7 @@ const DetailOffice = () => {
                 <Ssp color="#90969D" size="0.700rem">
                   {getOneOffice?.buildingInfo
                     ? getOneOffice?.buildingInfo
-                    : "미사역, 도보 8분"}
+                    : null}
                 </Ssp>
               </Span>
               <Span>
@@ -161,8 +161,7 @@ const DetailOffice = () => {
                   {getOneOffice?.buildingFloor
                     ? getOneOffice?.buildingFloor
                     : "15층"}
-                  층 /{" "}
-                  {getOneOffice?.roomFloor ? getOneOffice?.roomFloor : "2층"}층
+                  / {getOneOffice?.roomFloor ? getOneOffice?.roomFloor : "2층"}
                 </Sp>
               </Grid>
               <Grid display="flex" margin="0 0 10px">
@@ -308,45 +307,3 @@ const Ssp = styled.p`
 `;
 
 export default DetailOffice;
-
-// {/* <OneMap estateid={estateid} /> */}
-//       <DetailWrap>
-//         {/* 맵돌리기 */}
-//         <Grid
-//           display="flex"
-//           justifyContent="space-between"
-//           alignItems="center"
-//           _onClick={() => {
-//             history.push(`/detail/${estateid}/`);
-//           }}
-//         >
-//           <Grid
-//             width="25%"
-//             height="70px"
-//             margin="0 5% 0 0"
-//             overflow="hidden"
-//             borderRadius="8px"
-//           >
-//             <Image
-//               src="https://velog.velcdn.com/images/ryurim0109/post/6435c602-4d7e-4018-81fa-269d93d5d351/image.jpg"
-//               shape="rectangle"
-//             />
-//           </Grid>
-//           <Grid
-//             width="80%"
-//             height="70px"
-//             display="flex"
-//             flexDirection="column"
-//             justifyContent="center"
-//           >
-//             <Text bold size="0.625rem">
-//               초역세권 텍스트
-//             </Text>
-//             <Text bold size="0.875rem">
-//               트리플역세권사무실(광희동,장충동)
-//             </Text>
-//             <Text size="0.625rem">초역세권 텍스트</Text>
-//           </Grid>
-//         </Grid>
-//         {/* 맵돌리기 */}
-//       </DetailWrap>
