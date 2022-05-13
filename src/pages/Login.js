@@ -160,15 +160,13 @@ const Login = () => {
                   display="flex"
                   justifyContent="space-between"
                 >
-                  <MyBtn>
-                    <A href={KAKAO_AUTH_URL}>
-                      <img src={kakaoIcon} alt="카카오로그인" />
-                    </A>
+                  <MyBtn onClick={() => window.open(`${KAKAO_AUTH_URL}`)}>
+                    {" "}
+                    <img src={kakaoIcon} alt="카카오로그인" />{" "}
                   </MyBtn>
-                  <MyBtn>
-                    <A href={GOOGLE_AUTH_URL}>
-                      <img src={googleIcon} alt="구글로그인" />
-                    </A>
+                  <MyBtn onClick={() => window.open(`${GOOGLE_AUTH_URL}`)}>
+                    {" "}
+                    <img src={googleIcon} alt="구글로그인" />{" "}
                   </MyBtn>
                 </Grid>
               </Grid>
@@ -176,6 +174,7 @@ const Login = () => {
             </Grid>
           </Box>
         </Box>
+
         {/* <Copyright sx={{ mt: 8, mb: 4 }} /> */}
       </Container>
     </React.Fragment>
