@@ -88,7 +88,7 @@ const Login = () => {
               required
               fullWidth
               id="userEmail"
-              label="Email Address"
+              label="이메일"
               name="userEmail"
               autoComplete="userEmail"
               autoFocus
@@ -99,7 +99,7 @@ const Login = () => {
               required
               fullWidth
               name="password"
-              label="Password"
+              label="비밀번호"
               type="password"
               id="password"
               autoComplete="current-password"
@@ -112,6 +112,16 @@ const Login = () => {
 
             <Grid container>
               {/* 회원가입 */}
+
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+                style={{ backgroundColor: "#3E00FF" }}
+              >
+                로그인
+              </Button>
               <Grid
                 width="100%"
                 textAlign="center"
@@ -120,10 +130,18 @@ const Login = () => {
                   history.push("/signup");
                 }}
               >
-                <P>아직 계정이 없으신가요?</P>
-                <P>
-                  <Text borderBottom="1px solid #fff">회원가입</Text> 하러가기
-                </P>
+                <Text size="0.750em" bold>
+                  <Text color="#999999" fontWeight="500px">
+                    오싹이 처음이신가요?
+                  </Text>{" "}
+                  <Text
+                    borderBottom="1px solid #fff"
+                    color="#3E00FF"
+                    fontWeight="600px"
+                  >
+                    회원가입
+                  </Text>{" "}
+                </Text>
               </Grid>
               {/* 소셜로그인 */}
               <Grid
@@ -151,16 +169,6 @@ const Login = () => {
                 </Grid>
               </Grid>
               {/* 소셜로그인 */}
-
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                sx={{ mt: 3, mb: 2 }}
-                style={{ backgroundColor: "#3E00FF" }}
-              >
-                Sign In
-              </Button>
             </Grid>
           </Box>
         </Box>
@@ -180,11 +188,6 @@ const Login = () => {
 
 const A = styled("a")({
   color: "#000",
-});
-
-const P = styled("p")({
-  color: "#878D96",
-  cursor: "pointer",
 });
 
 const MyBtn = styled("button")({
