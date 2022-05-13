@@ -130,7 +130,7 @@ const getOfficeLikeDB = (type) => {
 /* 검색 리스트 조회 */
 
 const getSOListDB = (keyword, pageno) => {
-  //console.log("keyword : ", keyword);
+  console.log("keyword : ", keyword);
   return (dispatch, getState) => {
     instance
       .get(`/api/list/search/${pageno}?query=${keyword}`)

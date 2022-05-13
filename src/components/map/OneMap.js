@@ -17,7 +17,7 @@ const KakaoMap = (props) => {
     container.style.height = "100%";
     var options = {
       center: new kakao.maps.LatLng(firstY, firstX),
-      level: 8,
+      level: 1,
     };
 
     let imageSrc = onePin, // 마커이미지의 주소입니다
