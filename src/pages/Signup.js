@@ -16,6 +16,7 @@ import {
 } from "@mui/material/";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import styled from "styled-components";
+import { Text } from "../elements/index";
 
 import { actionCreators as userActions } from "../redux/modules/user";
 import { useDispatch } from "react-redux";
@@ -104,21 +105,38 @@ const Signup = () => {
     }
   };
 
+  const style = {
+    "& label.Mui-focused": {
+      color: "#3E00FF",
+    },
+    "& .MuiOutlinedInput-root": {
+      "&.Mui-focused fieldset": {
+        borderColor: "#3E00FF",
+      },
+    },
+  };
+
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <Box
         sx={{
-          marginTop: 8,
+          marginTop: 10,
           display: "flex",
           flexDirection: "column",
-          alignItems: "center",
+          alignItems: "flex-start",
         }}
       >
-        <Avatar sx={{ m: 1, bgcolor: "secondary.main" }} />
-        <Typography component="h1" variant="h5">
-          회원가입
-        </Typography>
+        <Grid display="flex" flexDirection="column" component="h1" variant="h5">
+          <Text size="1.250rem" bold>
+            <Text color="#3E00FF" bold>
+              오싹
+            </Text>{" "}
+            서비스 이용을 위해 <br />
+            회원가입을 해주세요.
+          </Text>
+        </Grid>
+        {/* <Avatar sx={{ m: 1, bgcolor: "secondary.main" }} /> */}
         <Boxs
           component="form"
           noValidate
@@ -137,6 +155,7 @@ const Signup = () => {
                   name="userEmail"
                   label="Email Address"
                   error={emailError !== "" || false}
+                  sx={style}
                 />
               </Grid>
               <FormHelperTexts>{emailError}</FormHelperTexts>
@@ -148,6 +167,7 @@ const Signup = () => {
                   name="nickname"
                   label="nickname"
                   error={nickNameError !== "" || false}
+                  sx={style}
                 />
               </Grid>
               <FormHelperTexts>{nickNameError}</FormHelperTexts>
@@ -160,6 +180,7 @@ const Signup = () => {
                   name="password"
                   label="password (숫자+영문자+특수문자 8자리 이상)"
                   error={passwordState !== "" || false}
+                  sx={style}
                 />
               </Grid>
               <FormHelperTexts>{passwordState}</FormHelperTexts>
@@ -172,16 +193,17 @@ const Signup = () => {
                   name="passwordCheck"
                   label="passwordCheck"
                   error={passwordError !== "" || false}
+                  sx={style}
                 />
               </Grid>
               <FormHelperTexts>{passwordError}</FormHelperTexts>
 
-              <Grid item xs={12}>
+              {/* <Grid item xs={12}>
                 <FormControlLabel
                   control={<Checkbox onChange={handleAgree} color="primary" />}
                   label="I agree to the membership terms and conditions."
                 />
-              </Grid>
+              </Grid> */}
             </Grid>
             <Button
               type="submit"
@@ -189,6 +211,7 @@ const Signup = () => {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
               size="large"
+              style={{ backgroundColor: "#3E00FF" }}
             >
               Sign Up
             </Button>
@@ -211,4 +234,8 @@ const Boxs = styled(Box)`
   padding-bottom: 40px;
 `;
 
+const P = styled("p")({
+  color: "#878D96",
+  cursor: "pointer",
+});
 export default Signup;
