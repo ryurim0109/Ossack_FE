@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Grid, Button, Text, Image } from "../../elements/index";
+import { Grid, Button, Text, Image } from "../elements/index";
 
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";

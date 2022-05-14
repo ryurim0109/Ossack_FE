@@ -7,7 +7,6 @@ import Like from "./Like";
 import Start from "./Start";
 import SearchPage from "./SearchPage";
 import NotFound from "./NotFound";
-import SearchList from "./SearchList";
 import DetailOffice from "./DetailOffice";
 import MapOfficeList from "./MapOfficeList";
 import Splash from "./Splash";
@@ -22,7 +21,6 @@ export {
   Start,
   SearchPage,
   NotFound,
-  SearchList,
   DetailOffice,
   MapOfficeList,
   Splash,

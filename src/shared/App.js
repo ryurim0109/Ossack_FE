@@ -13,7 +13,6 @@ import {
   Start,
   SearchPage,
   NotFound,
-  SearchList,
   DetailOffice,
   MapOfficeList,
   Splash,
@@ -48,7 +47,6 @@ function App() {
               <Route path="/map" exact component={SaleMap} />
               <Route path="/mypage" exact component={MyPage} />
               <Route path="/like" exact component={Like} />
-              <Route path="/searchlist" exact component={SearchList} />
               <Route path="/map/office" exact component={MapOfficeList} />
               <Route path="/detail/:estateId" exact component={DetailOffice} />
               <Route component={NotFound} />

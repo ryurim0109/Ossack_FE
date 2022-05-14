@@ -10,16 +10,13 @@ import { Bar, Spinner } from "../components/shared/home";
 const MapOfficeList = (props) => {
   const dispatch = useDispatch();
   const search = props.location.search.split("=")[1];
-  //console.log(decodeURI(search))
   const totalPage = useSelector((state) => state?.office?.page);
-  //console.log(totalPage);
 
   const [pageno, setPageno] = useState(1);
   const [target, setTarget] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
   const callback = async ([entry], observer) => {
-    // console.log(entry);
     if (entry.isIntersecting && !isLoading) {
       observer.unobserve(entry.target);
       setIsLoading(true);
@@ -43,24 +40,15 @@ const MapOfficeList = (props) => {
 
   useEffect(() => {
     dispatch(officeActions.getSOListDB(search, pageno));
-    // console.log(pageno)
   }, [pageno]);
 
   return (
     <React.Fragment>
       <MyHeader>{decodeURI(search)} 리스트</MyHeader>
       <Outter>
-        {/* <InfinityScroll
-              callNext={() => dispatch(officeActions.getSOListDB(search))}
-              is_next={office_list?.length ? true : false}
-              loading={is_loading}
-            >
-              <MapOfficeResult/>
-              </InfinityScroll> */}
         <MapOfficeResult />
       </Outter>
       {isLoading ? <Spinner /> : null}
-
       {totalPage > pageno ? <div ref={setTarget}> </div> : null}
       <Bar />
     </React.Fragment>
