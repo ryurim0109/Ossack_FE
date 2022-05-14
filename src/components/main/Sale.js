@@ -2,16 +2,16 @@ import React from "react";
 import styled from "styled-components";
 import { Grid, Text, Image } from "../../elements/index";
 import { history } from "../../redux/configStore";
-import SearchImg from "../../static/images/searchicon.png";
+import SearchImg from "../../assets/search.svg";
 import { SaleList, HotPlaceList, Office } from "./index";
-import { Banner } from '../shared/home';
-import logo from '../../static/images/ossack.svg';
+import { Banner } from "../shared/home";
+//import logo from "../../assets/ossack.svg";
 
 import { useSelector } from "react-redux";
 
 function Sale() {
   const user_info = useSelector((state) => state.user.user);
-  
+
   return (
     <React.Fragment>
       <Outter>
@@ -29,8 +29,10 @@ function Sale() {
         </Grid> */}
         <Grid width="100%" margin="50px 0 0">
           <Text size="1.250rem" bold>
-            <Text color="#3E00FF" bold>{user_info?.nickname ? user_info?.nickname : "게스트"}님</Text> 어떤
-            🏢오피스를 <br />
+            <Text color="#3E00FF" bold>
+              {user_info?.nickname ? user_info?.nickname : "게스트"}님
+            </Text>{" "}
+            어떤 🏢오피스를 <br />
             찾고 계시나요?
           </Text>
         </Grid>

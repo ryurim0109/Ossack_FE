@@ -4,7 +4,7 @@ import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 import { history } from "../../redux/configStore";
 
-import SearchImg from "../../static/images/searchicon.png";
+import SearchImg from "../../assets/searchicon.png";
 
 const horizontalCenter = css`
   position: absolute;
@@ -109,19 +109,20 @@ function SearchBar({ onAddKeyword }) {
   };
 
   const Entercheck = (e) => {
-    if(e.key === 'Enter')
-    {
-    const timeout = setTimeout(() =>   
-    history.push(`/map/office?query=${keyword}`), 200);
-    return () => clearTimeout(timeout);
+    if (e.key === "Enter") {
+      const timeout = setTimeout(
+        () => history.push(`/map/office?query=${keyword}`),
+        200
+      );
+      return () => clearTimeout(timeout);
     }
-  }
+  };
 
   const handleClearKeyword = () => {
     setKeyword("");
   };
 
-  const searchgo=`/map/office?query=${keyword}`
+  const searchgo = `/map/office?query=${keyword}`;
 
   //느낌표로 키워드를 갖고있냐 없냐로 boolean 형태로 나옴
   //키워드를 가지고 있다면 active가 발생하여 padding이 발생함. // 패딩이 없으면 x 아이콘까지 글자가 침법하기 때문
@@ -131,7 +132,7 @@ function SearchBar({ onAddKeyword }) {
 
   return (
     <Container>
-      <SearchIcon width="50px" position="absolute" top="12px" left="7px" >
+      <SearchIcon width="50px" position="absolute" top="12px" left="7px">
         <img src={SearchImg} alt="검색" />
       </SearchIcon>
       <InputContainer>

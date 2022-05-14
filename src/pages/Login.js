@@ -12,8 +12,8 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import kakaoIcon from "../static/images/kakaoIcon.svg";
-import googleIcon from "../static/images/googleIcon.svg";
+import kakaoIcon from "../assets/kakaoIcon.svg";
+import googleIcon from "../assets/googleIcon.svg";
 
 import { Text } from "../elements/index";
 // import styled from "styled-components";

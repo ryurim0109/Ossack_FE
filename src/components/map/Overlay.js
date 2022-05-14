@@ -1,9 +1,9 @@
 import React from "react";
 import { Grid, Text } from "../../elements/index";
-import pin from "../../static/images/pin.svg";
+import pin from "../../assets/pin.svg";
 
 const Overlay = (props) => {
-  const { position,OverLavel } = props;
+  const { position, OverLavel } = props;
   //console.log(position?.estate[0]?.type, "????")
   //console.log(OverLavel, "나는 레벨인데????")
   if (OverLavel === 5) {
@@ -34,7 +34,7 @@ const Overlay = (props) => {
             <Text> {position?.estate_cnt}</Text>
           </Grid>
           <Text color="#fff" bold textIndent="28px" size="14px">
-          {position?.title}
+            {position?.title}
           </Text>
         </Grid>
         <Grid display="flex" justifyContent="center" alignItems="center">
@@ -60,10 +60,10 @@ const Overlay = (props) => {
             padding="10px 0"
           >
             <Text bold size="10px">
-              {position?.title? position?.title: "서울시"}
+              {position?.title ? position?.title : "서울시"}
             </Text>
             <Text bold size="14px">
-            {position?.average}만원
+              {position?.average}만원
             </Text>
           </Grid>
 
@@ -81,7 +81,7 @@ const Overlay = (props) => {
             justifyContent="center"
           >
             <Text color="#000" size="8px">
-               {position?.estate_cnt}
+              {position?.estate_cnt}
             </Text>
           </Grid>
         </Grid>

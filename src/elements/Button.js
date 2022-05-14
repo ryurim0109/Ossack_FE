@@ -8,8 +8,8 @@ import {
   MdClose,
 } from "react-icons/md";
 
-import pro_edit from "../static/images/pro_edit.svg";
-import bin_heart from "../static/images/favourite.svg";
+import pro_edit from "../assets/pro_edit.svg";
+import bin_heart from "../assets/favourite.svg";
 
 const Button = (props) => {
   const {

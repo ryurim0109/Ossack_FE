@@ -5,10 +5,10 @@ import { history } from "../redux/configStore";
 import { KAKAO_AUTH_URL, GOOGLE_AUTH_URL } from "../shared/SocialOAuth";
 import { TalkTalk } from "../components/main/index";
 
-import ossack from "../static/images/logo03.svg";
-import kakaoIcon from "../static/images/kakaoIcon.svg";
-import googleIcon from "../static/images/googleIcon.svg";
-import ossacke from "../static/images/ossacke.svg";
+import ossack from "../assets/logo03.svg";
+import kakaoIcon from "../assets/kakaoIcon.svg";
+import googleIcon from "../assets/googleIcon.svg";
+import ossacke from "../assets/ossacke.svg";
 
 const Start = () => {
   return (
