@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import { TiHeartOutline, TiHeart } from "react-icons/ti";
+import { TiHeart } from "react-icons/ti";
 import {
   MdKeyboardArrowLeft,
   MdKeyboardArrowRight,
@@ -9,6 +9,7 @@ import {
 } from "react-icons/md";
 
 import pro_edit from "../static/images/pro_edit.svg";
+import bin_heart from "../static/images/favourite.svg";
 
 const Button = (props) => {
   const {
@@ -65,7 +66,7 @@ const Button = (props) => {
     return (
       <React.Fragment>
         <BtnBox onClick={_onClick} {...styles}>
-          <Heart />
+          <img src={bin_heart} alt="하트아이콘" />
         </BtnBox>
       </React.Fragment>
     );
@@ -134,7 +135,7 @@ Button.defaultProps = {
   margin: null,
   width: "100%",
   padding: null,
-  color: "black",
+  color: "#3E00FF",
   height: "50px",
   top: null,
   bottom: null,
@@ -145,7 +146,7 @@ Button.defaultProps = {
   justifyContent: null,
   alignItems: false,
   fontSize: null,
-  border:null,
+  border: null,
 };
 
 const ButtonBox = styled.button`
@@ -156,15 +157,16 @@ const ButtonBox = styled.button`
   font-size: ${(props) => props.fontSize};
   margin: ${(props) => props.margin};
   position: ${(props) => props.position};
-  ${(props) => (props.alignItems ? `align-items: ${props.alignItems};` : '')};
-  ${(props) => (props.justifyContent ? `justify-content: ${props.justifyContent};` : '')};
+  ${(props) => (props.alignItems ? `align-items: ${props.alignItems};` : "")};
+  ${(props) =>
+    props.justifyContent ? `justify-content: ${props.justifyContent};` : ""};
   ${(props) =>
     props.backgroundColor
       ? `background-color:${props.backgroundColor}`
       : "background-color: #ccc"};
   box-sizing: border-box;
   font-weight: bold;
-  ${(props) => (props.border ? `border: ${props.border};` : 'none')};
+  ${(props) => (props.border ? `border: ${props.border};` : "none")};
   ${(props) =>
     props.borderRadius
       ? `border-radius:${props.borderRadius}`
@@ -217,10 +219,6 @@ const BBox = styled.button`
   width: 28px;
   height: 28px;
   border-radius: 14px;
-`;
-const Heart = styled(TiHeartOutline)`
-  width: 24px;
-  height: 24px;
 `;
 const Back = styled(MdKeyboardArrowLeft)`
   width: 24px;
