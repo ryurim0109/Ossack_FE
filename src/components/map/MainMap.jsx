@@ -25,12 +25,13 @@ const MainMap = (props) => {
   const is_loaded = useSelector((state) => state.map.is_loaded);
   //console.log(is_loaded)
   //console.log("getOffice : ", getOffice);
-  const OverLavel=getOffice?.level;
+  const OverLavel = getOffice?.level;
 
   const { kakao } = window;
   const [level, setLevel] = useState(3); //지도레벨
   const [map, setMap] = useState(); //지도
   const [pos, setPos] = useState(); //경도 위도
+  const [info, setInfo] = useState();
 
   const [state, setState] = useState({
     //기본 설정값
@@ -54,7 +55,7 @@ const MainMap = (props) => {
   //           },
   //           isLoading: false,
   //         }));
-          
+
   //       },
   //       (err) => {
   //         setState((prev) => ({
@@ -71,10 +72,10 @@ const MainMap = (props) => {
   //       isLoading: false,
   //     }));
   //   }
-    
+
   //   //위도 경도
   // }, []);
-  const po =({
+  const po = {
     swLatLng: {
       lat: map?.getBounds().getSouthWest().getLat(),
       lng: map?.getBounds().getSouthWest().getLng(),
@@ -83,19 +84,15 @@ const MainMap = (props) => {
       lat: map?.getBounds().getNorthEast().getLat(),
       lng: map?.getBounds().getNorthEast().getLng(),
     },
-  })
+  };
+  console.log(po, level, "디스패치 전");
+  useEffect(() => {
+    if (map) {
+      dispatch(mapActions.getOfficeData(po, level));
+      console.log(po, level, "디스패치 후");
+    }
+  }, [map]);
 
-  console.log(po,level)
-  
-    useEffect(()=>{
-      const timeout = setTimeout(() =>  dispatch(mapActions.getOfficeData(po,level)), 7000);
-    return () => clearTimeout(timeout);
-    
-  },[])
-  
-  // useEffect(()=>{
-  //   dispatch(mapActions.getOfficeData(po,level));
-  // },[])
   const setLocation = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function (position) {
@@ -152,27 +149,38 @@ const MainMap = (props) => {
               },
             ]}
           > */}
-           {  is_loaded? 
-             (<>
-         
-            { getOffice?.cityResponseDtoList?.length ===0? null:
-            getOffice?.cityResponseDtoList?.map((position, index) => {
-             return(
-              <CustomOverlayMap 
-                key={`${position.title}-${position.coordinate}`}
-                position={position.coordinate} // 마커를 표시할 위치
-                title={position.title} // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-              >
-                <div onClick={() => history.push(`/map/office?query=${position.title}`)} >
-                    <Overlay position={position} OverLavel={OverLavel} index={index} />
-                  </div>
-              </CustomOverlayMap>)
-            })}
-            </> ):(<Spinner/>)}
+          {is_loaded ? (
+            <>
+              {getOffice?.cityResponseDtoList?.length === 0
+                ? null
+                : getOffice?.cityResponseDtoList?.map((position, index) => {
+                    return (
+                      <CustomOverlayMap
+                        key={`${position.title}-${position.coordinate}`}
+                        position={position.coordinate} // 마커를 표시할 위치
+                        title={position.title} // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+                      >
+                        <div
+                          onClick={() =>
+                            history.push(`/map/office?query=${position.title}`)
+                          }
+                        >
+                          <Overlay
+                            position={position}
+                            OverLavel={OverLavel}
+                            index={index}
+                          />
+                        </div>
+                      </CustomOverlayMap>
+                    );
+                  })}
+            </>
+          ) : (
+            <Spinner />
+          )}
 
-             
           {/* </MarkerClusterer> */}
-     
+
           <Lev>
             <button onClick={setLocation}>
               <MdMyLocation size="24px" />
@@ -184,10 +192,8 @@ const MainMap = (props) => {
               <TiMinus size="21px" />
             </button>
           </Lev>
-         
-
         </Map>
-        
+
         {/* {pos && console.log('변경된 지도 중심좌표는 ' + pos.lat + ' 이고, 경도는 ' + pos.lng + ' 입니다', 
         '남서쪽' + pos.swLatLng.lat ,pos.swLatLng.lng, '북동쪽좌표' + pos.neLatLng.lat ,pos.neLatLng.lng)
         
