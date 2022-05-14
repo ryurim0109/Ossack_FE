@@ -7,7 +7,7 @@
 <mask id="path-2-inside-1_1809_659" fill="white">
 <rect x="9" y="14" width="6" height="8" rx="1"/>
 </mask>
-<rect x="9" y="14" width="6" height="8" rx="1" stroke="#BEBDC4" stroke-width="4" mask="url(#path-2-inside-1_1809_659)"/>
+<rect x="9" y="14" width="6" height="8" rx="1" stroke="current" stroke-width="4" mask="url(#path-2-inside-1_1809_659)"/>
 </g>
 </g>
 </svg>

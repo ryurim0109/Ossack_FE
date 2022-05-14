@@ -4,7 +4,7 @@ import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 import { history } from "../../redux/configStore";
 
-import SearchImg from "../../assets/search.svg";
+import { ReactComponent as Search } from "../../assets/search.svg";
 
 const horizontalCenter = css`
   position: absolute;
@@ -133,7 +133,7 @@ function SearchBar({ onAddKeyword }) {
   return (
     <Container>
       <SearchIcon width="50px" position="absolute" top="12px" left="7px">
-        <img src={SearchImg} alt="검색" />
+        <Search fill="none" stroke="#AFB4BE" />
       </SearchIcon>
       <InputContainer>
         <Input

@@ -2,10 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import { Grid, Text, Image } from "../../elements/index";
 import { history } from "../../redux/configStore";
-import SearchImg from "../../assets/search.svg";
+import { ReactComponent as Search } from "../../assets/search.svg";
 import { SaleList, HotPlaceList, Office } from "./index";
 import { Banner } from "../shared/home";
-//import logo from "../../assets/ossack.svg";
 
 import { useSelector } from "react-redux";
 
@@ -15,18 +14,6 @@ function Sale() {
   return (
     <React.Fragment>
       <Outter>
-        {/* logo */}
-        {/* <Grid
-          width="100%"
-          margin="28px 0 "
-          height="56px"
-          display="flex"
-          justifyContent="space-between"
-          alignItems="center"
-        >
-         
-          <Grid width="86px" display="flex" alignItems="center" height="48px" > <img  src={logo} alt="로고이미지"/></Grid>
-        </Grid> */}
         <Grid width="100%" margin="50px 0 0">
           <Text size="1.250rem" bold>
             <Text color="#3E00FF" bold>
@@ -38,7 +25,7 @@ function Sale() {
         </Grid>
         <Grid width="100%" margin="12px 0 16px 0" position="relative">
           <Grid width="50px" position="absolute" top="12px" left="10px">
-            <img src={SearchImg} alt="검색" />
+            <Search fill="none" stroke="#AFB4BE" />
           </Grid>
           <Grid
             width="100%"

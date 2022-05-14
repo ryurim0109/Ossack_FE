@@ -1,15 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 
-import { TiHeart } from "react-icons/ti";
 import {
   MdKeyboardArrowLeft,
   MdKeyboardArrowRight,
   MdClose,
 } from "react-icons/md";
 
-import pro_edit from "../assets/pro_edit.svg";
-import bin_heart from "../assets/favourite.svg";
+import { ReactComponent as Heart } from "../assets/favourite.svg";
+import { ReactComponent as ProEdit } from "../assets/pro_edit.svg";
 
 const Button = (props) => {
   const {
@@ -66,7 +65,7 @@ const Button = (props) => {
     return (
       <React.Fragment>
         <BtnBox onClick={_onClick} {...styles}>
-          <img src={bin_heart} alt="하트아이콘" />
+          <Heart fill="none" stroke="#fff" />
         </BtnBox>
       </React.Fragment>
     );
@@ -75,7 +74,7 @@ const Button = (props) => {
     return (
       <React.Fragment>
         <BtnBox onClick={_onClick} {...styles}>
-          <FillHeart />
+          <Heart fill="#fff" stroke="none" />
         </BtnBox>
       </React.Fragment>
     );
@@ -112,7 +111,7 @@ const Button = (props) => {
     return (
       <React.Fragment>
         <BBox onClick={_onClick} {...styles}>
-          <img src={pro_edit} alt="수정 아이콘" />
+          <ProEdit />
         </BBox>
       </React.Fragment>
     );
@@ -231,10 +230,5 @@ const Right = styled(MdKeyboardArrowRight)`
 const X = styled(MdClose)`
   width: 24px;
   height: 24px;
-`;
-const FillHeart = styled(TiHeart)`
-  width: 24px;
-  height: 24px;
-  color: red;
 `;
 export default Button;
