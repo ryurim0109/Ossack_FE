@@ -1,8 +1,13 @@
-/* CSS 초기화*/
+import { createGlobalStyle } from "styled-components";
+
+const GlobalStyle = createGlobalStyle`
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;  
+    box-sizing: border-box;
+    font-family: 'Pretendard', sans-serif;
 }
 html {
   margin: 0;
@@ -202,13 +207,6 @@ textarea {
 textarea {
   background-color: #fcfcfc;
 }
-input[type="radio"] {
-  margin: 0;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  border: 0;
-}
 input {
   border: 1px solid #F5F5F5;
 }
@@ -242,6 +240,6 @@ input {
   font-family: "Pretendard";
   border: 1px solid #F5F5F5;
 }
-input[type="text"] {
-  background-color: #F5F5F5;
-}
+`;
+
+export default GlobalStyle;

@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { Grid, Image } from "../elements/index";
-import styled from "styled-components";
 import { history } from "../redux/configStore";
 import moomgu from "../assets/logo01.svg";
 import ossack from "../assets/logo02.svg";
@@ -45,11 +44,4 @@ const Splash = () => {
     </React.Fragment>
   );
 };
-const Outter = styled.div`
-  width: 100%;
-  padding: 0 16px 68px;
-`;
-const A = styled.a`
-  color: #000;
-`;
 export default Splash;

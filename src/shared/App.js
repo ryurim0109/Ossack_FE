@@ -23,12 +23,13 @@ import KaKaoLogin from "../components/social/KaKaoLogin";
 import GoogleLogin from "../components/social/GoogleLogin";
 
 //css
-import "../shared/css/App.css";
+import GlobalStyle from "../style/GlobalStyle";
 
 function App() {
   return (
     <>
       <Wrap>
+        <GlobalStyle />
         <ConnectedRouter history={history}>
           <MobileFrame className="MobileFramePage">
             <Switch>
