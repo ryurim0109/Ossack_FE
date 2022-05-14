@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Grid, Text, Button } from "../../elements/index";
 
 import styled, { keyframes } from "styled-components";
-import refresh from '../../static/images/refresh.svg';
+import refresh from "../../assets/refresh.svg";
 
 const Filter = (props) => {
   const { isOpen, setIsOpen } = props;
@@ -171,14 +171,16 @@ const Filter = (props) => {
               justifyContent="space-between"
               alignItems="center"
             >
-               <Grid
-              width="96px"
-              height="40px"
-              display="flex"
-              justifyContent="space-between"
-              alignItems="center"
-            >
-                <Grid width="24px" height="24px"><img src={refresh} alt="재설정 아이콘"/></Grid>
+              <Grid
+                width="96px"
+                height="40px"
+                display="flex"
+                justifyContent="space-between"
+                alignItems="center"
+              >
+                <Grid width="24px" height="24px">
+                  <img src={refresh} alt="재설정 아이콘" />
+                </Grid>
                 <Button
                   width="64px"
                   height="24px"
@@ -190,9 +192,9 @@ const Filter = (props) => {
                   border="none"
                 >
                   가격 재설정
-                </Button> 
+                </Button>
               </Grid>
-              
+
               <Button
                 width="212px"
                 height="40px"

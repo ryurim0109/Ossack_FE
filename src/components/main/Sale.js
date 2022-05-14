@@ -2,41 +2,30 @@ import React from "react";
 import styled from "styled-components";
 import { Grid, Text, Image } from "../../elements/index";
 import { history } from "../../redux/configStore";
-import SearchImg from "../../static/images/searchicon.png";
+import { ReactComponent as Search } from "../../assets/search.svg";
 import { SaleList, HotPlaceList, Office } from "./index";
-import { Banner } from '../shared/home';
-import logo from '../../static/images/ossack.svg';
+import { Banner } from "../shared/home";
 
 import { useSelector } from "react-redux";
 
 function Sale() {
   const user_info = useSelector((state) => state.user.user);
-  
+
   return (
     <React.Fragment>
       <Outter>
-        {/* logo */}
-        {/* <Grid
-          width="100%"
-          margin="28px 0 "
-          height="56px"
-          display="flex"
-          justifyContent="space-between"
-          alignItems="center"
-        >
-         
-          <Grid width="86px" display="flex" alignItems="center" height="48px" > <img  src={logo} alt="로고이미지"/></Grid>
-        </Grid> */}
         <Grid width="100%" margin="50px 0 0">
           <Text size="1.250rem" bold>
-            <Text color="#3E00FF" bold>{user_info?.nickname ? user_info?.nickname : "게스트"}님</Text> 어떤
-            🏢오피스를 <br />
+            <Text color="#3E00FF" bold>
+              {user_info?.nickname ? user_info?.nickname : "게스트"}님
+            </Text>{" "}
+            어떤 🏢오피스를 <br />
             찾고 계시나요?
           </Text>
         </Grid>
         <Grid width="100%" margin="12px 0 16px 0" position="relative">
           <Grid width="50px" position="absolute" top="12px" left="10px">
-            <img src={SearchImg} alt="검색" />
+            <Search fill="none" stroke="#AFB4BE" />
           </Grid>
           <Grid
             width="100%"

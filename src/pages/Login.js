@@ -14,9 +14,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 
 import { Text } from "../elements/index";
-// import styled from "styled-components";
 import { history } from "../redux/configStore";
-import { KAKAO_AUTH_URL, GOOGLE_AUTH_URL } from "../shared/SocialOAuth";
 
 import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";

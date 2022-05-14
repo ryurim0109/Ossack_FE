@@ -2,13 +2,11 @@ import React from "react";
 import { Grid, Button, Text } from "../elements/index";
 import styled from "styled-components";
 import { history } from "../redux/configStore";
-import { KAKAO_AUTH_URL, GOOGLE_AUTH_URL } from "../shared/SocialOAuth";
-import { TalkTalk } from "../components/main/index";
 
-import ossack from "../static/images/logo03.svg";
-import kakaoIcon from "../static/images/kakaoIcon.svg";
-import googleIcon from "../static/images/googleIcon.svg";
-import ossacke from "../static/images/ossacke.svg";
+import { TalkTalk } from "../components/shared/home";
+
+import ossack from "../assets/logo03.svg";
+import ossacke from "../assets/ossacke.svg";
 
 const Start = () => {
   return (
@@ -86,33 +84,7 @@ const Start = () => {
                 </P>
               </Grid>
               {/* 소셜로그인 */}
-              <Grid
-                width="100%"
-                display="flex"
-                justifyContent="center"
-                height="78px"
-                alignItems="center"
-                margin="16px 0 0"
-                position="relative"
-              >
-                <TalkTalk />
-                <Grid
-                  width="114px"
-                  display="flex"
-                  justifyContent="space-between"
-                >
-                  <Button width="46px" height="46px" borderRadius="46px">
-                    <A href={KAKAO_AUTH_URL}>
-                      <img src={kakaoIcon} alt="카카오로그인" />
-                    </A>
-                  </Button>
-                  <Button width="46px" height="46px" borderRadius="46px">
-                    <A href={GOOGLE_AUTH_URL}>
-                      <img src={googleIcon} alt="구글로그인" />
-                    </A>
-                  </Button>
-                </Grid>
-              </Grid>
+              <TalkTalk />
               {/* 소셜로그인 */}
             </Grid>
           </Grid>
@@ -125,9 +97,6 @@ const Outter = styled.div`
   width: 100%;
   padding: 0 16px;
   position: relative;
-`;
-const A = styled.a`
-  color: #000;
 `;
 const P = styled.p`
   color: #999;

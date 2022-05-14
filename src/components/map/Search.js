@@ -1,15 +1,14 @@
 import React, { useState } from "react";
 import { Grid, Button, Input } from "../../elements/index";
 import { history } from "../../redux/configStore";
-import styled from 'styled-components';
-import filterIcon from "../../static/images/filter.svg";
-import { Filter } from '../map/index';
-
+import styled from "styled-components";
+import filterIcon from "../../assets/filter.svg";
+import { Filter } from "../map/index";
 
 const Search = () => {
-  const [isOpen,setIsOpen] =useState(false);
-  const openModalHandler=()=>{
-      setIsOpen(!isOpen);
+  const [isOpen, setIsOpen] = useState(false);
+  const openModalHandler = () => {
+    setIsOpen(!isOpen);
   };
 
   return (
@@ -37,10 +36,12 @@ const Search = () => {
           borderRadius="8px"
           color="#767676"
           backgroundColor="#F5F5F5"
-          _onClick={()=>{
-            history.push('/search')
+          _onClick={() => {
+            history.push("/search");
           }}
-        >장소, 근처 역을 입력하세요.</Button>
+        >
+          장소, 근처 역을 입력하세요.
+        </Button>
 
         <button
           style={{
@@ -55,16 +56,12 @@ const Search = () => {
         >
           <img src={filterIcon} alt="필터아이콘" />
         </button>
-        {isOpen ? 
-                    (<>
-                    <ModalBackdrop onClick={openModalHandler}>
-                        
-                        
-                    </ModalBackdrop>
-                    <Filter isOpen={isOpen} setIsOpen={setIsOpen}/>
-                    </>
-                    )
-                    : null}
+        {isOpen ? (
+          <>
+            <ModalBackdrop onClick={openModalHandler}></ModalBackdrop>
+            <Filter isOpen={isOpen} setIsOpen={setIsOpen} />
+          </>
+        ) : null}
       </Grid>
     </React.Fragment>
   );
@@ -73,10 +70,10 @@ const ModalBackdrop = styled.div`
   width: 100%;
   height: 100%;
   position: absolute;
-  top:0;
-  left:0;
+  top: 0;
+  left: 0;
   display: flex;
-  z-index:999;
+  z-index: 999;
   justify-content: center;
   align-items: center;
   background: rgba(0, 0, 0, 0.7);
