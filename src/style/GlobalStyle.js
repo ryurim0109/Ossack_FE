@@ -231,7 +231,7 @@ button {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 500;
-  border: 1px solid #dddddd;
+  border: none;
   cursor: pointer;
 }
 

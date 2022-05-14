@@ -45,15 +45,15 @@ const colors = {
 const darkColors = {
   //font
   title: "#000000",
-  subTitle: "#626262",
-  blueTitle: "#718AFF",
+  subTitle: "#3E00FF",
+  blueTitle: "#5886FE",
   buttonTitle: "#FFFFFF",
   //main col
-  main: "#718AFF",
-  brightMain: "#9CAEFF",
-  darkerMain: "#4F66D2",
-  moreDarkerMain: "#323C6E",
-  subMain: "#BCC8FF",
+  main: "#3E00FF",
+  brightMain: "rgba(62, 0, 255, 0.1);",
+  darkerMain: "#0E3FF2",
+  subMain: "#FF5151",
+  darkersubMain: "#FF2727",
   //white col
   white: "#FFFFFF",
   whiteHover: "#F4F4F4",

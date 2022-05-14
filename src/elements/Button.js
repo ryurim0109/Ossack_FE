@@ -222,13 +222,16 @@ const BBox = styled.button`
 const Back = styled(MdKeyboardArrowLeft)`
   width: 24px;
   height: 24px;
+  color: #000;
 `;
 const Right = styled(MdKeyboardArrowRight)`
   width: 24px;
   height: 24px;
+  color: #000;
 `;
 const X = styled(MdClose)`
   width: 24px;
   height: 24px;
+  color: #000;
 `;
 export default Button;
