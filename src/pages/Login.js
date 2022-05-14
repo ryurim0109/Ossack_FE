@@ -12,18 +12,14 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import kakaoIcon from "../assets/kakaoIcon.svg";
-import googleIcon from "../assets/googleIcon.svg";
 
 import { Text } from "../elements/index";
-// import styled from "styled-components";
 import { history } from "../redux/configStore";
-import { KAKAO_AUTH_URL, GOOGLE_AUTH_URL } from "../shared/SocialOAuth";
 
 import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 import { styled } from "@mui/system";
-import { TalkTalk } from "../components/main/index";
+import { TalkTalk } from "../components/shared/home";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -144,59 +140,22 @@ const Login = () => {
                   </Text>{" "}
                 </Text>
               </Grid>
-              {/* 소셜로그인 */}
-              <Grid
-                width="100%"
-                display="flex"
-                justifyContent="center"
-                height="78px"
-                alignItems="center"
-                margin="50px 0 0"
-                position="relative"
-              >
-                <TalkTalk />
-                <Grid
-                  width="114px"
-                  display="flex"
-                  justifyContent="space-between"
-                >
-                  <MyBtn onClick={() => window.open(`${KAKAO_AUTH_URL}`)}>
-                    {" "}
-                    <img src={kakaoIcon} alt="카카오로그인" />{" "}
-                  </MyBtn>
-                  <MyBtn onClick={() => window.open(`${GOOGLE_AUTH_URL}`)}>
-                    {" "}
-                    <img src={googleIcon} alt="구글로그인" />{" "}
-                  </MyBtn>
-                </Grid>
-              </Grid>
-              {/* 소셜로그인 */}
             </Grid>
           </Box>
         </Box>
-
-        {/* <Copyright sx={{ mt: 8, mb: 4 }} /> */}
+        <Grid
+          width="100%"
+          marginTop="40px"
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+        >
+          {/* 소셜로그인 */}
+          <TalkTalk />
+        </Grid>
       </Container>
     </React.Fragment>
   );
 };
-
-// const A = styled.a`
-//   color: #000;
-// `;
-// const P = styled.p`
-//   color: #fff;
-//   cursor: pointer;
-// `;
-
-const A = styled("a")({
-  color: "#000",
-});
-
-const MyBtn = styled("button")({
-  borderRadius: "46px",
-  height: "47px",
-  width: "47px",
-});
 
 export default Login;
