@@ -4,7 +4,7 @@ import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 import { history } from "../../redux/configStore";
 
-import SearchImg from "../../assets/searchicon.png";
+import SearchImg from "../../assets/search.svg";
 
 const horizontalCenter = css`
   position: absolute;

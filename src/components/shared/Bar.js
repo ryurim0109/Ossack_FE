@@ -4,14 +4,10 @@ import { Grid, Text } from "../../elements/index";
 import { history } from "../../redux/configStore";
 import { useSelector } from "react-redux";
 //아이콘
-import home from "../../assets/home.svg";
-import active_home from "../../assets/active_home.svg";
-import heart from "../../assets/favourite.svg";
-import active_heart from "../../assets/active_favourite.svg";
-import search from "../../assets/search.svg";
-import active_search from "../../assets/active_search.svg";
-import user from "../../assets/user.svg";
-import active_user from "../../assets/active_user.svg";
+import { ReactComponent as Heart } from "../../assets/favourite.svg";
+import { ReactComponent as Home } from "../../assets/home.svg";
+import { ReactComponent as Search } from "../../assets/search.svg";
+import { ReactComponent as User } from "../../assets/user.svg";
 
 function Bar() {
   const gnbClick = (e, gnbname) => {
@@ -47,7 +43,11 @@ function Bar() {
           alignItems="center"
         >
           <Grid width="24px" height="24px">
-            <img src={params === "/main" ? active_home : home} alt="홈아이콘" />{" "}
+            {params === "/main" ? (
+              <Home fill="none" stroke="#3E00FF" />
+            ) : (
+              <Home fill="none" stroke="#BEBDC4" />
+            )}
           </Grid>
           <Text
             cursor="pointer"
@@ -70,16 +70,13 @@ function Bar() {
           alignItems="center"
         >
           <Grid width="24px" height="24px">
-            <img
-              src={
-                params.includes("/map") ||
-                params.includes("/search") ||
-                params.includes("/detail")
-                  ? active_search
-                  : search
-              }
-              alt="검색아이콘"
-            />{" "}
+            {params.includes("/map") ||
+            params.includes("/search") ||
+            params.includes("/detail") ? (
+              <Search fill="none" stroke="#3E00FF" />
+            ) : (
+              <Search fill="none" stroke="#BEBDC4" />
+            )}
           </Grid>
           <Text
             cursor="pointer"
@@ -108,10 +105,11 @@ function Bar() {
           alignItems="center"
         >
           <Grid width="24px" height="24px">
-            <img
-              src={params === "/like" ? active_heart : heart}
-              alt="하트아이콘"
-            />{" "}
+            {params === "/like" ? (
+              <Heart fill="none" stroke="#3E00FF" />
+            ) : (
+              <Heart fill="none" stroke="#BEBDC4" />
+            )}
           </Grid>
           <Text
             cursor="pointer"
@@ -133,10 +131,11 @@ function Bar() {
           alignItems="center"
         >
           <Grid width="24px" height="24px">
-            <img
-              src={params === "/mypage" ? active_user : user}
-              alt="유저아이콘"
-            />{" "}
+            {params === "/mypage" ? (
+              <User fill="none" stroke="#3E00FF" />
+            ) : (
+              <User fill="none" stroke="#BEBDC4" />
+            )}
           </Grid>
           <Text
             cursor="pointer"
