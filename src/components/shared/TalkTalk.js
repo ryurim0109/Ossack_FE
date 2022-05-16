@@ -34,12 +34,12 @@ const TalkTalk = () => {
   );
 };
 const Talk = styled.div`
-  color: #fff;
+  color: #000;
   width: 134px;
   height: 28px;
-  background-color: #3e00ff;
+  background-color: #fff;
   top: -36px;
-  border: 3px solid #3e00ff;
+  border: 1px solid #c4c4c4;
   font-size: 0.75rem;
   display: flex;
   justify-content: center;
@@ -52,8 +52,34 @@ const Talk = styled.div`
   animation-iteration-count: infinite;
   animation-name: bounceX;
   z-index: 99;
+  &::after {
+    border-color: #fff transparent;
+    border-style: solid;
+    border-width: 0 6px 8px 6.5px;
+    content: "";
+    display: block;
+    left: 60px;
+    position: absolute;
+    transform: rotate(180deg);
+    top: 26px;
+    width: 0;
+    z-index: 1;
+  }
+  &::before {
+    border-color: #c4c4c4 transparent;
+    border-style: solid;
+    border-width: 0 7px 9px 8px;
+    content: "";
+    display: block;
+    transform: rotate(180deg);
+    left: 60px;
+    position: absolute;
+    top: 26px;
+    width: 0;
+    z-index: 0;
+  }
 
-  &:before {
+  /* &:before {
     content: "";
     position: absolute;
     bottom: 0;
@@ -65,7 +91,7 @@ const Talk = styled.div`
     border-bottom: 0;
     margin-left: -9px;
     margin-bottom: -9px;
-  }
+  } */
 
   @keyframes bounceX {
     50% {
