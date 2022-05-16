@@ -1,14 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 
-import {
-  MdKeyboardArrowLeft,
-  MdKeyboardArrowRight,
-  MdClose,
-} from "react-icons/md";
+import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 
 import { ReactComponent as Heart } from "../assets/favourite.svg";
 import { ReactComponent as ProEdit } from "../assets/pro_edit.svg";
+import { ReactComponent as Close } from "../assets/close.svg";
 
 const Button = (props) => {
   const {
@@ -64,45 +61,45 @@ const Button = (props) => {
   if (is_like) {
     return (
       <React.Fragment>
-        <BtnBox onClick={_onClick} {...styles}>
+        <IconBox onClick={_onClick} {...styles}>
           <Heart fill="none" stroke="#fff" />
-        </BtnBox>
+        </IconBox>
       </React.Fragment>
     );
   }
   if (fill_like) {
     return (
       <React.Fragment>
-        <BtnBox onClick={_onClick} {...styles}>
+        <IconBox onClick={_onClick} {...styles}>
           <Heart fill="#fff" stroke="none" />
-        </BtnBox>
+        </IconBox>
       </React.Fragment>
     );
   }
   if (is_close) {
     return (
       <React.Fragment>
-        <BtnBox onClick={_onClick} {...styles}>
-          <X />
-        </BtnBox>
+        <IconBox onClick={_onClick} {...styles}>
+          <Close fill="none" stroke="#111" />
+        </IconBox>
       </React.Fragment>
     );
   }
   if (is_right) {
     return (
       <React.Fragment>
-        <BtnBox onClick={_onClick} {...styles}>
+        <IconBox onClick={_onClick} {...styles}>
           <Right />
-        </BtnBox>
+        </IconBox>
       </React.Fragment>
     );
   }
   if (is_back) {
     return (
       <React.Fragment>
-        <BtnBox onClick={_onClick} {...styles}>
+        <IconBox onClick={_onClick} {...styles}>
           <Back />
-        </BtnBox>
+        </IconBox>
       </React.Fragment>
     );
   }
@@ -110,9 +107,9 @@ const Button = (props) => {
   if (is_edit) {
     return (
       <React.Fragment>
-        <BBox onClick={_onClick} {...styles}>
+        <EditBox onClick={_onClick} {...styles}>
           <ProEdit />
-        </BBox>
+        </EditBox>
       </React.Fragment>
     );
   }
@@ -134,7 +131,7 @@ Button.defaultProps = {
   margin: null,
   width: "100%",
   padding: null,
-  color: "#3E00FF",
+  color: null,
   height: "50px",
   top: null,
   bottom: null,
@@ -162,16 +159,13 @@ const ButtonBox = styled.button`
   ${(props) =>
     props.backgroundColor
       ? `background-color:${props.backgroundColor}`
-      : "background-color: #ccc"};
-  box-sizing: border-box;
-  font-weight: bold;
+      : "background-color: #3E00FF"};
   ${(props) => (props.border ? `border: ${props.border};` : "none")};
   ${(props) =>
     props.borderRadius
       ? `border-radius:${props.borderRadius}`
       : "border-radius: 0px"};
   cursor: pointer;
-  flex-shrink: 0;
   &:hover {
     background-color: ${(props) => props.hover};
   }
@@ -184,7 +178,7 @@ const ButtonBox = styled.button`
   display: ${(props) => props.display};
 `;
 
-const BtnBox = styled.button`
+const IconBox = styled.button`
   background: none;
   border: none;
   cursor: pointer;
@@ -198,13 +192,9 @@ const BtnBox = styled.button`
   right: ${(props) => props.right};
   color: ${(props) => props.color};
 `;
-const BBox = styled.button`
-  ${(props) =>
-    props.backgroundColor
-      ? `background-color:${props.backgroundColor}`
-      : "background-color: #494949"};
+const EditBox = styled.button`
+  background-color: #494949;
   border: 2px solid #fff;
-  box-sizing: border-box;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -214,7 +204,6 @@ const BBox = styled.button`
   bottom: ${(props) => props.bottom};
   left: ${(props) => props.left};
   right: ${(props) => props.right};
-  color: ${(props) => props.color};
   width: 28px;
   height: 28px;
   border-radius: 14px;
@@ -225,11 +214,6 @@ const Back = styled(MdKeyboardArrowLeft)`
   color: #000;
 `;
 const Right = styled(MdKeyboardArrowRight)`
-  width: 24px;
-  height: 24px;
-  color: #000;
-`;
-const X = styled(MdClose)`
   width: 24px;
   height: 24px;
   color: #000;
