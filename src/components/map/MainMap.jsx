@@ -11,12 +11,7 @@ import Spinner from "../shared/Spinner";
 
 import { history } from "../../redux/configStore";
 
-import {
-  Map,
-  MapMarker,
-  CustomOverlayMap,
-  MarkerClusterer,
-} from "react-kakao-maps-sdk";
+import { Map, CustomOverlayMap } from "react-kakao-maps-sdk";
 import { Position, Overlay } from "./index";
 
 const MainMap = (props) => {
@@ -31,7 +26,6 @@ const MainMap = (props) => {
   const [level, setLevel] = useState(3); //지도레벨
   const [map, setMap] = useState(); //지도
   const [pos, setPos] = useState(); //경도 위도
-  const [info, setInfo] = useState();
 
   const [state, setState] = useState({
     //기본 설정값
