@@ -85,11 +85,9 @@ const MainMap = (props) => {
       lng: map?.getBounds().getNorthEast().getLng(),
     },
   };
-  console.log(po, level, "디스패치 전");
   useEffect(() => {
     if (map) {
       dispatch(mapActions.getOfficeData(po, level));
-      console.log(po, level, "디스패치 후");
     }
   }, [map]);
 
