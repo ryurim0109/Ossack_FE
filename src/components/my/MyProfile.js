@@ -58,7 +58,7 @@ const MyProfile = () => {
             padding="12px 0"
             justifyContent="center"
           >
-            <Text size="1.250rem" cursor="pointer">
+            <Text size="18px" cursor="pointer" bold>
               {user_info?.nickname ? user_info?.nickname : "게스트"}님
             </Text>
           </Grid>

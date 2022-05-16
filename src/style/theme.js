@@ -4,6 +4,7 @@ const colors = {
   subTitle: "#626262",
   blueTitle: "#718AFF",
   buttonTitle: "#FFFFFF",
+  grayTitle: "#999",
   //main col
   main: "#3E00FF",
   brightMain: "#9CAEFF",
@@ -22,21 +23,9 @@ const colors = {
   sub: "#D2D2D2",
   subHover: "#C7C5C5",
   subActive: "#B9B9B9",
-  //calendar pointer
-  pointer: "rgba(0, 0, 0, 0.5);",
-  //signout
-  signOut: "#F73535",
-  signoutHover: "#FB1616",
-  //reject
-  reject: "#D97E7E",
   //scroll bar
   scroll: "#EBEBEB",
   scrollHover: "#D6D6D6",
-  //kakaoBg
-  kakaoBg: "#fee500;",
-  brightKakao: "#FFEC3B",
-  darkerKakao: "#ceb900",
-  kakaoTitle: "#3c1e1e;",
   //background
   subBackground: "F8F8F8",
   background: "#FFFFFF",
