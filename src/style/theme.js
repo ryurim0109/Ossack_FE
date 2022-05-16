@@ -5,7 +5,7 @@ const colors = {
   blueTitle: "#718AFF",
   buttonTitle: "#FFFFFF",
   //main col
-  main: "#718AFF",
+  main: "#3E00FF",
   brightMain: "#9CAEFF",
   darkerMain: "#4F66D2",
   moreDarkerMain: "#323C6E",
@@ -81,14 +81,13 @@ const darkColors = {
 };
 
 const fontSizes = {
-  titleSize: "30px",
-  xxxlg: "26px",
-  xxlg: "24px",
-  xlg: "20px",
-  large: "18px",
+  titleSize: "24px",
+  xxlg: "20px",
+  xlg: "18px",
+  large: "16px",
   base: "14px",
-  small: "13px",
-  xs: "12px",
+  small: "12px",
+  xs: "10px",
 };
 
 const commons = {
