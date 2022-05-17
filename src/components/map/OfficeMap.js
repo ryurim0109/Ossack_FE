@@ -14,12 +14,10 @@ import { Map, CustomOverlayMap } from "react-kakao-maps-sdk";
 import { ReactComponent as Location } from "../../assets/location.svg";
 import { Position, Overlay } from "./index";
 
-const MainMap = (props) => {
+const OfficeMap = (props) => {
   const dispatch = useDispatch();
   const getOffice = useSelector((state) => state.map.office_list);
   const is_loaded = useSelector((state) => state.map.is_loaded);
-  //console.log(is_loaded)
-  //console.log("getOffice : ", getOffice);
   const OverLavel = getOffice?.level;
 
   const { kakao } = window;
@@ -33,7 +31,41 @@ const MainMap = (props) => {
       lat: 37.5173319258532,
       lng: 127.047377408384,
     },
+    errMsg: null,
+    isLoading: true,
   });
+  //지도 키자마자 내 위치 찍어줌.
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          setState((prev) => ({
+            ...prev,
+            center: {
+              lat: position.coords.latitude, // 위도
+              lng: position.coords.longitude, // 경도
+            },
+            isLoading: false,
+          }));
+        },
+        (err) => {
+          setState((prev) => ({
+            ...prev,
+            errMsg: err.message,
+            isLoading: false,
+          }));
+        }
+      );
+    } else {
+      setState((prev) => ({
+        ...prev,
+        errMsg: "현재 위치를 표시할 수 없어요.",
+        isLoading: false,
+      }));
+    }
+
+    //위도 경도
+  }, []);
   const po = {
     swLatLng: {
       lat: map?.getBounds().getSouthWest().getLat(),
@@ -98,6 +130,7 @@ const MainMap = (props) => {
                       <CustomOverlayMap
                         key={`${position.title}-${position.coordinate}`}
                         position={position.coordinate} // 마커를 표시할 위치
+                        title={position.title} // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
                       >
                         <div
                           onClick={() =>
@@ -162,4 +195,4 @@ const Lev = styled.div`
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
   }
 `;
-export default MainMap;
+export default OfficeMap;

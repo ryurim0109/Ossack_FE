@@ -99,9 +99,9 @@ const Outter = styled.div`
   position: relative;
 `;
 const P = styled.p`
-  color: #999;
+  color: ${({ theme }) => theme.colors.grayTitle};
   cursor: pointer;
-  font-size: 0.75rem;
+  font-size: ${({ theme }) => theme.fontSizes.small};
 `;
 
 export default Start;

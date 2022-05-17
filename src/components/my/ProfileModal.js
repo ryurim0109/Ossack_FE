@@ -132,9 +132,7 @@ const ProfileModal = (props) => {
                   padding="none"
                   height="58px"
                   fontSize="0.875rem"
-                  border="none"
                   color="#fff"
-                  backgroundColor="#0373F3"
                   _onClick={editProfile}
                 >
                   저장하기

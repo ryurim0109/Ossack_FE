@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
 const Text = (props) => {
   const {
@@ -47,11 +47,10 @@ Text.defaultProps = {
   align: null,
   margin: false,
   padding: false,
-  family: false, //폰트 타입
   border: null,
-  textIndent:null,
-  lingH:null,
-  borderBottom:null,
+  textIndent: null,
+  lingH: null,
+  borderBottom: null,
   _onClick: () => {},
   cursor: null,
 };
@@ -59,12 +58,11 @@ Text.defaultProps = {
 const ElText = styled.span`
   color: ${(props) => props.color};
   font-size: ${(props) => props.size};
-  font-weight: ${(props) => (props.bold ? 'bold' : '400')};
+  font-weight: ${(props) => (props.bold ? "bold" : "400")};
   text-align: ${(props) => props.align};
   margin: ${(props) => props.margin};
   padding: ${(props) => props.padding};
   text-indent: ${(props) => props.textIndent};
-  family: ${(props) => props.family};
   border: ${(props) => props.border};
   cursor: ${(props) => props.cursor};
   line-height: ${(props) => props.lingH};
