@@ -7,13 +7,12 @@ import { history } from "../../redux/configStore";
 import { ReactComponent as Search } from "../../assets/search.svg";
 
 function SearchBar({ onAddKeyword }) {
-  // 1. 검색어를 state 로 다루도록 변경
-  // 2. 이벤트 연결
-  // 3. Link to 설명
-
   //form을 관련 요소를 다룰때는 2-way 데이터 바인딩을 해줍니다! (input 의 value에 state를 넣는 것)
+
+  // 1. 검색어를 state 로 다루도록 변경
   const [keyword, setKeyword] = useState("");
 
+  // 2. 이벤트 연결
   const handleKeyword = (e) => {
     setKeyword(e.target.value);
   };
