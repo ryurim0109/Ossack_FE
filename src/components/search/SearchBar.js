@@ -6,6 +6,69 @@ import { history } from "../../redux/configStore";
 
 import { ReactComponent as Search } from "../../assets/search.svg";
 
+function SearchBar({ onAddKeyword }) {
+  // 1. 검색어를 state 로 다루도록 변경
+  // 2. 이벤트 연결
+  // 3. Link to 설명
+
+  //form을 관련 요소를 다룰때는 2-way 데이터 바인딩을 해줍니다! (input 의 value에 state를 넣는 것)
+  const [keyword, setKeyword] = useState("");
+
+  const handleKeyword = (e) => {
+    setKeyword(e.target.value);
+  };
+  const handleEnter = (e) => {
+    if (keyword && e.keyCode === 13) {
+      //엔터일때 부모의 addkeyword에 전달
+      onAddKeyword(keyword);
+    }
+  };
+
+  const Entercheck = (e) => {
+    if (keyword && e.key === "Enter") {
+      history.push(`/map/office?query=${keyword}`);
+      // const timeout = setTimeout(
+      //   () => history.push(`/map/office?query=${keyword}`),
+      //   200
+      // );
+      // return () => clearTimeout(timeout);
+    }
+  };
+
+  const handleClearKeyword = () => {
+    setKeyword("");
+  };
+
+  const searchgo = `/map/office?query=${keyword}`;
+
+  //느낌표로 키워드를 갖고있냐 없냐로 boolean 형태로 나옴
+  //키워드를 가지고 있다면 active가 발생하여 padding이 발생함. // 패딩이 없으면 x 아이콘까지 글자가 침법하기 때문
+  const hasKeyword = !!keyword;
+  //keyword가 있으면 true, 없으면 false가 리턴이 되는 것을 확인 할 수 있습니다
+  console.log(!!keyword);
+
+  return (
+    <Container>
+      <SearchIcon width="50px" position="absolute" top="12px" left="7px">
+        <Search fill="none" stroke="#AFB4BE" />
+      </SearchIcon>
+      <InputContainer>
+        <Input
+          placeholder="검색어를 입력해주세요"
+          active={hasKeyword}
+          value={keyword}
+          onChange={handleKeyword}
+          onKeyDown={handleEnter}
+          onKeyUp={Entercheck}
+        />
+
+        {keyword && <RemoveIcon onClick={handleClearKeyword} />}
+      </InputContainer>
+      <SearchIcon />
+    </Container>
+  );
+}
+
 const horizontalCenter = css`
   position: absolute;
   top: 50%;
@@ -21,22 +84,6 @@ const Container = styled.div`
   padding: 15px 50px;
   box-sizing: border-box;
 `;
-
-//Link태그의 스타일을 입히는거임(페이지이동하는 버튼)
-//horizontalCenter 스타일 컴포넌트를 믹스인하여 속성값 전달
-//홈으로 가기 위한 뒤로가기 버튼입니다
-// const ArrowIcon = styled(Link)`
-//   ${horizontalCenter}
-//   left: 18px;
-//   display: block;
-//   width: 21px;
-//   height: 18px;
-//   background-position: -164px -343px;
-//   vertical-align: top;
-//   background-image: url(https://s.pstatic.net/static/www/m/uit/2020/sp_search.623c21.png);
-//   background-size: 467px 442px;
-//   background-repeat: no-repeat;
-// `;
 
 const SearchIcon = styled.span`
   ${horizontalCenter}
@@ -89,68 +136,5 @@ const Input = styled.input`
     padding-right: 25px; 
   `}
 `;
-
-function SearchBar({ onAddKeyword }) {
-  // 1. 검색어를 state 로 다루도록 변경
-  // 2. 이벤트 연결
-  // 3. Link to 설명
-
-  //form을 관련 요소를 다룰때는 2-way 데이터 바인딩을 해줍니다! (input 의 value에 state를 넣는 것)
-  const [keyword, setKeyword] = useState("");
-
-  const handleKeyword = (e) => {
-    setKeyword(e.target.value);
-  };
-  const handleEnter = (e) => {
-    if (keyword && e.keyCode === 13) {
-      //엔터일때 부모의 addkeyword에 전달
-      onAddKeyword(keyword);
-    }
-  };
-
-  const Entercheck = (e) => {
-    if (e.key === "Enter") {
-      const timeout = setTimeout(
-        () => history.push(`/map/office?query=${keyword}`),
-        200
-      );
-      return () => clearTimeout(timeout);
-    }
-  };
-
-  const handleClearKeyword = () => {
-    setKeyword("");
-  };
-
-  const searchgo = `/map/office?query=${keyword}`;
-
-  //느낌표로 키워드를 갖고있냐 없냐로 boolean 형태로 나옴
-  //키워드를 가지고 있다면 active가 발생하여 padding이 발생함. // 패딩이 없으면 x 아이콘까지 글자가 침법하기 때문
-  const hasKeyword = !!keyword;
-  //keyword가 있으면 true, 없으면 false가 리턴이 되는 것을 확인 할 수 있습니다
-  console.log(!!keyword);
-
-  return (
-    <Container>
-      <SearchIcon width="50px" position="absolute" top="12px" left="7px">
-        <Search fill="none" stroke="#AFB4BE" />
-      </SearchIcon>
-      <InputContainer>
-        <Input
-          placeholder="검색어를 입력해주세요"
-          active={hasKeyword}
-          value={keyword}
-          onChange={handleKeyword}
-          onKeyDown={handleEnter}
-          onKeyUp={Entercheck}
-        />
-        {/* <Link to={searchgo}><img src={SearchImg} alt="검색" /></Link> */}
-
-        {keyword && <RemoveIcon onClick={handleClearKeyword} />}
-      </InputContainer>
-      <SearchIcon />
-    </Container>
-  );
-}
 
 export default SearchBar;
