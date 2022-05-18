@@ -13,7 +13,6 @@ const Start = () => {
     <React.Fragment>
       <Grid
         width="100%"
-        padding="16px 0"
         display="flex"
         flexDirection="column"
         bg="#fff"
