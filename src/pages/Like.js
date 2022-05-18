@@ -7,17 +7,17 @@ import { LikeTab } from "../components/like/index";
 const Like = (props) => {
   return (
     <React.Fragment>
+      <MyHeader>찜리스트</MyHeader>
       <Outter>
-        <MyHeader>찜리스트</MyHeader>
         <LikeTab />
-        <Bar />
       </Outter>
+      <Bar />
     </React.Fragment>
   );
 };
 const Outter = styled.div`
   width: 100%;
-  padding-bottom: 68px;
+  padding: 0 16px 68px 16px;
 `;
 
 export default Like;

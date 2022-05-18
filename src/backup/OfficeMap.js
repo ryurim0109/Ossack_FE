@@ -3,16 +3,16 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import { useDispatch, useSelector } from "react-redux";
-import { actionCreators as mapActions } from "../../redux/modules/map";
+import { actionCreators as mapActions } from "../redux/modules/map";
 //아이콘
 import { TiPlus, TiMinus } from "react-icons/ti";
-import Spinner from "../shared/Spinner";
+import Spinner from "../components/shared/Spinner";
 
-import { history } from "../../redux/configStore";
+import { history } from "../redux/configStore";
 
 import { Map, CustomOverlayMap } from "react-kakao-maps-sdk";
 import { ReactComponent as Location } from "../../assets/location.svg";
-import { Position, Overlay } from "./index";
+import { Position, Overlay } from "../components/map/index";
 
 const OfficeMap = (props) => {
   const dispatch = useDispatch();
