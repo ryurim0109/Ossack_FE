@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import { actionCreators as mapActions } from "../../redux/modules/map";
 //아이콘
 import { TiPlus, TiMinus } from "react-icons/ti";
@@ -16,6 +17,7 @@ import { Position, Overlay } from "./index";
 
 const MainMap = (props) => {
   const dispatch = useDispatch();
+  const name = useParams().name;
   const getOffice = useSelector((state) => state.map.office_list);
   const is_loaded = useSelector((state) => state.map.is_loaded);
   //console.log(is_loaded)
@@ -62,77 +64,155 @@ const MainMap = (props) => {
       });
     }
   };
-
-  return (
-    <React.Fragment>
-      <MainContent>
-        <Map
-          center={state.center}
-          onCreate={(map) => setMap(map)}
-          onZoomChanged={(map) => setLevel(map.getLevel())}
-          onDragEnd={(map) =>
-            setPos({
-              lat: map.getCenter().getLat(),
-              lng: map.getCenter().getLng(),
-              swLatLng: {
-                lat: map.getBounds().getSouthWest().getLat(),
-                lng: map.getBounds().getSouthWest().getLng(),
-              },
-              neLatLng: {
-                lat: map.getBounds().getNorthEast().getLat(),
-                lng: map.getBounds().getNorthEast().getLng(),
-              },
-            })
-          }
-          style={{ width: "100%", height: "inherit" }}
-          level={level}
-          minLevel={5}
-          maxLevel={10}
-        >
-          {is_loaded ? (
-            <>
-              {getOffice?.cityResponseDtoList?.length === 0
-                ? null
-                : getOffice?.cityResponseDtoList?.map((position, index) => {
-                    return (
-                      <CustomOverlayMap
-                        key={`${position.title}-${position.coordinate}`}
-                        position={position.coordinate} // 마커를 표시할 위치
-                      >
-                        <div
-                          onClick={() =>
-                            history.push(`/map/office?query=${position.title}`)
-                          }
+  if (name === "office") {
+    return (
+      <React.Fragment>
+        <MainContent>
+          <Map
+            center={state.center}
+            onCreate={(map) => setMap(map)}
+            onZoomChanged={(map) => setLevel(map.getLevel())}
+            onDragEnd={(map) =>
+              setPos({
+                lat: map.getCenter().getLat(),
+                lng: map.getCenter().getLng(),
+                swLatLng: {
+                  lat: map.getBounds().getSouthWest().getLat(),
+                  lng: map.getBounds().getSouthWest().getLng(),
+                },
+                neLatLng: {
+                  lat: map.getBounds().getNorthEast().getLat(),
+                  lng: map.getBounds().getNorthEast().getLng(),
+                },
+              })
+            }
+            style={{ width: "100%", height: "inherit" }}
+            level={level}
+            minLevel={5}
+            maxLevel={10}
+          >
+            {is_loaded ? (
+              <>
+                {getOffice?.cityResponseDtoList?.length === 0
+                  ? null
+                  : getOffice?.cityResponseDtoList?.map((position, index) => {
+                      return (
+                        <CustomOverlayMap
+                          key={`${position.title}-${position.coordinate}`}
+                          position={position.coordinate} // 마커를 표시할 위치
                         >
-                          <Overlay
-                            position={position}
-                            OverLavel={OverLavel}
-                            index={index}
-                          />
-                        </div>
-                      </CustomOverlayMap>
-                    );
-                  })}
-            </>
-          ) : (
-            <Spinner />
-          )}
-          <Lev>
-            <button onClick={setLocation}>
-              <Location />
-            </button>
-            <button onClick={() => (level > 5 ? setLevel(level - 1) : null)}>
-              <TiPlus size="21px" />
-            </button>
-            <button onClick={() => (level < 10 ? setLevel(level + 1) : null)}>
-              <TiMinus size="21px" />
-            </button>
-          </Lev>
-        </Map>
-        {pos && <Position pos={pos} map={map} level={level} />}
-      </MainContent>
-    </React.Fragment>
-  );
+                          <div
+                            onClick={() =>
+                              history.push(
+                                `/map/office?query=${position.title}`
+                              )
+                            }
+                          >
+                            <Overlay
+                              position={position}
+                              OverLavel={OverLavel}
+                              index={index}
+                            />
+                          </div>
+                        </CustomOverlayMap>
+                      );
+                    })}
+              </>
+            ) : (
+              <Spinner />
+            )}
+            <Lev>
+              <button onClick={setLocation}>
+                <Location />
+              </button>
+              <button onClick={() => (level > 5 ? setLevel(level - 1) : null)}>
+                <TiPlus size="21px" />
+              </button>
+              <button onClick={() => (level < 10 ? setLevel(level + 1) : null)}>
+                <TiMinus size="21px" />
+              </button>
+            </Lev>
+          </Map>
+          {pos && <Position pos={pos} map={map} level={level} />}
+        </MainContent>
+      </React.Fragment>
+    );
+  } else if (name === "share") {
+    return <React.Fragment>공유 오피스</React.Fragment>;
+  } else {
+    return (
+      <React.Fragment>
+        <MainContent>
+          <Map
+            center={state.center}
+            onCreate={(map) => setMap(map)}
+            onZoomChanged={(map) => setLevel(map.getLevel())}
+            onDragEnd={(map) =>
+              setPos({
+                lat: map.getCenter().getLat(),
+                lng: map.getCenter().getLng(),
+                swLatLng: {
+                  lat: map.getBounds().getSouthWest().getLat(),
+                  lng: map.getBounds().getSouthWest().getLng(),
+                },
+                neLatLng: {
+                  lat: map.getBounds().getNorthEast().getLat(),
+                  lng: map.getBounds().getNorthEast().getLng(),
+                },
+              })
+            }
+            style={{ width: "100%", height: "inherit" }}
+            level={level}
+            minLevel={5}
+            maxLevel={10}
+          >
+            {is_loaded ? (
+              <>
+                {getOffice?.cityResponseDtoList?.length === 0
+                  ? null
+                  : getOffice?.cityResponseDtoList?.map((position, index) => {
+                      return (
+                        <CustomOverlayMap
+                          key={`${position.title}-${position.coordinate}`}
+                          position={position.coordinate} // 마커를 표시할 위치
+                        >
+                          <div
+                            onClick={() =>
+                              history.push(
+                                `/map/office?query=${position.title}`
+                              )
+                            }
+                          >
+                            <Overlay
+                              position={position}
+                              OverLavel={OverLavel}
+                              index={index}
+                            />
+                          </div>
+                        </CustomOverlayMap>
+                      );
+                    })}
+              </>
+            ) : (
+              <Spinner />
+            )}
+            <Lev>
+              <button onClick={setLocation}>
+                <Location />
+              </button>
+              <button onClick={() => (level > 5 ? setLevel(level - 1) : null)}>
+                <TiPlus size="21px" />
+              </button>
+              <button onClick={() => (level < 10 ? setLevel(level + 1) : null)}>
+                <TiMinus size="21px" />
+              </button>
+            </Lev>
+          </Map>
+          {pos && <Position pos={pos} map={map} level={level} />}
+        </MainContent>
+      </React.Fragment>
+    );
+  }
 };
 const MainContent = styled.div`
   height: inherit;
@@ -153,7 +233,7 @@ const Lev = styled.div`
   & button {
     width: 40px;
     height: 40px;
-    background: #ffffff;
+    background: #fff;
     border: none;
     border-radius: 8px;
     display: flex;

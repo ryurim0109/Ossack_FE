@@ -51,7 +51,8 @@ function App() {
                 />
                 <Route path="/main" exact component={Main} />
                 <Route path="/search" exact component={SearchPage} />
-                <Route path="/map" exact component={SaleMap} />
+                <Route path="/officemap" exact component={SaleMap} />
+                <Route path="/officemap/:name" exact component={SaleMap} />
                 <Route path="/mypage" exact component={MyPage} />
                 <Route path="/like" exact component={Like} />
                 <Route path="/map/office" exact component={MapOfficeList} />
