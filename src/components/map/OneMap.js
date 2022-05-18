@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 
-import onePin from "../../assets/onePin.svg";
+import onePin from "../../assets/pin.png";
 const { kakao } = window;
 const KakaoMap = (props) => {
   const list = useSelector((state) => state?.office?.one_office);
