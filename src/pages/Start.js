@@ -98,7 +98,7 @@ const Outter = styled.div`
   position: relative;
 `;
 const P = styled.p`
-  color: ${({ theme }) => theme.colors.grayTitle};
+  color: ${({ theme }) => theme.colors.darkgray1};
   cursor: pointer;
   font-size: ${({ theme }) => theme.fontSizes.small};
 `;
