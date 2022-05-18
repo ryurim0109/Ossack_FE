@@ -18,7 +18,6 @@ import { useDispatch } from "react-redux";
 
 const Signup = () => {
   const dispatch = useDispatch();
-  const [checked, setChecked] = useState(false);
   const [emailError, setEmailError] = useState("");
   const [passwordState, setPasswordState] = useState("");
   const [passwordError, setPasswordError] = useState("");
@@ -26,25 +25,42 @@ const Signup = () => {
   const [signupError, setSignupError] = useState("");
   const history = useHistory();
 
-  const handleAgree = (event) => {
-    setChecked(event.target.checked);
-  };
-
   const onhandlePost = async (data) => {
     const { email, nickname, password } = data;
     const postData = { email, nickname, password };
     console.log(postData);
-    // post
-    // await axios
-    //   .post('/member/join', postData)
-    //   .then(function (response) {
-    //     console.log(response, '성공');
-    //     history.push('/login');
-    //   })
-    //   .catch(function (err) {
-    //     console.log(err);
-    //     setSignupError('회원가입에 실패하였습니다. 다시한번 확인해 주세요.');
-    //   });
+  };
+
+  // 비활성화 여부
+  const [userEmail, setUserEmail] = useState("");
+  const [nickname, setNickname] = useState("");
+  const [password, setPassword] = useState("");
+  const [checkPassword, setCheckPassword] = useState("");
+  const [isActive, setIsActive] = useState(false);
+
+  const handleEmailInput = (event) => {
+    setUserEmail(event.target.value);
+  };
+
+  const handleNickInput = (event) => {
+    setNickname(event.target.value);
+  };
+
+  const handlePasswordInput = (event) => {
+    setPassword(event.target.value);
+  };
+
+  const handleCheckPWDInput = (event) => {
+    setCheckPassword(event.target.value);
+  };
+
+  const isPassedSignup = () => {
+    return userEmail.includes("@") &&
+      password.length >= 5 &&
+      checkPassword.length >= 5 &&
+      nickname.length >= 1
+      ? setIsActive(true)
+      : setIsActive(false);
   };
 
   const handleSubmit = (e) => {
@@ -85,9 +101,6 @@ const Signup = () => {
     if (!nicknameRegex.test(nickname) || nickname.length < 1)
       setNickNameError("올바른 이름을 입력해주세요.");
     else setNickNameError("");
-
-    // 회원가입 동의 체크
-    // if (!checked) alert("회원가입 약관에 동의해주세요.");
 
     if (
       emailRegex.test(userEmail) &&
@@ -131,7 +144,6 @@ const Signup = () => {
             회원가입을 해주세요.
           </Text>
         </Grid>
-        {/* <Avatar sx={{ m: 1, bgcolor: "secondary.main" }} /> */}
         <Boxs
           component="form"
           noValidate
@@ -151,6 +163,8 @@ const Signup = () => {
                   label="이메일"
                   error={emailError !== "" || false}
                   sx={style}
+                  onChange={handleEmailInput}
+                  onKeyUp={isPassedSignup}
                 />
               </Grid>
               <FormHelperTexts>{emailError}</FormHelperTexts>
@@ -163,6 +177,8 @@ const Signup = () => {
                   label="닉네임"
                   error={nickNameError !== "" || false}
                   sx={style}
+                  onChange={handleNickInput}
+                  onKeyUp={isPassedSignup}
                 />
               </Grid>
               <FormHelperTexts>{nickNameError}</FormHelperTexts>
@@ -176,6 +192,8 @@ const Signup = () => {
                   label="비밀번호 (숫자+영문자+특수문자 8자리 이상)"
                   error={passwordState !== "" || false}
                   sx={style}
+                  onChange={handlePasswordInput}
+                  onKeyUp={isPassedSignup}
                 />
               </Grid>
               <FormHelperTexts>{passwordState}</FormHelperTexts>
@@ -189,16 +207,11 @@ const Signup = () => {
                   label="비밀번호확인"
                   error={passwordError !== "" || false}
                   sx={style}
+                  onChange={handleCheckPWDInput}
+                  onKeyUp={isPassedSignup}
                 />
               </Grid>
               <FormHelperTexts>{passwordError}</FormHelperTexts>
-
-              {/* <Grid item xs={12}>
-                <FormControlLabel
-                  control={<Checkbox onChange={handleAgree} color="primary" />}
-                  label="I agree to the membership terms and conditions."
-                />
-              </Grid> */}
             </Grid>
             <Button
               type="submit"
@@ -206,7 +219,12 @@ const Signup = () => {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
               size="large"
-              style={{ backgroundColor: "#3E00FF" }}
+              style={
+                isActive
+                  ? { backgroundColor: "#3E00FF" }
+                  : { backgroundColor: "#D5D8DB" }
+              }
+              disabled={userEmail === "" || password === "" ? true : false}
             >
               회원가입
             </Button>
@@ -229,8 +247,4 @@ const Boxs = styled(Box)`
   padding-bottom: 40px;
 `;
 
-const P = styled("p")({
-  color: "#878D96",
-  cursor: "pointer",
-});
 export default Signup;
