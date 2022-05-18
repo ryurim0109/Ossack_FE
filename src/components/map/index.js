@@ -4,5 +4,6 @@ import Search from "./Search";
 import Overlay from "./Overlay";
 import Filter from "./Filter";
 import OneMap from "./OneMap";
+import ShareOverlay from "./ShareOverlay";
 
-export { MainMap, Position, Search, Overlay, Filter, OneMap };
+export { MainMap, Position, Search, Overlay, Filter, OneMap, ShareOverlay };

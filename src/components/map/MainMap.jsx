@@ -6,14 +6,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { actionCreators as mapActions } from "../../redux/modules/map";
 //아이콘
-import { TiPlus, TiMinus } from "react-icons/ti";
 import Spinner from "../shared/Spinner";
+import { ReactComponent as Minus } from "../../assets/minus.svg";
+import { ReactComponent as Plus } from "../../assets/plus.svg";
 
 import { history } from "../../redux/configStore";
 
 import { Map, CustomOverlayMap } from "react-kakao-maps-sdk";
 import { ReactComponent as Location } from "../../assets/location.svg";
-import { Position, Overlay } from "./index";
+import { Position, Overlay, ShareOverlay } from "./index";
 
 const MainMap = (props) => {
   const dispatch = useDispatch();
@@ -109,11 +110,7 @@ const MainMap = (props) => {
                               )
                             }
                           >
-                            <Overlay
-                              position={position}
-                              OverLavel={OverLavel}
-                              index={index}
-                            />
+                            <Overlay position={position} />
                           </div>
                         </CustomOverlayMap>
                       );
@@ -123,23 +120,102 @@ const MainMap = (props) => {
               <Spinner />
             )}
             <Lev>
-              <button onClick={setLocation}>
+              <Btn onClick={setLocation}>
                 <Location />
-              </button>
-              <button onClick={() => (level > 5 ? setLevel(level - 1) : null)}>
-                <TiPlus size="21px" />
-              </button>
-              <button onClick={() => (level < 10 ? setLevel(level + 1) : null)}>
-                <TiMinus size="21px" />
-              </button>
+              </Btn>
+              <PlusBtn>
+                <button
+                  onClick={() => (level > 5 ? setLevel(level - 1) : null)}
+                >
+                  <Plus />
+                </button>
+                <button
+                  onClick={() => (level < 10 ? setLevel(level + 1) : null)}
+                >
+                  <Minus />
+                </button>
+              </PlusBtn>
             </Lev>
           </Map>
-          {pos && <Position pos={pos} map={map} level={level} />}
+          {pos && <Position pos={pos} level={level} name={name} />}
         </MainContent>
       </React.Fragment>
     );
   } else if (name === "share") {
-    return <React.Fragment>공유 오피스</React.Fragment>;
+    return (
+      <React.Fragment>
+        <MainContent>
+          <Map
+            center={state.center}
+            onCreate={(map) => setMap(map)}
+            onZoomChanged={(map) => setLevel(map.getLevel())}
+            onDragEnd={(map) =>
+              setPos({
+                lat: map.getCenter().getLat(),
+                lng: map.getCenter().getLng(),
+                swLatLng: {
+                  lat: map.getBounds().getSouthWest().getLat(),
+                  lng: map.getBounds().getSouthWest().getLng(),
+                },
+                neLatLng: {
+                  lat: map.getBounds().getNorthEast().getLat(),
+                  lng: map.getBounds().getNorthEast().getLng(),
+                },
+              })
+            }
+            style={{ width: "100%", height: "inherit" }}
+            level={level}
+            minLevel={5}
+            maxLevel={10}
+          >
+            {is_loaded ? (
+              <>
+                {shareOffice?.cityResponseDtoList?.length === 0
+                  ? null
+                  : shareOffice?.cityResponseDtoList?.map((position, index) => {
+                      return (
+                        <CustomOverlayMap
+                          key={`${position.title}-${position.coordinate}`}
+                          position={position.coordinate} // 마커를 표시할 위치
+                        >
+                          <div
+                            onClick={() =>
+                              history.push(
+                                `/map/office?query=${position.title}`
+                              )
+                            }
+                          >
+                            <ShareOverlay position={position} />
+                          </div>
+                        </CustomOverlayMap>
+                      );
+                    })}
+              </>
+            ) : (
+              <Spinner />
+            )}
+            <Lev>
+              <Btn onClick={setLocation}>
+                <Location />
+              </Btn>
+              <PlusBtn>
+                <button
+                  onClick={() => (level > 5 ? setLevel(level - 1) : null)}
+                >
+                  <Plus />
+                </button>
+                <button
+                  onClick={() => (level < 10 ? setLevel(level + 1) : null)}
+                >
+                  <Minus />
+                </button>
+              </PlusBtn>
+            </Lev>
+          </Map>
+          {pos && <Position pos={pos} level={level} name={name} />}
+        </MainContent>
+      </React.Fragment>
+    );
   } else {
     return (
       <React.Fragment>
@@ -198,15 +274,21 @@ const MainMap = (props) => {
               <Spinner />
             )}
             <Lev>
-              <button onClick={setLocation}>
+              <Btn onClick={setLocation}>
                 <Location />
-              </button>
-              <button onClick={() => (level > 5 ? setLevel(level - 1) : null)}>
-                <TiPlus size="21px" />
-              </button>
-              <button onClick={() => (level < 10 ? setLevel(level + 1) : null)}>
-                <TiMinus size="21px" />
-              </button>
+              </Btn>
+              <PlusBtn>
+                <button
+                  onClick={() => (level > 5 ? setLevel(level - 1) : null)}
+                >
+                  <Plus />
+                </button>
+                <button
+                  onClick={() => (level < 10 ? setLevel(level + 1) : null)}
+                >
+                  <Minus />
+                </button>
+              </PlusBtn>
             </Lev>
           </Map>
           {pos && <Position pos={pos} map={map} level={level} />}
@@ -222,25 +304,56 @@ const MainContent = styled.div`
 
 const Lev = styled.div`
   width: 40px;
-  height: 205px;
+  height: 125px;
   position: absolute;
-  bottom: 96px;
+  bottom: 150px;
   left: 16px;
   z-index: 2;
   display: flex;
   flex-direction: column;
   gap: 5px;
-
+`;
+const Btn = styled.button`
+  width: 40px;
+  height: 40px;
+  background: #fff;
+  border: none;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+`;
+const PlusBtn = styled.div`
+  width: 40px;
+  height: 72px;
+  background: #fff;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+  position: relative;
+  &::before {
+    content: "";
+    display: block;
+    width: 24px;
+    height: 1px;
+    background-color: ${({ theme }) => theme.colors.darkgray2};
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+  }
   & button {
-    width: 40px;
-    height: 40px;
-    background: #fff;
-    border: none;
-    border-radius: 8px;
+    background: none;
+    border-radius: 0px;
+    width: 30px;
+    height: 36px;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
   }
 `;
 export default MainMap;
