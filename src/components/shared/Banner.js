@@ -36,7 +36,7 @@ const Banner = (props) => {
               받아가세요.
             </P>
           </Div>
-          <Grid width="40%" height="100px" position="absolute" left="60%">
+          <Grid width="142px" height="102px" position="absolute" right="45px">
             <img src={banner01} alt="배너" />
           </Grid>
         </Grid>
@@ -56,7 +56,7 @@ const Banner = (props) => {
               받아가세요.
             </P>
           </Div>
-          <Grid width="40%" height="100px" position="absolute" left="60%">
+          <Grid width="142px" height="102px" position="absolute" right="45px">
             <img src={banner01} alt="배너" />
           </Grid>
         </Grid>
@@ -76,7 +76,7 @@ const Banner = (props) => {
               받아가세요.
             </P>
           </Div>
-          <Grid width="40%" height="100px" position="absolute" left="60%">
+          <Grid width="142px" height="102px" position="absolute" right="45px">
             <img src={banner01} alt="배너" />
           </Grid>
         </Grid>
