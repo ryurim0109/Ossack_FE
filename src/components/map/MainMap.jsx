@@ -49,7 +49,13 @@ const MainMap = (props) => {
     },
   };
   useEffect(() => {
-    if (map) {
+    if (map && name === "office") {
+      console.log("난 그냥 지도");
+      dispatch(mapActions.getOfficeData(po, level));
+    } else if (map && name === "share") {
+      console.log("난 공유지도");
+      dispatch(mapActions.getShareData(po, level));
+    } else {
       dispatch(mapActions.getOfficeData(po, level));
     }
   }, [map]);

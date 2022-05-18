@@ -62,7 +62,7 @@ const getOfficeData = (pos, level) => {
   };
 };
 const getShareData = (pos, level) => {
-  console.log("pos : ", pos, "level : ", level);
+  console.log("난공유오피스", pos, "level : ", level);
   const SWlat = pos.swLatLng.lat;
   const SWlng = pos.swLatLng.lng;
   const NElat = pos.neLatLng.lat;

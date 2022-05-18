@@ -15,7 +15,6 @@ const Position = (props) => {
     if (name === "share") {
       dispatch(mapActions.getShareData(pos, level));
     } else {
-      console.log("eee");
       dispatch(mapActions.getOfficeData(pos, level));
     }
   }, [pos]);
