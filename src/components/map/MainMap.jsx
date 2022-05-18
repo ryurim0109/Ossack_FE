@@ -19,6 +19,7 @@ const MainMap = (props) => {
   const dispatch = useDispatch();
   const name = useParams().name;
   const getOffice = useSelector((state) => state.map.office_list);
+  const shareOffice = useSelector((state) => state.map.share_list);
   const is_loaded = useSelector((state) => state.map.is_loaded);
   //console.log(is_loaded)
   //console.log("getOffice : ", getOffice);
