@@ -55,7 +55,8 @@ const MainMap = (props) => {
     } else if (map && name === "share") {
       console.log("난 공유지도");
       dispatch(mapActions.getShareData(po, level));
-    } else {
+    } else if (map) {
+      console.log("난 검색지도");
       dispatch(mapActions.getOfficeData(po, level));
     }
   }, [map]);
