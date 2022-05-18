@@ -13,8 +13,8 @@ function Bar() {
   const gnbClick = (e, gnbname) => {
     if (gnbname === "home") {
       history.push("/main");
-    } else if (gnbname === "map") {
-      history.push("/map");
+    } else if (gnbname === "officemap") {
+      history.push("/officemap");
     } else if (gnbname === "like") {
       history.push("/like");
     } else if (gnbname === "mypage") {
@@ -60,7 +60,7 @@ function Bar() {
         </Grid>
         <Grid
           _onClick={(e) => {
-            gnbClick(e, "map");
+            gnbClick(e, "officemap");
           }}
           width="25%"
           textAlign="center"
@@ -70,7 +70,8 @@ function Bar() {
           alignItems="center"
         >
           <Grid width="24px" height="24px">
-            {params.includes("/map") ||
+            {params.includes("/officemap") ||
+            params.includes("/map") ||
             params.includes("/search") ||
             params.includes("/detail") ? (
               <Search fill="none" stroke="#3E00FF" />
@@ -81,6 +82,7 @@ function Bar() {
           <Text
             cursor="pointer"
             color={
+              params.includes("/officemap") ||
               params.includes("/map") ||
               params.includes("/search") ||
               params.includes("/detail")
