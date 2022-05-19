@@ -103,11 +103,25 @@ const MapOfficeResult = (props) => {
                   {o.buildingInfo}
                 </Text>
                 <Text size="10px">{o.area}</Text>
-                <Text size="14px" bold>
-                  <Span>월세</Span>
-                  {o.rent_fee}만원 <Span>보증금</Span>
-                  {o.deposit}만원
-                </Text>
+                <Grid display="flex">
+                  {o.rent_fee === "0" ? null : (
+                    <Text size="14px" bold>
+                      <Span>월세</Span>
+                      {o.rent_fee + "만원"}
+                    </Text>
+                  )}
+                  {o.deposit.includes("매매") ? (
+                    <Text size="14px" bold>
+                      <Span>{o.deposit.split(" ")[0]}</Span>
+                      {o.deposit.split(" ")[1]}
+                    </Text>
+                  ) : (
+                    <Text size="14px" bold>
+                      <Span>보증금</Span>
+                      {o.deposit}만원
+                    </Text>
+                  )}
+                </Grid>
               </Grid>
             </Grid>
           );
