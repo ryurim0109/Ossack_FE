@@ -74,8 +74,6 @@ const OfficeTellLike = (props) => {
                 </Grid>
               </Grid>
               <Grid
-                bottom="0"
-                padding="0 16px"
                 display="flex"
                 flexDirection="column"
                 justifyContent="center"
