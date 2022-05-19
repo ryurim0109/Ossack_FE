@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 
-import onePin from "../../assets/onePin.svg";
+import onePin from "../../assets/pin.png";
 const { kakao } = window;
 const KakaoMap = (props) => {
   const list = useSelector((state) => state?.office?.one_office);
@@ -21,7 +21,7 @@ const KakaoMap = (props) => {
     };
 
     let imageSrc = onePin, // 마커이미지의 주소입니다
-      imageSize = new kakao.maps.Size(40, 40), // 마커이미지의 크기입니다
+      imageSize = new kakao.maps.Size(40, 45), // 마커이미지의 크기입니다
       imageOption = { offset: new kakao.maps.Point(27, 69) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 
     let markerImage = new kakao.maps.MarkerImage(

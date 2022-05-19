@@ -1,72 +1,19 @@
 const colors = {
   //font
-  title: "#000000",
-  subTitle: "#626262",
+  title: "#111",
+  subTitle: "#666",
   blueTitle: "#718AFF",
+  blueBanner: "#B9EAFF",
   buttonTitle: "#FFFFFF",
-  grayTitle: "#999",
+  darkgray1: "#999",
+  darkgray2: "#DBDBDB",
+  darkgray3: "#CCC",
+  darkgray4: "#F5F5F5",
   //main col
   main: "#3E00FF",
-  brightMain: "#9CAEFF",
-  darkerMain: "#4F66D2",
-  moreDarkerMain: "#323C6E",
-  subMain: "#BCC8FF",
-  //white col
-  white: "#FFFFFF",
-  whiteHover: "#F4F4F4",
-  whiterActive: "#E1E1E1",
-  //base
-  base: "#F4F4F4",
-  hoverBase: "#E1E1E1",
-  activeBase: "#B8B8B8",
-  //sub
-  sub: "#D2D2D2",
-  subHover: "#C7C5C5",
-  subActive: "#B9B9B9",
-  //scroll bar
-  scroll: "#EBEBEB",
-  scrollHover: "#D6D6D6",
-  //background
-  subBackground: "F8F8F8",
-  background: "#FFFFFF",
-};
-
-const darkColors = {
-  //font
-  title: "#000000",
-  subTitle: "#3E00FF",
-  blueTitle: "#5886FE",
-  buttonTitle: "#FFFFFF",
-  //main col
-  main: "#3E00FF",
-  brightMain: "rgba(62, 0, 255, 0.1);",
-  darkerMain: "#0E3FF2",
+  brightMain: "rgba(62, 0, 255, 0.1)",
   subMain: "#FF5151",
-  darkersubMain: "#FF2727",
-  //white col
-  white: "#FFFFFF",
-  whiteHover: "#F4F4F4",
-  whiterActive: "#E1E1E1",
-  //base
-  base: "#F4F4F4",
-  hoverBase: "#E1E1E1",
-  activeBase: "#B8B8B8",
-  //sub
-  sub: "#D2D2D2",
-  subHover: "#C7C5C5",
-  subActive: "#B9B9B9",
-
-  pointer: "rgba(0, 0, 0, 0.5);",
-
-  signOut: "#F73535",
-  signoutHover: "#FB1616",
-
-  reject: "#D97E7E",
-
-  scroll: "#EBEBEB",
-  scrollHover: "#D6D6D6",
-
-  background: "#FFFFFF",
+  subYellow: "#F4FFB9",
 };
 
 const fontSizes = {
@@ -79,36 +26,9 @@ const fontSizes = {
   xs: "10px",
 };
 
-const commons = {
-  backgroundImage: `
-    background-position: center center;
-      background-repeat: no-repeat;
-    `,
-  mainButton: `
-    background-color: ${colors.main};
-      &:hover {
-          background-color: ${colors.brightMain};
-      }
-      &:active {
-          background-color:${colors.darkerMain};
-      }
-    `,
-  subButton: `
-    background-color: ${colors.sub};
-      &:hover {
-          background-color: ${colors.subHover};
-      }
-      &:active {
-          background-color:${colors.subActive};
-      }
-    `,
-};
-
 const theme = {
   colors,
-  darkColors,
   fontSizes,
-  commons,
 };
 
 export default theme;

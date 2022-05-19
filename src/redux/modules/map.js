@@ -62,7 +62,7 @@ const getOfficeData = (pos, level) => {
   };
 };
 const getShareData = (pos, level) => {
-  console.log("pos : ", pos, "level : ", level);
+  console.log("난공유오피스", pos, "level : ", level);
   const SWlat = pos.swLatLng.lat;
   const SWlng = pos.swLatLng.lng;
   const NElat = pos.neLatLng.lat;
@@ -71,13 +71,10 @@ const getShareData = (pos, level) => {
   return function (dispatch) {
     dispatch(isLoaded(false));
 
-    instance
+    /*     instance
       .get(
         `/api/${level}/map?SWlat=${SWlat}&SWlng=${SWlng}&NElat=${NElat}&NElng=${NElng}`
       )
-
-      // const res=RESP.OFFICE
-      // dispatch(getMainOffice(res));
       .then((res) => {
         console.log(res.data, "나는 공유 오피스 DB");
         dispatch(setShareList(res.data));
@@ -85,7 +82,9 @@ const getShareData = (pos, level) => {
       .catch((err) => {
         console.log(err.response, "나는 공유 오피스 DB 오류");
         console.log(err, "나는 공유 오피스 DB 오류");
-      });
+      }); */
+    const res = RESP.GETOFFICE;
+    dispatch(setShareList(res));
   };
 };
 
@@ -101,7 +100,7 @@ export default handleActions(
         draft.office_list = action.payload.office_list;
         draft.is_loaded = true;
       }),
-    [SET_OFFICE_LIST]: (state, action) =>
+    [SET_SHARE_LIST]: (state, action) =>
       produce(state, (draft) => {
         draft.share_list = action.payload.share_list;
         draft.is_loaded = true;

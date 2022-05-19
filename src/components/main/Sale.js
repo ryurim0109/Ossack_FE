@@ -56,12 +56,7 @@ function Sale() {
       <Banner />
       {/* 핫한 오피스 */}
       <Outter>
-        <Grid
-          margin="32px 0 0 0 "
-          width="100%"
-          display="flex"
-          justifyContent="space-between"
-        >
+        <Grid width="100%" display="flex" justifyContent="space-between">
           <Text bold size="1.250rem" cursor="pointer">
             지금 가장 HOT한 지역 🔥
           </Text>

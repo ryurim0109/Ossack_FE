@@ -13,7 +13,6 @@ const Start = () => {
     <React.Fragment>
       <Grid
         width="100%"
-        padding="16px 0"
         display="flex"
         flexDirection="column"
         bg="#fff"
@@ -99,7 +98,7 @@ const Outter = styled.div`
   position: relative;
 `;
 const P = styled.p`
-  color: ${({ theme }) => theme.colors.grayTitle};
+  color: ${({ theme }) => theme.colors.darkgray1};
   cursor: pointer;
   font-size: ${({ theme }) => theme.fontSizes.small};
 `;
