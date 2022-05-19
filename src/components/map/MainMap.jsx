@@ -14,7 +14,7 @@ import { history } from "../../redux/configStore";
 
 import { Map, CustomOverlayMap } from "react-kakao-maps-sdk";
 import { ReactComponent as Location } from "../../assets/location.svg";
-import { Position, Overlay, ShareOverlay } from "./index";
+import { Position, Overlay } from "./index";
 
 const MainMap = (props) => {
   const dispatch = useDispatch();
@@ -126,24 +126,20 @@ const MainMap = (props) => {
             ) : (
               <Spinner />
             )}
-            <Lev>
-              <Btn onClick={setLocation}>
-                <Location />
-              </Btn>
-              <PlusBtn>
-                <button
-                  onClick={() => (level > 5 ? setLevel(level - 1) : null)}
-                >
-                  <Plus />
-                </button>
-                <button
-                  onClick={() => (level < 10 ? setLevel(level + 1) : null)}
-                >
-                  <Minus />
-                </button>
-              </PlusBtn>
-            </Lev>
           </Map>
+          <Lev>
+            <Btn onClick={setLocation}>
+              <Location />
+            </Btn>
+            <PlusBtn>
+              <button onClick={() => (level > 5 ? setLevel(level - 1) : null)}>
+                <Plus />
+              </button>
+              <button onClick={() => (level < 10 ? setLevel(level + 1) : null)}>
+                <Minus />
+              </button>
+            </PlusBtn>
+          </Lev>
           {pos && <Position pos={pos} level={level} name={name} />}
         </MainContent>
       </React.Fragment>
@@ -192,7 +188,7 @@ const MainMap = (props) => {
                               )
                             }
                           >
-                            <ShareOverlay position={position} />
+                            <Overlay position={position} name={name} />
                           </div>
                         </CustomOverlayMap>
                       );
@@ -201,24 +197,20 @@ const MainMap = (props) => {
             ) : (
               <Spinner />
             )}
-            <Lev>
-              <Btn onClick={setLocation}>
-                <Location />
-              </Btn>
-              <PlusBtn>
-                <button
-                  onClick={() => (level > 5 ? setLevel(level - 1) : null)}
-                >
-                  <Plus />
-                </button>
-                <button
-                  onClick={() => (level < 10 ? setLevel(level + 1) : null)}
-                >
-                  <Minus />
-                </button>
-              </PlusBtn>
-            </Lev>
           </Map>
+          <Lev>
+            <Btn onClick={setLocation}>
+              <Location />
+            </Btn>
+            <PlusBtn>
+              <button onClick={() => (level > 5 ? setLevel(level - 1) : null)}>
+                <Plus />
+              </button>
+              <button onClick={() => (level < 10 ? setLevel(level + 1) : null)}>
+                <Minus />
+              </button>
+            </PlusBtn>
+          </Lev>
           {pos && <Position pos={pos} level={level} name={name} />}
         </MainContent>
       </React.Fragment>
@@ -280,24 +272,20 @@ const MainMap = (props) => {
             ) : (
               <Spinner />
             )}
-            <Lev>
-              <Btn onClick={setLocation}>
-                <Location />
-              </Btn>
-              <PlusBtn>
-                <button
-                  onClick={() => (level > 5 ? setLevel(level - 1) : null)}
-                >
-                  <Plus />
-                </button>
-                <button
-                  onClick={() => (level < 10 ? setLevel(level + 1) : null)}
-                >
-                  <Minus />
-                </button>
-              </PlusBtn>
-            </Lev>
           </Map>
+          <Lev>
+            <Btn onClick={setLocation}>
+              <Location />
+            </Btn>
+            <PlusBtn>
+              <button onClick={() => (level > 5 ? setLevel(level - 1) : null)}>
+                <Plus />
+              </button>
+              <button onClick={() => (level < 10 ? setLevel(level + 1) : null)}>
+                <Minus />
+              </button>
+            </PlusBtn>
+          </Lev>
           {pos && <Position pos={pos} map={map} level={level} />}
         </MainContent>
       </React.Fragment>

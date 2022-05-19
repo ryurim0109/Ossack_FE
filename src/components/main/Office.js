@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Grid } from "../../elements/index";
+import { Grid, Text } from "../../elements/index";
 import XScrollDrag from "../shared/XScrollDrag";
 import { OfficeList, NearStation } from "./index";
 
@@ -33,11 +33,17 @@ const Office = () => {
               }}
               display="flex"
               alignItems="center"
-              color={openTab === idx ? "#fff" : "#3E00FF"}
               justifyContent="center"
               margin="0 4px 0 0"
             >
-              #{title}근처
+              <Text
+                size="12px"
+                bold
+                color={openTab === idx ? "#fff" : "#3E00FF"}
+              >
+                {" "}
+                #{title}근처
+              </Text>
             </Grid>
           );
         })}

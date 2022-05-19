@@ -3,27 +3,11 @@ import styled from "styled-components";
 import { Grid, Button, Text, Image } from "../../elements/index";
 import { actionCreators as officeActions } from "../../redux/modules/office";
 import { useDispatch, useSelector } from "react-redux";
-
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import "../../shared/css/dot.css";
+import { SlickSlider } from "../shared/home";
 
 const OfficeLike = (props) => {
   const dispatch = useDispatch();
   const { tabTitle } = props;
-  console.log("props : ", props);
-
-  const settings = {
-    infinite: true,
-    speed: 500,
-    slideToShow: 1,
-    slideToScroll: 1,
-    autoplay: false,
-    autoplaySpeed: 5000,
-    arrows: false,
-    dots: true,
-  };
 
   const OfficeLikeList = useSelector((state) => state.office.like_list);
 
@@ -47,7 +31,7 @@ const OfficeLike = (props) => {
                 overflow="hidden"
               >
                 <Grid>
-                  <StyledSlider {...settings} dotsClass="test-css">
+                  <SlickSlider>
                     {office.images &&
                       office.images.map((image, idx) => {
                         return (
@@ -61,7 +45,7 @@ const OfficeLike = (props) => {
                           />
                         );
                       })}
-                  </StyledSlider>
+                  </SlickSlider>
                   {office.mylike ? (
                     <Button
                       fill_like
@@ -88,18 +72,16 @@ const OfficeLike = (props) => {
                 </Grid>
               </Grid>
               <Grid
-                bottom="0"
-                padding="0 16px"
                 display="flex"
                 flexDirection="column"
                 justifyContent="center"
                 width="100%"
                 height="40px"
               >
-                <Text color="#000000" size="0.875rem">
+                <Text color="#000000" size="14px">
                   {office.type ? office.type : "트리플 역세권 사무실"}
                 </Text>
-                <Text color="#000000" size="0.875rem">
+                <Text color="#000000" size="14px">
                   <Span>월세</Span> {office.rent_fee ? office.rent_fee : 200}만
                   {""}
                   <Span>보증금</Span>{" "}
@@ -113,14 +95,8 @@ const OfficeLike = (props) => {
   );
 };
 
-const StyledSlider = styled(Slider)`
-  height: 260px;
-  width: 100%;
-  position: relative;
-`;
-
 const Span = styled.span`
-  font-size: 0.625rem;
+  font-size: 10px;
 `;
 
 export default OfficeLike;

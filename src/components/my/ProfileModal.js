@@ -118,7 +118,7 @@ const ProfileModal = (props) => {
                 <Label htmlFor="file_input" className="upload-box">
                   <Text
                     bold
-                    size="0.875rem"
+                    size="14px"
                     borderBottom="1px solid #5886FE"
                     color="#5886FE"
                   >
@@ -131,7 +131,7 @@ const ProfileModal = (props) => {
                   borderRadius=" 0 0 4px 4px"
                   padding="none"
                   height="58px"
-                  fontSize="0.875rem"
+                  fontSize="14px"
                   color="#fff"
                   _onClick={editProfile}
                 >

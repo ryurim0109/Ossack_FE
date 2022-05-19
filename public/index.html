@@ -1,35 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="utf-8" />
+    <base href="/" />
+    <link rel="manifest" href="manifest.json" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta
+      http-equiv="Cache-Control"
+      content="no-cache, no-store, must-revalidate"
+    />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
+    <meta name="theme-color" content="#000" />
+    <meta name="title" property="og:title" content="오싹👻" />
     <meta
       name="description"
-      content="Web site created using create-react-app"
+      property="og:description"
+      content="오피스 구할 땐 오싹으로 싹가능!"
     />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <meta name="image" property="og:image" content="%PUBLIC_URL%/ossack.jpg" />
+    <meta name="url" property="og:url" content="ossack.shop" />
+
     <title>OSSACK</title>
-    <script type="text/javascript" src="%REACT_APP_KAKAO_KEY%&libraries=services,clusterer,drawing"></script>
+    <script
+      type="text/javascript"
+      src="%REACT_APP_KAKAO_KEY%&libraries=services,clusterer,drawing"
+    ></script>
     <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
-    <script>
-      Kakao.init('%REACT_APP_KAKAO_LOGIN%');
+    <script type="module">
+      import "https://cdn.jsdelivr.net/npm/@pwabuilder/pwaupdate";
+      const el = document.createElement("pwa-update");
+      document.body.appendChild(el);
     </script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
+    <script>
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("./pwabuilder-sw.js");
+      }
+    </script>
   </body>
 </html>

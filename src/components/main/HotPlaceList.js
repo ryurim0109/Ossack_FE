@@ -73,12 +73,12 @@ const PlaceList = () => {
                   alignItems="center"
                   justifyContent="center"
                 >
-                  <Text color="#111" size="10px">
-                    {HotList[0]?.monthly}
-                  </Text>
+                  <Text size="10px">{HotList[0]?.monthly}</Text>
                 </Grid>
-                <Grid color="#fff" fontSize="10px" padding="4px">
-                  <Text bold>{HotList[0]?.building_info}</Text>
+                <Grid fontSize="10px" padding="4px">
+                  <Text color="#fff" bold>
+                    {HotList[0]?.building_info}
+                  </Text>
                 </Grid>
               </Grid>
             </Grid>
@@ -115,12 +115,12 @@ const PlaceList = () => {
                   alignItems="center"
                   justifyContent="center"
                 >
-                  <Text color="#111" size="10px">
-                    {HotList[1]?.monthly}
-                  </Text>
+                  <Text size="10px">{HotList[1]?.monthly}</Text>
                 </Grid>
-                <Grid color="#fff" fontSize="10px" padding="4px">
-                  <Text bold>{HotList[1]?.building_info}</Text>
+                <Grid fontSize="10px" padding="4px">
+                  <Text color="#fff" bold>
+                    {HotList[1]?.building_info}
+                  </Text>
                 </Grid>
               </Grid>
             </Grid>
@@ -157,12 +157,12 @@ const PlaceList = () => {
                   alignItems="center"
                   justifyContent="center"
                 >
-                  <Text color="#111" size="10px">
-                    {HotList[2]?.monthly}
-                  </Text>
+                  <Text size="10px">{HotList[2]?.monthly}</Text>
                 </Grid>
-                <Grid color="#fff" fontSize="10px" padding="4px">
-                  <Text bold>{HotList[2]?.building_info}</Text>
+                <Grid fontSize="10px" padding="4px">
+                  <Text color="#fff" bold>
+                    {HotList[2]?.building_info}
+                  </Text>
                 </Grid>
               </Grid>
             </Grid>
@@ -199,12 +199,12 @@ const PlaceList = () => {
                   alignItems="center"
                   justifyContent="center"
                 >
-                  <Text color="#111" size="10px">
-                    {HotList[3]?.monthly}
-                  </Text>
+                  <Text size="10px">{HotList[3]?.monthly}</Text>
                 </Grid>
-                <Grid color="#fff" fontSize="10px" padding="4px">
-                  <Text bold>{HotList[3]?.building_info}</Text>
+                <Grid fontSize="10px" padding="4px">
+                  <Text color="#fff" bold>
+                    {HotList[3]?.building_info}
+                  </Text>
                 </Grid>
               </Grid>
             </Grid>
@@ -241,12 +241,12 @@ const PlaceList = () => {
                   alignItems="center"
                   justifyContent="center"
                 >
-                  <Text color="#111" size="10px">
-                    {HotList[4]?.monthly}
-                  </Text>
+                  <Text size="10px">{HotList[4]?.monthly}</Text>
                 </Grid>
-                <Grid color="#fff" fontSize="10px" padding="4px">
-                  <Text bold>{HotList[4]?.building_info}</Text>
+                <Grid fontSize="10px" padding="4px">
+                  <Text color="#fff" bold>
+                    {HotList[4]?.building_info}
+                  </Text>
                 </Grid>
               </Grid>
             </Grid>

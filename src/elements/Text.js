@@ -56,7 +56,7 @@ Text.defaultProps = {
 };
 
 const ElText = styled.span`
-  color: ${(props) => props.color};
+  ${(props) => (props.color ? `color:${props.color}` : "color: #111")};
   font-size: ${(props) => props.size};
   font-weight: ${(props) => (props.bold ? "bold" : "400")};
   text-align: ${(props) => props.align};

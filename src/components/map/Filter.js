@@ -186,7 +186,7 @@ const Filter = (props) => {
                   height="24px"
                   backgroundColor="none"
                   color="#3F3F3F"
-                  fontSize="0.875rem"
+                  fontSize="14px"
                   padding="0"
                   _onClick={refreshBtn}
                   border="none"
@@ -202,7 +202,7 @@ const Filter = (props) => {
                 color="#fff"
                 borderRadius="8px"
                 padding="0"
-                fontSize="0.875rem"
+                fontSize="14px"
                 // _onClick={findOffice}
               >
                 매물보기

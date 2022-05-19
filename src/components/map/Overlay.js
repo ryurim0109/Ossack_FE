@@ -2,7 +2,8 @@ import React from "react";
 import { Grid, Text } from "../../elements/index";
 
 const Overlay = (props) => {
-  const { position } = props;
+  const { position, name } = props;
+  console.log(name);
 
   return (
     <React.Fragment>
@@ -20,10 +21,10 @@ const Overlay = (props) => {
           alignItems="center"
           padding="10px 0"
         >
-          <Text bold size="10px">
+          <Text color="#fff" bold size="10px">
             {position?.title ? position?.title : "서울시"}
           </Text>
-          <Text bold size="14px">
+          <Text color="#fff" bold size="14px">
             약{position?.average}만원
           </Text>
         </Grid>

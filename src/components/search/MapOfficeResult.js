@@ -10,6 +10,7 @@ import ossack from "../../assets/ossack02.jpg";
 const MapOfficeResult = (props) => {
   const dispatch = useDispatch();
   const officeData = useSelector((state) => state.office.list);
+
   if (officeData?.length === 0) {
     return (
       <React.Fragment>
@@ -93,13 +94,16 @@ const MapOfficeResult = (props) => {
                 height="76px"
                 display="flex"
                 flexDirection="column"
-                justifyContent="center"
+                justifyContent="space-between"
               >
-                <Text size="0.625rem" bold>
+                <Text size="10px" bold color="#666">
+                  {o.type} ∙ {o.roomFloor}층
+                </Text>
+                <Text size="14px" bold>
                   {o.buildingInfo}
                 </Text>
-                <Text size="0.875rem">{o.type}</Text>
-                <Text size="0.875rem" bold>
+                <Text size="10px">{o.area}</Text>
+                <Text size="14px" bold>
                   <Span>월세</Span>
                   {o.rent_fee}만원 <Span>보증금</Span>
                   {o.deposit}만원
@@ -113,6 +117,12 @@ const MapOfficeResult = (props) => {
   }
 };
 const Span = styled.span`
-  font-size: 0.625rem;
+  font-size: ${({ theme }) => theme.fontSizes.xs};
+  font-weight: normal;
+`;
+const Top = styled.div`
+  width: 20px;
+  height: 20px;
+  background: #000;
 `;
 export default MapOfficeResult;

@@ -46,7 +46,12 @@ function Sale() {
         </Grid>
         {/* 오피스구해요 박스 */}
         <SaleList />
-        <Grid width="100%" display="flex" justifyContent="space-between">
+        <Grid
+          width="100%"
+          margin="16px 0"
+          display="flex"
+          justifyContent="space-between"
+        >
           <Text bold size="1.250rem" cursor="pointer">
             텍스트 텍스트 오피스 📍
           </Text>
