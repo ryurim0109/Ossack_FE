@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../../redux/modules/user";
+import Spinner from "../shared/Spinner";
 
 const GoogleLogin = (props) => {
   const dispatch = useDispatch();
@@ -14,7 +15,7 @@ const GoogleLogin = (props) => {
     dispatch(userActions.loginBygoogle(code));
   }, [code, dispatch]);
 
-  return null;
+  return <Spinner />;
 };
 
 export default GoogleLogin;

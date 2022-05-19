@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -17,6 +17,25 @@ import { TalkTalk } from "../components/shared/home";
 
 const Login = () => {
   const dispatch = useDispatch();
+
+  // 비활성화 여부
+  const [userEmail, setUserEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [isActive, setIsActive] = useState(false);
+
+  const handleEmailInput = (event) => {
+    setUserEmail(event.target.value);
+  };
+
+  const handlePasswordInput = (event) => {
+    setPassword(event.target.value);
+  };
+
+  const isPassedLogin = () => {
+    return userEmail.includes("@") && password.length >= 5
+      ? setIsActive(true)
+      : setIsActive(false);
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -51,9 +70,6 @@ const Login = () => {
             alignItems: "flex-start",
           }}
         >
-          {/* <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-            <LockOutlinedIcon />
-          </Avatar> */}
           <Grid
             display="flex"
             flexDirection="column"
@@ -84,6 +100,8 @@ const Login = () => {
               autoComplete="userEmail"
               autoFocus
               sx={style}
+              onChange={handleEmailInput}
+              onKeyUp={isPassedLogin}
             />
             <TextField
               margin="normal"
@@ -95,11 +113,9 @@ const Login = () => {
               id="password"
               autoComplete="current-password"
               sx={style}
+              onChange={handlePasswordInput}
+              onKeyUp={isPassedLogin}
             />
-            {/* <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            /> */}
 
             <Grid container>
               {/* 회원가입 */}
@@ -109,7 +125,13 @@ const Login = () => {
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
-                style={{ backgroundColor: "#3E00FF" }}
+                size="large"
+                style={
+                  isActive
+                    ? { backgroundColor: "#3E00FF" }
+                    : { backgroundColor: "#D5D8DB" }
+                }
+                disabled={userEmail === "" || password === "" ? true : false}
               >
                 로그인
               </Button>
