@@ -24,7 +24,7 @@ const OfficeList = (props) => {
             <Grid
               key={idx}
               width="320px"
-              margin="12px 0 32px 0"
+              margin="20px 0 0 0"
               height="235px"
               bg="#999"
               borderRadius="8px"

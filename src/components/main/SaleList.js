@@ -5,7 +5,6 @@ import officeImg from "../../assets/office.png";
 import shareImg from "../../assets/share.png";
 const SaleList = () => {
   const officeClick = (name) => {
-    console.log(name);
     history.push(`/officemap/${name}`);
   };
 
