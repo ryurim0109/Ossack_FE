@@ -1,11 +1,12 @@
 {
   "short_name": "오싹",
-  "name": "오피스 구할 땐 오싹으로 싹 가능!",
+  "name": "오싹",
   "icons": [
     {
       "src": "favicon.ico",
       "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "type": "image/x-icon",
+      "purpose": "any maskable"
     },
     {
       "src": "images/192x192.png",
