@@ -61,7 +61,7 @@ const Start = () => {
                   history.push("/login");
                 }}
               >
-                <Text size="0.875rem" color="#3E00FF">
+                <Text size="14px" color="#3E00FF">
                   {" "}
                   로그인
                 </Text>
@@ -77,10 +77,7 @@ const Start = () => {
               >
                 <P>
                   오싹이 처음이신가요?
-                  <Text borderBottom="1px solid #3E00FF" color="#3E00FF">
-                    회원가입
-                  </Text>{" "}
-                  하러가기
+                  <span>회원가입</span>
                 </P>
               </Grid>
               {/* 소셜로그인 */}
@@ -102,6 +99,12 @@ const P = styled.p`
   color: ${({ theme }) => theme.colors.darkgray1};
   cursor: pointer;
   font-size: ${({ theme }) => theme.fontSizes.small};
+
+  & span {
+    color: ${({ theme }) => theme.colors.main};
+    border-bottom: 1px solid ${({ theme }) => theme.colors.main};
+    font-weight: bold;
+  }
 `;
 
 export default Start;
