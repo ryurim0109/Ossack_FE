@@ -23,7 +23,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [isActive, setIsActive] = useState(false);
 
-  const handleIdInput = (event) => {
+  const handleEmailInput = (event) => {
     setUserEmail(event.target.value);
   };
 
@@ -100,7 +100,7 @@ const Login = () => {
               autoComplete="userEmail"
               autoFocus
               sx={style}
-              onChange={handleIdInput}
+              onChange={handleEmailInput}
               onKeyUp={isPassedLogin}
             />
             <TextField
