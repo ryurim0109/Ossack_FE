@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 import { MyHeader } from "../components/my/index";
 import { OneMap } from "../components/map/index";
@@ -15,6 +15,12 @@ const DetailOffice = () => {
   const estateid = useParams().estateId;
   const getOneOffice = useSelector((state) => state.office.one_office);
   console.log("getOneOffice : ", getOneOffice);
+
+  const contentRef = useRef(null);
+  const onClick = (e) => {
+    contentRef.current.classList.add("show");
+    e.currentTarget.classList.add("hide");
+  };
 
   // const getImage = getOneOffice.images.map((images) => images);
   // console.log("getImage : ", getImage);
@@ -41,7 +47,6 @@ const DetailOffice = () => {
             margin="16px 0"
             height="235px"
             bg="#999"
-            borderRadius="8px"
             position="relative"
             overflow="hidden"
           >
@@ -86,57 +91,60 @@ const DetailOffice = () => {
           </Grid>
 
           <Grid
-            bottom="0"
             padding="0 16px"
             display="flex"
             flexDirection="column"
-            justifyContent="center"
+            justifyContent="space-between"
             width="100%"
             height="70px"
           >
-            <Text color="#000000" size="14px">
-              {getOneOffice?.type ? getOneOffice?.type : "트리플 역세권 사무실"}
-            </Text>
-            <Text color="#000000" size="14px">
+            <Grid
+              width="56px"
+              height="22px"
+              borderRadius="100px"
+              border="1px  solid #3E00FF"
+              bg="#3E00FF"
+              display="flex"
+              justifyContent="center"
+              alignItems="center"
+            >
+              <Sp style={{ color: "#fff" }}>오피스</Sp>
+            </Grid>
+            <Text color="#111" size="0.875rem">
               <Span>
                 {getOneOffice?.monthly ? getOneOffice?.monthly : null}
-              </Span>{" "}
-              {getOneOffice?.rent_fee ? getOneOffice?.rent_fee : 200}만{""}
-              <Span>보증금</Span>
-              {getOneOffice?.deposit ? getOneOffice?.deposit : " 3,000만"}
+                {getOneOffice?.rent_fee ? getOneOffice?.rent_fee : 200}만{" / "}
+              </Span>
+              <Span>
+                보증금
+                {getOneOffice?.deposit ? getOneOffice?.deposit : " 3,000만"}
+              </Span>
             </Text>
-            <Text color="#0055FF" size="14px">
+            <Text color="#3E00FF" size="18px" bold>
               권리금 없음
             </Text>
           </Grid>
           <Grid
-            bottom="0"
-            padding="0 16px"
+            padding="16px"
             display="flex"
             flexDirection="column"
             justifyContent="center"
             width="100%"
-            height="60px"
+            height="75px"
           >
-            <Grid display="flex" flexDirection="column" justifyContent="center">
-              <Span style={{ margin: "0 5px 5px 0" }}>
-                <Ssp color="#90969D" size="0.700rem">
-                  {getOneOffice?.buildingInfo
-                    ? getOneOffice?.buildingInfo
-                    : null}
-                </Ssp>
-              </Span>
-              <Span>
-                <Ssp color="#90969D" size="0.700rem">
-                  매물번호 {estateid ? estateid : null}
-                </Ssp>
-              </Span>
+            <Grid>
+              <Ssp>
+                {getOneOffice?.subwayInfo ? getOneOffice?.subwayInfo : null}
+              </Ssp>
+              <Grid>
+                <Ssp>매물번호 {estateid ? estateid : null}</Ssp>
+              </Grid>
             </Grid>
           </Grid>
         </Grid>
 
         {/* 상세정보 */}
-        <Grid height="200px" bg="#fff" margin="0 0 10px 0">
+        <Grid height="214px" bg="#fff" margin="0 0 10px 0">
           <Grid
             bottom="0"
             padding="0 16px"
@@ -152,11 +160,11 @@ const DetailOffice = () => {
               justifyContent="center"
               padding="16px 0"
             >
-              <Bp>상세정보</Bp>
+              <Bp>기본정보</Bp>
             </Grid>
             <Grid display="flex" flexDirection="column" justifyContent="center">
               <Grid display="flex" margin="0 0 10px">
-                <P>건물층 / 해당층</P>
+                <P>📌건물층 / 해당층</P>
                 <Sp>
                   {getOneOffice?.buildingFloor
                     ? getOneOffice?.buildingFloor
@@ -165,7 +173,7 @@ const DetailOffice = () => {
                 </Sp>
               </Grid>
               <Grid display="flex" margin="0 0 10px">
-                <P>공급면적</P>
+                <P>📐공급면적</P>
                 <Sp>{getOneOffice?.area ? getOneOffice?.area : null}</Sp>
               </Grid>
               <Grid display="flex" margin="0 0 10px">
@@ -189,44 +197,65 @@ const DetailOffice = () => {
             flexDirection="column"
             justifyContent="center"
             width="100%"
-            height="898px"
+            height="auto"
           >
             <Grid
               display="flex"
               flexDirection="column"
               justifyContent="center"
               padding="16px 0"
-              height="70px"
+              height="84px"
             >
               <Bp>중개사 코멘트</Bp>
             </Grid>
             <Grid display="flex" flexDirection="column" justifyContent="center">
               <Grid height="40px">
-                <Text>강남역 10분, 역삼역 도보 12분, 신논현역 도보 15분</Text>
-                <Ssp>지하철역 도보 15분 이내의 트리플</Ssp>
+                <Text size="16px" color="#111">
+                  {getOneOffice?.subwayInfo ? getOneOffice?.subwayInfo : null}
+                </Text>
+                {/* <Ssp>지하철역 도보 15분 이내의 트리플</Ssp> */}
               </Grid>
               <Grid height="40px">
-                <Text>
+                <Text size="16px" color="#111">
                   ◎해당 사무소는 공인중개사 자격증을 갖춘 인원으로만 구성되어
                   있습니다.
                 </Text>
               </Grid>
               <Grid height="40px">
-                <Text>◎직접 방문 후 촬영한 100% 실매물 현장사진</Text>
+                <Text size="16px" color="#111">
+                  ◎직접 방문 후 촬영한 100% 실매물 현장사진
+                </Text>
               </Grid>
 
               <Grid>
                 <Text>
                   {/* {" "} */}
-                  {getOneOffice?.buildingDetail
-                    ?.split("\n")
-                    .map((line, idx) => {
-                      return (
-                        <div key={idx}>
-                          {line} <br />
-                        </div>
-                      );
-                    })}
+                  <Ellipsis ref={contentRef}>
+                    {/* Lorem Ipsum is simply dummy text of the printing and
+                    typesetting industry. Lorem Ipsum has been the industry's
+                    standard dummy text ever since the 1500s, when an unknown
+                    printer took a galley of type and scrambled it to make a
+                    type specimen book. It has survived not only five centuries,
+                    but also the leap into electronic typesetting, remaining
+                    essentially unchanged. It was popularised in the 1960s with
+                    the release of Letraset sheets containing Lorem Ipsum
+                    passages, and more recently with desktop publishing software
+                    like Aldus PageMaker including versions of Lorem Ipsum. */}
+                    {getOneOffice?.buildingDetail
+                      ?.split("\n")
+                      .map((line, idx) => {
+                        return (
+                          <div key={idx}>
+                            {line} <br />
+                          </div>
+                        );
+                      })}{" "}
+                    <Btn onClick={onClick}>
+                      <Text size="16px" color="#3E00FF">
+                        더보기
+                      </Text>
+                    </Btn>
+                  </Ellipsis>
                 </Text>
               </Grid>
             </Grid>
@@ -277,7 +306,9 @@ const DetailWrap = styled.div`
 `;
 
 const Span = styled.span`
-  font-size: 10px;
+  //font-size: 0.625rem;
+  font-weight: bold;
+  font-size: ${({ theme }) => theme.fontSizes.xlg};
 `;
 
 const P = styled.p`
@@ -290,20 +321,63 @@ const P = styled.p`
 const Sp = styled.p`
   width: 60%;
   color: #000;
-  font-size: 0.975rem;
+  //font-size: 0.975rem;
+  font-size: ${({ theme }) => theme.fontSizes.small};
 `;
 
 const Bp = styled.p`
   font-weight: bold;
   width: 60%;
   color: #000;
-  font-size: 1.2rem;
+  font-size: ${({ theme }) => theme.fontSizes.xlg};
 `;
 
 const Ssp = styled.p`
   width: 60%;
-  color: #ccc;
-  font-size: 0.7rem;
+  color: #999;
+  font-size: ${({ theme }) => theme.fontSizes.small};
+`;
+
+const Ellipsis = styled.div`
+  position: relative;
+  display: -webkit-box;
+  max-height: 55rem;
+  line-height: 2rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 9;
+  &.show {
+    display: block;
+    max-height: none;
+    overflow: auto;
+    -webkit-line-clamp: unset;
+  }
+`;
+
+const Btn = styled.button`
+  width: 100%;
+  height: 48px;
+  border-radius: 8px;
+  border: 1px solid #eee;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  //max-height: 2rem;
+  line-height: 48px;
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    180deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 1) 18%
+  );
+  &.hide {
+    display: none;
+  }
 `;
 
 export default DetailOffice;
