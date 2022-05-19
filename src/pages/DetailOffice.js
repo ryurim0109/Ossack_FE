@@ -112,11 +112,15 @@ const DetailOffice = () => {
             </Grid>
             <Text color="#111" size="0.875rem">
               <Span>
-                {getOneOffice?.monthly ? getOneOffice?.monthly : null}
-                {getOneOffice?.rent_fee ? getOneOffice?.rent_fee : 200}만{" / "}
+                {getOneOffice?.monthly !== "매매"
+                  ? getOneOffice?.monthly
+                  : null}
+                {getOneOffice?.rent_fee !== "0"
+                  ? getOneOffice?.rent_fee + "만 /"
+                  : null}
               </Span>
               <Span>
-                보증금
+                {getOneOffice?.monthly === "월세" ? "보증금" : null}
                 {getOneOffice?.deposit ? getOneOffice?.deposit : " 3,000만"}
               </Span>
             </Text>
@@ -144,7 +148,7 @@ const DetailOffice = () => {
         </Grid>
 
         {/* 상세정보 */}
-        <Grid height="214px" bg="#fff" margin="0 0 10px 0">
+        <Grid height="340px" bg="#fff" margin="0 0 10px 0">
           <Grid
             bottom="0"
             padding="0 16px"
@@ -152,7 +156,7 @@ const DetailOffice = () => {
             flexDirection="column"
             justifyContent="center"
             width="100%"
-            height="200px"
+            height="300px"
           >
             <Grid
               display="flex"
@@ -162,8 +166,39 @@ const DetailOffice = () => {
             >
               <Bp>기본정보</Bp>
             </Grid>
-            <Grid display="flex" flexDirection="column" justifyContent="center">
-              <Grid display="flex" margin="0 0 10px">
+            <Grid
+              display="flex"
+              flexDirection="column"
+              justifyContent="center"
+              alignItems="center"
+            >
+              <CenterInner>
+                <P>📐공급면적</P>
+                <Sp>{getOneOffice?.area ? getOneOffice?.area : null}</Sp>
+              </CenterInner>
+              <CenterInner>
+                <P>😀가용인원</P>
+                <Sp>
+                  {getOneOffice?.capacity ? getOneOffice?.capacity : null}
+                </Sp>
+              </CenterInner>
+              <CenterInner>
+                <P>💸 관리비</P>
+                <Sp>
+                  {getOneOffice?.management_fee
+                    ? getOneOffice?.management_fee
+                    : null}
+                </Sp>
+              </CenterInner>
+              <CenterInner>
+                <P>🏢 오피스 타입</P>
+                <Sp>{getOneOffice?.type ? getOneOffice?.type : null}</Sp>
+              </CenterInner>
+              <CenterInner>
+                <P>🚽 화장실</P>
+                <Sp>{getOneOffice?.toilet ? getOneOffice?.toilet : null}</Sp>
+              </CenterInner>
+              <CenterInner>
                 <P>📌건물층 / 해당층</P>
                 <Sp>
                   {getOneOffice?.buildingFloor
@@ -171,19 +206,11 @@ const DetailOffice = () => {
                     : "15층"}
                   / {getOneOffice?.roomFloor ? getOneOffice?.roomFloor : "2층"}
                 </Sp>
-              </Grid>
-              <Grid display="flex" margin="0 0 10px">
-                <P>📐공급면적</P>
-                <Sp>{getOneOffice?.area ? getOneOffice?.area : null}</Sp>
-              </Grid>
-              <Grid display="flex" margin="0 0 10px">
-                <P>엘레베이터</P>
-                <Sp>2대</Sp>
-              </Grid>
-              <Grid display="flex" margin="0 0 10px">
-                <P>즉시입주가능</P>
-                <Sp>협의가능</Sp>
-              </Grid>
+              </CenterInner>
+              <CenterInner>
+                <P>🚗 주차장</P>
+                <Sp>{getOneOffice?.parking ? getOneOffice?.parking : null}</Sp>
+              </CenterInner>
             </Grid>
           </Grid>
         </Grid>
@@ -209,11 +236,15 @@ const DetailOffice = () => {
               <Bp>중개사 코멘트</Bp>
             </Grid>
             <Grid display="flex" flexDirection="column" justifyContent="center">
-              <Grid height="40px">
+              <Grid height="60px">
                 <Text size="16px" color="#111">
                   {getOneOffice?.subwayInfo ? getOneOffice?.subwayInfo : null}
                 </Text>
-                {/* <Ssp>지하철역 도보 15분 이내의 트리플</Ssp> */}
+                <Ssp>
+                  {getOneOffice?.buildingInfo
+                    ? getOneOffice?.buildingInfo
+                    : null}
+                </Ssp>
               </Grid>
               <Grid height="40px">
                 <Text size="16px" color="#111">
@@ -295,14 +326,12 @@ const DetailOffice = () => {
     </React.Fragment>
   );
 };
-const DetailWrap = styled.div`
+const CenterInner = styled.div`
   width: 100%;
-  height: 100px;
-  background: #f5f5f5;
-  position: fixed;
-  bottom: 0px;
-  z-index: 1;
-  padding: 0 16px;
+  height: 32px;
+  display: flex;
+  /* margin: 0 0 13px; */
+  align-items: center;
 `;
 
 const Span = styled.span`
@@ -333,7 +362,8 @@ const Bp = styled.p`
 `;
 
 const Ssp = styled.p`
-  width: 60%;
+  padding: 5px 0;
+  width: 90%;
   color: #999;
   font-size: ${({ theme }) => theme.fontSizes.small};
 `;
@@ -346,7 +376,7 @@ const Ellipsis = styled.div`
   overflow: hidden;
   text-overflow: ellipsis;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 9;
+  -webkit-line-clamp: 8;
   &.show {
     display: block;
     max-height: none;
