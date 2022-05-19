@@ -14,7 +14,7 @@ import { history } from "../../redux/configStore";
 
 import { Map, CustomOverlayMap } from "react-kakao-maps-sdk";
 import { ReactComponent as Location } from "../../assets/location.svg";
-import { Position, Overlay, ShareOverlay } from "./index";
+import { Position, Overlay } from "./index";
 
 const MainMap = (props) => {
   const dispatch = useDispatch();
@@ -192,7 +192,7 @@ const MainMap = (props) => {
                               )
                             }
                           >
-                            <ShareOverlay position={position} />
+                            <Overlay position={position} name={name} />
                           </div>
                         </CustomOverlayMap>
                       );
