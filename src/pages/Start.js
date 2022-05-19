@@ -14,6 +14,7 @@ const Start = () => {
       <Grid
         width="100%"
         display="flex"
+        height="600px"
         flexDirection="column"
         bg="#fff"
         position="relative"
