@@ -21,7 +21,13 @@ const TalkTalk = () => {
         <Talk>
           <Text color="#FF6868">3초면</Text> 빠른 로그인 완료!
         </Talk>
-        <Grid width="114px" display="flex" justifyContent="space-between">
+        <Grid
+          width="114px"
+          display="flex"
+          height="78px"
+          justifyContent="space-between"
+          alignItems="center"
+        >
           <MyBtn onClick={() => window.open(`${KAKAO_AUTH_URL}`)}>
             <img src={kakaoIcon} alt="카카오로그인" />{" "}
           </MyBtn>
@@ -34,11 +40,11 @@ const TalkTalk = () => {
   );
 };
 const Talk = styled.div`
-  color: #000;
+  color: #111;
   width: 134px;
   height: 28px;
   background-color: #fff;
-  top: -36px;
+  top: -15px;
   border: 1px solid #c4c4c4;
   font-size: 0.75rem;
   display: flex;
@@ -95,10 +101,10 @@ const Talk = styled.div`
 
   @keyframes bounceX {
     50% {
-      top: -30px;
+      top: -20px;
     }
     100% {
-      top: -36px;
+      top: -15px;
     }
   }
 `;
