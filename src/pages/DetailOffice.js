@@ -94,10 +94,10 @@ const DetailOffice = () => {
             width="100%"
             height="70px"
           >
-            <Text color="#000000" size="0.875rem">
+            <Text color="#000000" size="14px">
               {getOneOffice?.type ? getOneOffice?.type : "트리플 역세권 사무실"}
             </Text>
-            <Text color="#000000" size="0.875rem">
+            <Text color="#000000" size="14px">
               <Span>
                 {getOneOffice?.monthly ? getOneOffice?.monthly : null}
               </Span>{" "}
@@ -105,7 +105,7 @@ const DetailOffice = () => {
               <Span>보증금</Span>
               {getOneOffice?.deposit ? getOneOffice?.deposit : " 3,000만"}
             </Text>
-            <Text color="#0055FF" size="0.875rem">
+            <Text color="#0055FF" size="14px">
               권리금 없음
             </Text>
           </Grid>
@@ -277,7 +277,7 @@ const DetailWrap = styled.div`
 `;
 
 const Span = styled.span`
-  font-size: 0.625rem;
+  font-size: 10px;
 `;
 
 const P = styled.p`

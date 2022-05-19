@@ -15,8 +15,8 @@ function Main() {
     <React.Fragment>
       <Outter>
         <Sale />
-        <Bar />
       </Outter>
+      <Bar />
     </React.Fragment>
   );
 }

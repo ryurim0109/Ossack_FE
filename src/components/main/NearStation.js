@@ -78,10 +78,10 @@ const NearStation = (props) => {
                 width="100%"
                 height="60px"
               >
-                <Text color="#fff" size="0.875rem">
+                <Text color="#fff" size="14px">
                   {o.type ? o.type : "트리플 역세권 사무실"}
                 </Text>
-                <Text color="#fff" size="0.875rem">
+                <Text color="#fff" size="14px">
                   <Span>월세</Span> {o.rent_fee ? o.rent_fee : 200}만{" "}
                   <Span>보증금</Span> {o.deposit ? o.deposit : "3000만"}
                 </Text>
@@ -93,6 +93,6 @@ const NearStation = (props) => {
   );
 };
 const Span = styled.span`
-  font-size: 0.625rem;
+  font-size: 10px;
 `;
 export default NearStation;

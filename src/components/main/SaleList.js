@@ -30,7 +30,7 @@ const SaleList = () => {
               officeClick("office");
             }}
           >
-            <Text size="1.250rem" bold>
+            <Text size="16px" bold>
               오피스
             </Text>
             <Grid
@@ -57,7 +57,7 @@ const SaleList = () => {
             boxShadow="0px 2px 4px rgba(105, 105, 105, 0.1)"
             padding="12px"
           >
-            <Text size="1.250rem" bold>
+            <Text size="16px" bold>
               공유 오피스
             </Text>
             <Grid

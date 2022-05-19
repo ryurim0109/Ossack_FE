@@ -80,10 +80,10 @@ const OfficeTellLike = (props) => {
                 width="100%"
                 height="40px"
               >
-                <Text color="#000000" size="0.875rem">
+                <Text color="#000000" size="14px">
                   {office.type ? office.type : "트리플 역세권 사무실"}
                 </Text>
-                <Text color="#000000" size="0.875rem">
+                <Text color="#000000" size="14px">
                   <Span>월세</Span> {office.rent_fee ? office.rent_fee : 200}만
                   {""}
                   <Span>보증금</Span>{" "}
@@ -104,7 +104,7 @@ const StyledSlider = styled(Slider)`
 `;
 
 const Span = styled.span`
-  font-size: 0.625rem;
+  font-size: 10px;
 `;
 
 export default OfficeTellLike;

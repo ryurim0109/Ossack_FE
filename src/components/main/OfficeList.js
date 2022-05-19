@@ -79,12 +79,12 @@ const OfficeList = (props) => {
                 width="100%"
                 height="60px"
               >
-                <Text color="#fff" size="0.875rem">
-                  {o.type ? o.type : "트리플 역세권 사무실"}
+                <Text color="#fff" size="14px">
+                  {o.type}
                 </Text>
-                <Text color="#fff" size="0.875rem">
-                  <Span>월세</Span> {o.rent_fee ? o.rent_fee : 200}만{" "}
-                  <Span>보증금</Span> {o.deposit ? o.deposit : "3000만"}
+                <Text color="#fff" size="14px" bold>
+                  <Span>월세</Span> {o.rent_fee}만 <Span>보증금</Span>{" "}
+                  {o.deposit}만
                 </Text>
               </Grid>
             </Grid>
@@ -95,7 +95,8 @@ const OfficeList = (props) => {
 };
 
 const Span = styled.span`
-  font-size: 0.625rem;
+  font-size: 10px;
+  font-weight: normal;
 `;
 
 export default OfficeList;
