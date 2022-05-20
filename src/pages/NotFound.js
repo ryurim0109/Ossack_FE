@@ -1,5 +1,4 @@
 import React from "react";
-import { history } from "../redux/configStore";
 import styled from "styled-components";
 import { Grid, Text } from "../elements/index";
 import NotImg from "../assets/404.png";
@@ -18,11 +17,8 @@ const NotFound = () => {
           <SP>The page you are looking for can’t be found.</SP>
         </div>
         <div>
-          <Text color="#666666" size="16px">
-            이용에 불편을 드려 죄송합니다,
-          </Text>
-          <Text color="#666666" size="16px">
-            주소를 다시 한번 확인해주세요.
+          <Text color="#666" size="12px">
+            죄송합니다, 요청하신 페이지를 찾을 수 없습니다.
           </Text>
         </div>
       </Outter>

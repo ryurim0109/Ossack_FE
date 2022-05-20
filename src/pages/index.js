@@ -10,6 +10,8 @@ import NotFound from "./NotFound";
 import DetailOffice from "./DetailOffice";
 import MapOfficeList from "./MapOfficeList";
 import Splash from "./Splash";
+import QNA from "./QNA";
+import MapShareList from "./MapShareList";
 
 export {
   Login,
@@ -23,5 +25,7 @@ export {
   NotFound,
   DetailOffice,
   MapOfficeList,
+  MapShareList,
   Splash,
+  QNA,
 };

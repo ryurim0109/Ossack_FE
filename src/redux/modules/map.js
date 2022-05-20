@@ -71,9 +71,9 @@ const getShareData = (pos, level) => {
   return function (dispatch) {
     dispatch(isLoaded(false));
 
-    /*     instance
+    instance
       .get(
-        `/api/${level}/map?SWlat=${SWlat}&SWlng=${SWlng}&NElat=${NElat}&NElng=${NElng}`
+        `/map/sharedoffice?level=${level}&SWlat=${SWlat}&SWlng=${SWlng}&NElat=${NElat}&NElng=${NElng}`
       )
       .then((res) => {
         console.log(res.data, "나는 공유 오피스 DB");
@@ -82,9 +82,7 @@ const getShareData = (pos, level) => {
       .catch((err) => {
         console.log(err.response, "나는 공유 오피스 DB 오류");
         console.log(err, "나는 공유 오피스 DB 오류");
-      }); */
-    const res = RESP.GETOFFICE;
-    dispatch(setShareList(res));
+      });
   };
 };
 

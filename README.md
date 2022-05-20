@@ -1,5 +1,4 @@
-# startUp_FE
-
+# OSSACK_FE
 
 ## 😇‍ 프론트엔드 팀원
 
@@ -25,15 +24,15 @@
 
 > 수정한 종류에 따라 커밋 메시지를 선택
 
-|메시지명|설명|
-|---|---|
-|feat|새로운 기능 추가 관련|
-|fix|버그 수정|
-|test|테스트 코드, 리팩토링 테스트 코드 추가|
-|refactor|코드 리팩토링(기능향상)|
-|chore|빌드 업무 수정, 패키지 매니저 수정|
-|docs|문서 수정(md, git관련 파일, 이미지파일 수정)|
-|style|코드 formatting, 세미콜론(;) 누락, 코드 변경이 없는 경우|
+| 메시지명 | 설명                                                     |
+| -------- | -------------------------------------------------------- |
+| feat     | 새로운 기능 추가 관련                                    |
+| fix      | 버그 수정                                                |
+| test     | 테스트 코드, 리팩토링 테스트 코드 추가                   |
+| refactor | 코드 리팩토링(기능향상)                                  |
+| chore    | 빌드 업무 수정, 패키지 매니저 수정                       |
+| docs     | 문서 수정(md, git관련 파일, 이미지파일 수정)             |
+| style    | 코드 formatting, 세미콜론(;) 누락, 코드 변경이 없는 경우 |
 
 ### 👀 사용 라이브러리 👀
 
@@ -43,7 +42,8 @@
 <img src="https://img.shields.io/badge/redux-764ABC?style=flat&logo=redux&logoColor=EF2D5E">
 <img src="https://img.shields.io/badge/immer-106ece?style=flat&logo=immer&logoColor=immer">
 <img src="https://img.shields.io/badge/styledcomponents-DB7093?style=flat&logo=styledcomponents&logoColor=white">
-<img src="https://img.shields.io/badge/sockjs-1877F2?style=flat&logo=ssockjs&logoColor=white">
 <img src='https://img.shields.io/badge/yarn-v1.22.17-yellow?logo=yarn'/>
   <img src='https://img.shields.io/badge/AWS-Amazon AWS-yellow?logo=Amazon AWS'/>
+   <img src='https://img.shields.io/badge/Amazon S3-569A31?logo=Amazon S3&logoColor=white'/>
+  <img src='https://img.shields.io/badge/CLOUDFRONT-1261FE?logo=cloudfront'/>
 </div>

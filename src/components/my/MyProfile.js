@@ -88,7 +88,7 @@ const ModalBackdrop = styled.div`
   z-index: 2;
   justify-content: center;
   align-items: center;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(153, 153, 153, 0.77);
 `;
 
 export default MyProfile;

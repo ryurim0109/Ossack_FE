@@ -6,6 +6,7 @@ import Spinner from "./Spinner";
 import SlickSlider from "./SlickSlider";
 import LoadSpinner from "./LoadSpinner";
 import TalkTalk from "./TalkTalk";
+import Accordion from "./Accordion";
 
 export {
   Bar,
@@ -16,4 +17,5 @@ export {
   SlickSlider,
   LoadSpinner,
   TalkTalk,
+  Accordion,
 };
