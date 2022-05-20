@@ -12,7 +12,6 @@ import { history } from "../redux/configStore";
 
 import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
-import { styled } from "@mui/system";
 import { TalkTalk } from "../components/shared/home";
 
 const Login = () => {
