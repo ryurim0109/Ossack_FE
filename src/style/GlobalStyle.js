@@ -225,7 +225,7 @@ button {
   padding: 0;
   border: 0;
   background-color: transparent;
-  font-size: 1.6rem;
+  font-size: 16px;
 
   font-family: "Pretendard";
   -webkit-font-smoothing: antialiased;

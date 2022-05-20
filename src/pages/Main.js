@@ -7,9 +7,9 @@ import { actionCreators as userActions } from "../redux/modules/user";
 
 function Main() {
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(userActions.loginCheckApi());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(userActions.loginCheckApi());
+  // }, []);
 
   return (
     <React.Fragment>

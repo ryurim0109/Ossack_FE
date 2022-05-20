@@ -134,9 +134,4 @@ const Span = styled.span`
   font-size: ${({ theme }) => theme.fontSizes.xs};
   font-weight: normal;
 `;
-const Top = styled.div`
-  width: 20px;
-  height: 20px;
-  background: #000;
-`;
 export default MapOfficeResult;
