@@ -12,6 +12,7 @@ import MapOfficeList from "./MapOfficeList";
 import Splash from "./Splash";
 import QNA from "./QNA";
 import MapShareList from "./MapShareList";
+import DetailShare from "./DetailShare";
 
 export {
   Login,
@@ -28,4 +29,5 @@ export {
   MapShareList,
   Splash,
   QNA,
+  DetailShare,
 };

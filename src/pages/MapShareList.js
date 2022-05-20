@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as officeActions } from "../redux/modules/office";
 
 import { MyHeader } from "../components/my/index";
-import { MapOfficeResult } from "../components/search/index";
+import { ShareOfficeResult } from "../components/search/index";
 import { Bar, Spinner } from "../components/shared/home";
 
 const MapShareList = (props) => {
@@ -45,7 +45,9 @@ const MapShareList = (props) => {
   return (
     <React.Fragment>
       <MyHeader>{decodeURI(search)} 리스트</MyHeader>
-      <Outter></Outter>
+      <Outter>
+        <ShareOfficeResult />
+      </Outter>
       {isLoading ? <Spinner /> : null}
       {totalPage > pageno ? <div ref={setTarget}> </div> : null}
       <Bar />
