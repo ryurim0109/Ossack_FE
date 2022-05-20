@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button } from "../../elements/index";
 import styled from "styled-components";
-import { LogoutModal } from "./index";
+import { LogoutModal, WithDrawModal } from "./index";
 
 const MyLogout = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -46,7 +46,10 @@ const MyLogout = () => {
       {isWithdraw ? (
         <>
           <ModalBackdrop onClick={openDrawHandler}></ModalBackdrop>
-          {/* <ProfileModal isOpen={isOpen} setIsOpen={setIsOpen} /> */}
+          <WithDrawModal
+            isWithdraw={isWithdraw}
+            setIsWithdraw={setIsWithdraw}
+          />
         </>
       ) : null}
     </React.Fragment>
