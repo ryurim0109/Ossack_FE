@@ -18,6 +18,7 @@ import {
   MapShareList,
   Splash,
   QNA,
+  DetailShare,
 } from "../pages/index";
 import { MobileFrame } from "../components/shared/home";
 import KaKaoLogin from "../components/social/KaKaoLogin";
@@ -64,6 +65,11 @@ function App() {
                   path="/detail/:estateId"
                   exact
                   component={DetailOffice}
+                />
+                <Route
+                  path="/detail/share/:shareofficeid"
+                  exact
+                  component={DetailShare}
                 />
                 <Route path="/*" component={NotFound} />
               </Switch>
