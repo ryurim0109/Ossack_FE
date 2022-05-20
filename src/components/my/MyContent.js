@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, Grid, Text } from "../../elements/index";
+import { history } from "../../redux/configStore";
 
 const MyContent = () => {
   return (
@@ -15,7 +16,13 @@ const MyContent = () => {
         justifyContent="center"
       >
         <Grid display="flex" alignItems="center" justifyContent="space-between">
-          <Grid display="flex" alignItems="center">
+          <Grid
+            display="flex"
+            alignItems="center"
+            _onClick={() => {
+              history.push("/mypage/qna");
+            }}
+          >
             {/* <Grid width="24px" margin="0 10px 0 0" height="24px" bg="red"> </Grid> */}
             <Text size="16px" cursor="pointer">
               자주 하는 질문
