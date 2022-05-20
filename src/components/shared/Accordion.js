@@ -75,6 +75,7 @@ const ContentsWrapper = styled.div`
 
 const Contents = styled.div`
   padding: 32px 16px;
+  text-align: justify;
 `;
 
 export default React.memo(Accordion);

@@ -19,6 +19,7 @@ import {
   Splash,
   QNA,
   DetailShare,
+  Notice,
 } from "../pages/index";
 import { MobileFrame } from "../components/shared/home";
 import KaKaoLogin from "../components/social/KaKaoLogin";
@@ -58,6 +59,7 @@ function App() {
                 <Route path="/officemap/:name" exact component={SaleMap} />
                 <Route path="/mypage" exact component={MyPage} />
                 <Route path="/mypage/qna" exact component={QNA} />
+                <Route path="/mypage/notice" exact component={Notice} />
                 <Route path="/like" exact component={Like} />
                 <Route path="/map/office" exact component={MapOfficeList} />
                 <Route path="/map/shareoffice" exact component={MapShareList} />
