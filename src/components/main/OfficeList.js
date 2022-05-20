@@ -19,7 +19,7 @@ const OfficeList = (props) => {
     <React.Fragment>
       {/* map돌리기 */}
       {foodOfficeList &&
-        foodOfficeList.map((o, idx) => {
+        foodOfficeList?.map((o, idx) => {
           return (
             <Grid
               key={idx}
@@ -34,7 +34,7 @@ const OfficeList = (props) => {
               <Image
                 padding="235px"
                 bottom="0"
-                src={o.images[0]}
+                src={o?.images[0]}
                 shape="rectangle"
                 position="absolute"
               />

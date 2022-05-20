@@ -14,10 +14,10 @@ function Accordion(props) {
       }
       if (parentRef.current.clientHeight > 0) {
         parentRef.current.style.height = "0";
-        parentRef.current.style.background = "white";
+        parentRef.current.style.background = "#fff";
       } else {
         parentRef.current.style.height = `${childRef.current.clientHeight}px`;
-        parentRef.current.style.background = "lightgray";
+        parentRef.current.style.background = "#FAFAFA";
       }
       setIsCollapse(!isCollapse);
     },
@@ -45,9 +45,7 @@ const Container = styled.div`
   position: relative;
   flex-direction: column;
   justify-content: center;
-
-  border-radius: 4px;
-  border: 1px solid silver;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.darkgray4};
 `;
 
 const Header = styled.div`
