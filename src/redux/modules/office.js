@@ -127,11 +127,10 @@ const getOfficeLikeDB = (type) => {
   };
 };
 
-/* 검색 리스트 조회 */
-
+// 오피스 검색 리스트 조회
 const getSOListDB = (keyword, pageno) => {
   console.log("keyword : ", keyword);
-  return (dispatch, getState) => {
+  return (dispatch) => {
     instance
       .get(`/api/list/search/${pageno}?query=${keyword}`)
       .then((res) => {
@@ -146,7 +145,24 @@ const getSOListDB = (keyword, pageno) => {
       });
   };
 };
-
+//공유오피스 검색 리스트 조회
+const getShareListDB = (keyword, pageno) => {
+  console.log("keyword : ", keyword);
+  return (dispatch) => {
+    instance
+      .get(`/sharedoffices?query=${keyword}&pagenum=${pageno}`)
+      .then((res) => {
+        console.log("res : ", res);
+        const key = decodeURI(keyword);
+        dispatch(
+          getSOList(res.data.sharedOfficeResponseDtos, res.data.totalpage, key)
+        );
+      })
+      .catch((err) => {
+        console.log("Error Message: ", err.message);
+      });
+  };
+};
 /* 상세 조회 */
 const getOneOfficeDB = (estateid) => {
   console.log("estateId : ", estateid);
@@ -239,6 +255,7 @@ const actionCreators = {
   getOfficeLikeDB,
   getSOListDB,
   getOneOfficeDB,
+  getShareListDB,
 };
 
 export { actionCreators };
