@@ -13,8 +13,8 @@ function Bar() {
   const gnbClick = (e, gnbname) => {
     if (gnbname === "home") {
       history.push("/main");
-    } else if (gnbname === "officemap") {
-      history.push("/officemap");
+    } else if (gnbname === "search") {
+      history.push("/search");
     } else if (gnbname === "like") {
       history.push("/like");
     } else if (gnbname === "mypage") {
@@ -60,7 +60,7 @@ function Bar() {
         </Grid>
         <Grid
           _onClick={(e) => {
-            gnbClick(e, "officemap");
+            gnbClick(e, "search");
           }}
           width="25%"
           textAlign="center"
@@ -133,7 +133,7 @@ function Bar() {
           alignItems="center"
         >
           <Grid width="24px" height="24px">
-            {params === "/mypage" ? (
+            {params.includes("/mypage") ? (
               <User fill="none" stroke="#3E00FF" />
             ) : (
               <User fill="none" stroke="#BEBDC4" />
@@ -141,7 +141,7 @@ function Bar() {
           </Grid>
           <Text
             cursor="pointer"
-            color={params === "/mypage" ? "#3E00FF" : "#BEBDC4"}
+            color={params.includes("/mypage") ? "#3E00FF" : "#BEBDC4"}
             size="12px"
           >
             마이페이지
