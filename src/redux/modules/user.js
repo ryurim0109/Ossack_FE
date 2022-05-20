@@ -3,8 +3,6 @@ import produce from "immer";
 import axios from "axios";
 import { instance } from "../../shared/api";
 import Swal from "sweetalert2";
-//import { RESP } from "../../response";
-//import { setCookie, deleteCookie } from "../../shared/cookie";
 
 // actions
 const SET_USER = "SET_USER";
@@ -26,6 +24,7 @@ const logOut = createAction(LOG_OUT, () => {});
 const user_img = createAction(USER_IMG, (userImage) => ({ userImage }));
 
 // middleWares
+//회원가입
 const signUpApi = (user) => {
   console.log("user : ", user);
   return async function (dispatch, getState, { history }) {
@@ -51,7 +50,7 @@ const signUpApi = (user) => {
     }
   };
 };
-
+//로그인
 const loginApi = (userEmail, password) => {
   console.log("userEmail : ", userEmail);
   console.log("password : ", password);
@@ -86,34 +85,9 @@ const loginApi = (userEmail, password) => {
     }
   };
 };
-
+//유저정보확인
 const loginCheckApi = () => {
-  return async function (dispatch, getState, { history }) {
-    //   try {
-    //     const check = await axios.get(
-    //       // "http://15.165.160.109:8080/api/islogin",
-    //       "http://15.165.158.5:8080/api/islogin",
-    //       {},
-    //       {
-    //         headers: {
-    //           Authorization: `BEARER ${localStorage.getItem("token")}`,
-    //         },
-    //       }
-    //     );
-    //     console.log(check)
-    //     dispatch(
-    //       setUser({
-    //         nickname: check.data.nickname,
-    //         userEmail: check.data.userEmail,
-    //         imageUrl: check.data.imageUrl,
-    //       })
-    //     );
-    //   } catch (err) {
-    //     console.log("에러발생", err);
-    //     Swal.fire('로그인 여부 확인에 문제가 생겼습니다. 로그인을 다시 해주세요!');
-    //     history.replace('/')
-    //   }
-    // };
+  return async function (dispatch, { history }) {
     instance
       .get("/api/islogin")
       .then((res) => {
@@ -135,13 +109,28 @@ const loginCheckApi = () => {
       });
   };
 };
-
+//로그아웃
 const logOutApi = () => {
   return function (dispatch) {
     localStorage.removeItem("token");
     Swal.fire("로그아웃이 완료되었습니다.");
     dispatch(logOut());
     window.location.replace("/start");
+  };
+};
+//회원 탈퇴
+const resignDB = () => {
+  return function (dispatch) {
+    instance
+      .put(`/users/resign`)
+      .then((res) => {
+        localStorage.removeItem("token");
+        Swal.fire("회원탈퇴가 완료되었습니다.");
+        window.location.replace("/start");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 };
 
@@ -185,7 +174,6 @@ const loginBykakao = (code) => {
 const loginBygoogle = (code) => {
   console.log("code : ", code);
   return function (dispatch, getState, { history }) {
-    // axios.get(`http://15.165.160.109:8080/user/google/callback?code=${code}`)
     instance
       .get(`/user/google/callback?code=${code}`)
       .then((res) => {
@@ -280,6 +268,7 @@ const actionCreators = {
   loginBykakao,
   loginBygoogle,
   userImgDB,
+  resignDB,
 };
 
 export { actionCreators };
