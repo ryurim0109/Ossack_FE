@@ -37,12 +37,12 @@ const LogoutModal = (props) => {
                 width="50%"
                 backgroundColor="#fff"
                 borderRadius="0 0 8px 0"
-                color="#ccc"
+                color="#999"
                 _onClick={() => {
                   dispatch(userActions.logOutApi());
                 }}
               >
-                로그아웃!
+                로그아웃
               </Button>
             </BtnBox>
           </Inner>
@@ -74,7 +74,7 @@ const Inner = styled.div`
 const BtnBox = styled.div`
   width: 100%;
   height: 48px;
-  border-top: 1px solid ${({ theme }) => theme.colors.darkgray3};
+  border-top: 1px solid ${({ theme }) => theme.colors.darkgray4};
   position: relative;
 
   &::after {
@@ -86,7 +86,7 @@ const BtnBox = styled.div`
     left: 50%;
     transform: translateX(-50%);
     position: absolute;
-    background-color: ${({ theme }) => theme.colors.darkgray3};
+    background-color: ${({ theme }) => theme.colors.darkgray4};
   }
 `;
 export default LogoutModal;
