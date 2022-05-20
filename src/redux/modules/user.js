@@ -137,11 +137,11 @@ const loginCheckApi = () => {
 };
 
 const logOutApi = () => {
-  return function (dispatch, { history }) {
+  return function (dispatch) {
     localStorage.removeItem("token");
-    history.replace("/start");
-    Swal.fire("로그인 기간 만료!");
+    Swal.fire("로그아웃이 완료되었습니다.");
     dispatch(logOut());
+    window.location.replace("/start");
   };
 };
 
