@@ -1,16 +1,13 @@
 import React, { useState } from "react";
 import { Button } from "../../elements/index";
 import styled from "styled-components";
-import { LogoutModal, WithDrawModal } from "./index";
+import { LogoutModal } from "./index";
+import { history } from "../../redux/configStore";
 
 const MyLogout = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isWithdraw, setIsWithdraw] = useState(false);
   const openModalHandler = () => {
     setIsOpen(!isOpen);
-  };
-  const openDrawHandler = () => {
-    setIsWithdraw(!isWithdraw);
   };
   return (
     <React.Fragment>
@@ -31,7 +28,9 @@ const MyLogout = () => {
           fontSize="14px"
           color="#999"
           backgroundColor="none"
-          _onClick={openDrawHandler}
+          _onClick={() => {
+            history.push("/mypage/withdraw");
+          }}
         >
           회원탈퇴
         </Button>
@@ -40,16 +39,6 @@ const MyLogout = () => {
         <>
           <ModalBackdrop onClick={openModalHandler}></ModalBackdrop>
           <LogoutModal isOpen={isOpen} setIsOpen={setIsOpen} />
-        </>
-      ) : null}
-
-      {isWithdraw ? (
-        <>
-          <ModalBackdrop onClick={openDrawHandler}></ModalBackdrop>
-          <WithDrawModal
-            isWithdraw={isWithdraw}
-            setIsWithdraw={setIsWithdraw}
-          />
         </>
       ) : null}
     </React.Fragment>

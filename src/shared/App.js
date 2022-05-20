@@ -20,6 +20,7 @@ import {
   QNA,
   DetailShare,
   Notice,
+  WithDraw,
 } from "../pages/index";
 import { MobileFrame } from "../components/shared/home";
 import KaKaoLogin from "../components/social/KaKaoLogin";
@@ -55,11 +56,11 @@ function App() {
                 />
                 <Route path="/main" exact component={Main} />
                 <Route path="/search" exact component={SearchPage} />
-                {/* <Route path="/officemap" exact component={SaleMap} /> */}
                 <Route path="/officemap/:name" exact component={SaleMap} />
                 <Route path="/mypage" exact component={MyPage} />
                 <Route path="/mypage/qna" exact component={QNA} />
                 <Route path="/mypage/notice" exact component={Notice} />
+                <Route path="/mypage/withdraw" exact component={WithDraw} />
                 <Route path="/like" exact component={Like} />
                 <Route path="/map/office" exact component={MapOfficeList} />
                 <Route path="/map/shareoffice" exact component={MapShareList} />
