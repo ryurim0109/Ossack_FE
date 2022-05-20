@@ -55,9 +55,6 @@ const MainMap = (props) => {
     } else if (map && name === "share") {
       console.log("난 공유지도");
       dispatch(mapActions.getShareData(po, level));
-    } else if (map) {
-      console.log("난 검색지도");
-      dispatch(mapActions.getOfficeData(po, level));
     }
   }, [map]);
 
@@ -184,7 +181,7 @@ const MainMap = (props) => {
                           <div
                             onClick={() =>
                               history.push(
-                                `/map/office?query=${position.title}`
+                                `/map/shareoffice?query=${position.title}`
                               )
                             }
                           >
@@ -212,81 +209,6 @@ const MainMap = (props) => {
             </PlusBtn>
           </Lev>
           {pos && <Position pos={pos} level={level} name={name} />}
-        </MainContent>
-      </React.Fragment>
-    );
-  } else {
-    return (
-      <React.Fragment>
-        <MainContent>
-          <Map
-            center={state.center}
-            onCreate={(map) => setMap(map)}
-            onZoomChanged={(map) => setLevel(map.getLevel())}
-            onDragEnd={(map) =>
-              setPos({
-                lat: map.getCenter().getLat(),
-                lng: map.getCenter().getLng(),
-                swLatLng: {
-                  lat: map.getBounds().getSouthWest().getLat(),
-                  lng: map.getBounds().getSouthWest().getLng(),
-                },
-                neLatLng: {
-                  lat: map.getBounds().getNorthEast().getLat(),
-                  lng: map.getBounds().getNorthEast().getLng(),
-                },
-              })
-            }
-            style={{ width: "100%", height: "inherit" }}
-            level={level}
-            minLevel={5}
-            maxLevel={10}
-          >
-            {is_loaded ? (
-              <>
-                {getOffice?.cityResponseDtoList?.length === 0
-                  ? null
-                  : getOffice?.cityResponseDtoList?.map((position, index) => {
-                      return (
-                        <CustomOverlayMap
-                          key={`${position.title}-${position.coordinate}`}
-                          position={position.coordinate} // 마커를 표시할 위치
-                        >
-                          <div
-                            onClick={() =>
-                              history.push(
-                                `/map/office?query=${position.title}`
-                              )
-                            }
-                          >
-                            <Overlay
-                              position={position}
-                              OverLavel={OverLavel}
-                              index={index}
-                            />
-                          </div>
-                        </CustomOverlayMap>
-                      );
-                    })}
-              </>
-            ) : (
-              <Spinner />
-            )}
-          </Map>
-          <Lev>
-            <Btn onClick={setLocation}>
-              <Location />
-            </Btn>
-            <PlusBtn>
-              <button onClick={() => (level > 5 ? setLevel(level - 1) : null)}>
-                <Plus />
-              </button>
-              <button onClick={() => (level < 10 ? setLevel(level + 1) : null)}>
-                <Minus />
-              </button>
-            </PlusBtn>
-          </Lev>
-          {pos && <Position pos={pos} map={map} level={level} />}
         </MainContent>
       </React.Fragment>
     );
