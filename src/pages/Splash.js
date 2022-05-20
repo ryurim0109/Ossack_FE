@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Grid, Image } from "../elements/index";
 import { history } from "../redux/configStore";
 import moomgu from "../assets/logo01.svg";
-import ossack from "../assets/logo02.svg";
+import ossack from "../assets/logo02.png";
 
 const Splash = () => {
   // 2초 뒤 채팅 메인으로 넘어가는 함수 작성
