@@ -6,8 +6,11 @@ import { Grid, Text } from "../../elements/index";
 import { useParams } from "react-router-dom";
 
 const OfficeBottomInfo = () => {
-  const getOneOffice = useSelector((state) => state.office.one_office);
-  const estateid = useParams().estateId;
+  const getOneShareOffice = useSelector(
+    (state) => state.office.one_share_office
+  );
+  const shareofficeid = useParams().shareofficeid;
+
   return (
     <React.Fragment>
       <Grid
@@ -19,7 +22,7 @@ const OfficeBottomInfo = () => {
         height="70px"
       >
         <Grid
-          width="56px"
+          width="79px"
           height="22px"
           borderRadius="100px"
           border="1px  solid #3E00FF"
@@ -30,20 +33,14 @@ const OfficeBottomInfo = () => {
         >
           <Sp style={{ color: "#fff" }}>공유 오피스</Sp>
         </Grid>
+        <TopSp>
+          {getOneShareOffice?.name ? getOneShareOffice?.name : null}
+        </TopSp>
         <Text color="#111" size="0.875rem">
           <Span>
-            {getOneOffice?.monthly !== "매매" ? getOneOffice?.monthly : null}
-            {getOneOffice?.rent_fee !== "0"
-              ? getOneOffice?.rent_fee + "만 /"
-              : null}
+            {getOneShareOffice?.name ? getOneShareOffice?.name : null}
           </Span>
-          <Span>
-            {getOneOffice?.monthly === "월세" ? "보증금" : null}
-            {getOneOffice?.deposit ? getOneOffice?.deposit : " 3,000만"}
-          </Span>
-        </Text>
-        <Text color="#3E00FF" size="18px" bold>
-          권리금 없음
+          <Span></Span>
         </Text>
       </Grid>
       <Grid
@@ -54,14 +51,18 @@ const OfficeBottomInfo = () => {
         width="100%"
         height="75px"
       >
-        <Grid>
-          <Ssp>
-            {getOneOffice?.subwayInfo ? getOneOffice?.subwayInfo : null}
-          </Ssp>
-          <Grid>
-            <Ssp>매물번호 {estateid ? estateid : null}</Ssp>
-          </Grid>
-        </Grid>
+        <CenterInner>
+          <Ssp>월이용료 </Ssp>
+          <Text color="#3E00FF" size="14px" bold>
+            월 5만원{getOneShareOffice?.price ? getOneShareOffice?.price : null}
+          </Text>
+        </CenterInner>
+        <CenterInner>
+          <Ssp>보증금</Ssp>
+          <Text color="#3E00FF" size="14px" bold>
+            개별문의
+          </Text>
+        </CenterInner>
       </Grid>
     </React.Fragment>
   );
@@ -74,7 +75,7 @@ const Span = styled.span`
 `;
 
 const Sp = styled.p`
-  width: 60%;
+  width: 55px;
   color: #000;
   //font-size: 0.975rem;
   font-size: ${({ theme }) => theme.fontSizes.small};
@@ -82,8 +83,23 @@ const Sp = styled.p`
 
 const Ssp = styled.p`
   padding: 5px 0;
-  width: 90%;
+  width: 20%;
   color: #999;
   font-size: ${({ theme }) => theme.fontSizes.small};
+`;
+
+const TopSp = styled.p`
+  padding: 5px 0;
+  width: 50%;
+  color: #999;
+  font-size: ${({ theme }) => theme.fontSizes.small};
+`;
+
+const CenterInner = styled.div`
+  width: 100%;
+  height: 32px;
+  display: flex;
+  /* margin: 0 0 13px; */
+  align-items: center;
 `;
 export default OfficeBottomInfo;
