@@ -4,11 +4,13 @@ import { useSelector } from "react-redux";
 import { Grid } from "../../elements/index";
 
 const OfficeBasicInfo = () => {
-  const getOneOffice = useSelector((state) => state.office.one_office);
+  const getOneShareOffice = useSelector(
+    (state) => state.office.one_share_office
+  );
 
   return (
     <React.Fragment>
-      <Grid height="340px" bg="#fff" margin="0 0 10px 0">
+      <Grid height="250px" bg="#fff" margin="0 0 10px 0">
         <Grid
           bottom="0"
           padding="0 16px"
@@ -16,7 +18,7 @@ const OfficeBasicInfo = () => {
           flexDirection="column"
           justifyContent="center"
           width="100%"
-          height="300px"
+          height="210px"
         >
           <Grid
             display="flex"
@@ -34,23 +36,33 @@ const OfficeBasicInfo = () => {
           >
             <CenterInner>
               <P>⏰ 이용시간</P>
-              <Sp>{getOneOffice?.area ? getOneOffice?.area : null}</Sp>
+              <Sp>
+                {getOneShareOffice?.time ? getOneShareOffice?.time : "연중무휴"}
+              </Sp>
             </CenterInner>
             <CenterInner>
               <P>🗓 이용기간</P>
-              <Sp>{getOneOffice?.capacity ? getOneOffice?.capacity : null}</Sp>
+              <Sp>
+                {getOneShareOffice?.minimum_days
+                  ? getOneShareOffice?.minimum_days
+                  : "개별문의"}
+              </Sp>
             </CenterInner>
             <CenterInner>
               <P>📌 건물층/해당층</P>
               <Sp>
-                {getOneOffice?.management_fee
-                  ? getOneOffice?.management_fee
-                  : null}
+                {getOneShareOffice?.floor
+                  ? getOneShareOffice?.floor
+                  : "개별문의"}
               </Sp>
             </CenterInner>
             <CenterInner>
               <P>🚗 주차장</P>
-              <Sp>{getOneOffice?.type ? getOneOffice?.type : null}</Sp>
+              <Sp>
+                {getOneShareOffice?.parking
+                  ? getOneShareOffice?.parking
+                  : "개별문의"}
+              </Sp>
             </CenterInner>
           </Grid>
         </Grid>

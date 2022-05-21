@@ -10,6 +10,11 @@ import { Bar } from "../components/shared/home";
 
 import { useDispatch } from "react-redux";
 
+import Tabs from "@material-ui/core/Tabs";
+import MapOfficeList from "./MapOfficeList";
+import MapShareList from "./MapShareList";
+import { Grid, Text } from "../elements/index";
+
 const SearchPage = () => {
   const dispatch = useDispatch();
 
@@ -48,10 +53,49 @@ const SearchPage = () => {
     setKeywords([]);
   };
 
+  const tabTitle = ["오피스", "공유오피스"];
+  const tab = {
+    0: <MapOfficeList tabTitle={tabTitle} />,
+    1: <MapShareList tabTitle={tabTitle} />,
+  };
+  const [activeTab, setActiveTab] = useState(0);
+
+  const onClickTab = (idx) => {
+    setActiveTab(idx);
+  };
+
   return (
     <React.Fragment>
       <Outter>
         <MyHeader>검색</MyHeader>
+        <Tabs
+          value={activeTab}
+          textColor="primary"
+          TabIndicatorProps={{ style: { background: "#3E00FF", top: "0px" } }}
+        >
+          {/* tab 메뉴 */}
+          {tabTitle.map((title, idx) => {
+            return (
+              <Grid
+                key={idx}
+                width="100%"
+                height="50px"
+                textAlign="center"
+                fontWeight="bold"
+                fontSize="14px"
+                display="flex"
+                alignItems="center"
+                justifyContent="center"
+                _onClick={() => onClickTab(idx)}
+                color={activeTab === idx ? "#3E00FF" : "#E5E5EC"}
+              >
+                <Text bold cursor="pointer">
+                  {title}
+                </Text>
+              </Grid>
+            );
+          })}
+        </Tabs>
 
         <InputContainer>
           <SearchBar onAddKeyword={handleAddKeyword}></SearchBar>

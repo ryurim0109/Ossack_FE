@@ -34,7 +34,7 @@ const OfficeBottomInfo = () => {
           <Span>
             {getOneOffice?.monthly !== "매매" ? getOneOffice?.monthly : null}
             {getOneOffice?.rent_fee !== "0"
-              ? getOneOffice?.rent_fee + "만 /"
+              ? getOneOffice?.rent_fee + "만 / "
               : null}
           </Span>
           <Span>

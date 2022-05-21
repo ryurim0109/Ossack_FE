@@ -14,7 +14,7 @@ const CommentInfo = () => {
 
   return (
     <React.Fragment>
-      <Grid height="500px" bg="#fff" margin="0 0 10px 0" overflow="scroll">
+      <Grid height="500px" bg="#fff" margin="0 0 10px 0" overflowY="auto">
         <Grid
           bottom="0"
           padding="0 16px"

@@ -1,15 +1,19 @@
-import CommentInfo from "./CommentInfo";
+import OfficeCmntInfo from "./OfficeCmntInfo";
 import OfficeBasicInfo from "./OfficeBasicInfo";
-import OfficeBottomInfo from "./OfficeBottomInfo";
+import OfficeBtmInfo from "./OfficeBtmInfo";
 import OfficeImage from "./OfficeImage";
 import ShareOfficeBasicInfo from "./ShareOfficeBasicInfo";
 import ShareOfficeBtmInfo from "./ShareOfficeBtmInfo";
+import ShareOfficeCmntInfo from "./ShareOfficeCmntInfo";
+import ShareOfficeImage from "./ShareOfficeImage";
 
 export {
-  CommentInfo,
+  OfficeCmntInfo,
   OfficeBasicInfo,
-  OfficeBottomInfo,
+  OfficeBtmInfo,
   OfficeImage,
   ShareOfficeBasicInfo,
   ShareOfficeBtmInfo,
+  ShareOfficeCmntInfo,
+  ShareOfficeImage,
 };
