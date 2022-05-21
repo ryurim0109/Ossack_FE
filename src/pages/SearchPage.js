@@ -54,10 +54,7 @@ const SearchPage = () => {
   };
 
   const tabTitle = ["오피스", "공유오피스"];
-  const tab = {
-    0: <MapOfficeList tabTitle={tabTitle} />,
-    1: <MapShareList tabTitle={tabTitle} />,
-  };
+
   const [activeTab, setActiveTab] = useState(0);
 
   const onClickTab = (idx) => {
@@ -101,10 +98,7 @@ const SearchPage = () => {
         </Tabs>
 
         <InputContainer>
-          <SearchBar
-            onAddKeyword={handleAddKeyword}
-            activeTab={activeTab}
-          ></SearchBar>
+          <SearchBar onAddKeyword={handleAddKeyword} activeTab={activeTab} />
         </InputContainer>
         <SearchHistory
           keywords={keywords}
