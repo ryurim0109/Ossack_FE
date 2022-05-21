@@ -7,10 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 const NearStation = (props) => {
   const dispatch = useDispatch();
   const { tabTitle } = props;
-  // console.log("estateId : ", estateId);
-  // console.log("props : ", props);
   const stationOfficeList = useSelector((state) => state.office.main_list);
-  console.log(stationOfficeList);
 
   useEffect(() => {
     dispatch(officeActions.getMainOfficeDB(tabTitle[1]));
@@ -53,7 +50,7 @@ const NearStation = (props) => {
                   top="8px"
                   color="#FF0000"
                   _onClick={() =>
-                    dispatch(officeActions.deleteLikeDB(o.estateid))
+                    dispatch(officeActions.mainDeleteLikeDB(o.estateid))
                   }
                 />
               ) : (
@@ -64,7 +61,7 @@ const NearStation = (props) => {
                   top="8px"
                   color="#fff"
                   _onClick={() =>
-                    dispatch(officeActions.clickLikeDB(o.estateid))
+                    dispatch(officeActions.mainClickLikeDB(o.estateid))
                   }
                 />
               )}
