@@ -109,6 +109,22 @@ const loginCheckApi = () => {
       });
   };
 };
+
+/** 이메일 중복조회 */
+const checkDupDB = (userEmail, setDup) => {
+  return function (dispatch, getState) {
+    instance
+      .post("/user/idcheck", { userEmail: userEmail })
+      .then((res) => {
+        console.log(res);
+        setDup(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
+
 //로그아웃
 const logOutApi = () => {
   return function (dispatch) {
@@ -269,6 +285,7 @@ const actionCreators = {
   loginBygoogle,
   userImgDB,
   resignDB,
+  checkDupDB,
 };
 
 export { actionCreators };
