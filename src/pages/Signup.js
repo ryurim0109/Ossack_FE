@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { useHistory } from "react-router-dom";
 import {
   Button,
@@ -15,6 +15,7 @@ import { Text } from "../elements/index";
 
 import { actionCreators as userActions } from "../redux/modules/user";
 import { useDispatch } from "react-redux";
+import _ from "lodash";
 
 const Signup = () => {
   const dispatch = useDispatch();
@@ -23,13 +24,7 @@ const Signup = () => {
   const [passwordError, setPasswordError] = useState("");
   const [nickNameError, setNickNameError] = useState("");
   const [signupError, setSignupError] = useState("");
-  const history = useHistory();
-
-  const onhandlePost = async (data) => {
-    const { email, nickname, password } = data;
-    const postData = { email, nickname, password };
-    console.log(postData);
-  };
+  const [dup, setDup] = useState(null);
 
   // 비활성화 여부
   const [userEmail, setUserEmail] = useState("");
@@ -40,6 +35,7 @@ const Signup = () => {
 
   const handleEmailInput = (event) => {
     setUserEmail(event.target.value);
+    checkDup(event.target.value);
   };
 
   const handleNickInput = (event) => {
@@ -113,6 +109,15 @@ const Signup = () => {
     }
   };
 
+  // 이메일 중복확인 체크
+
+  const checkDup = useCallback(
+    _.debounce((userEmail) => {
+      dispatch(userActions.checkDupDB(userEmail, setDup));
+    }, 1000),
+    []
+  );
+
   const style = {
     "& label.Mui-focused": {
       color: "#3E00FF",
@@ -166,6 +171,20 @@ const Signup = () => {
                   onChange={handleEmailInput}
                   onKeyUp={isPassedSignup}
                 />
+                {dup ? null : (
+                  <Grid
+                    style={{
+                      width: "37px",
+                      height: "37px",
+                      margin: "-42px 0 5px 223px",
+                      zIndex: "10",
+                      position: "relative",
+                      fontSize: "25px",
+                    }}
+                  >
+                    ❌
+                  </Grid>
+                )}
               </Grid>
               <FormHelperTexts>{emailError}</FormHelperTexts>
               <Grid item xs={12}>
