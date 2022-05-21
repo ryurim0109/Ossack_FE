@@ -38,9 +38,12 @@ const LikeTab = () => {
               alignItems="center"
               justifyContent="center"
               _onClick={() => onClickTab(idx)}
-              color={activeTab === idx ? "#3E00FF" : "#E5E5EC"}
             >
-              <Text bold cursor="pointer">
+              <Text
+                bold
+                cursor="pointer"
+                color={activeTab === idx ? "#3E00FF" : "#E5E5EC"}
+              >
                 찜한{title}
               </Text>
             </Grid>
