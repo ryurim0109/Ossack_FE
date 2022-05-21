@@ -8,7 +8,6 @@ import { ReactComponent as Search } from "../../assets/search.svg";
 
 function SearchBar({ onAddKeyword, activeTab }) {
   //form을 관련 요소를 다룰때는 2-way 데이터 바인딩을 해줍니다! (input 의 value에 state를 넣는 것)
-  console.log("activeTab : ", activeTab);
 
   // 1. 검색어를 state 로 다루도록 변경
   const [keyword, setKeyword] = useState("");
@@ -26,7 +25,8 @@ function SearchBar({ onAddKeyword, activeTab }) {
 
   const Entercheck = (e) => {
     if (keyword && e.key === "Enter") {
-      if (activeTab === 0) {
+      // activeTab===0 일 때
+      if (!activeTab) {
         history.push(`/map/office?query=${keyword}`);
       } else {
         history.push(`/map/shareoffice?query=${keyword}`);
@@ -46,9 +46,10 @@ function SearchBar({ onAddKeyword, activeTab }) {
   const searchgo = `/map/office?query=${keyword}`;
 
   //느낌표로 키워드를 갖고있냐 없냐로 boolean 형태로 나옴
-  //키워드를 가지고 있다면 active가 발생하여 padding이 발생함. // 패딩이 없으면 x 아이콘까지 글자가 침법하기 때문
+  //키워드를 가지고 있다면 active가 발생하여 padding이 발생함.
+  // 패딩이 없으면 x 아이콘까지 글자가 침법하기 때문
   const hasKeyword = !!keyword;
-  //keyword가 있으면 true, 없으면 false가 리턴이 되는 것을 확인 할 수 있습니다
+  //keyword가 있으면 true, 없으면 false가 리턴이 되는 것을 확인 할 수 있다.ㄴ
   console.log(!!keyword);
 
   return (
