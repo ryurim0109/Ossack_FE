@@ -13,6 +13,7 @@ const DELETE_LIKE = "DELETE_LIKE"; //좋아요 취소
 const GET_LIKE = "GET_LIKE"; // 찜한 매물 조회
 const GET_SEARCH_OFFICE_LIST = "GET_SEARCH_OFFICE_LIST";
 const GET_ONE_OFFICE = "GET_ONE_OFFICE";
+const GET_ONE_SHARE_OFFICE = "GET_ONE_SHARE_OFFICE";
 
 // Action Creator
 const getMainOffice = createAction(GET_MAIN_OFFICE, (list) => ({ list }));
@@ -31,6 +32,13 @@ const getSOList = createAction(
 const getOneOffice = createAction(GET_ONE_OFFICE, (one_office) => ({
   one_office,
 }));
+
+const getOneShareOffice = createAction(
+  GET_ONE_SHARE_OFFICE,
+  (one_share_office) => ({
+    one_share_office,
+  })
+);
 
 const initialState = {
   list: [],
@@ -145,6 +153,7 @@ const getSOListDB = (keyword, pageno) => {
       });
   };
 };
+
 //공유오피스 검색 리스트 조회
 const getShareListDB = (keyword, pageno) => {
   console.log("keyword : ", keyword);
@@ -163,7 +172,8 @@ const getShareListDB = (keyword, pageno) => {
       });
   };
 };
-/* 상세 조회 */
+
+/* 오피스 상세 조회 */
 const getOneOfficeDB = (estateid) => {
   console.log("estateId : ", estateid);
   return (dispatch) => {
@@ -179,9 +189,34 @@ const getOneOfficeDB = (estateid) => {
   };
 };
 
+/* 공유오피스 상세 조회 */
+const getOneShareOfficeDB = (shareofficeid) => {
+  console.log("sharedofficeid : ", shareofficeid);
+  return (dispatch) => {
+    instance
+      .get(`/sharedoffice/${shareofficeid}`)
+      .then((res) => {
+        console.log("res : ", res);
+        dispatch(getOneShareOffice(res.data));
+      })
+      .catch((err) => {
+        console.log("Error Message: ", err.message);
+      });
+  };
+};
+
 // Reducer
 export default handleActions(
   {
+    [GET_ONE_SHARE_OFFICE]: (state, action) =>
+      produce(state, (draft) => {
+        console.log("state : ", state);
+        draft.one_share_office = action.payload.one_share_office;
+        console.log(
+          "action.payload.one_share_office : ",
+          action.payload.one_share_office
+        );
+      }),
     [GET_ONE_OFFICE]: (state, action) =>
       produce(state, (draft) => {
         console.log("state : ", state);
@@ -256,6 +291,7 @@ const actionCreators = {
   getSOListDB,
   getOneOfficeDB,
   getShareListDB,
+  getOneShareOfficeDB,
 };
 
 export { actionCreators };
