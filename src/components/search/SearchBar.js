@@ -6,8 +6,9 @@ import { history } from "../../redux/configStore";
 
 import { ReactComponent as Search } from "../../assets/search.svg";
 
-function SearchBar({ onAddKeyword }) {
+function SearchBar({ onAddKeyword, activeTab }) {
   //form을 관련 요소를 다룰때는 2-way 데이터 바인딩을 해줍니다! (input 의 value에 state를 넣는 것)
+  console.log("activeTab : ", activeTab);
 
   // 1. 검색어를 state 로 다루도록 변경
   const [keyword, setKeyword] = useState("");
@@ -25,7 +26,11 @@ function SearchBar({ onAddKeyword }) {
 
   const Entercheck = (e) => {
     if (keyword && e.key === "Enter") {
-      history.push(`/map/office?query=${keyword}`);
+      if (activeTab === 0) {
+        history.push(`/map/office?query=${keyword}`);
+      } else {
+        history.push(`/map/shareoffice?query=${keyword}`);
+      }
       // const timeout = setTimeout(
       //   () => history.push(`/map/office?query=${keyword}`),
       //   200
