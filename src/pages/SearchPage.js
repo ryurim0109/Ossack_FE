@@ -87,9 +87,12 @@ const SearchPage = () => {
                 alignItems="center"
                 justifyContent="center"
                 _onClick={() => onClickTab(idx)}
-                color={activeTab === idx ? "#3E00FF" : "#E5E5EC"}
               >
-                <Text bold cursor="pointer">
+                <Text
+                  bold
+                  cursor="pointer"
+                  color={activeTab === idx ? "#3E00FF" : "#E5E5EC"}
+                >
                   {title}
                 </Text>
               </Grid>
@@ -98,7 +101,10 @@ const SearchPage = () => {
         </Tabs>
 
         <InputContainer>
-          <SearchBar onAddKeyword={handleAddKeyword}></SearchBar>
+          <SearchBar
+            onAddKeyword={handleAddKeyword}
+            activeTab={activeTab}
+          ></SearchBar>
         </InputContainer>
         <SearchHistory
           keywords={keywords}

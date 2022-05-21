@@ -54,7 +54,7 @@ const OfficeBottomInfo = () => {
         <CenterInner>
           <Ssp>월이용료 </Ssp>
           <Text color="#3E00FF" size="14px" bold>
-            월 5만원{getOneShareOffice?.price ? getOneShareOffice?.price : null}
+            {getOneShareOffice?.price ? getOneShareOffice?.price : null}
           </Text>
         </CenterInner>
         <CenterInner>
