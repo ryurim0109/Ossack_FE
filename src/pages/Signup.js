@@ -24,7 +24,9 @@ const Signup = () => {
   const [passwordError, setPasswordError] = useState("");
   const [nickNameError, setNickNameError] = useState("");
   const [signupError, setSignupError] = useState("");
-  const [dup, setDup] = useState(null);
+
+  // 중복체크
+  const [userEmailCurrent, setUserEmailCurrent] = useState(false);
 
   // 비활성화 여부
   const [userEmail, setUserEmail] = useState("");
@@ -35,7 +37,8 @@ const Signup = () => {
 
   const handleEmailInput = (event) => {
     setUserEmail(event.target.value);
-    checkDup(event.target.value);
+    const userEmailCurrent = event.target.value;
+    setUserEmailCurrent(userEmailCurrent);
   };
 
   const handleNickInput = (event) => {
@@ -110,13 +113,15 @@ const Signup = () => {
   };
 
   // 이메일 중복확인 체크
-
-  const checkDup = useCallback(
-    _.debounce((userEmail) => {
-      dispatch(userActions.checkDupDB(userEmail, setDup));
-    }, 1000),
-    []
-  );
+  // const checkDup = useCallback(
+  //   _.debounce((userEmail) => {
+  //     dispatch(userActions.checkDupDB(userEmail, setDup));
+  //   }, 1000),
+  //   []
+  // );
+  const checkDup = () => {
+    dispatch(userActions.userEmailCheckDB(userEmail));
+  };
 
   const style = {
     "& label.Mui-focused": {
@@ -171,20 +176,21 @@ const Signup = () => {
                   onChange={handleEmailInput}
                   onKeyUp={isPassedSignup}
                 />
-                {dup ? null : (
-                  <Grid
-                    style={{
-                      width: "37px",
-                      height: "37px",
-                      margin: "-42px 0 5px 223px",
-                      zIndex: "10",
-                      position: "relative",
-                      fontSize: "25px",
-                    }}
-                  >
-                    ❌
-                  </Grid>
-                )}
+                <Grid
+                  style={{
+                    width: "37px",
+                    height: "37px",
+                    margin: "-44px 0 0px 289px",
+                    zIndex: "10",
+                    position: "absolute",
+                    fontSize: "25px",
+                  }}
+                  onClick={() => {
+                    checkDup();
+                  }}
+                >
+                  🔐
+                </Grid>
               </Grid>
               <FormHelperTexts>{emailError}</FormHelperTexts>
               <Grid item xs={12}>
