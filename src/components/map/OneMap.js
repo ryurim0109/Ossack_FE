@@ -1,15 +1,33 @@
 /*global kakao*/
+import { includes } from "lodash";
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 
 import onePin from "../../assets/pin.png";
+
 const { kakao } = window;
 const KakaoMap = (props) => {
-  const list = useSelector((state) => state?.office?.one_office);
+  console.log("shareMap : ", props);
 
-  const firstY = list?.coordinateResponseDto?.lat;
-  const firstX = list?.coordinateResponseDto?.lng;
+  const shareOfficeId = props.shareofficeid;
+  const list = useSelector((state) => state?.office?.one_office);
+  const shareList = useSelector((state) => state?.office?.one_share_office);
+  console.log("shareList : ", shareList);
+
+  let is_share = shareOfficeId ? true : false;
+
+  let firstY =
+    is_share === true
+      ? shareList?.coordinateResponseDto.lat
+      : list?.coordinateResponseDto.lat;
+  let firstX =
+    is_share === true
+      ? shareList?.coordinateResponseDto.lng
+      : list?.coordinateResponseDto.lng;
+
+  console.log("firstY : ", firstY);
+  console.log("firstX : ", firstX);
 
   useEffect(() => {
     let container = document.getElementById("map");
