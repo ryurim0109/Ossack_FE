@@ -116,8 +116,4 @@ const ShareOfficeResult = (props) => {
     );
   }
 };
-const Span = styled.span`
-  font-size: ${({ theme }) => theme.fontSizes.xs};
-  font-weight: normal;
-`;
 export default ShareOfficeResult;

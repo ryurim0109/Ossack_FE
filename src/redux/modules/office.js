@@ -6,17 +6,16 @@ import Swal from "sweetalert2";
 
 // Action type
 const GET_MAIN_OFFICE = "GET_MAIN_OFFICE"; // 메인페이지 리스트 조회
+const MAIN_CLICK_LIKE = "MAIN_CLICK_LIKE"; //메인 좋아요
+const MAIN_DELETE_LIKE = "MAIN_DELETE_LIKE"; //메인 좋아요 취소
 const GET_HOT = "GET_HOT"; // 핫한 지역
 const CLICK_LIKE = "CLICK_LIKE"; //오피스 좋아요
 const DELETE_LIKE = "DELETE_LIKE"; //오피스 좋아요 취소
-const MAIN_CLICK_LIKE = "MAIN_CLICK_LIKE"; //메인좋아요
-const MAIN_DELETE_LIKE = "MAIN_DELETE_LIKE"; //메인좋아요 취소
+const GET_SEARCH_OFFICE_LIST = "GET_SEARCH_OFFICE_LIST"; // 오피스 검색 리스트
+const GET_ONE_OFFICE = "GET_ONE_OFFICE"; //오피스 상세 조회
+const GET_SEARCH_SHARE_LIST = "GET_SEARCH_SHARE_LIST"; // 공유 오피스 검색 리스트
 const SHARE_CLICK_LIKE = "SHARE_CLICK_LIKE"; //공유 오피스 좋아요
 const SHARE_DELETE_LIKE = "SHARE_DELETE_LIKE"; //공유 오피스 좋아요 취소
-const GET_LIKE = "GET_LIKE"; // 찜한 매물 조회
-const GET_SEARCH_OFFICE_LIST = "GET_SEARCH_OFFICE_LIST"; // 오피스 검색 리스트
-const GET_SEARCH_SHARE_LIST = "GET_SEARCH_SHARE_LIST"; // 오피스 검색 리스트
-const GET_ONE_OFFICE = "GET_ONE_OFFICE"; //오피스 상세 조회
 const GET_ONE_SHARE_OFFICE = "GET_ONE_SHARE_OFFICE"; //공유 오피스 상세조회
 
 // Action Creator
@@ -38,7 +37,6 @@ const shareClickLike = createAction(SHARE_CLICK_LIKE, (shareofficeid) => ({
 const shareDeleteLike = createAction(SHARE_DELETE_LIKE, (shareofficeid) => ({
   shareofficeid,
 }));
-const getOfficeLike = createAction(GET_LIKE, (like_list) => ({ like_list }));
 const getSOList = createAction(
   GET_SEARCH_OFFICE_LIST,
   (list, page, keyword) => ({
@@ -117,7 +115,6 @@ const mainClickLikeDB = (estateId) => {
       });
   };
 };
-
 /*메인 좋아요 취소 */
 const mainDeleteLikeDB = (estateId) => {
   return (dispatch) => {
@@ -177,7 +174,6 @@ const shareClickLikeDB = (shareofficeid) => {
       });
   };
 };
-
 /* 공유오피스 좋아요 취소 */
 const shareDeleteLikeDB = (shareofficeid) => {
   return (dispatch) => {
@@ -192,23 +188,6 @@ const shareDeleteLikeDB = (shareofficeid) => {
       });
   };
 };
-
-/* 찜한 매물 조회 */
-const getOfficeLikeDB = (type) => {
-  console.log("type : ", type);
-  return (dispatch) => {
-    instance
-      .get(`/api/list/favorite?query=${type}`)
-      .then((res) => {
-        console.log("res : ", res);
-        dispatch(getOfficeLike(res.data));
-      })
-      .catch((err) => {
-        console.log("Error Message: ", err.message);
-      });
-  };
-};
-
 // 오피스 검색 리스트 조회
 const getSOListDB = (keyword, pageno) => {
   return (dispatch) => {
@@ -225,7 +204,6 @@ const getSOListDB = (keyword, pageno) => {
       });
   };
 };
-
 //공유오피스 검색 리스트 조회
 const getShareListDB = (keyword, pageno) => {
   return (dispatch) => {
@@ -246,7 +224,6 @@ const getShareListDB = (keyword, pageno) => {
       });
   };
 };
-
 /* 오피스 상세 조회 */
 const getOneOfficeDB = (estateid) => {
   console.log("estateId : ", estateid);
@@ -262,7 +239,6 @@ const getOneOfficeDB = (estateid) => {
       });
   };
 };
-
 /* 공유오피스 상세 조회 */
 const getOneShareOfficeDB = (shareofficeid) => {
   console.log("sharedofficeid : ", shareofficeid);
@@ -364,11 +340,6 @@ export default handleActions(
         });
         draft.share_list[numArr[0]].mylike = false;
       }),
-    [GET_LIKE]: (state, action) =>
-      produce(state, (draft) => {
-        draft.like_list = action.payload.like_list;
-      }),
-
     [GET_SEARCH_OFFICE_LIST]: (state, action) =>
       produce(state, (draft) => {
         if (
@@ -404,7 +375,6 @@ const actionCreators = {
   getHotDB,
   clickLikeDB,
   deleteLikeDB,
-  getOfficeLikeDB,
   getSOListDB,
   getOneOfficeDB,
   getShareListDB,
