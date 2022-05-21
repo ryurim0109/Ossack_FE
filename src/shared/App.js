@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useRef, useEffect, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { Route, Switch } from "react-router-dom";
+import { gsap } from "gsap";
 import { ConnectedRouter } from "connected-react-router";
 import { history } from "../redux/configStore";
 import {
@@ -32,13 +33,49 @@ import GlobalStyle from "../style/GlobalStyle";
 import theme from "../style/theme";
 import backgroundImg from "../assets/bg.jpg";
 import textImg from "../assets/bg02.png";
+import textImg02 from "../assets/bg03.png";
 
 function App() {
+  const textRef = useRef();
+  const text2Ref = useRef();
+  const [active, setActive] = useState(true);
+  useEffect(() => {
+    const timeout = setTimeout(() => remove(), 2000);
+    return () => clearTimeout(timeout);
+  }, [textRef]);
+  useEffect(() => {
+    const timeout = setTimeout(() => show(), 4000);
+    return () => clearTimeout(timeout);
+  }, [text2Ref]);
+
+  const remove = () => {
+    const ani = gsap.to(textRef.current, {
+      x: -773,
+      display: "none",
+      duration: 1,
+      ease: "strong.inOut",
+      onComplete: () => setActive(false),
+    });
+    return () => {
+      ani.kill();
+    };
+  };
+  const show = () => {
+    const ani2 = gsap.to(text2Ref.current, {
+      x: 863,
+      duration: 1,
+      ease: "strong.inOut",
+    });
+    return () => {
+      ani2.kill();
+    };
+  };
   return (
     <>
       <Wrap>
         <Background>
-          <TextImg />
+          <TextImg ref={textRef} />
+          {!active && <Text02Img ref={text2Ref} />}
         </Background>
         <GlobalStyle />
         <ThemeProvider theme={theme}>
@@ -116,5 +153,14 @@ const TextImg = styled.div`
   position: fixed;
   bottom: 90px;
   left: 90px;
+`;
+const Text02Img = styled.div`
+  width: 690px;
+  height: 373px;
+  background-image: url(${textImg02});
+  background-size: cover;
+  position: fixed;
+  bottom: 90px;
+  left: -773px;
 `;
 export default App;
