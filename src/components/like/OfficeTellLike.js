@@ -74,6 +74,11 @@ const OfficeTellLike = (props) => {
                       top="8px"
                       color="#FF679E"
                       fill_like
+                      _onClick={() => {
+                        dispatch(
+                          favoriteActions.unlikeShareDB(office.shareofficeid)
+                        );
+                      }}
                     />
                   </Grid>
                 </Grid>

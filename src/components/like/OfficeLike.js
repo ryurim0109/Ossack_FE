@@ -72,9 +72,11 @@ const OfficeLike = (props) => {
                       right="8px"
                       top="8px"
                       color="#FF0000"
-                      // _onClick={() =>
-                      //   dispatch(officeActions.deleteLikeDB(office.estateid))
-                      // }
+                      _onClick={() =>
+                        dispatch(
+                          favoriteActions.unlikeOfficeDB(office.estateid)
+                        )
+                      }
                     />
                   </Grid>
                 </Grid>
