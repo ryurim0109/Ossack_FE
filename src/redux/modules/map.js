@@ -4,23 +4,16 @@ import { instance } from "../../shared/api";
 import { RESP } from "../../response";
 
 // Action type
-const SET_MAP = "SET_MAP";
 const SET_OFFICE_LIST = "SET_OFFICE_LIST";
 const SET_SHARE_LIST = "SET_SHARE_LIST";
-const ADD_MARKER = "ADD_MARKER";
 const LOADED = "LOADED";
 
 // Action Creator
-const setMap = createAction(SET_MAP, (map) => ({ map }));
 const setOfficeList = createAction(SET_OFFICE_LIST, (office_list) => ({
   office_list,
 }));
 const setShareList = createAction(SET_SHARE_LIST, (share_list) => ({
   share_list,
-}));
-const addMarker = createAction(ADD_MARKER, (marker, overlay) => ({
-  marker,
-  overlay,
 }));
 const isLoaded = createAction(LOADED, (loaded) => ({ loaded }));
 const initialState = {
@@ -89,10 +82,6 @@ const getShareData = (pos, level) => {
 // reducer
 export default handleActions(
   {
-    [SET_MAP]: (state, action) =>
-      produce(state, (draft) => {
-        draft.map = action.payload.map;
-      }),
     [SET_OFFICE_LIST]: (state, action) =>
       produce(state, (draft) => {
         draft.office_list = action.payload.office_list;
@@ -103,11 +92,6 @@ export default handleActions(
         draft.share_list = action.payload.share_list;
         draft.is_loaded = true;
       }),
-    [ADD_MARKER]: (state, action) =>
-      produce(state, (draft) => {
-        draft.marker = action.payload.marker;
-        draft.overlay = action.payload.overlay;
-      }),
     [LOADED]: (state, action) =>
       produce(state, (draft) => {
         draft.is_loaded = action.payload.is_loaded;
@@ -117,9 +101,7 @@ export default handleActions(
 );
 
 const actionCreators = {
-  setMap,
   setOfficeList,
-  addMarker,
   getOfficeData,
   getShareData,
 };

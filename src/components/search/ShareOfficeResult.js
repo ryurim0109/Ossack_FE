@@ -9,7 +9,7 @@ import ossack from "../../assets/ossack02.jpg";
 
 const ShareOfficeResult = (props) => {
   const dispatch = useDispatch();
-  const officeData = useSelector((state) => state.office.list);
+  const officeData = useSelector((state) => state.office.share_list);
 
   if (officeData?.length === 0) {
     return (
@@ -69,7 +69,7 @@ const ShareOfficeResult = (props) => {
                     top="8px"
                     color="#FF0000"
                     _onClick={() =>
-                      dispatch(officeActions.deleteLikeDB(o.estateid))
+                      dispatch(officeActions.shareDeleteLikeDB(o.shareofficeid))
                     }
                   />
                 ) : (
@@ -80,7 +80,7 @@ const ShareOfficeResult = (props) => {
                     top="8px"
                     color="#fff"
                     _onClick={() =>
-                      dispatch(officeActions.clickLikeDB(o.estateid))
+                      dispatch(officeActions.shareClickLikeDB(o.shareofficeid))
                     }
                   />
                 )}
@@ -116,8 +116,4 @@ const ShareOfficeResult = (props) => {
     );
   }
 };
-const Span = styled.span`
-  font-size: ${({ theme }) => theme.fontSizes.xs};
-  font-weight: normal;
-`;
 export default ShareOfficeResult;

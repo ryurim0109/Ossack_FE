@@ -7,10 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 const OfficeList = (props) => {
   const dispatch = useDispatch();
   const foodOfficeList = useSelector((state) => state.office.main_list);
-  //console.log(foodOfficeList);
 
   const { tabTitle } = props;
-  //console.log(tabTitle[0])
 
   useEffect(() => {
     dispatch(officeActions.getMainOfficeDB(tabTitle[0]));
@@ -53,7 +51,7 @@ const OfficeList = (props) => {
                   top="8px"
                   color="#fff"
                   _onClick={() =>
-                    dispatch(officeActions.deleteLikeDB(o.estateid))
+                    dispatch(officeActions.mainDeleteLikeDB(o.estateid))
                   }
                 />
               ) : (
@@ -64,7 +62,7 @@ const OfficeList = (props) => {
                   top="8px"
                   color="#fff"
                   _onClick={() =>
-                    dispatch(officeActions.clickLikeDB(o.estateid))
+                    dispatch(officeActions.mainClickLikeDB(o.estateid))
                   }
                 />
               )}

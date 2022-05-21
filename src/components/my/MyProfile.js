@@ -15,9 +15,9 @@ const MyProfile = () => {
   const user_info = useSelector((state) => state.user.user);
   //console.log(user_info)
 
-  // useEffect(() => {
-  //   dispatch(userActions.loginCheckApi());
-  // }, []);
+  useEffect(() => {
+    dispatch(userActions.loginCheckApi());
+  }, [dispatch]);
 
   return (
     <React.Fragment>
