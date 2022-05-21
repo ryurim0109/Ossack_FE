@@ -15,7 +15,9 @@ const GET_SEARCH_OFFICE_LIST = "GET_SEARCH_OFFICE_LIST";
 const GET_ONE_OFFICE = "GET_ONE_OFFICE";
 
 // Action Creator
-const getMainOffice = createAction(GET_MAIN_OFFICE, (list) => ({ list }));
+const getMainOffice = createAction(GET_MAIN_OFFICE, (main_list) => ({
+  main_list,
+}));
 const getHot = createAction(GET_HOT, (hot_list) => ({ hot_list }));
 const clickLike = createAction(CLICK_LIKE, (estate_id) => ({ estate_id }));
 const deleteLike = createAction(DELETE_LIKE, (estate_id) => ({ estate_id }));
@@ -34,12 +36,12 @@ const getOneOffice = createAction(GET_ONE_OFFICE, (one_office) => ({
 
 const initialState = {
   list: [],
+  main_list: [],
   hot_list: [],
   is_loading: false,
 };
 /* 맛집근처 역근처 */
 const getMainOfficeDB = (dong) => {
-  console.log(dong);
   return (dispatch) => {
     instance
       .get(`/api/list?query=${dong}`)
@@ -190,7 +192,7 @@ export default handleActions(
       }),
     [GET_MAIN_OFFICE]: (state, action) =>
       produce(state, (draft) => {
-        draft.list = action.payload.list;
+        draft.main_list = action.payload.main_list;
       }),
     [GET_HOT]: (state, action) =>
       produce(state, (draft) => {
@@ -199,21 +201,12 @@ export default handleActions(
     [CLICK_LIKE]: (state, action) =>
       produce(state, (draft) => {
         let numArr = [];
-
-        console.log("draft.list.length : ", draft.list.length);
         draft.list.filter((val, idx) => {
           if (val.estateid === action.payload.estate_id) {
             return numArr.push(idx);
           }
         });
         draft.list[numArr[0]].mylike = true;
-
-        // draft.list.filter((val, idx) => {
-        //   if (val.estateid === action.payload.estate_id) {
-        //     return numArr.push(idx);
-        //   }
-        // });
-        // draft.list[numArr[0]].mylike = true;
       }),
     [DELETE_LIKE]: (state, action) =>
       produce(state, (draft) => {

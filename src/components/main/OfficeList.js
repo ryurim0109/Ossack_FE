@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 const OfficeList = (props) => {
   const dispatch = useDispatch();
-  const foodOfficeList = useSelector((state) => state.office.list);
+  const foodOfficeList = useSelector((state) => state.office.main_list);
   //console.log(foodOfficeList);
 
   const { tabTitle } = props;

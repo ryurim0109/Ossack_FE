@@ -13,6 +13,8 @@ import Splash from "./Splash";
 import QNA from "./QNA";
 import MapShareList from "./MapShareList";
 import DetailShare from "./DetailShare";
+import Notice from "./Notice";
+import WithDraw from "./WithDraw";
 
 export {
   Login,
@@ -30,4 +32,6 @@ export {
   Splash,
   QNA,
   DetailShare,
+  Notice,
+  WithDraw,
 };

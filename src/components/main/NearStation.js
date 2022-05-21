@@ -9,7 +9,8 @@ const NearStation = (props) => {
   const { tabTitle } = props;
   // console.log("estateId : ", estateId);
   // console.log("props : ", props);
-  const stationOfficeList = useSelector((state) => state.office.list);
+  const stationOfficeList = useSelector((state) => state.office.main_list);
+  console.log(stationOfficeList);
 
   useEffect(() => {
     dispatch(officeActions.getMainOfficeDB(tabTitle[1]));

@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import { ReactComponent as Down } from "../../assets/arrowbottom.svg";
+import { ReactComponent as Top } from "../../assets/arrowtop.svg";
 
 function Accordion(props) {
   const parentRef = React.useRef(null);
@@ -25,7 +27,7 @@ function Accordion(props) {
   );
 
   const parentRefHeight = parentRef.current?.style.height ?? "0px";
-  const buttonText = parentRefHeight === "0px" ? "열기" : "닫기";
+  const buttonText = parentRefHeight === "0px" ? <Down /> : <Top />;
 
   return (
     <Container>
@@ -42,6 +44,7 @@ function Accordion(props) {
 
 const Container = styled.div`
   display: flex;
+  width: 100%;
   position: relative;
   flex-direction: column;
   justify-content: center;
@@ -52,14 +55,12 @@ const Header = styled.div`
   display: flex;
   align-items: center;
   cursor: pointer;
-
-  height: 32px;
+  height: 52px;
   margin: 0 32px 0 8px;
 `;
 
 const Button = styled.div`
-  top: 8px;
-  right: 8px;
+  right: 0px;
   font-size: 14px;
   position: absolute;
 `;
@@ -73,7 +74,8 @@ const ContentsWrapper = styled.div`
 `;
 
 const Contents = styled.div`
-  padding: 0.1px;
+  padding: 32px 16px;
+  text-align: justify;
 `;
 
 export default React.memo(Accordion);

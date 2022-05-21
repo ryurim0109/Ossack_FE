@@ -20,12 +20,27 @@ const MyContent = () => {
             display="flex"
             alignItems="center"
             _onClick={() => {
+              history.push("/mypage/notice");
+            }}
+          >
+            {/* <Grid width="24px" margin="0 10px 0 0" height="24px" bg="red"> </Grid> */}
+            <Text size="16px" cursor="pointer">
+              공지사항
+            </Text>
+          </Grid>
+          <Button is_right />
+        </Grid>
+        <Grid display="flex" alignItems="center" justifyContent="space-between">
+          <Grid
+            display="flex"
+            alignItems="center"
+            _onClick={() => {
               history.push("/mypage/qna");
             }}
           >
             {/* <Grid width="24px" margin="0 10px 0 0" height="24px" bg="red"> </Grid> */}
             <Text size="16px" cursor="pointer">
-              자주 하는 질문
+              자주 묻는 질문
             </Text>
           </Grid>
           <Button is_right />
@@ -35,15 +50,6 @@ const MyContent = () => {
             {/* <Grid width="24px" margin="0 10px 0 0" height="24px" bg="red"> </Grid> */}
             <Text size="16px" cursor="pointer">
               팀원 소개
-            </Text>
-          </Grid>
-          <Button is_right />
-        </Grid>
-        <Grid display="flex" alignItems="center" justifyContent="space-between">
-          <Grid display="flex" alignItems="center">
-            {/* <Grid width="24px" margin="0 10px 0 0" height="24px" bg="red"> </Grid> */}
-            <Text size="16px" cursor="pointer">
-              계정 엑세스
             </Text>
           </Grid>
           <Button is_right />
