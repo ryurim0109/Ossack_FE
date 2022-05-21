@@ -1,15 +1,18 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import { instance } from "../../shared/api";
-import { RESP } from "../../response";
 
 import Swal from "sweetalert2";
 
 // Action type
 const GET_MAIN_OFFICE = "GET_MAIN_OFFICE"; // 메인페이지 리스트 조회
 const GET_HOT = "GET_HOT"; // 핫한 지역
-const CLICK_LIKE = "CLICK_LIKE"; //좋아요
-const DELETE_LIKE = "DELETE_LIKE"; //좋아요 취소
+const CLICK_LIKE = "CLICK_LIKE"; //오피스 좋아요
+const DELETE_LIKE = "DELETE_LIKE"; //오피스 좋아요 취소
+const MAIN_CLICK_LIKE = "MAIN_CLICK_LIKE"; //메인좋아요
+const MAIN_DELETE_LIKE = "MAIN_DELETE_LIKE"; //메인좋아요 취소
+const SHARE_CLICK_LIKE = "SHARE_CLICK_LIKE"; //공유 오피스 좋아요
+const SHARE_DELETE_LIKE = "SHARE_DELETE_LIKE"; //공유 오피스 좋아요 취소
 const GET_LIKE = "GET_LIKE"; // 찜한 매물 조회
 const GET_SEARCH_OFFICE_LIST = "GET_SEARCH_OFFICE_LIST"; // 오피스 검색 리스트
 const GET_SEARCH_SHARE_LIST = "GET_SEARCH_SHARE_LIST"; // 오피스 검색 리스트
@@ -23,6 +26,18 @@ const getMainOffice = createAction(GET_MAIN_OFFICE, (main_list) => ({
 const getHot = createAction(GET_HOT, (hot_list) => ({ hot_list }));
 const clickLike = createAction(CLICK_LIKE, (estate_id) => ({ estate_id }));
 const deleteLike = createAction(DELETE_LIKE, (estate_id) => ({ estate_id }));
+const mainClickLike = createAction(MAIN_CLICK_LIKE, (estate_id) => ({
+  estate_id,
+}));
+const mainDeleteLike = createAction(MAIN_DELETE_LIKE, (estate_id) => ({
+  estate_id,
+}));
+const shareClickLike = createAction(SHARE_CLICK_LIKE, (shareofficeid) => ({
+  shareofficeid,
+}));
+const shareDeleteLike = createAction(SHARE_DELETE_LIKE, (shareofficeid) => ({
+  shareofficeid,
+}));
 const getOfficeLike = createAction(GET_LIKE, (like_list) => ({ like_list }));
 const getSOList = createAction(
   GET_SEARCH_OFFICE_LIST,
@@ -62,9 +77,6 @@ const getMainOfficeDB = (dong) => {
   return (dispatch) => {
     instance
       .get(`/api/list?query=${dong}`)
-
-      // const res=RESP.OFFICE
-      // dispatch(getMainOffice(res));
       .then((res) => {
         console.log(res.data, "나는 메인 오피스 DB");
         console.log(res, "나는 메인 오피스 res");
@@ -81,9 +93,6 @@ const getHotDB = () => {
   return (dispatch) => {
     instance
       .get(`/api/list/hot`)
-
-      // const res=RESP.HOT
-      // dispatch(getHot(res));
       .then((res) => {
         console.log(res.data, "나는 핫한 오피스 DB");
         dispatch(getHot(res.data));
@@ -94,10 +103,38 @@ const getHotDB = () => {
       });
   };
 };
+/* 메인 좋아요 클릭 */
+const mainClickLikeDB = (estateId) => {
+  return (dispatch) => {
+    instance
+      .post(`/api/favorite/${estateId}`)
+      .then((res) => {
+        Swal.fire("좋아요를 누르셨습니다.");
+        dispatch(mainClickLike(estateId));
+      })
+      .catch((err) => {
+        console.log("메인 좋아요 에러", err.message);
+      });
+  };
+};
 
-/* 좋아요 조회 */
+/*메인 좋아요 취소 */
+const mainDeleteLikeDB = (estateId) => {
+  return (dispatch) => {
+    instance
+      .delete(`/api/favorite/${estateId}`)
+      .then((res) => {
+        Swal.fire("좋아요를 취소하셨습니다.");
+        dispatch(mainDeleteLike(estateId));
+      })
+      .catch((err) => {
+        console.log("메인 좋아요 취소 에러", err.message);
+      });
+  };
+};
+
+/* 오피스 좋아요 클릭 */
 const clickLikeDB = (estateId) => {
-  console.log("estateid", estateId);
   return (dispatch) => {
     instance
       .post(`/api/favorite/${estateId}`)
@@ -107,25 +144,51 @@ const clickLikeDB = (estateId) => {
         dispatch(clickLike(estateId));
       })
       .catch((err) => {
-        console.log("Error Message: ", err.message);
+        console.log("오피스좋아요 에러", err.message);
       });
   };
 };
 
-/* 좋아요 취소 */
+/* 오피스 좋아요 취소 */
 const deleteLikeDB = (estateId) => {
-  console.log("estateId", estateId);
   return (dispatch) => {
     instance
       .delete(`/api/favorite/${estateId}`)
       .then((res) => {
-        console.log("res : ", res);
-
         Swal.fire("좋아요를 취소하셨습니다.");
         dispatch(deleteLike(estateId));
       })
       .catch((err) => {
-        console.log("Error Message: ", err.message);
+        console.log("오피스 좋아요 취소 에러", err.message);
+      });
+  };
+};
+/* 공유 오피스 좋아요 클릭 */
+const shareClickLikeDB = (shareofficeid) => {
+  return (dispatch) => {
+    instance
+      .post(`/api/favorite/${shareofficeid}`)
+      .then((res) => {
+        Swal.fire("좋아요를 누르셨습니다.");
+        dispatch(shareClickLike(shareofficeid));
+      })
+      .catch((err) => {
+        console.log("공유오피스 좋아요 클릭 에러", err.message);
+      });
+  };
+};
+
+/* 공유오피스 좋아요 취소 */
+const shareDeleteLikeDB = (shareofficeid) => {
+  return (dispatch) => {
+    instance
+      .delete(`/api/favorite/${shareofficeid}`)
+      .then((res) => {
+        Swal.fire("좋아요를 취소하셨습니다.");
+        dispatch(shareDeleteLike(shareofficeid));
+      })
+      .catch((err) => {
+        console.log("공유 오피스 좋아요 취소 에러", err.message);
       });
   };
 };
@@ -148,12 +211,10 @@ const getOfficeLikeDB = (type) => {
 
 // 오피스 검색 리스트 조회
 const getSOListDB = (keyword, pageno) => {
-  console.log("keyword : ", keyword);
   return (dispatch) => {
     instance
       .get(`/api/list/search/${pageno}?query=${keyword}`)
       .then((res) => {
-        console.log("res : ", res);
         const key = decodeURI(keyword);
         dispatch(
           getSOList(res.data.estateResponseDtoList, res.data.totalpage, key)
@@ -167,12 +228,10 @@ const getSOListDB = (keyword, pageno) => {
 
 //공유오피스 검색 리스트 조회
 const getShareListDB = (keyword, pageno) => {
-  console.log("keyword : ", keyword);
   return (dispatch) => {
     instance
       .get(`/sharedoffices?query=${keyword}&pagenum=${pageno}`)
       .then((res) => {
-        console.log("res : ", res);
         const key = decodeURI(keyword);
         dispatch(
           getShareList(
@@ -225,18 +284,11 @@ export default handleActions(
   {
     [GET_ONE_SHARE_OFFICE]: (state, action) =>
       produce(state, (draft) => {
-        console.log("state : ", state);
         draft.one_share_office = action.payload.one_share_office;
-        console.log(
-          "action.payload.one_share_office : ",
-          action.payload.one_share_office
-        );
       }),
     [GET_ONE_OFFICE]: (state, action) =>
       produce(state, (draft) => {
-        console.log("state : ", state);
         draft.one_office = action.payload.one_office;
-        console.log("action.payload.one_office : ", action.payload.one_office);
       }),
     [GET_MAIN_OFFICE]: (state, action) =>
       produce(state, (draft) => {
@@ -253,6 +305,7 @@ export default handleActions(
           if (val.estateid === action.payload.estate_id) {
             return numArr.push(idx);
           }
+          return false;
         });
         draft.list[numArr[0]].mylike = true;
       }),
@@ -263,8 +316,53 @@ export default handleActions(
           if (val.estateid === action.payload.estate_id) {
             return numArr.push(idx);
           }
+          return false;
         });
         draft.list[numArr[0]].mylike = false;
+      }),
+    [MAIN_CLICK_LIKE]: (state, action) =>
+      produce(state, (draft) => {
+        let numArr = [];
+        draft.main_list.filter((val, idx) => {
+          if (val.estateid === action.payload.estate_id) {
+            return numArr.push(idx);
+          }
+          return false;
+        });
+        draft.main_list[numArr[0]].mylike = true;
+      }),
+    [MAIN_DELETE_LIKE]: (state, action) =>
+      produce(state, (draft) => {
+        let numArr = [];
+        draft.main_list.filter((val, idx) => {
+          if (val.estateid === action.payload.estate_id) {
+            return numArr.push(idx);
+          }
+          return false;
+        });
+        draft.main_list[numArr[0]].mylike = false;
+      }),
+    [SHARE_CLICK_LIKE]: (state, action) =>
+      produce(state, (draft) => {
+        let numArr = [];
+        draft.share_list.filter((val, idx) => {
+          if (val.shareofficeid === action.payload.shareofficeid) {
+            return numArr.push(idx);
+          }
+          return false;
+        });
+        draft.share_list[numArr[0]].mylike = true;
+      }),
+    [SHARE_DELETE_LIKE]: (state, action) =>
+      produce(state, (draft) => {
+        let numArr = [];
+        draft.share_list.filter((val, idx) => {
+          if (val.shareofficeid === action.payload.shareofficeid) {
+            return numArr.push(idx);
+          }
+          return false;
+        });
+        draft.share_list[numArr[0]].mylike = false;
       }),
     [GET_LIKE]: (state, action) =>
       produce(state, (draft) => {
@@ -311,6 +409,10 @@ const actionCreators = {
   getOneOfficeDB,
   getShareListDB,
   getOneShareOfficeDB,
+  mainClickLikeDB,
+  mainDeleteLikeDB,
+  shareClickLikeDB,
+  shareDeleteLikeDB,
 };
 
 export { actionCreators };

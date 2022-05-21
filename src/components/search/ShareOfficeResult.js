@@ -69,7 +69,7 @@ const ShareOfficeResult = (props) => {
                     top="8px"
                     color="#FF0000"
                     _onClick={() =>
-                      dispatch(officeActions.deleteLikeDB(o.estateid))
+                      dispatch(officeActions.shareDeleteLikeDB(o.shareofficeid))
                     }
                   />
                 ) : (
@@ -80,7 +80,7 @@ const ShareOfficeResult = (props) => {
                     top="8px"
                     color="#fff"
                     _onClick={() =>
-                      dispatch(officeActions.clickLikeDB(o.estateid))
+                      dispatch(officeActions.shareClickLikeDB(o.shareofficeid))
                     }
                   />
                 )}
