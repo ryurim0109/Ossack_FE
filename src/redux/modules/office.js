@@ -11,9 +11,10 @@ const GET_HOT = "GET_HOT"; // 핫한 지역
 const CLICK_LIKE = "CLICK_LIKE"; //좋아요
 const DELETE_LIKE = "DELETE_LIKE"; //좋아요 취소
 const GET_LIKE = "GET_LIKE"; // 찜한 매물 조회
-const GET_SEARCH_OFFICE_LIST = "GET_SEARCH_OFFICE_LIST";
-const GET_ONE_OFFICE = "GET_ONE_OFFICE";
-const GET_ONE_SHARE_OFFICE = "GET_ONE_SHARE_OFFICE";
+const GET_SEARCH_OFFICE_LIST = "GET_SEARCH_OFFICE_LIST"; // 오피스 검색 리스트
+const GET_SEARCH_SHARE_LIST = "GET_SEARCH_SHARE_LIST"; // 오피스 검색 리스트
+const GET_ONE_OFFICE = "GET_ONE_OFFICE"; //오피스 상세 조회
+const GET_ONE_SHARE_OFFICE = "GET_ONE_SHARE_OFFICE"; //공유 오피스 상세조회
 
 // Action Creator
 const getMainOffice = createAction(GET_MAIN_OFFICE, (main_list) => ({
@@ -27,6 +28,14 @@ const getSOList = createAction(
   GET_SEARCH_OFFICE_LIST,
   (list, page, keyword) => ({
     list,
+    page,
+    keyword,
+  })
+);
+const getShareList = createAction(
+  GET_SEARCH_SHARE_LIST,
+  (share_list, page, keyword) => ({
+    share_list,
     page,
     keyword,
   })
@@ -166,7 +175,11 @@ const getShareListDB = (keyword, pageno) => {
         console.log("res : ", res);
         const key = decodeURI(keyword);
         dispatch(
-          getSOList(res.data.sharedOfficeResponseDtos, res.data.totalpage, key)
+          getShareList(
+            res.data.sharedOfficeResponseDtos,
+            res.data.totalpage,
+            key
+          )
         );
       })
       .catch((err) => {
@@ -267,6 +280,19 @@ export default handleActions(
           draft.list.push(...action.payload.list);
         } else {
           draft.list = action.payload.list;
+        }
+        draft.page = action.payload.page;
+        draft.keyword = action.payload.keyword;
+      }),
+    [GET_SEARCH_SHARE_LIST]: (state, action) =>
+      produce(state, (draft) => {
+        if (
+          action.payload.page > 1 &&
+          action.payload.keyword === draft.keyword
+        ) {
+          draft.share_list.push(...action.payload.share_list);
+        } else {
+          draft.share_list = action.payload.share_list;
         }
         draft.page = action.payload.page;
         draft.keyword = action.payload.keyword;

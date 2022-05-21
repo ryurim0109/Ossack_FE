@@ -9,7 +9,7 @@ import ossack from "../../assets/ossack02.jpg";
 
 const ShareOfficeResult = (props) => {
   const dispatch = useDispatch();
-  const officeData = useSelector((state) => state.office.list);
+  const officeData = useSelector((state) => state.office.share_list);
 
   if (officeData?.length === 0) {
     return (
