@@ -90,7 +90,7 @@ const Ssp = styled.p`
 
 const TopSp = styled.p`
   padding: 5px 0;
-  width: 50%;
+  width: 100%;
   color: #999;
   font-size: ${({ theme }) => theme.fontSizes.small};
 `;
