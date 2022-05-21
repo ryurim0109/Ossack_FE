@@ -9,9 +9,9 @@ import Bar from "../components/shared/Bar";
 import { actionCreators as officeActions } from "../redux/modules/office";
 import {
   OfficeImage,
-  OfficeBottomInfo,
+  OfficeBtmInfo,
   OfficeBasicInfo,
-  CommentInfo,
+  OfficeCmntInfo,
 } from "../components/detail/index";
 
 const DetailOffice = () => {
@@ -41,14 +41,14 @@ const DetailOffice = () => {
       <Grid bg="#F5F5F5" minHeight="1540px" paddingBottom="90px">
         <Grid height="400px" bg="#fff" margin="0 0 10px 0">
           <OfficeImage />
-          <OfficeBottomInfo />
+          <OfficeBtmInfo />
         </Grid>
 
         {/* 상세정보 */}
         <OfficeBasicInfo />
 
         {/* 중개사 코멘트 */}
-        <CommentInfo />
+        <OfficeCmntInfo />
 
         {/* 위치 */}
         <Grid
