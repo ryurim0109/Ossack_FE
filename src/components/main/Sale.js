@@ -53,7 +53,7 @@ function Sale() {
           justifyContent="space-between"
         >
           <Text bold size="1.250rem" cursor="pointer">
-            텍스트 텍스트 오피스 📍
+            이런 오피스는 어때요?📍
           </Text>
         </Grid>
         <Office />

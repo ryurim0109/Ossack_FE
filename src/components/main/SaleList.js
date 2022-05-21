@@ -34,8 +34,8 @@ const SaleList = () => {
               오피스
             </Text>
             <Grid
-              width="90px"
-              height="99px"
+              width="118px"
+              height="118px"
               position="absolute"
               right="0"
               bottom="0"
@@ -61,11 +61,11 @@ const SaleList = () => {
               공유 오피스
             </Text>
             <Grid
-              width="104px"
-              height="99px"
+              width="90px"
+              height="108px"
               position="absolute"
-              right="0"
-              bottom="0"
+              right="8px"
+              bottom="12px"
             >
               <img src={shareImg} alt="공유오피스이미지" />
             </Grid>
