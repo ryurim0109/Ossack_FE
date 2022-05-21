@@ -59,9 +59,9 @@ const OfficeBasicInfo = () => {
             <CenterInner>
               <P>🚗 주차장</P>
               <Sp>
-                {getOneShareOffice?.parking
+                {getOneShareOffice?.parking !== "월 -원"
                   ? getOneShareOffice?.parking
-                  : "개별문의"}
+                  : "무료주차"}
               </Sp>
             </CenterInner>
           </Grid>
