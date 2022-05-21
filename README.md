@@ -41,6 +41,7 @@
 <img src="https://img.shields.io/badge/axios-yellow?style=flat&logo=axios&logoColor=white">
 <img src="https://img.shields.io/badge/redux-764ABC?style=flat&logo=redux&logoColor=EF2D5E">
 <img src="https://img.shields.io/badge/immer-106ece?style=flat&logo=immer&logoColor=immer">
+<img src="https://img.shields.io/badge/GreenSock-88ce02?style=flat&logo=GreenSock&logoColor=ffffff">
 <img src="https://img.shields.io/badge/styledcomponents-DB7093?style=flat&logo=styledcomponents&logoColor=white">
 <img src='https://img.shields.io/badge/yarn-v1.22.17-yellow?logo=yarn'/>
   <img src='https://img.shields.io/badge/AWS-Amazon AWS-yellow?logo=Amazon AWS'/>
