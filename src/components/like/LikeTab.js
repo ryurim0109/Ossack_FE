@@ -3,7 +3,6 @@ import OfficeLike from "./OfficeLike";
 import OfficeTellLike from "./OfficeTellLike";
 
 import Tabs from "@material-ui/core/Tabs";
-import { makeStyles } from "@material-ui/core/styles";
 
 import { Grid, Text } from "../../elements/index";
 
