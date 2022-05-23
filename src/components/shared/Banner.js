@@ -31,6 +31,7 @@ const Banner = (props) => {
           _onClick={() => {
             history.push("/event");
           }}
+          cursor="pointer"
         >
           <BannerBlue>
             <Div>
@@ -62,6 +63,7 @@ const Banner = (props) => {
           _onClick={() => {
             history.push("/event");
           }}
+          cursor="pointer"
         >
           <BannerGreen>
             <Div>
