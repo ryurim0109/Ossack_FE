@@ -93,7 +93,7 @@ const loginApi = (userEmail, password) => {
 const loginCheckApi = () => {
   return async function (dispatch, { history }) {
     instance
-      .get("/api/islogin")
+      .get("/user/islogin")
       .then((res) => {
         console.log(res);
         dispatch(
@@ -139,9 +139,19 @@ const userEmailCheckDB = (userEmail) => {
           confirmButtonColor: "#3E00FF",
         });
         return true;
-      } else {
+      } else if (response.data.data === false) {
         Swal.fire({
           title: "이미 사용 중인 이메일입니다!",
+          showCancelButton: false,
+          confirmButtonText: "확인",
+          confirmButtonColor: "#FF5151",
+        });
+        return false;
+      } else if (
+        response.data.message.includes("이메일 형식이 맞지 않습니다.")
+      ) {
+        Swal.fire({
+          title: "이메일 형식이 맞지 않습니다",
           showCancelButton: false,
           confirmButtonText: "확인",
           confirmButtonColor: "#FF5151",
@@ -154,8 +164,6 @@ const userEmailCheckDB = (userEmail) => {
     }
   };
 };
-
-// 닉네임 중복검사
 
 //로그아웃
 const logOutApi = () => {
@@ -195,7 +203,7 @@ const loginBykakao = (code) => {
         // 바로 유저정보 저장하기
         Swal.fire("로그인 성공 !");
         instance
-          .get("/api/islogin")
+          .get("/user/islogin")
           .then((res) => {
             console.log(res, "나는 로그인체크 응답");
             dispatch(
@@ -236,7 +244,7 @@ const loginBygoogle = (code) => {
         // 바로 유저정보 저장하기
 
         instance
-          .get("/api/islogin")
+          .get("/user/islogin")
           .then((res) => {
             console.log(res, "나는 로그인체크 응답");
             const nick = res.data.data.nickname;
@@ -268,7 +276,7 @@ const userImgDB = (image) => {
   file.append("imageFile", image);
   return function (dispatch, getState, { history }) {
     axios
-      .put("http://3.39.177.59:8080/api/user/profile", file, {
+      .put("http://3.39.177.59:8080/user/profile", file, {
         headers: {
           Authorization: `BEARER ${localStorage.getItem("token")}`,
           "Content-Type": "multipart/form-data",
