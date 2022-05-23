@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Grid, Button, Input } from "../../elements/index";
+import { Grid, Button } from "../../elements/index";
 import { history } from "../../redux/configStore";
 import styled from "styled-components";
 import filterIcon from "../../assets/filter.svg";
@@ -61,7 +61,7 @@ const Search = (props) => {
         {isOpen ? (
           <>
             <ModalBackdrop onClick={openModalHandler}></ModalBackdrop>
-            <Filter isOpen={isOpen} setIsOpen={setIsOpen} name={name} />
+            <Filter isOpen={isOpen} setIsOpen={setIsOpen} />
           </>
         ) : null}
       </Grid>
