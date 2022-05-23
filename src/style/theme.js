@@ -13,7 +13,7 @@ const colors = {
   main: "#3E00FF",
   brightMain: "rgba(62, 0, 255, 0.1)",
   subMain: "#FF5151",
-  subYellow: "#F4FFB9",
+  banner: "#FBD9D9",
 };
 
 const fontSizes = {

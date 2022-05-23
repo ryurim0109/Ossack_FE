@@ -30,17 +30,23 @@ const Banner = (props) => {
         >
           <BannerBlue>
             <Div>
-              <P>설문 참여하고</P>
+              <SP>오싹의 설문조사에 참여하시면,</SP>
               <P>
                 <Text color="#2759F5" bold>
-                  기프티콘
-                </Text>{" "}
-                받아가세요.
+                  추첨
+                </Text>
+                을 통해
+              </P>
+              <P>
+                <Text color="#2759F5" bold>
+                  기프티콘을{" "}
+                </Text>
+                보내드려요!
               </P>
             </Div>
           </BannerBlue>
-          <Grid width="142px" height="102px" position="absolute" right="45px">
-            <img src={banner01} alt="배너" />
+          <Grid width="142px" height="102px" position="absolute" right="13px">
+            <img src={banner01} alt="설문조사 이미지" />
           </Grid>
         </Grid>
         {/* 배너2번 */}
@@ -52,18 +58,30 @@ const Banner = (props) => {
         >
           <BannerGreen>
             <Div>
-              <SP>오싹을 통해 첫 매물 내 놓으면</SP>
-              <P>중개 수수료</P>
+              <SP>오싹의 숨은 버그를 찾아주시면,</SP>
+              <P>
+                선착순{" "}
+                <Text color="#FF6868" bold>
+                  3분
+                </Text>
+                에게
+              </P>
               <P>
                 <Text color="#FF6868" bold>
-                  최대40%{" "}
+                  기프티콘{" "}
                 </Text>
-                지원!
+                보내드려요!
               </P>
             </Div>
           </BannerGreen>
-          <Grid width="190px" height="151px" position="absolute" right="5px">
-            <img src={banner02} alt="배너" />
+          <Grid
+            width="151px"
+            height="133px"
+            position="absolute"
+            right="13px"
+            bottom="20px"
+          >
+            <img src={banner02} alt="선물 이미지" />
           </Grid>
         </Grid>
       </StyledSlider>
@@ -86,7 +104,7 @@ const BannerBlue = styled.div`
 const BannerGreen = styled.div`
   width: 100%;
   height: 100px;
-  background-color: ${({ theme }) => theme.colors.subYellow};
+  background-color: ${({ theme }) => theme.colors.banner};
   display: flex;
   justify-content: space-between;
   align-items: center;
