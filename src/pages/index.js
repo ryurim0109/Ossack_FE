@@ -15,6 +15,7 @@ import MapShareList from "./MapShareList";
 import DetailShare from "./DetailShare";
 import Notice from "./Notice";
 import WithDraw from "./WithDraw";
+import Member from "./Member";
 
 export {
   Login,
@@ -34,4 +35,5 @@ export {
   DetailShare,
   Notice,
   WithDraw,
+  Member,
 };

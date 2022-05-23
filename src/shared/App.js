@@ -22,6 +22,7 @@ import {
   DetailShare,
   Notice,
   WithDraw,
+  Member,
 } from "../pages/index";
 import { MobileFrame } from "../components/shared/home";
 import KaKaoLogin from "../components/social/KaKaoLogin";
@@ -102,6 +103,7 @@ function App() {
                 <Route path="/mypage" exact component={MyPage} />
                 <Route path="/mypage/qna" exact component={QNA} />
                 <Route path="/mypage/notice" exact component={Notice} />
+                <Route path="/mypage/member" exact component={Member} />
                 <Route path="/mypage/withdraw" exact component={WithDraw} />
                 <Route path="/like" exact component={Like} />
                 <Route path="/map/office" exact component={MapOfficeList} />
