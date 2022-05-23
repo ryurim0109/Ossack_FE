@@ -172,10 +172,10 @@ const shareDeleteLikeDB = (shareofficeid) => {
   };
 };
 // 오피스 검색 리스트 조회
-const getSOListDB = (keyword, pageno) => {
+const getSOListDB = (keyword, pageno, monthly) => {
   return (dispatch) => {
     instance
-      .get(`/estates/${pageno}?query=${keyword}`)
+      .get(`/estates/${pageno}?query=${keyword}&monthly=${monthly}`)
       .then((res) => {
         const key = decodeURI(keyword);
         dispatch(
@@ -211,7 +211,7 @@ const getShareListDB = (keyword, pageno) => {
 const getOneOfficeDB = (estateid) => {
   return (dispatch) => {
     instance
-      .get(`/estates/${estateid}`)
+      .get(`/estate/${estateid}`)
       .then((res) => {
         console.log("res : ", res);
         dispatch(getOneOffice(res.data));

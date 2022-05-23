@@ -29,11 +29,12 @@ const getOfficeData = (pos, level) => {
   const SWlng = pos.swLatLng.lng;
   const NElat = pos.neLatLng.lat;
   const NElng = pos.neLatLng.lng;
+  const monthly = "월세";
   return function (dispatch) {
     dispatch(isLoaded(false));
     instance
       .get(
-        `/map?level=${level}&SWlat=${SWlat}&SWlng=${SWlng}&NElat=${NElat}&NElng=${NElng}`
+        `/map?level=${level}&SWlat=${SWlat}&SWlng=${SWlng}&NElat=${NElat}&NElng=${NElng}&depositlimit= &feelimit= &monthly=${monthly}`
       )
       .then((res) => {
         console.log(res.data, "나는 지도 오피스 DB");

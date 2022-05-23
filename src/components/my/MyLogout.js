@@ -46,8 +46,8 @@ const MyLogout = () => {
 };
 const LogoutInner = styled.div`
   width: 100%;
+  height: 22px;
   display: flex;
-  margin-top: 67px;
   padding: 0 107px;
   align-items: center;
   justify-content: space-between;
@@ -72,7 +72,7 @@ const ModalBackdrop = styled.div`
   top: 0;
   left: 0;
   display: flex;
-  z-index: 2;
+  z-index: 999;
   justify-content: center;
   align-items: center;
   background: rgba(153, 153, 153, 0.77);
