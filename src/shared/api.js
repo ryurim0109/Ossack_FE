@@ -2,14 +2,9 @@ import axios from "axios";
 
 //1. axios 인터셉터 생성
 export const instance = axios.create({
-  //baseURL: "http://15.165.160.109",
+  //baseURL: 'http://3.39.177.59:8080',
 
-  // 다빈님 최신 54.180.80.167
-  // 민우님 초신 3.39.177.59:8080
-  
- 
-
-  baseURL: 'http://3.39.177.59:8080',
+  baseURL: "https://sparta-dk.shop",
 
   headers: {
     "content-type": "application/json; charset=UTF-8",
