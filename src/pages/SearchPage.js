@@ -113,6 +113,8 @@ const SearchPage = () => {
 const Outter = styled.div`
   width: 100%;
   padding-bottom: 68px;
+  position: relative;
+  top: 62px;
 `;
 
 const InputContainer = styled.div`

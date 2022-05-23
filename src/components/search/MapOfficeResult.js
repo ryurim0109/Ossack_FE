@@ -9,7 +9,7 @@ import ossack from "../../assets/ossack02.jpg";
 
 const MapOfficeResult = (props) => {
   const dispatch = useDispatch();
-  const officeData = useSelector((state) => state.office.list);
+  const officeData = useSelector((state) => state?.office?.list);
 
   if (officeData?.length === 0) {
     return (
@@ -97,30 +97,23 @@ const MapOfficeResult = (props) => {
                 justifyContent="space-between"
               >
                 <Text size="10px" bold color="#666">
-                  {o.type} ∙ {o.roomFloor}층
+                  {o?.type} ∙ {o?.roomFloor}층
                 </Text>
                 <Text size="14px" bold>
-                  {o.buildingInfo}
+                  {o?.buildingInfo}
                 </Text>
                 <Text size="10px">{o.area}</Text>
                 <Grid display="flex">
-                  {o.rent_fee === "0" ? null : (
+                  {o?.rent_fee === "0" ? null : (
                     <Text size="14px" bold>
                       <Span>월세</Span>
                       {o.rent_fee + "만원"}
                     </Text>
                   )}
-                  {o.deposit.includes("매매") ? (
-                    <Text size="14px" bold>
-                      <Span>{o.deposit.split(" ")[0]}</Span>
-                      {o.deposit.split(" ")[1]}
-                    </Text>
-                  ) : (
-                    <Text size="14px" bold>
-                      <Span>보증금</Span>
-                      {o.deposit}만원
-                    </Text>
-                  )}
+                  <Text size="14px" bold>
+                    <Span>보증금</Span>
+                    {o?.deposit}만원
+                  </Text>
                 </Grid>
               </Grid>
             </Grid>

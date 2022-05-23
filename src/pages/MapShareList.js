@@ -40,7 +40,7 @@ const MapShareList = (props) => {
 
   useEffect(() => {
     dispatch(officeActions.getShareListDB(search, pageno));
-  }, [pageno]);
+  }, [pageno, search, dispatch]);
 
   return (
     <React.Fragment>
@@ -62,6 +62,8 @@ const Outter = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
+  top: 62px;
 `;
 
 export default MapShareList;

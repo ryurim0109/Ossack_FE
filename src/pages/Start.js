@@ -54,7 +54,7 @@ const Start = () => {
                 backgroundColor="#fff"
                 borderRadius="8px"
                 display="flex"
-                border="1px solid #3E00FF"
+                border="2px solid #3E00FF"
                 alignItems="center"
                 justifyContent="center"
                 _onClick={() => {

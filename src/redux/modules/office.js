@@ -172,10 +172,15 @@ const shareDeleteLikeDB = (shareofficeid) => {
   };
 };
 // 오피스 검색 리스트 조회
-const getSOListDB = (keyword, pageno, monthly) => {
+const getSOListDB = (keyword, pageno, router, monthly) => {
+  const depositlimit = router?.split("&")[1]?.split("=")[1];
+  const feelimit = router?.split("&")[2]?.split("=")[1];
+  console.log(depositlimit, feelimit);
   return (dispatch) => {
     instance
-      .get(`/estates/${pageno}?query=${keyword}&monthly=${monthly}`)
+      .get(
+        `/estates/${pageno}?query=${keyword}&depositlimit=${depositlimit}&feelimit=${feelimit}&monthly=${monthly}`
+      )
       .then((res) => {
         const key = decodeURI(keyword);
         dispatch(

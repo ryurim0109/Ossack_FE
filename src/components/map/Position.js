@@ -7,7 +7,7 @@ import { actionCreators as mapActions } from "../../redux/modules/map";
 const Position = (props) => {
   const dispatch = useDispatch();
 
-  const { pos, level, name } = props;
+  const { pos, level, name, router } = props;
   //console.log(name);
 
   useEffect(() => {
@@ -15,7 +15,7 @@ const Position = (props) => {
     if (name === "share") {
       dispatch(mapActions.getShareData(pos, level));
     } else {
-      dispatch(mapActions.getOfficeData(pos, level));
+      dispatch(mapActions.getOfficeData(pos, level, router));
     }
   }, [pos]);
 

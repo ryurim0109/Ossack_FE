@@ -148,11 +148,7 @@ const Login = () => {
                   <Text color="#999999" fontWeight="500px">
                     오싹이 처음이신가요?
                   </Text>{" "}
-                  <Text
-                    borderBottom="1px solid #fff"
-                    color="#3E00FF"
-                    fontWeight="600px"
-                  >
+                  <Text borderBottom="1px solid #3E00FF" color="#3E00FF" bold>
                     회원가입
                   </Text>{" "}
                 </Text>

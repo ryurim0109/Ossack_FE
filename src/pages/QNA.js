@@ -29,18 +29,23 @@ const QNA = () => {
   return (
     <React.Fragment>
       <MyHeader> 자주 묻는 질문</MyHeader>
-      {contents.map((c, idx) => {
-        return (
-          <Outter key={idx}>
-            <Accordion title={c.title} contents={c.content} />
-          </Outter>
-        );
-      })}
-
+      <Wrap>
+        {contents.map((c, idx) => {
+          return (
+            <Outter key={idx}>
+              <Accordion title={c.title} contents={c.content} />
+            </Outter>
+          );
+        })}
+      </Wrap>
       <Bar />
     </React.Fragment>
   );
 };
+const Wrap = styled.div`
+  width: 100%;
+  padding-bottom: 180px;
+`;
 const Outter = styled.div`
   width: 100%;
   display: flex;

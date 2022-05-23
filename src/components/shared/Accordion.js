@@ -69,13 +69,14 @@ const ContentsWrapper = styled.div`
   height: 0;
   width: inherit;
   padding: 0 8px;
-  overflow: hidden;
+  overflow: scroll;
   transition: height 0.35s ease, background 0.35s ease;
 `;
 
 const Contents = styled.div`
   padding: 32px 16px;
   text-align: justify;
+  white-space: pre-wrap;
 `;
 
 export default React.memo(Accordion);

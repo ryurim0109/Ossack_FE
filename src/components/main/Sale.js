@@ -41,7 +41,7 @@ function Sale() {
               history.push("/search");
             }}
           >
-            장소, 주소, 건물명을 입력하세요.
+            시, 구, 동으로 검색어를 입력하세요.
           </Grid>
         </Grid>
         {/* 오피스구해요 박스 */}

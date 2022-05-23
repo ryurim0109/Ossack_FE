@@ -34,6 +34,7 @@ const signUpApi = (user) => {
   console.log("user : ", user);
   return async function (dispatch, getState, { history }) {
     try {
+      //const response = await axios.post("https://sparta-dk.shop/user/signup", {
       const response = await axios.post("http://3.39.177.59:8080/user/signup", {
         userEmail: user.userEmail,
         nickname: user.nickname,
@@ -61,6 +62,7 @@ const loginApi = (userEmail, password) => {
   return async function (dispatch, getState, { history }) {
     try {
       const response = await axios.post("http://3.39.177.59:8080/user/login", {
+        //const response = await axios.post("https://sparta-dk.shop/user/login", {
         userEmail: userEmail,
         password: password,
       });
@@ -116,7 +118,6 @@ const loginCheckApi = () => {
 
 // 이메일 중복검사
 const userEmailCheckDB = (userEmail) => {
-  console.log("userEmailCheckDB : ", userEmail);
   return async function (dispatch, getState, { history }) {
     try {
       const response = await instance.post("/user/idcheck", {
@@ -223,15 +224,11 @@ const loginBykakao = (code) => {
 
 //Google Login
 const loginBygoogle = (code) => {
-  console.log("code : ", code);
   return function (dispatch, getState, { history }) {
     instance
       .get(`/user/google/callback?code=${code}`)
       .then((res) => {
-        console.log("res : ", res);
-
         const token = res.headers.authorization.split("BEARER ");
-        console.log("token : ", token);
 
         localStorage.setItem("token", token[1]);
         Swal.fire("로그인 성공!");
@@ -272,6 +269,7 @@ const userImgDB = (image) => {
   return function (dispatch, getState, { history }) {
     axios
       .put("http://3.39.177.59:8080/user/profile", file, {
+        //.put("https://sparta-dk.shop/user/profile", file, {
         headers: {
           Authorization: `BEARER ${localStorage.getItem("token")}`,
           "Content-Type": "multipart/form-data",

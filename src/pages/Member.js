@@ -21,14 +21,18 @@ const Member = () => {
       <MyHeader>오싹 팀원소개</MyHeader>
       <Outter>
         {/* 팀원소개 민우 */}
-        <Left>
+        <Left
+          onClick={() => {
+            window.open("https://github.com/Littlecold4", "_blank");
+          }}
+        >
           <Grid width="120px" height="120px">
             <Image src={member1} shape="rectangle" />
           </Grid>
           <LeftContent>
             <Inner>
               <Grid>
-                <Text bold>미누 : 백엔드 개발자</Text>
+                <Text bold>미누 : Backend Developer</Text>
               </Grid>
               <Grid>
                 <p>개발이 나, 내가 곧 개발이다.</p>
@@ -38,14 +42,18 @@ const Member = () => {
           </LeftContent>
         </Left>
         {/* 팀원소개 다빈 */}
-        <Right>
+        <Right
+          onClick={() => {
+            window.open("https://github.com/chIorophyII", "_blank");
+          }}
+        >
           <RightContent>
             <Inner>
               <Grid>
                 <Text bold>다콩 : 백엔드 개발자</Text>
               </Grid>
               <Grid>
-                <p>왜들 그리 다운 돼있어,</p>
+                <p>왜들 그리 서버다운 돼있어,</p>
                 <p>뭐가 오류야 세이 썸띵 🤷‍♀️</p>
               </Grid>
             </Inner>
@@ -55,7 +63,11 @@ const Member = () => {
           </Grid>
         </Right>
         {/* 팀원소개 수민 */}
-        <Left>
+        <Left
+          onClick={() => {
+            window.open("https://github.com/sumye", "_blank");
+          }}
+        >
           <Grid width="120px" height="120px">
             <Image src={member3} shape="rectangle" />
           </Grid>
@@ -72,7 +84,11 @@ const Member = () => {
           </LeftContent>
         </Left>
         {/* 팀원소개 유림 */}
-        <Right>
+        <Right
+          onClick={() => {
+            window.open("https://github.com/ryurim0109", "_blank");
+          }}
+        >
           <RightContent>
             <Inner>
               <Grid>
@@ -89,14 +105,18 @@ const Member = () => {
           </Grid>
         </Right>
         {/* 팀원소개 태순 */}
-        <Left>
+        <Left
+          onClick={() => {
+            window.open("https://github.com/devkevinsoon", "_blank");
+          }}
+        >
           <Grid width="120px" height="120px">
             <Image src={member5} shape="rectangle" />
           </Grid>
           <LeftContent>
             <Inner>
               <Grid>
-                <Text bold>SOON : 프론트 개발자</Text>
+                <Text bold>SOON : 프론트엔드 개발자</Text>
               </Grid>
               <Grid>
                 <p>이상을 실현하는 과정은</p>
@@ -190,6 +210,7 @@ const Left = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
+  cursor: pointer;
 
   & p {
     font-size: ${({ theme }) => theme.fontSizes.base};
@@ -218,6 +239,7 @@ const Right = styled.div`
   align-items: center;
   margin-bottom: 20px;
   padding-left: 25%;
+  cursor: pointer;
   & p {
     font-size: ${({ theme }) => theme.fontSizes.base};
     color: ${({ theme }) => theme.colors.subTitle};

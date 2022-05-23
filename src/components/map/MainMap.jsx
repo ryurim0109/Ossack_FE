@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
 import { actionCreators as mapActions } from "../../redux/modules/map";
 //아이콘
 import Spinner from "../shared/Spinner";
@@ -18,13 +17,14 @@ import { Position, Overlay } from "./index";
 
 const MainMap = (props) => {
   const dispatch = useDispatch();
-  const name = useParams().name;
+  const { name } = props;
+  const router = useSelector((state) => state.router.location.search);
+  const depositlimit = router?.split("&")[0]?.split("=")[1];
+  const feelimit = router?.split("&")[1]?.split("=")[1];
+  // console.log(depositlimit, feelimit);
   const getOffice = useSelector((state) => state.map.office_list);
   const shareOffice = useSelector((state) => state.map.share_list);
   const is_loaded = useSelector((state) => state.map.is_loaded);
-  //console.log(is_loaded)
-  //console.log("getOffice : ", getOffice);
-  const OverLavel = getOffice?.level;
 
   const { kakao } = window;
   const [level, setLevel] = useState(3); //지도레벨
@@ -50,10 +50,8 @@ const MainMap = (props) => {
   };
   useEffect(() => {
     if (map && name === "office") {
-      console.log("난 그냥 지도");
-      dispatch(mapActions.getOfficeData(po, level));
+      dispatch(mapActions.getOfficeData(po, level, router));
     } else if (map && name === "share") {
-      console.log("난 공유지도");
       dispatch(mapActions.getShareData(po, level));
     }
   }, [map]);
@@ -110,7 +108,7 @@ const MainMap = (props) => {
                           <div
                             onClick={() =>
                               history.push(
-                                `/map/office?query=${position.title}`
+                                `/map/office?query=${position.title}&depositlimit=${depositlimit}&feelimit=${feelimit}`
                               )
                             }
                           >
@@ -137,7 +135,9 @@ const MainMap = (props) => {
               </button>
             </PlusBtn>
           </Lev>
-          {pos && <Position pos={pos} level={level} name={name} />}
+          {pos && (
+            <Position pos={pos} level={level} name={name} router={router} />
+          )}
         </MainContent>
       </React.Fragment>
     );

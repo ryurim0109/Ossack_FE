@@ -24,17 +24,19 @@ const initialState = {
 };
 
 // middleWares
-const getOfficeData = (pos, level) => {
+const getOfficeData = (pos, level, router, monthly) => {
   const SWlat = pos.swLatLng.lat;
   const SWlng = pos.swLatLng.lng;
   const NElat = pos.neLatLng.lat;
   const NElng = pos.neLatLng.lng;
-  const monthly = "월세";
+  const depositlimit = router?.split("&")[0]?.split("=")[1];
+  const feelimit = router?.split("&")[1]?.split("=")[1];
+  console.log(depositlimit, monthly, feelimit);
   return function (dispatch) {
     dispatch(isLoaded(false));
     instance
       .get(
-        `/map?level=${level}&SWlat=${SWlat}&SWlng=${SWlng}&NElat=${NElat}&NElng=${NElng}&depositlimit= &feelimit= &monthly=${monthly}`
+        `/map?level=${level}&SWlat=${SWlat}&SWlng=${SWlng}&NElat=${NElat}&NElng=${NElng}&depositlimit=${depositlimit}&feelimit=${feelimit}&monthly=${monthly}`
       )
       .then((res) => {
         console.log(res.data, "나는 지도 오피스 DB");
