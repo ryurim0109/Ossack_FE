@@ -2,17 +2,10 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import { Grid, Image, Text } from "../../elements/index";
 import { XScrollDrag } from "../shared/home";
-import { actionCreators as officeActions } from "../../redux/modules/office";
-import { useDispatch, useSelector } from "react-redux";
 import { history } from "../../redux/configStore";
 import img01 from "../../assets/1.jpg";
 import img02 from "../../assets/2.jpg";
 const PlaceList = () => {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(officeActions.getHotDB());
-  }, []);
-
   return (
     <React.Fragment>
       <Grid overflow="hidden" width="100%">

@@ -8,7 +8,6 @@ import Swal from "sweetalert2";
 const GET_MAIN_OFFICE = "GET_MAIN_OFFICE"; // 메인페이지 리스트 조회
 const MAIN_CLICK_LIKE = "MAIN_CLICK_LIKE"; //메인 좋아요
 const MAIN_DELETE_LIKE = "MAIN_DELETE_LIKE"; //메인 좋아요 취소
-const GET_HOT = "GET_HOT"; // 핫한 지역
 const CLICK_LIKE = "CLICK_LIKE"; //오피스 좋아요
 const DELETE_LIKE = "DELETE_LIKE"; //오피스 좋아요 취소
 const GET_SEARCH_OFFICE_LIST = "GET_SEARCH_OFFICE_LIST"; // 오피스 검색 리스트
@@ -22,7 +21,6 @@ const GET_ONE_SHARE_OFFICE = "GET_ONE_SHARE_OFFICE"; //공유 오피스 상세�
 const getMainOffice = createAction(GET_MAIN_OFFICE, (main_list) => ({
   main_list,
 }));
-const getHot = createAction(GET_HOT, (hot_list) => ({ hot_list }));
 const clickLike = createAction(CLICK_LIKE, (estate_id) => ({ estate_id }));
 const deleteLike = createAction(DELETE_LIKE, (estate_id) => ({ estate_id }));
 const mainClickLike = createAction(MAIN_CLICK_LIKE, (estate_id) => ({
@@ -74,7 +72,7 @@ const initialState = {
 const getMainOfficeDB = (dong) => {
   return (dispatch) => {
     instance
-      .get(`/api/list?query=${dong}`)
+      .get(`/estates?query=${dong}`)
       .then((res) => {
         console.log(res.data, "나는 메인 오피스 DB");
         console.log(res, "나는 메인 오피스 res");
@@ -86,26 +84,11 @@ const getMainOfficeDB = (dong) => {
       });
   };
 };
-/* 핫한 오피스 조회 */
-const getHotDB = () => {
-  return (dispatch) => {
-    instance
-      .get(`/api/list/hot`)
-      .then((res) => {
-        console.log(res.data, "나는 핫한 오피스 DB");
-        dispatch(getHot(res.data));
-      })
-      .catch((err) => {
-        console.log(err.response, "나는 핫한 오피스 DB 오류");
-        console.log(err, "나는 핫한 오피스 DB 오류");
-      });
-  };
-};
 /* 메인 좋아요 클릭 */
 const mainClickLikeDB = (estateId) => {
   return (dispatch) => {
     instance
-      .post(`/api/favorite/${estateId}`)
+      .post(`/estates/${estateId}/like`)
       .then((res) => {
         Swal.fire("좋아요를 누르셨습니다.");
         dispatch(mainClickLike(estateId));
@@ -119,7 +102,7 @@ const mainClickLikeDB = (estateId) => {
 const mainDeleteLikeDB = (estateId) => {
   return (dispatch) => {
     instance
-      .delete(`/api/favorite/${estateId}`)
+      .post(`/estates/${estateId}/unlike`)
       .then((res) => {
         Swal.fire("좋아요를 취소하셨습니다.");
         dispatch(mainDeleteLike(estateId));
@@ -134,7 +117,7 @@ const mainDeleteLikeDB = (estateId) => {
 const clickLikeDB = (estateId) => {
   return (dispatch) => {
     instance
-      .post(`/api/favorite/${estateId}`)
+      .post(`/estates/${estateId}/like`)
       .then((res) => {
         console.log("res : ", res);
         Swal.fire("좋아요를 누르셨습니다.");
@@ -150,7 +133,7 @@ const clickLikeDB = (estateId) => {
 const deleteLikeDB = (estateId) => {
   return (dispatch) => {
     instance
-      .delete(`/api/favorite/${estateId}`)
+      .post(`/estates/${estateId}/unlike`)
       .then((res) => {
         Swal.fire("좋아요를 취소하셨습니다.");
         dispatch(deleteLike(estateId));
@@ -164,7 +147,7 @@ const deleteLikeDB = (estateId) => {
 const shareClickLikeDB = (shareofficeid) => {
   return (dispatch) => {
     instance
-      .post(`/api/favorite/${shareofficeid}`)
+      .post(`/estates/${shareofficeid}/like`)
       .then((res) => {
         Swal.fire("좋아요를 누르셨습니다.");
         dispatch(shareClickLike(shareofficeid));
@@ -178,7 +161,7 @@ const shareClickLikeDB = (shareofficeid) => {
 const shareDeleteLikeDB = (shareofficeid) => {
   return (dispatch) => {
     instance
-      .delete(`/api/favorite/${shareofficeid}`)
+      .delete(`/estates/${shareofficeid}/unlike`)
       .then((res) => {
         Swal.fire("좋아요를 취소하셨습니다.");
         dispatch(shareDeleteLike(shareofficeid));
@@ -192,7 +175,7 @@ const shareDeleteLikeDB = (shareofficeid) => {
 const getSOListDB = (keyword, pageno) => {
   return (dispatch) => {
     instance
-      .get(`/api/list/search/${pageno}?query=${keyword}`)
+      .get(`/estates/${pageno}?query=${keyword}`)
       .then((res) => {
         const key = decodeURI(keyword);
         dispatch(
@@ -226,10 +209,9 @@ const getShareListDB = (keyword, pageno) => {
 };
 /* 오피스 상세 조회 */
 const getOneOfficeDB = (estateid) => {
-  console.log("estateId : ", estateid);
   return (dispatch) => {
     instance
-      .get(`/api/detail/${estateid}`)
+      .get(`/estates/${estateid}`)
       .then((res) => {
         console.log("res : ", res);
         dispatch(getOneOffice(res.data));
@@ -241,7 +223,6 @@ const getOneOfficeDB = (estateid) => {
 };
 /* 공유오피스 상세 조회 */
 const getOneShareOfficeDB = (shareofficeid) => {
-  console.log("sharedofficeid : ", shareofficeid);
   return (dispatch) => {
     instance
       .get(`/sharedoffice/${shareofficeid}`)
@@ -269,10 +250,6 @@ export default handleActions(
     [GET_MAIN_OFFICE]: (state, action) =>
       produce(state, (draft) => {
         draft.main_list = action.payload.main_list;
-      }),
-    [GET_HOT]: (state, action) =>
-      produce(state, (draft) => {
-        draft.hot_list = action.payload.hot_list;
       }),
     [CLICK_LIKE]: (state, action) =>
       produce(state, (draft) => {
@@ -372,7 +349,6 @@ export default handleActions(
 
 const actionCreators = {
   getMainOfficeDB,
-  getHotDB,
   clickLikeDB,
   deleteLikeDB,
   getSOListDB,
