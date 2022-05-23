@@ -1,7 +1,6 @@
 import { createAction, handleActions } from "redux-actions";
 import produce from "immer";
 import { instance } from "../../shared/api";
-import { RESP } from "../../response";
 
 // Action type
 const SET_OFFICE_LIST = "SET_OFFICE_LIST";
@@ -18,32 +17,24 @@ const setShareList = createAction(SET_SHARE_LIST, (share_list) => ({
 const isLoaded = createAction(LOADED, (loaded) => ({ loaded }));
 const initialState = {
   list: {
-    map: null,
     office_list: [],
-    marker: [],
-    overlay: [],
+    share_list: [],
   },
   is_loaded: false,
 };
 
 // middleWares
 const getOfficeData = (pos, level) => {
-  console.log("pos : ", pos, "level : ", level);
   const SWlat = pos.swLatLng.lat;
   const SWlng = pos.swLatLng.lng;
   const NElat = pos.neLatLng.lat;
   const NElng = pos.neLatLng.lng;
-
   return function (dispatch) {
     dispatch(isLoaded(false));
-
     instance
       .get(
-        `/api/${level}/map?SWlat=${SWlat}&SWlng=${SWlng}&NElat=${NElat}&NElng=${NElng}`
+        `/map?level=${level}&SWlat=${SWlat}&SWlng=${SWlng}&NElat=${NElat}&NElng=${NElng}`
       )
-
-      // const res=RESP.OFFICE
-      // dispatch(getMainOffice(res));
       .then((res) => {
         console.log(res.data, "나는 지도 오피스 DB");
         dispatch(setOfficeList(res.data));
@@ -55,15 +46,12 @@ const getOfficeData = (pos, level) => {
   };
 };
 const getShareData = (pos, level) => {
-  console.log("난공유오피스", pos, "level : ", level);
   const SWlat = pos.swLatLng.lat;
   const SWlng = pos.swLatLng.lng;
   const NElat = pos.neLatLng.lat;
   const NElng = pos.neLatLng.lng;
-
   return function (dispatch) {
     dispatch(isLoaded(false));
-
     instance
       .get(
         `/map/sharedoffice?level=${level}&SWlat=${SWlat}&SWlng=${SWlng}&NElat=${NElat}&NElng=${NElng}`
@@ -78,7 +66,6 @@ const getShareData = (pos, level) => {
       });
   };
 };
-
 // reducer
 export default handleActions(
   {
