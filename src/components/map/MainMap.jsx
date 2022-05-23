@@ -135,7 +135,9 @@ const MainMap = (props) => {
               </button>
             </PlusBtn>
           </Lev>
-          {pos && <Position pos={pos} level={level} name={name} />}
+          {pos && (
+            <Position pos={pos} level={level} name={name} router={router} />
+          )}
         </MainContent>
       </React.Fragment>
     );
