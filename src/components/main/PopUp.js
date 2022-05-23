@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { Grid, Text } from "../../elements/index";
+import { Grid, Text, Button } from "../../elements/index";
 import PopImg from "../../assets/wel.jpg";
 
 const PopUp = (props) => {
@@ -29,7 +29,13 @@ const PopUp = (props) => {
           >
             <img src={PopImg} alt="오싹 환영 이미지" />
           </Grid>
-          <CloseBtn onClick={handleClose}>오늘 하루 보지 않기</CloseBtn>
+          <Button
+            onClick={handleClose}
+            is_close
+            position="absolute"
+            top="16px"
+            right="16px"
+          />
         </Outter>
       ) : null}
     </React.Fragment>
@@ -54,14 +60,5 @@ const PopUpTitle = styled.p`
   font-size: ${({ theme }) => theme.fontSizes.xxlg};
   color: ${({ theme }) => theme.colors.title};
   font-weight: bold;
-`;
-const CloseBtn = styled.button`
-  width: 92px;
-  height: 24px;
-  position: absolute;
-  top: -32px;
-  left: 16px;
-  font-size: ${({ theme }) => theme.fontSizes.small};
-  color: ${({ theme }) => theme.colors.title};
 `;
 export default PopUp;
