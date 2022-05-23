@@ -118,19 +118,14 @@ const loginCheckApi = () => {
 const userEmailCheckDB = (userEmail) => {
   console.log("userEmailCheckDB : ", userEmail);
   return async function (dispatch, getState, { history }) {
-    // instance.post("/api/idcheck",{}).then((res) => {
-    //   console.log("res : ", res);
-    // });
     try {
       const response = await instance.post("/user/idcheck", {
         userEmail: userEmail,
       });
       console.log("response : ", response);
-      // return;
-      // if (response.data.data === true) {
+
       if (response.data.data === true) {
         console.log("response.data.data : ", response.data.data);
-        // return;
         dispatch(setUserEmail(userEmail, response.data.data));
         Swal.fire({
           title: "사용가능한 이메일입니다!",
