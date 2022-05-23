@@ -101,6 +101,7 @@ const Login = () => {
               sx={style}
               onChange={handleEmailInput}
               onKeyUp={isPassedLogin}
+              size={"small"}
             />
             <TextField
               margin="normal"
@@ -114,6 +115,7 @@ const Login = () => {
               sx={style}
               onChange={handlePasswordInput}
               onKeyUp={isPassedLogin}
+              size={"small"}
             />
 
             <Grid container>

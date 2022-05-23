@@ -8,6 +8,7 @@ import Swal from "sweetalert2";
 const SET_USER = "SET_USER";
 const LOG_OUT = "LOG_OUT";
 const USER_IMG = "USER_IMG";
+const SET_USEREMAIL = "SET_USEREMAIL";
 
 // initialState
 const initialState = {
@@ -22,6 +23,10 @@ const setUser = createAction(SET_USER, (user, is_login) => ({
 }));
 const logOut = createAction(LOG_OUT, () => {});
 const user_img = createAction(USER_IMG, (userImage) => ({ userImage }));
+const setUserEmail = createAction(SET_USEREMAIL, (userEmail, statusCode) => ({
+  userEmail,
+  statusCode,
+}));
 
 // middleWares
 //회원가입
@@ -38,7 +43,6 @@ const signUpApi = (user) => {
       console.log("response : ", response);
 
       if (response.status === 200) {
-        //   if (response.data === "회원가입에 성공하였습니다") {
         alert(`${user.nickname}님 ${response.data.message}`);
         history.replace("/login");
       } else {
@@ -110,20 +114,48 @@ const loginCheckApi = () => {
   };
 };
 
-/** 이메일 중복조회 */
-const checkDupDB = (userEmail, setDup) => {
-  return function (dispatch, getState) {
-    instance
-      .post("/user/idcheck", { userEmail: userEmail })
-      .then((res) => {
-        console.log(res);
-        setDup(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
+// 이메일 중복검사
+const userEmailCheckDB = (userEmail) => {
+  console.log("userEmailCheckDB : ", userEmail);
+  return async function (dispatch, getState, { history }) {
+    // instance.post("/api/idcheck",{}).then((res) => {
+    //   console.log("res : ", res);
+    // });
+    try {
+      const response = await instance.post("/user/idcheck", {
+        userEmail: userEmail,
       });
+      console.log("response : ", response);
+      // return;
+      // if (response.data.data === true) {
+      if (response.data.data === true) {
+        console.log("response.data.data : ", response.data.data);
+        // return;
+        dispatch(setUserEmail(userEmail, response.data.data));
+        Swal.fire({
+          title: "사용가능한 이메일입니다!",
+          showCancelButton: false,
+          confirmButtonText: "확인",
+          confirmButtonColor: "#3E00FF",
+        });
+        return true;
+      } else {
+        Swal.fire({
+          title: "이미 사용 중인 이메일입니다!",
+          showCancelButton: false,
+          confirmButtonText: "확인",
+          confirmButtonColor: "#FF5151",
+        });
+        return false;
+      }
+    } catch (err) {
+      console.log("아이디 중복", err);
+      window.alert("아이디 중복확인에 문제가 생겼습니다!");
+    }
   };
 };
+
+// 닉네임 중복검사
 
 //로그아웃
 const logOutApi = () => {
@@ -255,6 +287,11 @@ const userImgDB = (image) => {
 // reducer
 export default handleActions(
   {
+    [SET_USEREMAIL]: (state, action) =>
+      produce(state, (draft) => {
+        draft.userEmail = action.payload.userEmail;
+        draft.statusCode = action.payload.statusCode;
+      }),
     [SET_USER]: (state, action) =>
       produce(state, (draft) => {
         // setCookie("is_login", "success");
@@ -285,7 +322,8 @@ const actionCreators = {
   loginBygoogle,
   userImgDB,
   resignDB,
-  checkDupDB,
+  userEmailCheckDB,
+  setUserEmail,
 };
 
 export { actionCreators };
