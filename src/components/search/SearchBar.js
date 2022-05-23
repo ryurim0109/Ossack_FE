@@ -43,8 +43,6 @@ function SearchBar({ onAddKeyword, activeTab }) {
     setKeyword("");
   };
 
-  const searchgo = `/map/office?query=${keyword}`;
-
   //느낌표로 키워드를 갖고있냐 없냐로 boolean 형태로 나옴
   //키워드를 가지고 있다면 active가 발생하여 padding이 발생함.
   // 패딩이 없으면 x 아이콘까지 글자가 침법하기 때문

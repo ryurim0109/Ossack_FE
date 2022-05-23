@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import { Grid, Text, Button } from "../../elements/index";
-
+import { history } from "../../redux/configStore";
 import styled, { keyframes } from "styled-components";
 import refresh from "../../assets/refresh.svg";
 
 const Filter = (props) => {
   const { isOpen, setIsOpen } = props;
-
   const ModalClose = () => {
-    setTimeout(() => setIsOpen(!isOpen), 200);
+    setIsOpen(!isOpen);
   };
 
   const [currentClick, setCurrentClick] = useState(null);
@@ -18,8 +17,6 @@ const Filter = (props) => {
 
   const GetClick = (e) => {
     setCurrentClick(e.target.id);
-
-    //console.log(e.target.id);
   };
 
   const GetRent = (e) => {
@@ -30,7 +27,6 @@ const Filter = (props) => {
     (e) => {
       if (currentClick !== null) {
         let current = document.getElementById(currentClick);
-        console.log(current.innerHTML);
         current.style.backgroundColor = "rgba(62, 0, 255, 0.1)";
         current.style.border = "1px solid #3E00FF";
       }
@@ -50,7 +46,7 @@ const Filter = (props) => {
     (e) => {
       if (rentClick !== null) {
         let rent = document.getElementById(rentClick);
-        console.log(rent.innerHTML);
+        //console.log(rent.innerHTML);
         rent.style.backgroundColor = "rgba(62, 0, 255, 0.1)";
         rent.style.border = "1px solid #3E00FF";
       }
@@ -66,10 +62,14 @@ const Filter = (props) => {
     [rentClick]
   );
 
-  // const findOffice = () => {
-  //   console.log(currentClick);
-  //   console.log(rentClick);
-  // };
+  const findOffice = () => {
+    console.log(currentClick);
+    console.log(rentClick);
+    history.push(
+      `/officemap/office?depositlimit=${currentClick}&feelimit=${rentClick}`
+    );
+    setIsOpen(!isOpen);
+  };
   const refreshBtn = () => {
     setCurrentClick(null);
     setRentClick(null);
@@ -77,7 +77,6 @@ const Filter = (props) => {
 
   return (
     <React.Fragment>
-      {/* {isOpen ? ( */}
       <Outter isOpen={isOpen}>
         <Grid
           boxShadow=" 30px 30px 30px rgba(0, 0, 0, 0.3)"
@@ -101,14 +100,14 @@ const Filter = (props) => {
                 justifyContent="space-between"
                 margin="24px 0 0"
               >
-                <Btn id="case1" onClick={GetClick}>
+                <Btn id="1000" onClick={GetClick}>
                   1천만원 이하
                 </Btn>
-                <Btn id="case2" onClick={GetClick}>
-                  1천만원대
-                </Btn>
-                <Btn id="case3" onClick={GetClick}>
+                <Btn id="2000" onClick={GetClick}>
                   2천만원대
+                </Btn>
+                <Btn id="3000" onClick={GetClick}>
+                  3천만원대
                 </Btn>
               </Grid>
               <Grid
@@ -117,14 +116,14 @@ const Filter = (props) => {
                 justifyContent="space-between"
                 margin="24px 0 0"
               >
-                <Btn id="case4" onClick={GetClick}>
-                  3천만원대
-                </Btn>
-                <Btn id="case5" onClick={GetClick}>
+                <Btn id="4000" onClick={GetClick}>
                   4천만원대
                 </Btn>
-                <Btn id="case6" onClick={GetClick}>
-                  5천만원 이상
+                <Btn id="5000" onClick={GetClick}>
+                  5천만원대
+                </Btn>
+                <Btn id="6000" onClick={GetClick}>
+                  6천만원 이상
                 </Btn>
               </Grid>
             </Grid>
@@ -136,13 +135,13 @@ const Filter = (props) => {
                 justifyContent="space-between"
                 margin="24px 0 0"
               >
-                <Btn id="rent1" onClick={GetRent}>
+                <Btn id="100" onClick={GetRent}>
                   100만원
                 </Btn>
-                <Btn id="rent2" onClick={GetRent}>
+                <Btn id="200" onClick={GetRent}>
                   200만원
                 </Btn>
-                <Btn id="rent3" onClick={GetRent}>
+                <Btn id="300" onClick={GetRent}>
                   300만원
                 </Btn>
               </Grid>
@@ -152,13 +151,13 @@ const Filter = (props) => {
                 justifyContent="space-between"
                 margin="24px 0 0"
               >
-                <Btn id="rent4" onClick={GetRent}>
+                <Btn id="400" onClick={GetRent}>
                   400만원
                 </Btn>
-                <Btn id="rent5" onClick={GetRent}>
+                <Btn id="500" onClick={GetRent}>
                   500만원
                 </Btn>
-                <Btn id="rent6" onClick={GetRent}>
+                <Btn id="600" onClick={GetRent}>
                   600만원
                 </Btn>
               </Grid>
@@ -203,7 +202,7 @@ const Filter = (props) => {
                 borderRadius="8px"
                 padding="0"
                 fontSize="14px"
-                // _onClick={findOffice}
+                _onClick={findOffice}
               >
                 매물보기
               </Button>
@@ -211,7 +210,6 @@ const Filter = (props) => {
           </Grid>
         </Grid>
       </Outter>
-      {/* ) : null} */}
     </React.Fragment>
   );
 };

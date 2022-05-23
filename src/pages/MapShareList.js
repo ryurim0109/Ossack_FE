@@ -40,7 +40,7 @@ const MapShareList = (props) => {
 
   useEffect(() => {
     dispatch(officeActions.getShareListDB(search, pageno));
-  }, [pageno]);
+  }, [pageno, search, dispatch]);
 
   return (
     <React.Fragment>
