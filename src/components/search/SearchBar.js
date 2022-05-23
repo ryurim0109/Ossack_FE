@@ -130,7 +130,7 @@ const Input = styled.input`
   width: 100%;
   background-color: #f5f5f5;
   font-weight: 700;
-  font-size: 20px;
+  font-size: 15px;
   box-sizing: border-box;
   border: none;
   outline: none;
