@@ -3,8 +3,8 @@ import styled from "styled-components";
 import { Grid, Image, Text } from "../../elements/index";
 import { XScrollDrag } from "../shared/home";
 import { history } from "../../redux/configStore";
-import img01 from "../../assets/1.jpg";
-import img02 from "../../assets/2.jpg";
+import img01 from "../../assets/hotImg01.jpg";
+import img02 from "../../assets/hotImg02.jpg";
 const PlaceList = () => {
   const hotOfficeClick = (name) => {
     history.push(`/hotplacearticle/${name}`);
@@ -15,11 +15,12 @@ const PlaceList = () => {
         <XScrollDrag>
           <FlexBox>
             <Grid
-              width="160px"
+              width="165px"
               height="180px"
               borderRadius="8px"
               position="relative"
               overflow="hidden"
+              margin="0 7.5px 0 0"
             >
               <Image
                 padding="180px"
@@ -37,9 +38,6 @@ const PlaceList = () => {
                 _onClick={() => {
                   hotOfficeClick("articlefst");
                 }}
-                // _onClick={() => {
-                //   history.push(`/detail/${HotList[0]?.estateid}`);
-                // }}
               >
                 <Grid
                   width="42px"
@@ -59,10 +57,8 @@ const PlaceList = () => {
                 </Grid>
               </Grid>
             </Grid>
-          </FlexBox>
-          <FlexBox>
             <Grid
-              width="160px"
+              width="165px"
               height="180px"
               borderRadius="8px"
               position="relative"
@@ -113,9 +109,9 @@ const PlaceList = () => {
   );
 };
 const FlexBox = styled.div`
-  width: 1000px;
+  width: 100%;
   display: flex;
-  margin: 16px 0 0 0;
-  gap: 10px;
+  justify-content: space-between;
+  margin-top: 16px;
 `;
 export default PlaceList;
