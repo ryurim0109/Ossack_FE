@@ -40,7 +40,7 @@ const Notice = () => {
 };
 const Wrap = styled.div`
   width: 100%;
-  padding-bottom: 62px;
+  padding-bottom: 180px;
 `;
 const Outter = styled.div`
   width: 100%;
