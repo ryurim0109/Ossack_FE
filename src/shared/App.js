@@ -23,6 +23,7 @@ import {
   Notice,
   WithDraw,
   Member,
+  HotPlaceArticle,
 } from "../pages/index";
 import { MobileFrame } from "../components/shared/home";
 import KaKaoLogin from "../components/social/KaKaoLogin";
@@ -117,6 +118,11 @@ function App() {
                   path="/detail/share/:shareofficeid"
                   exact
                   component={DetailShare}
+                />
+                <Route
+                  path="/hotplacearticle/:name"
+                  exact
+                  component={HotPlaceArticle}
                 />
                 <Route path="/*" component={NotFound} />
               </Switch>

@@ -16,6 +16,7 @@ import DetailShare from "./DetailShare";
 import Notice from "./Notice";
 import WithDraw from "./WithDraw";
 import Member from "./Member";
+import HotPlaceArticle from "./HotPlaceArticle";
 
 export {
   Login,
@@ -36,4 +37,5 @@ export {
   Notice,
   WithDraw,
   Member,
+  HotPlaceArticle,
 };
