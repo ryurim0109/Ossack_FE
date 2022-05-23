@@ -23,7 +23,6 @@ const MyContent = () => {
               history.push("/mypage/notice");
             }}
           >
-            {/* <Grid width="24px" margin="0 10px 0 0" height="24px" bg="red"> </Grid> */}
             <Text size="16px" cursor="pointer">
               공지사항
             </Text>
@@ -38,7 +37,6 @@ const MyContent = () => {
               history.push("/mypage/qna");
             }}
           >
-            {/* <Grid width="24px" margin="0 10px 0 0" height="24px" bg="red"> </Grid> */}
             <Text size="16px" cursor="pointer">
               자주 묻는 질문
             </Text>
@@ -46,8 +44,13 @@ const MyContent = () => {
           <Button is_right />
         </Grid>
         <Grid display="flex" alignItems="center" justifyContent="space-between">
-          <Grid display="flex" alignItems="center">
-            {/* <Grid width="24px" margin="0 10px 0 0" height="24px" bg="red"> </Grid> */}
+          <Grid
+            display="flex"
+            alignItems="center"
+            _onClick={() => {
+              history.push("/mypage/member");
+            }}
+          >
             <Text size="16px" cursor="pointer">
               팀원 소개
             </Text>
