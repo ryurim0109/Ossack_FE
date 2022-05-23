@@ -24,8 +24,7 @@ const WithDraw = () => {
         <Section>
           <Grid margin="20px 0">
             <Text size="20px" bold>
-              {/* {user_info?.nickname}님, */}
-              김오싹님,
+              {user_info?.nickname}님,
             </Text>
             <P>오싹 서비스 탈퇴 전에 확인해주세요.</P>
           </Grid>

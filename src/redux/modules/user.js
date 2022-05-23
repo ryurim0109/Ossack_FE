@@ -34,7 +34,8 @@ const signUpApi = (user) => {
   console.log("user : ", user);
   return async function (dispatch, getState, { history }) {
     try {
-      const response = await axios.post("https://sparta-dk.shop/user/signup", {
+      //const response = await axios.post("https://sparta-dk.shop/user/signup", {
+      const response = await axios.post("http://3.39.177.59:8080/user/signup", {
         userEmail: user.userEmail,
         nickname: user.nickname,
         password: user.password,
@@ -60,7 +61,8 @@ const loginApi = (userEmail, password) => {
   console.log("password : ", password);
   return async function (dispatch, getState, { history }) {
     try {
-      const response = await axios.post("https://sparta-dk.shop/user/login", {
+      const response = await axios.post("http://3.39.177.59:8080/user/login", {
+        //const response = await axios.post("https://sparta-dk.shop/user/login", {
         userEmail: userEmail,
         password: password,
       });
@@ -266,7 +268,8 @@ const userImgDB = (image) => {
   file.append("imageFile", image);
   return function (dispatch, getState, { history }) {
     axios
-      .put("https://sparta-dk.shop/user/profile", file, {
+      .put("http://3.39.177.59:8080/user/profile", file, {
+        //.put("https://sparta-dk.shop/user/profile", file, {
         headers: {
           Authorization: `BEARER ${localStorage.getItem("token")}`,
           "Content-Type": "multipart/form-data",
