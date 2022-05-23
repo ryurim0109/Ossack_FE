@@ -122,15 +122,16 @@ const userEmailCheckDB = (userEmail) => {
     //   console.log("res : ", res);
     // });
     try {
-      const response = await instance.post("/api/idcheck", {
+      const response = await instance.post("/user/idcheck", {
         userEmail: userEmail,
       });
       console.log("response : ", response);
       // return;
-      if (response.data.statusCode.includes("OK")) {
-        console.log("response.data.statusCode : ", response.data.statusCode);
+      // if (response.data.data === true) {
+      if (response.data.data === true) {
+        console.log("response.data.data : ", response.data.data);
         // return;
-        dispatch(setUserEmail(userEmail, response.data.statusCode));
+        dispatch(setUserEmail(userEmail, response.data.data));
         Swal.fire({
           title: "사용가능한 이메일입니다!",
           showCancelButton: false,
@@ -153,6 +154,8 @@ const userEmailCheckDB = (userEmail) => {
     }
   };
 };
+
+// 닉네임 중복검사
 
 //로그아웃
 const logOutApi = () => {
