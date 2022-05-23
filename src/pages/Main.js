@@ -9,9 +9,9 @@ function Main() {
   const dispatch = useDispatch();
   const [showPopUp, setShowPopUp] = useState(false);
   const HAS_VISITED_BEFORE = localStorage.getItem("hasVisitedBefore");
-  // useEffect(() => {
-  //   dispatch(userActions.loginCheckApi());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(userActions.loginCheckApi());
+  }, [dispatch]);
 
   useEffect(() => {
     const handleShowModal = () => {
