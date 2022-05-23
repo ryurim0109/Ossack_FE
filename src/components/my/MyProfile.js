@@ -15,13 +15,13 @@ const MyProfile = () => {
   const user_info = useSelector((state) => state.user.user);
   //console.log(user_info)
 
-  useEffect(() => {
-    dispatch(userActions.loginCheckApi());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(userActions.loginCheckApi());
+  // }, [dispatch]);
 
   return (
     <React.Fragment>
-      <Grid>
+      <Inner>
         <Grid
           width="100%"
           margin="40px 0"
@@ -68,16 +68,20 @@ const MyProfile = () => {
             </Text>
           </Grid>
         </Grid>
-        {isOpen ? (
-          <>
-            <ModalBackdrop onClick={openModalHandler}></ModalBackdrop>
-            <ProfileModal isOpen={isOpen} setIsOpen={setIsOpen} />
-          </>
-        ) : null}
-      </Grid>
+      </Inner>
+      {isOpen ? (
+        <>
+          <ModalBackdrop onClick={openModalHandler}></ModalBackdrop>
+          <ProfileModal isOpen={isOpen} setIsOpen={setIsOpen} />
+        </>
+      ) : null}
     </React.Fragment>
   );
 };
+const Inner = styled.div`
+  position: relative;
+  top: 80px;
+`;
 const ModalBackdrop = styled.div`
   width: 100%;
   height: 100%;
@@ -85,7 +89,7 @@ const ModalBackdrop = styled.div`
   top: 0;
   left: 0;
   display: flex;
-  z-index: 2;
+  z-index: 9999;
   justify-content: center;
   align-items: center;
   background: rgba(153, 153, 153, 0.77);

@@ -162,7 +162,7 @@ const Outter = styled.div`
   top: 50%;
   left: 0;
   transform: translate(0, -50%);
-  z-index: 4;
+  z-index: 99999;
   display: flex;
   padding: 0 40px;
 `;
