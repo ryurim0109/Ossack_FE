@@ -27,7 +27,7 @@ const initialState = {
 const getOfficeLikeDB = () => {
   return (dispatch) => {
     instance
-      .get(`/api/list/favorite`)
+      .get(`/estates/favorite`)
       .then((res) => {
         console.log("res : ", res);
         dispatch(getOfficeLike(res.data));
@@ -41,7 +41,7 @@ const getOfficeLikeDB = () => {
 const unlikeOfficeDB = (estateId) => {
   return (dispatch) => {
     instance
-      .delete(`/api/favorite/${estateId}`)
+      .post(`/estates/${estateId}/unlike`)
       .then((res) => {
         Swal.fire("좋아요를 취소하셨습니다.");
         dispatch(unlikeOffice(estateId));
@@ -68,7 +68,7 @@ const getShareLikeDB = () => {
 const unlikeShareDB = (shareofficeid) => {
   return (dispatch) => {
     instance
-      .delete(`/api/favorite/${shareofficeid}`)
+      .post(`/estates/${shareofficeid}/unlike`)
       .then((res) => {
         Swal.fire("좋아요를 취소하셨습니다.");
         dispatch(unlikeShare(shareofficeid));
