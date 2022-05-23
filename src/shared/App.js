@@ -24,6 +24,7 @@ import {
   WithDraw,
   Member,
   HotPlaceArticle,
+  Event,
 } from "../pages/index";
 import { MobileFrame } from "../components/shared/home";
 import KaKaoLogin from "../components/social/KaKaoLogin";
@@ -124,6 +125,7 @@ function App() {
                   exact
                   component={HotPlaceArticle}
                 />
+                <Route path="/event" exact component={Event} />
                 <Route path="/*" component={NotFound} />
               </Switch>
             </MobileFrame>

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import { Grid, Image, Text } from "../../elements/index";
 import { XScrollDrag } from "../shared/home";
@@ -80,9 +80,6 @@ const PlaceList = () => {
                 _onClick={() => {
                   hotOfficeClick("articlesec");
                 }}
-                // _onClick={() => {
-                //   history.push(`/detail/${HotList[0]?.estateid}`);
-                // }}
               >
                 <Grid
                   width="42px"

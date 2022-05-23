@@ -3,6 +3,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Grid, Text } from "../../elements/index";
+import { history } from "../../redux/configStore";
 import styled from "styled-components";
 import banner01 from "../../assets/banner01.png";
 import banner02 from "../../assets/banner02.png";
@@ -27,6 +28,9 @@ const Banner = (props) => {
           display="flex"
           alignItems="center"
           position="relative"
+          _onClick={() => {
+            history.push("/event");
+          }}
         >
           <BannerBlue>
             <Div>
@@ -55,6 +59,9 @@ const Banner = (props) => {
           display="flex"
           alignItems="center"
           position="relative"
+          _onClick={() => {
+            history.push("/event");
+          }}
         >
           <BannerGreen>
             <Div>
