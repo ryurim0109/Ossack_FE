@@ -18,6 +18,8 @@ const Like = (props) => {
 const Outter = styled.div`
   width: 100%;
   padding: 0 16px 68px 16px;
+  position: relative;
+  top: 80px;
 `;
 
 export default Like;

@@ -57,5 +57,7 @@ const Outter = styled.div`
   display: flex;
   align-items: center;
   padding: 0 16px;
+  position: relative;
+  top: 80px;
 `;
 export default Notice;
