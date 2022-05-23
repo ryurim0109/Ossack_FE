@@ -5,12 +5,12 @@ import styled from "styled-components";
 import filterIcon from "../../assets/filter.svg";
 import { Filter } from "../map/index";
 
-const Search = () => {
+const Search = (props) => {
+  const { name } = props;
   const [isOpen, setIsOpen] = useState(false);
   const openModalHandler = () => {
     setIsOpen(!isOpen);
   };
-
   return (
     <React.Fragment>
       <Grid
@@ -30,7 +30,7 @@ const Search = () => {
         />
         <Button
           height="48px"
-          width="248px"
+          width={name === "office" ? "248px" : "277px"}
           margin="16px 5%"
           fontSize="16px"
           borderRadius="8px"
@@ -42,24 +42,26 @@ const Search = () => {
         >
           장소, 근처 역을 입력하세요.
         </Button>
+        {name === "office" ? (
+          <button
+            style={{
+              background: "none",
+              border: "none",
+              cursor: "pointer",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+            onClick={openModalHandler}
+          >
+            <img src={filterIcon} alt="필터아이콘" />
+          </button>
+        ) : null}
 
-        <button
-          style={{
-            background: "none",
-            border: "none",
-            cursor: "pointer",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-          onClick={openModalHandler}
-        >
-          <img src={filterIcon} alt="필터아이콘" />
-        </button>
         {isOpen ? (
           <>
             <ModalBackdrop onClick={openModalHandler}></ModalBackdrop>
-            <Filter isOpen={isOpen} setIsOpen={setIsOpen} />
+            <Filter isOpen={isOpen} setIsOpen={setIsOpen} name={name} />
           </>
         ) : null}
       </Grid>
