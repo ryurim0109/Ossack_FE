@@ -11,18 +11,21 @@ import {
 const MyPage = (props) => {
   return (
     <React.Fragment>
+      <MyHeader>마이 페이지</MyHeader>
       <Outter>
-        <MyHeader>마이 페이지</MyHeader>
         <MyProfile />
         <MyContent />
         <MyLogout />
-        <Bar />
       </Outter>
+      <Bar />
     </React.Fragment>
   );
 };
 const Outter = styled.div`
   width: 100%;
-  padding-bottom: 82px;
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 `;
 export default MyPage;

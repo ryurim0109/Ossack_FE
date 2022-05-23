@@ -46,13 +46,12 @@ const MyLogout = () => {
 };
 const LogoutInner = styled.div`
   width: 100%;
+  height: 22px;
   display: flex;
-  margin-top: 67px;
   padding: 0 107px;
   align-items: center;
   justify-content: space-between;
   position: relative;
-  top: 60px;
 
   & ::before {
     content: "";
