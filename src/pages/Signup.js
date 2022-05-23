@@ -175,6 +175,7 @@ const Signup = () => {
                   sx={style}
                   onChange={handleEmailInput}
                   onKeyUp={isPassedSignup}
+                  size={"small"}
                 />
                 <Grid
                   style={{
@@ -204,6 +205,7 @@ const Signup = () => {
                   sx={style}
                   onChange={handleNickInput}
                   onKeyUp={isPassedSignup}
+                  size={"small"}
                 />
               </Grid>
               <FormHelperTexts>{nickNameError}</FormHelperTexts>
@@ -219,6 +221,7 @@ const Signup = () => {
                   sx={style}
                   onChange={handlePasswordInput}
                   onKeyUp={isPassedSignup}
+                  size={"small"}
                 />
               </Grid>
               <FormHelperTexts>{passwordState}</FormHelperTexts>
@@ -234,6 +237,7 @@ const Signup = () => {
                   sx={style}
                   onChange={handleCheckPWDInput}
                   onKeyUp={isPassedSignup}
+                  size={"small"}
                 />
               </Grid>
               <FormHelperTexts>{passwordError}</FormHelperTexts>
