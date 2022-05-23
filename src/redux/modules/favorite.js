@@ -55,7 +55,7 @@ const unlikeOfficeDB = (estateId) => {
 const getShareLikeDB = () => {
   return (dispatch) => {
     instance
-      .get(`/sharedoffice/favorite`)
+      .get(`/sharedoffices/favorite`)
       .then((res) => {
         dispatch(getShareLike(res.data));
       })
