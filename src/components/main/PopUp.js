@@ -30,7 +30,7 @@ const PopUp = (props) => {
             <img src={PopImg} alt="오싹 환영 이미지" />
           </Grid>
           <Button
-            onClick={handleClose}
+            _onClick={handleClose}
             is_close
             position="absolute"
             top="16px"
