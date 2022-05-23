@@ -108,13 +108,7 @@ const HotPlaceArticle = () => {
               />
             </Grid>
           </Grid>
-          <Grid
-            height="90px"
-            bg="#fff"
-            // margin="0 0 10px 0"
-            border="2px solid green"
-            padding="16px 0"
-          >
+          <Grid height="90px" bg="#fff" padding="16px 0">
             <Grid height="25px" bg="#fff" padding="0 16px">
               <Text color="#111" size="1.5rem">
                 <Span>요즘 스타트업 사이에서</Span>
