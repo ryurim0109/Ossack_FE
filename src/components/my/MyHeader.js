@@ -22,7 +22,7 @@ const MyHeader = (props) => {
           alignItems="center"
           justifyContent="center"
         >
-          <Text size="1.250rem" bold cursor="pointer">
+          <Text size="18px" bold cursor="pointer">
             {children}
           </Text>
         </Grid>
@@ -35,7 +35,7 @@ MyHeader.defaultProps = {
 };
 const Header = styled.div`
   width: 100%;
-  height: 80px;
+  height: 56px;
   background-color: #fff;
   padding: 0 16px;
   display: flex;

@@ -28,7 +28,7 @@ const Member = () => {
           <LeftContent>
             <Inner>
               <Grid>
-                <Text bold>미누 : 백엔드 개발자</Text>
+                <Text bold>미누 : Backend Developer</Text>
               </Grid>
               <Grid>
                 <p>개발이 나, 내가 곧 개발이다.</p>
@@ -96,7 +96,7 @@ const Member = () => {
           <LeftContent>
             <Inner>
               <Grid>
-                <Text bold>SOON : 프론트 개발자</Text>
+                <Text bold>SOON : 프론트엔드 개발자</Text>
               </Grid>
               <Grid>
                 <p>이상을 실현하는 과정은</p>

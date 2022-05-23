@@ -62,6 +62,8 @@ const Outter = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
+  top: 62px;
 `;
 
 export default MapOfficeList;
