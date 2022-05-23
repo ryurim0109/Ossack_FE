@@ -20,13 +20,7 @@ const PopUp = (props) => {
               에 오신 것을 환영합니다.
             </PopUpTitle>
           </Grid>
-          <Grid
-            width="100%"
-            height="195px"
-            position="absolute"
-            bottom="0"
-            bg="red"
-          >
+          <Grid width="100%" height="195px" position="absolute" bottom="0">
             <img src={PopImg} alt="오싹 환영 이미지" />
           </Grid>
           <Button
