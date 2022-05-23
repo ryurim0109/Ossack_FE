@@ -40,7 +40,7 @@ const Search = (props) => {
             history.push("/search");
           }}
         >
-          장소, 근처 역을 입력하세요.
+          시, 구, 동으로 검색어를 입력하세요.
         </Button>
         {name === "office" ? (
           <button

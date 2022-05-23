@@ -9,8 +9,10 @@ import { Bar, Spinner } from "../components/shared/home";
 
 const MapOfficeList = (props) => {
   const dispatch = useDispatch();
-  const search = props.location.search.split("=")[1];
+  const search = props.location.search.split("=")[1].split("&")[0];
   const totalPage = useSelector((state) => state?.office?.page);
+  const router = useSelector((state) => state.router.location.search);
+  console.log(router);
 
   const [pageno, setPageno] = useState(1);
   const [target, setTarget] = useState(null);
@@ -39,7 +41,7 @@ const MapOfficeList = (props) => {
   }, [target]);
 
   useEffect(() => {
-    dispatch(officeActions.getSOListDB(search, pageno));
+    dispatch(officeActions.getSOListDB(search, pageno, router));
   }, [pageno]);
 
   return (

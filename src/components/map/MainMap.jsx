@@ -19,8 +19,8 @@ const MainMap = (props) => {
   const dispatch = useDispatch();
   const { name } = props;
   const router = useSelector((state) => state.router.location.search);
-  // const depositlimit = router?.split("&")[0].split("=")[1];
-  // const feelimit = router?.split("&")[1].split("=")[1];
+  const depositlimit = router?.split("&")[0]?.split("=")[1];
+  const feelimit = router?.split("&")[1]?.split("=")[1];
   // console.log(depositlimit, feelimit);
   const getOffice = useSelector((state) => state.map.office_list);
   const shareOffice = useSelector((state) => state.map.share_list);
@@ -108,7 +108,7 @@ const MainMap = (props) => {
                           <div
                             onClick={() =>
                               history.push(
-                                `/map/office?query=${position.title}`
+                                `/map/office?query=${position.title}&depositlimit=${depositlimit}&feelimit=${feelimit}`
                               )
                             }
                           >
