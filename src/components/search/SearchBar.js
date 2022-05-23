@@ -59,7 +59,7 @@ function SearchBar({ onAddKeyword, activeTab }) {
       </SearchIcon>
       <InputContainer>
         <Input
-          placeholder="검색어를 입력해주세요"
+          placeholder="시,구,동으로 검색어를 입력하세요"
           active={hasKeyword}
           value={keyword}
           onChange={handleKeyword}
