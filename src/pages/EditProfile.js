@@ -208,7 +208,6 @@ const NickInput = styled.input`
   border: 1px solid ${({ theme }) => theme.colors.darkgray3};
   padding: 0 16px;
   &:focus {
-    outline: 1px solid ${({ theme }) => theme.colors.main};
     border: 1px solid ${({ theme }) => theme.colors.main};
   }
 `;

@@ -30,7 +30,7 @@ Image.defaultProps = {
   shape: "circle",
   src: "",
   size: 40,
-  radius: "0",
+  radius: null,
   is_preview: false,
   align: false,
   children: null,
