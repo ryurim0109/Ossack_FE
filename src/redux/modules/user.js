@@ -93,7 +93,7 @@ const loginApi = (userEmail, password) => {
 };
 //유저정보확인
 const loginCheckApi = () => {
-  return async function (dispatch, { history }) {
+  return function (dispatch, { history }) {
     instance
       .get("/user/islogin")
       .then((res) => {
