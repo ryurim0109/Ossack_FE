@@ -45,7 +45,7 @@ function App() {
   useEffect(() => {
     const timeout = setTimeout(() => remove(), 2000);
     return () => clearTimeout(timeout);
-  }, [textRef]);
+  }, []);
   useEffect(() => {
     const timeout = setTimeout(() => show(), 4000);
     return () => clearTimeout(timeout);
