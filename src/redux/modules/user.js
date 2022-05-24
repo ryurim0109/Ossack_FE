@@ -262,8 +262,8 @@ const editProfileDB = (nickname, image, userimg) => {
   }
   return function (dispatch, getState, { history }) {
     axios
-      //.put("http://3.39.177.59:8080/user/profile", file, {
-      .put("https://sparta-dk.shop/user/profile", file, {
+      .put("http://3.39.177.59:8080/user/profile", file, {
+        //.put("https://sparta-dk.shop/user/profile", file, {
         headers: {
           Authorization: `BEARER ${localStorage.getItem("token")}`,
           "Content-Type": "multipart/form-data",
@@ -283,7 +283,7 @@ const editProfileDB = (nickname, image, userimg) => {
 //유저 프로필 삭제
 const userImgDeleteDB = (nickname, userimg) => {
   const file = new FormData();
-  file.append("imageFile", "");
+  file.append("imageFile", new File([], "", { type: "text/plane" }));
   file.append("nickname", nickname);
   file.append("profileImgUrl", "");
 
