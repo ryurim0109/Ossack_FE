@@ -181,7 +181,7 @@ const Signup = () => {
                   style={{
                     width: "37px",
                     height: "37px",
-                    margin: "-44px 0 0px 289px",
+                    margin: "-39px 0 0px 289px",
                     zIndex: "10",
                     position: "absolute",
                     fontSize: "25px",
