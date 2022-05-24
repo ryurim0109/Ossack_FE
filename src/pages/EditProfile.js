@@ -208,7 +208,7 @@ const NickInput = styled.input`
   border: 1px solid ${({ theme }) => theme.colors.darkgray3};
   padding: 0 16px;
   &:focus {
-    border: 1px solid ${({ theme }) => theme.colors.main};
+    outline: 1px solid ${({ theme }) => theme.colors.main};
   }
 `;
 export default EditProfile;
