@@ -56,6 +56,7 @@ const MapOfficeResult = (props) => {
                         bottom="0"
                         src={image}
                         shape="rectangle"
+                        radius="8px"
                         position="absolute"
                       />
                     );
