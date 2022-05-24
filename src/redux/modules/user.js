@@ -100,9 +100,9 @@ const loginCheckApi = () => {
         console.log(res);
         dispatch(
           setUser({
-            nickname: res.data.data.nickname,
-            userEmail: res.data.data.userEmail,
-            imageUrl: res.data.data.imageUrl,
+            nickname: res.data.nickname,
+            userEmail: res.data.userEmail,
+            imageUrl: res.data.imageUrl,
           })
         );
       })
@@ -205,10 +205,10 @@ const loginBykakao = (code) => {
             dispatch(
               setUser({
                 //유저정보를 다시 세팅
-                nickname: res.data.data.nickname,
-                username: res.data.data.username,
-                imageUrl: res.data.data.imageUrl,
-                userEmail: res.data.data.userEmail,
+                nickname: res.data.nickname,
+                username: res.data.username,
+                imageUrl: res.data.imageUrl,
+                userEmail: res.data.userEmail,
               })
             );
           })
@@ -246,9 +246,9 @@ const loginBygoogle = (code) => {
               setUser({
                 //유저정보를 다시 세팅
                 nickname: nick.split("_")[0],
-                username: res.data.data.username,
+                username: res.data.username,
                 //imageUrl:res.data.imageUrl,
-                userEmail: res.data.data.userEmail,
+                userEmail: res.data.userEmail,
               })
             );
           })
