@@ -262,10 +262,20 @@ const loginBygoogle = (code) => {
   };
 };
 //유저 프로필 변경
-const userImgDB = (image) => {
-  console.log(image);
+const editProfileDB = (nickname, image, userimg) => {
+  console.log(nickname, image, userimg);
   const file = new FormData();
+  /*  if (image) {
+    file.append("imageFile", image);
+    file.append("nickname", nickname);
+    file.append("profileImgUrl", userimg);
+  } else if (!image) {
+    file.append("nickname", nickname);
+    file.append("profileImgUrl", userimg);
+  } */
   file.append("imageFile", image);
+  file.append("nickname", nickname);
+  file.append("profileImgUrl", userimg);
   return function (dispatch, getState, { history }) {
     axios
       .put("http://3.39.177.59:8080/user/profile", file, {
@@ -276,9 +286,10 @@ const userImgDB = (image) => {
         },
       })
       .then((res) => {
-        console.log(res.data, "이미지 데이터");
+        console.log(res, "이미지 데이터 성공");
         Swal.fire("이미지 등록이 완료되었습니다.");
-        dispatch(user_img(res.data.data.imageUrl));
+        window.location.replace("/mypage");
+        /* dispatch(user_img(res.data.data.imageUrl)); */
       })
       .catch((err) => {
         console.log("프로필 업로드 에러다!!!!", err.response);
@@ -321,7 +332,7 @@ const actionCreators = {
   logOutApi,
   loginBykakao,
   loginBygoogle,
-  userImgDB,
+  editProfileDB,
   resignDB,
   userEmailCheckDB,
   setUserEmail,

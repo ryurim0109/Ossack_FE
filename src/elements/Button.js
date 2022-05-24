@@ -4,7 +4,6 @@ import styled from "styled-components";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 
 import { ReactComponent as Heart } from "../assets/favourite.svg";
-import { ReactComponent as ProEdit } from "../assets/pro_edit.svg";
 import { ReactComponent as Close } from "../assets/close.svg";
 
 const Button = (props) => {
@@ -104,16 +103,6 @@ const Button = (props) => {
     );
   }
 
-  if (is_edit) {
-    return (
-      <React.Fragment>
-        <EditBox onClick={_onClick} {...styles}>
-          <ProEdit />
-        </EditBox>
-      </React.Fragment>
-    );
-  }
-
   return (
     <React.Fragment>
       <ButtonBox {...styles} onClick={_onClick} disabled={_disabled}>
@@ -132,7 +121,7 @@ Button.defaultProps = {
   width: "100%",
   padding: null,
   color: null,
-  height: "50px",
+  height: "48px",
   top: null,
   bottom: null,
   left: null,
@@ -191,22 +180,6 @@ const IconBox = styled.button`
   left: ${(props) => props.left};
   right: ${(props) => props.right};
   color: ${(props) => props.color};
-`;
-const EditBox = styled.button`
-  background-color: #494949;
-  border: 2px solid #fff;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: ${(props) => props.position};
-  top: ${(props) => props.top};
-  bottom: ${(props) => props.bottom};
-  left: ${(props) => props.left};
-  right: ${(props) => props.right};
-  width: 28px;
-  height: 28px;
-  border-radius: 14px;
 `;
 const Back = styled(MdKeyboardArrowLeft)`
   width: 24px;
