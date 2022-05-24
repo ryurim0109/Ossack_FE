@@ -3,6 +3,7 @@ import { Grid, Button, Text, Image } from "../../elements/index";
 import styled from "styled-components";
 import { actionCreators as officeActions } from "../../redux/modules/office";
 import { useDispatch, useSelector } from "react-redux";
+import { history } from "../../redux/configStore";
 
 const NearStation = (props) => {
   const dispatch = useDispatch();
@@ -75,6 +76,10 @@ const NearStation = (props) => {
                 justifyContent="center"
                 width="100%"
                 height="60px"
+                cursor="pointer"
+                _onClick={() => {
+                  history.push(`/detail/${o.estateid}`);
+                }}
               >
                 <Text color="#fff" size="14px">
                   {o.type ? o.type : "트리플 역세권 사무실"}

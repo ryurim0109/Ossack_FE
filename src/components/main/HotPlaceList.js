@@ -19,6 +19,10 @@ const PlaceList = () => {
             position="relative"
             overflow="hidden"
             margin="0 7.5px 0 0"
+            cursor="pointer"
+            _onClick={() => {
+              hotOfficeClick("articlefst");
+            }}
           >
             <Image
               padding="180px"
@@ -33,9 +37,6 @@ const PlaceList = () => {
               height="68px"
               bg="rgba(0, 0, 0, 0.35)"
               padding="8px 16px 16px"
-              _onClick={() => {
-                hotOfficeClick("articlefst");
-              }}
             >
               <Grid
                 width="42px"
@@ -61,6 +62,10 @@ const PlaceList = () => {
             borderRadius="8px"
             position="relative"
             overflow="hidden"
+            cursor="pointer"
+            _onClick={() => {
+              hotOfficeClick("articlesec");
+            }}
           >
             <Image
               padding="180px"
@@ -75,9 +80,6 @@ const PlaceList = () => {
               height="68px"
               bg="rgba(0, 0, 0, 0.35)"
               padding="8px 16px 16px"
-              _onClick={() => {
-                hotOfficeClick("articlesec");
-              }}
             >
               <Grid
                 width="42px"
