@@ -1,5 +1,4 @@
 import React, { useState, useCallback } from "react";
-import { useHistory } from "react-router-dom";
 import {
   Button,
   CssBaseline,
@@ -95,10 +94,10 @@ const Signup = () => {
       setPasswordError("비밀번호가 일치하지 않습니다.");
     else setPasswordError("");
 
-    // 이름 유효성 검사
-    const nicknameRegex = /^[가-힣a-zA-Z]+$/;
+    // 닉네임 유효성 검사
+    const nicknameRegex = /^[가-힣a-zA-Z]{2,10}$/;
     if (!nicknameRegex.test(nickname) || nickname.length < 1)
-      setNickNameError("올바른 이름을 입력해주세요.");
+      setNickNameError("올바른 이름을 입력해주세요.(글자수 제한 2~10자리)");
     else setNickNameError("");
 
     if (
@@ -112,13 +111,6 @@ const Signup = () => {
     }
   };
 
-  // 이메일 중복확인 체크
-  // const checkDup = useCallback(
-  //   _.debounce((userEmail) => {
-  //     dispatch(userActions.checkDupDB(userEmail, setDup));
-  //   }, 1000),
-  //   []
-  // );
   const checkDup = () => {
     dispatch(userActions.userEmailCheckDB(userEmail));
   };
@@ -181,7 +173,7 @@ const Signup = () => {
                   style={{
                     width: "37px",
                     height: "37px",
-                    margin: "-44px 0 0px 289px",
+                    margin: "-39px 0 0px 289px",
                     zIndex: "10",
                     position: "absolute",
                     fontSize: "25px",
@@ -275,5 +267,4 @@ const FormHelperTexts = styled(FormHelperText)`
 const Boxs = styled(Box)`
   padding-bottom: 40px;
 `;
-
 export default Signup;

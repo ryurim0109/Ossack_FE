@@ -125,7 +125,7 @@ const userEmailCheckDB = (userEmail) => {
       });
       console.log("response : ", response);
 
-      if (response.data.data === true) {
+      if (response.data.data.includes("true")) {
         console.log("response.data.data : ", response.data.data);
         dispatch(setUserEmail(userEmail, response.data.data));
         Swal.fire({
@@ -135,7 +135,7 @@ const userEmailCheckDB = (userEmail) => {
           confirmButtonColor: "#3E00FF",
         });
         return true;
-      } else if (response.data.data === false) {
+      } else if (response.data.data.includes("false")) {
         Swal.fire({
           title: "이미 사용 중인 이메일입니다!",
           showCancelButton: false,
