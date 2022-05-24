@@ -67,19 +67,13 @@ const Banner = (props) => {
             }}
           >
             <Div>
-              <SP>오싹의 숨은 버그를 찾아주시면,</SP>
-              <P>
-                선착순{" "}
-                <Text color="#FF6868" bold>
-                  3분
-                </Text>
-                에게
-              </P>
+              <SP>오싹 오픈기념 EVENT</SP>
+              <P>버그찾고</P>
               <P>
                 <Text color="#FF6868" bold>
-                  기프티콘{" "}
+                  치킨🍗{" "}
                 </Text>
-                보내드려요!
+                받으러 가자!
               </P>
             </Div>
           </BannerGreen>
