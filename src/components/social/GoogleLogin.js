@@ -12,8 +12,13 @@ const GoogleLogin = (props) => {
   // console.log("code : ", GOOGLE_CLIENT_ID);
 
   React.useEffect(() => {
-    dispatch(userActions.loginBygoogle(code));
-  }, [code, dispatch]);
+    if (code) {
+      const google = () => {
+        dispatch(userActions.loginBygoogle(code));
+      };
+      google();
+    }
+  }, [code]);
 
   return <Spinner />;
 };

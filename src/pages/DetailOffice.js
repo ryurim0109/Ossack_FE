@@ -19,7 +19,7 @@ const DetailOffice = () => {
   const dispatch = useDispatch();
   const estateid = useParams().estateId;
   const getOneOffice = useSelector((state) => state.office.one_office);
-  console.log("getOneOffice : ", getOneOffice);
+  //console.log("getOneOffice : ", getOneOffice);
 
   // const getImage = getOneOffice.images.map((images) => images);
   // console.log("getImage : ", getImage);
@@ -32,7 +32,7 @@ const DetailOffice = () => {
   // console.log("buildingDetail : ", buildingDetail);
 
   useEffect(() => {
-    console.log(estateid);
+    //console.log(estateid);
     dispatch(officeActions.getOneOfficeDB(estateid));
   }, [estateid]);
 

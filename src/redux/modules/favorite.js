@@ -29,11 +29,10 @@ const getOfficeLikeDB = () => {
     instance
       .get(`/estates/favorite`)
       .then((res) => {
-        console.log("res : ", res);
         dispatch(getOfficeLike(res.data));
       })
       .catch((err) => {
-        console.log("Error Message: ", err.message);
+        console.log("찜한 오피스 조회 에러 ", err.message);
       });
   };
 };
@@ -60,7 +59,7 @@ const getShareLikeDB = () => {
         dispatch(getShareLike(res.data));
       })
       .catch((err) => {
-        console.log("Error Message: ", err.message);
+        console.log("찜한 공유 오피스 조회 에러: ", err.message);
       });
   };
 };

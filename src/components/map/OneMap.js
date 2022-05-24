@@ -7,12 +7,9 @@ import onePin from "../../assets/pin.png";
 
 const { kakao } = window;
 const KakaoMap = (props) => {
-  console.log("shareMap : ", props);
-
   const shareOfficeId = props.shareofficeid;
   const list = useSelector((state) => state?.office?.one_office);
   const shareList = useSelector((state) => state?.office?.one_share_office);
-  console.log("shareList : ", shareList);
 
   let is_share = shareOfficeId ? true : false;
 
@@ -24,9 +21,6 @@ const KakaoMap = (props) => {
     is_share === true
       ? shareList?.coordinateResponseDto.lng
       : list?.coordinateResponseDto.lng;
-
-  console.log("firstY : ", firstY);
-  console.log("firstX : ", firstX);
 
   useEffect(() => {
     let container = document.getElementById("map");

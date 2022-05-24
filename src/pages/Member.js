@@ -32,7 +32,7 @@ const Member = () => {
           <LeftContent>
             <Inner>
               <Grid>
-                <Text bold>미누 : Backend Developer</Text>
+                <Text bold>미누 : 백엔드 개발자</Text>
               </Grid>
               <Grid>
                 <p>개발이 나, 내가 곧 개발이다.</p>

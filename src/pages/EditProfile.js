@@ -4,6 +4,7 @@ import { MyHeader } from "../components/my/index";
 import { Bar } from "../components/shared/home";
 import { Grid, Image, Button, Text } from "../elements/index";
 import { ReactComponent as ProEdit } from "../assets/pro_edit.svg";
+import { checkName } from "../shared/nameCheck";
 
 import { useSelector, useDispatch } from "react-redux";
 import defaultImg from "../assets/default.png";
@@ -38,19 +39,18 @@ const EditProfile = () => {
   const editProfile = () => {
     let maxSize = 3 * 1024 * 1024;
     let fileSize = image.size;
-    console.log(fileSize);
     if (fileSize > maxSize) {
       Swal.fire("첨부파일 사이즈는 3MB 이내로 등록 가능합니다.");
       return false;
     }
-    if (!nickname) {
-      /*  if (!nicknameCheck(nickname)) {
+    if (!checkName(nickname)) {
       Swal.fire({
         title: "닉네임은 2글자 ~ 8글자에서 정해주세요!",
         showCancelButton: false,
         confirmButtonText: "네",
       });
-    }  */
+      return false;
+    } else if (!nickname) {
       dispatch(
         userActions.editProfileDB(
           user_info.nickname,
@@ -209,7 +209,6 @@ const NickInput = styled.input`
   padding: 0 16px;
   &:focus {
     outline: 1px solid ${({ theme }) => theme.colors.main};
-    border: 1px solid ${({ theme }) => theme.colors.main};
   }
 `;
 export default EditProfile;

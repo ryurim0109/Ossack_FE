@@ -55,6 +55,7 @@ const ShareOfficeResult = (props) => {
                         padding="235px"
                         bottom="0"
                         src={image}
+                        radius="8px"
                         shape="rectangle"
                         position="absolute"
                       />

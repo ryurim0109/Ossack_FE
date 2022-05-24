@@ -63,8 +63,6 @@ const Filter = (props) => {
   );
 
   const findOffice = () => {
-    console.log(currentClick);
-    console.log(rentClick);
     history.push(
       `/officemap/office?depositlimit=${currentClick}&feelimit=${rentClick}`
     );

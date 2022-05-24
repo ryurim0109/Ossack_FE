@@ -8,10 +8,8 @@ const Position = (props) => {
   const dispatch = useDispatch();
 
   const { pos, level, name, router } = props;
-  //console.log(name);
 
   useEffect(() => {
-    // console.log(pos)
     if (name === "share") {
       dispatch(mapActions.getShareData(pos, level));
     } else {
