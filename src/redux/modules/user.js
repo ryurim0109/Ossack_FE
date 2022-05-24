@@ -263,19 +263,16 @@ const loginBygoogle = (code) => {
 };
 //유저 프로필 변경
 const editProfileDB = (nickname, image, userimg) => {
-  console.log(nickname, image, userimg);
   const file = new FormData();
-  /*  if (image) {
+  if (image) {
     file.append("imageFile", image);
     file.append("nickname", nickname);
     file.append("profileImgUrl", userimg);
   } else if (!image) {
+    file.append("imageFile", new File([], "", { type: "text/plane" }));
     file.append("nickname", nickname);
     file.append("profileImgUrl", userimg);
-  } */
-  file.append("imageFile", image);
-  file.append("nickname", nickname);
-  file.append("profileImgUrl", userimg);
+  }
   return function (dispatch, getState, { history }) {
     axios
       .put("http://3.39.177.59:8080/user/profile", file, {
@@ -288,7 +285,33 @@ const editProfileDB = (nickname, image, userimg) => {
       .then((res) => {
         console.log(res, "이미지 데이터 성공");
         Swal.fire("이미지 등록이 완료되었습니다.");
-        window.location.replace("/mypage");
+        history.push("/mypage");
+        /* dispatch(user_img(res.data.data.imageUrl)); */
+      })
+      .catch((err) => {
+        console.log("프로필 업로드 에러다!!!!", err.response);
+      });
+  };
+};
+//유저 프로필 삭제
+const userImgDeleteDB = (nickname, image, userimg) => {
+  const file = new FormData();
+  file.append("profileImgFile", new File([], "", { type: "text/plane" }));
+  file.append("nickName", nickname);
+  file.append("profileImgUrl", "");
+
+  return function (dispatch, getState, { history }) {
+    axios
+      .put("http://3.39.177.59:8080/user/profile", file, {
+        //.put("https://sparta-dk.shop/user/profile", file, {
+        headers: {
+          Authorization: `BEARER ${localStorage.getItem("token")}`,
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then((res) => {
+        console.log(res, "이미지 삭제 성공");
+        Swal.fire("이미지 제거가 완료되었습니다.");
         /* dispatch(user_img(res.data.data.imageUrl)); */
       })
       .catch((err) => {
@@ -336,6 +359,7 @@ const actionCreators = {
   resignDB,
   userEmailCheckDB,
   setUserEmail,
+  userImgDeleteDB,
 };
 
 export { actionCreators };

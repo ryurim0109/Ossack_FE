@@ -1,8 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import { MyHeader } from "../components/my/index";
-import eventImg from "../assets/eventImg.png";
-import eventBg from "../assets/eventbg.png";
 
 const Event = () => {
   return (
@@ -16,9 +14,7 @@ const Event = () => {
               "_blank"
             );
           }}
-        >
-          <img src={eventImg} alt="이벤트 사진" />
-        </Inner>
+        ></Inner>
       </Outter>
     </React.Fragment>
   );
@@ -26,7 +22,7 @@ const Event = () => {
 const Outter = styled.div`
   width: 100%;
   height: 100vh;
-  background-image: url(${eventBg});
+  background-color: #fcdfdf;
 `;
 const Inner = styled.div`
   width: 100%;

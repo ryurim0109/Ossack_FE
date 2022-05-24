@@ -62,7 +62,28 @@ const EditProfile = () => {
       dispatch(userActions.editProfileDB(nickname, image, user_info?.imageUrl));
     }
   };
-  const ImgDelete = () => {};
+  const ImgDelete = () => {
+    if (!nickname) {
+      /*  if (!nicknameCheck(nickname)) {
+        Swal.fire({
+          title: "닉네임은 2글자 ~ 8글자에서 정해주세요!",
+          showCancelButton: false,
+          confirmButtonText: "네",
+        });
+      }  */
+      dispatch(
+        userActions.userImgDeleteDB(
+          user_info.nickname,
+          image,
+          user_info?.imageUrl
+        )
+      );
+    } else {
+      dispatch(
+        userActions.userImgDeleteDB(nickname, image, user_info?.imageUrl)
+      );
+    }
+  };
   return (
     <React.Fragment>
       <MyHeader>프로필 변경</MyHeader>
@@ -144,6 +165,7 @@ const EditProfile = () => {
             color="#3E00FF"
             borderBottom="1px solid #3E00FF"
             cursor="pointer"
+            _onClick={ImgDelete}
           >
             이미지 삭제
           </Text>
