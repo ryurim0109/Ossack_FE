@@ -28,12 +28,12 @@ const Banner = (props) => {
           display="flex"
           alignItems="center"
           position="relative"
-          _onClick={() => {
-            history.push("/event");
-          }}
-          cursor="pointer"
         >
-          <BannerBlue>
+          <BannerBlue
+            onClick={() => {
+              history.push("/event");
+            }}
+          >
             <Div>
               <SP>오싹의 설문조사에 참여하시면,</SP>
               <P>
@@ -60,12 +60,12 @@ const Banner = (props) => {
           display="flex"
           alignItems="center"
           position="relative"
-          _onClick={() => {
-            history.push("/event");
-          }}
-          cursor="pointer"
         >
-          <BannerGreen>
+          <BannerGreen
+            onClick={() => {
+              history.push("/event");
+            }}
+          >
             <Div>
               <SP>오싹의 숨은 버그를 찾아주시면,</SP>
               <P>
@@ -109,6 +109,7 @@ const BannerBlue = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  cursor: pointer;
 `;
 const BannerGreen = styled.div`
   width: 100%;
@@ -117,6 +118,7 @@ const BannerGreen = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  cursor: pointer;
 `;
 const P = styled.p`
   font-size: ${({ theme }) => theme.fontSizes.large};
