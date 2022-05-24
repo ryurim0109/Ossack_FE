@@ -12,6 +12,7 @@ import {
   OfficeBtmInfo,
   OfficeBasicInfo,
   OfficeCmntInfo,
+  OfficeAgentInfo,
 } from "../components/detail/index";
 
 const DetailOffice = () => {
@@ -78,6 +79,7 @@ const DetailOffice = () => {
               <OneMap />
             </Grid>
           </Grid>
+          <OfficeAgentInfo />
         </Grid>
       </Outter>
       <Bar />

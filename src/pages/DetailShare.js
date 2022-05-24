@@ -13,6 +13,7 @@ import {
   ShareOfficeBtmInfo,
   ShareOfficeImage,
   ShareOfficeCmntInfo,
+  ShareOfficeAgentInfo,
 } from "../components/detail/index";
 
 const DetailShare = () => {
@@ -75,6 +76,7 @@ const DetailShare = () => {
               <OneMap shareofficeid={shareofficeid}></OneMap>
             </Grid>
           </Grid>
+          <ShareOfficeAgentInfo />
         </Grid>
       </Outter>
       <Bar />
