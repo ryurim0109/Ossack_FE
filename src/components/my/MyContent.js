@@ -9,7 +9,7 @@ const MyContent = () => {
       <Inner>
         <Grid
           width="100%"
-          height="135px"
+          height="180px"
           padding="0 16px"
           position="relative"
           display="flex"
@@ -17,6 +17,24 @@ const MyContent = () => {
           alignItems="center"
           justifyContent="center"
         >
+          <Grid
+            display="flex"
+            alignItems="center"
+            justifyContent="space-between"
+          >
+            <Grid
+              display="flex"
+              alignItems="center"
+              _onClick={() => {
+                history.push("/mypage/profile");
+              }}
+            >
+              <Text size="16px" cursor="pointer">
+                프로필 변경
+              </Text>
+            </Grid>
+            <Button is_right />
+          </Grid>
           <Grid
             display="flex"
             alignItems="center"

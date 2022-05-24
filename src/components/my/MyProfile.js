@@ -24,7 +24,7 @@ const MyProfile = () => {
       <Inner>
         <Grid
           width="100%"
-          margin="40px 0"
+          margin="40px 0 0"
           height="180px"
           position="relative"
           display="flex"
@@ -43,13 +43,6 @@ const MyProfile = () => {
               type="circle"
               size="112"
               src={user_info?.imageUrl ? user_info?.imageUrl : defaultImg}
-            />
-            <Button
-              is_edit
-              position="absolute"
-              top="80px"
-              right="35%"
-              _onClick={openModalHandler}
             />
           </Grid>
           <Grid

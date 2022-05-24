@@ -25,6 +25,7 @@ import {
   Member,
   HotPlaceArticle,
   Event,
+  EditProfile,
 } from "../pages/index";
 import { MobileFrame } from "../components/shared/home";
 import KaKaoLogin from "../components/social/KaKaoLogin";
@@ -107,6 +108,7 @@ function App() {
                 <Route path="/mypage/notice" exact component={Notice} />
                 <Route path="/mypage/member" exact component={Member} />
                 <Route path="/mypage/withdraw" exact component={WithDraw} />
+                <Route path="/mypage/profile" exact component={EditProfile} />
                 <Route path="/like" exact component={Like} />
                 <Route path="/map/office" exact component={MapOfficeList} />
                 <Route path="/map/shareoffice" exact component={MapShareList} />
