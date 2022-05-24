@@ -10,8 +10,13 @@ const KaKaoLogin = (props) => {
   let code = new URL(window.location.href).searchParams.get("code");
 
   React.useEffect(() => {
-    dispatch(userActions.loginBykakao(code));
-  }, [code, dispatch]);
+    if (code) {
+      const kakao = () => {
+        dispatch(userActions.loginBykakao(code));
+      };
+      kakao();
+    }
+  }, [code]);
 
   return <Spinner />;
 };
