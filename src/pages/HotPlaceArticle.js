@@ -3,9 +3,10 @@ import React from "react";
 import styled from "styled-components";
 import { MyHeader } from "../components/my/index";
 import { useParams, Link } from "react-router-dom";
-import { Grid, Image, Text } from "../elements/index";
-import Bar from "../components/shared/Bar";
+import { Grid, Image, Text, Button } from "../elements/index";
+import { history } from "../redux/configStore";
 
+import Bar from "../components/shared/Bar";
 import img01 from "../assets/articlefst_1.png";
 import img02 from "../assets/articlefst_2.png";
 import img03 from "../assets/articlefst_3.png";
@@ -14,11 +15,21 @@ import img04 from "../assets/articlefst_4.png";
 const HotPlaceArticle = () => {
   const name = useParams().name;
 
+  //   const List = () => {
+  //     const keyword = "을지로";
+  //     history.push(`/map/office?query=${keyword}`);
+  //   };
+
+  const List = (keyword) => {
+    //const keyword = "을지로";
+    history.push(`/map/office?query=${keyword}`);
+  };
+
   if (name === "articlefst") {
     return (
       <React.Fragment>
         <MyHeader>지금 가장 HOT한 지역 🔥</MyHeader>
-        <Grid bg="#fff" minHeight="1094px" paddingBottom="90px">
+        <Grid bg="#fff" minHeight="1170px" paddingBottom="90px">
           <Grid height="255px" bg="#fff" margin="0 0 10px 0">
             {/* Image*/}
             <Grid>
@@ -31,12 +42,7 @@ const HotPlaceArticle = () => {
               />
             </Grid>
           </Grid>
-          <Grid
-            height="90px"
-            bg="#fff"
-            // margin="0 0 10px 0"
-            padding="16px 0"
-          >
+          <Grid height="90px" bg="#fff" padding="16px 0">
             <Grid height="25px" bg="#fff" padding="0 16px">
               <Text color="#111" size="1.5rem">
                 <Span>힙한 직장인들의 성지</Span>
@@ -67,12 +73,7 @@ const HotPlaceArticle = () => {
               />
             </Grid>
           </Grid>
-          <Grid
-            height="137px"
-            bg="#fff"
-            padding="0 16px"
-            // margin="25px 0"
-          >
+          <Grid height="137px" bg="#fff" padding="0 16px">
             <Grid height="100px" bg="#fff" margin="17px 0">
               <P>
                 그런데 최근에는 ‘힙지로'리 불릴 만큼 MZ 세대의 새로운
@@ -86,6 +87,20 @@ const HotPlaceArticle = () => {
               <Sp>출처 https://m.blog.naver.com/fast_five_/222648180619</Sp>
             </a>
           </Grid>
+          <Grid height="50px" bg="#fff" padding="0 16px">
+            <Button
+              width="100%"
+              height="48px"
+              backgroundColor="#3E00FF"
+              borderRadius="8px"
+              color="#FFFFFF"
+              _onClick={() => {
+                List("을지로");
+              }}
+            >
+              을지로 매물 보러 가기
+            </Button>
+          </Grid>
         </Grid>
         {/* menu bar */}
         <Bar />
@@ -95,7 +110,7 @@ const HotPlaceArticle = () => {
     return (
       <React.Fragment>
         <MyHeader>지금 가장 HOT한 지역 🔥</MyHeader>
-        <Grid bg="#fff" minHeight="1350px" paddingBottom="90px">
+        <Grid bg="#fff" minHeight="1430px" paddingBottom="90px">
           <Grid height="255px" bg="#fff" margin="0 0 10px 0">
             {/* Image*/}
             <Grid>
@@ -175,6 +190,20 @@ const HotPlaceArticle = () => {
             <a href="https://m.blog.naver.com/fast_five_/222648180619">
               <Sp>출처 https://m.blog.naver.com/fast_five_/222648180619</Sp>
             </a>
+          </Grid>
+          <Grid height="50px" bg="#fff" padding="0 16px">
+            <Button
+              width="100%"
+              height="48px"
+              backgroundColor="#3E00FF"
+              borderRadius="8px"
+              color="#FFFFFF"
+              _onClick={() => {
+                List("성수동");
+              }}
+            >
+              성수동 매물 보러 가기
+            </Button>
           </Grid>
         </Grid>
         {/* menu bar */}
