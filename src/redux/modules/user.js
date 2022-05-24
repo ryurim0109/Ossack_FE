@@ -281,7 +281,7 @@ const editProfileDB = (nickname, image, userimg) => {
   };
 };
 //유저 프로필 삭제
-const userImgDeleteDB = (nickname, userimg) => {
+const userImgDeleteDB = (nickname) => {
   const file = new FormData();
   file.append("imageFile", new File([], "", { type: "text/plane" }));
   file.append("nickname", nickname);
