@@ -28,11 +28,15 @@ const TalkTalk = () => {
           justifyContent="space-between"
           alignItems="center"
         >
-          <MyBtn onClick={() => window.open(`${KAKAO_AUTH_URL}`)}>
-            <img src={kakaoIcon} alt="카카오로그인" />{" "}
+          <MyBtn>
+            <A href={KAKAO_AUTH_URL}>
+              <img src={kakaoIcon} alt="카카오로그인" />{" "}
+            </A>
           </MyBtn>
-          <MyBtn onClick={() => window.open(`${GOOGLE_AUTH_URL}`)}>
-            <img src={googleIcon} alt="구글로그인" />{" "}
+          <MyBtn>
+            <A href={GOOGLE_AUTH_URL}>
+              <img src={googleIcon} alt="구글로그인" />{" "}
+            </A>
           </MyBtn>
         </Grid>
       </Grid>
@@ -113,5 +117,7 @@ const MyBtn = styled.button`
   height: 46px;
   border-radius: 46px;
 `;
-
+const A = styled.a`
+  color: #000;
+`;
 export default TalkTalk;

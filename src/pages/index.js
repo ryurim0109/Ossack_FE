@@ -17,6 +17,7 @@ import Notice from "./Notice";
 import WithDraw from "./WithDraw";
 import Member from "./Member";
 import HotPlaceArticle from "./HotPlaceArticle";
+import Event from "./Event";
 
 export {
   Login,
@@ -38,4 +39,5 @@ export {
   WithDraw,
   Member,
   HotPlaceArticle,
+  Event,
 };

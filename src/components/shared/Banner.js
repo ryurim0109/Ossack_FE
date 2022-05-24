@@ -3,6 +3,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Grid, Text } from "../../elements/index";
+import { history } from "../../redux/configStore";
 import styled from "styled-components";
 import banner01 from "../../assets/banner01.png";
 import banner02 from "../../assets/banner02.png";
@@ -28,7 +29,11 @@ const Banner = (props) => {
           alignItems="center"
           position="relative"
         >
-          <BannerBlue>
+          <BannerBlue
+            onClick={() => {
+              history.push("/event");
+            }}
+          >
             <Div>
               <SP>오싹의 설문조사에 참여하시면,</SP>
               <P>
@@ -56,21 +61,19 @@ const Banner = (props) => {
           alignItems="center"
           position="relative"
         >
-          <BannerGreen>
+          <BannerGreen
+            onClick={() => {
+              history.push("/event");
+            }}
+          >
             <Div>
-              <SP>오싹의 숨은 버그를 찾아주시면,</SP>
-              <P>
-                선착순{" "}
-                <Text color="#FF6868" bold>
-                  3분
-                </Text>
-                에게
-              </P>
+              <SP>오싹 오픈기념 EVENT</SP>
+              <P>버그찾고</P>
               <P>
                 <Text color="#FF6868" bold>
-                  기프티콘{" "}
+                  치킨🍗{" "}
                 </Text>
-                보내드려요!
+                받으러 가자!
               </P>
             </Div>
           </BannerGreen>
@@ -100,6 +103,7 @@ const BannerBlue = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  cursor: pointer;
 `;
 const BannerGreen = styled.div`
   width: 100%;
@@ -108,6 +112,7 @@ const BannerGreen = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  cursor: pointer;
 `;
 const P = styled.p`
   font-size: ${({ theme }) => theme.fontSizes.large};

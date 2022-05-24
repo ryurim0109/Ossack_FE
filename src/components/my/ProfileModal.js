@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Button, Grid, Image, Text } from "../../elements/index";
 import defaultImg from "../../assets/default.png";
@@ -15,9 +15,7 @@ const ProfileModal = (props) => {
   };
 
   const user_info = useSelector((state) => state.user.user);
-  //console.log(user_info)
-
-  const fileInput = useRef();
+  console.log(user_info.imageUrl);
 
   const [image, setImage] = useState("");
   const [preview, setPreview] = useState(null);
@@ -141,7 +139,6 @@ const ProfileModal = (props) => {
               <input
                 type="file"
                 id="file_input"
-                ref={fileInput}
                 accept="image/jpeg, image/png, image/jpg"
                 onChange={(e) => {
                   encodeFileToBase64(e.target.files[0]);
