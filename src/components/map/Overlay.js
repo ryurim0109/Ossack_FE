@@ -3,7 +3,6 @@ import { Grid, Text } from "../../elements/index";
 
 const Overlay = (props) => {
   const { position, name } = props;
-  //console.log(name, "Ddd");
 
   return (
     <React.Fragment>

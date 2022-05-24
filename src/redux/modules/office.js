@@ -74,8 +74,8 @@ const getMainOfficeDB = (dong) => {
     instance
       .get(`/estates?query=${dong}`)
       .then((res) => {
-        console.log(res.data, "나는 메인 오피스 DB");
-        console.log(res, "나는 메인 오피스 res");
+        //console.log(res.data, "나는 메인 오피스 DB");
+        //console.log(res, "나는 메인 오피스 res");
         dispatch(getMainOffice(res.data));
       })
       .catch((err) => {
@@ -119,7 +119,6 @@ const clickLikeDB = (estateId) => {
     instance
       .post(`/estates/${estateId}/like`)
       .then((res) => {
-        console.log("res : ", res);
         Swal.fire("좋아요를 누르셨습니다.");
         dispatch(clickLike(estateId));
       })
@@ -175,7 +174,7 @@ const shareDeleteLikeDB = (shareofficeid) => {
 const getSOListDB = (keyword, pageno, router, monthly) => {
   const depositlimit = router?.split("&")[1]?.split("=")[1];
   const feelimit = router?.split("&")[2]?.split("=")[1];
-  console.log(depositlimit, feelimit);
+
   return (dispatch) => {
     instance
       .get(
@@ -188,7 +187,7 @@ const getSOListDB = (keyword, pageno, router, monthly) => {
         );
       })
       .catch((err) => {
-        console.log("Error Message: ", err.message);
+        console.log("오피스 검색 리스트 조회 에러 ", err.message);
       });
   };
 };
@@ -208,7 +207,7 @@ const getShareListDB = (keyword, pageno) => {
         );
       })
       .catch((err) => {
-        console.log("Error Message: ", err.message);
+        console.log("공유오피스 검색 리스트 조회 에러 ", err.message);
       });
   };
 };
@@ -218,11 +217,11 @@ const getOneOfficeDB = (estateid) => {
     instance
       .get(`/estate/${estateid}`)
       .then((res) => {
-        console.log("res : ", res);
+        // console.log("res : ", res);
         dispatch(getOneOffice(res.data));
       })
       .catch((err) => {
-        console.log("Error Message: ", err.message);
+        console.log("오피스 상세 조회 에러: ", err.message);
       });
   };
 };
@@ -232,11 +231,11 @@ const getOneShareOfficeDB = (shareofficeid) => {
     instance
       .get(`/sharedoffice/${shareofficeid}`)
       .then((res) => {
-        console.log("res : ", res);
+        //console.log("res : ", res);
         dispatch(getOneShareOffice(res.data));
       })
       .catch((err) => {
-        console.log("Error Message: ", err.message);
+        console.log("공유오피스 상세 조회: ", err.message);
       });
   };
 };

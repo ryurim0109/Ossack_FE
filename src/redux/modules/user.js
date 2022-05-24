@@ -31,7 +31,6 @@ const setUserEmail = createAction(SET_USEREMAIL, (userEmail, statusCode) => ({
 // middleWares
 //회원가입
 const signUpApi = (user) => {
-  console.log("user : ", user);
   return async function (dispatch, getState, { history }) {
     try {
       const response = await axios.post("https://sparta-dk.shop/user/signup", {
@@ -41,7 +40,6 @@ const signUpApi = (user) => {
         password: user.password,
       });
       //const response = RESP.USERSIGNUPPOST;
-      console.log("response : ", response);
 
       if (response.status === 200) {
         alert(`${user.nickname}님 ${response.data.message}`);
@@ -57,8 +55,6 @@ const signUpApi = (user) => {
 };
 //로그인
 const loginApi = (userEmail, password) => {
-  console.log("userEmail : ", userEmail);
-  console.log("password : ", password);
   return async function (dispatch, getState, { history }) {
     try {
       //const response = await axios.post("http://3.39.177.59:8080/user/login", {
@@ -97,7 +93,6 @@ const loginCheckApi = () => {
     instance
       .get("/user/islogin")
       .then((res) => {
-        console.log(res);
         dispatch(
           setUser({
             nickname: res.data.nickname,
@@ -181,7 +176,7 @@ const resignDB = () => {
         window.location.replace("/start");
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err, "회원탈퇴 에러");
       });
   };
 };
@@ -192,7 +187,6 @@ const loginBykakao = (code) => {
     instance
       .get(`/user/kakao/callback?code=${code}`)
       .then((res) => {
-        console.log(res);
         const token = res.headers.authorization.split("BEARER ");
         localStorage.setItem("token", token[1]);
         history.push("/main"); // 토큰 받았고 로그인됐으니 화면 전환시켜줌(메인으로)
@@ -201,7 +195,6 @@ const loginBykakao = (code) => {
         instance
           .get("/user/islogin")
           .then((res) => {
-            console.log(res, "나는 로그인체크 응답");
             dispatch(
               setUser({
                 //유저정보를 다시 세팅
@@ -237,8 +230,6 @@ const loginBygoogle = (code) => {
         instance
           .get("/user/islogin")
           .then((res) => {
-            console.log(res, "나는 로그인체크 응답");
-
             dispatch(
               setUser({
                 //유저정보를 다시 세팅
@@ -279,7 +270,7 @@ const editProfileDB = (nickname, image, userimg) => {
         },
       })
       .then((res) => {
-        console.log(res, "이미지 데이터 성공");
+        // console.log(res, "이미지 데이터 성공");
         Swal.fire("이미지 등록이 완료되었습니다.");
         history.push("/mypage");
         /* dispatch(user_img(res.data.data.imageUrl)); */
@@ -306,7 +297,7 @@ const userImgDeleteDB = (nickname, userimg) => {
         },
       })
       .then((res) => {
-        console.log(res, "이미지 삭제 성공");
+        //console.log(res, "이미지 삭제 성공");
         Swal.fire("이미지 제거가 완료되었습니다.");
         instance
           .get("/user/islogin")

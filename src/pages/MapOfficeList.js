@@ -12,7 +12,6 @@ const MapOfficeList = (props) => {
   const search = props.location.search.split("=")[1].split("&")[0];
   const totalPage = useSelector((state) => state?.office?.page);
   const router = useSelector((state) => state.router.location.search);
-  console.log(router);
 
   const [pageno, setPageno] = useState(1);
   const [target, setTarget] = useState(null);

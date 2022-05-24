@@ -12,7 +12,6 @@ const MyProfile = () => {
     setIsOpen(!isOpen);
   };
   const user_info = useSelector((state) => state.user.user);
-  //console.log(user_info)
 
   useEffect(() => {
     dispatch(userActions.loginCheckApi());

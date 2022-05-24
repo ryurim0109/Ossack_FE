@@ -39,10 +39,10 @@ const Login = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
+    /* console.log({
       userEmail: data.get("userEmail"),
       password: data.get("password"),
-    });
+    }); */
     dispatch(userActions.loginApi(data.get("userEmail"), data.get("password")));
   };
 

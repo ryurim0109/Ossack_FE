@@ -22,10 +22,10 @@ const DetailShare = () => {
   const getOneShareOffice = useSelector(
     (state) => state.office.one_share_office
   );
-  console.log("getOneShareOffice : ", getOneShareOffice);
+  //console.log("getOneShareOffice : ", getOneShareOffice);
 
   useEffect(() => {
-    console.log(shareofficeid);
+    //console.log(shareofficeid);
     dispatch(officeActions.getOneShareOfficeDB(shareofficeid));
   }, [shareofficeid]);
 

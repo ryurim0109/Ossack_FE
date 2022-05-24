@@ -15,7 +15,6 @@ const ProfileModal = (props) => {
   };
 
   const user_info = useSelector((state) => state.user.user);
-  console.log(user_info.imageUrl);
 
   const [image, setImage] = useState("");
   const [preview, setPreview] = useState(null);
@@ -36,7 +35,6 @@ const ProfileModal = (props) => {
   const editProfile = () => {
     let maxSize = 3 * 1024 * 1024;
     let fileSize = image.size;
-    console.log(fileSize);
     if (fileSize > maxSize) {
       Swal.fire("첨부파일 사이즈는 3MB 이내로 등록 가능합니다.");
       setImage("");

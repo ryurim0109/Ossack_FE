@@ -20,7 +20,6 @@ const SearchPage = () => {
 
   //검색어 추가
   const handleAddKeyword = (text) => {
-    console.log("text : ", text);
     const newKeyword = {
       id: Date.now(),
       text: text,

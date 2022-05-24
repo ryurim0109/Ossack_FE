@@ -31,7 +31,6 @@ const getOfficeData = (pos, level, router, monthly) => {
   const NElng = pos.neLatLng.lng;
   const depositlimit = router?.split("&")[0]?.split("=")[1];
   const feelimit = router?.split("&")[1]?.split("=")[1];
-  console.log(depositlimit, monthly, feelimit);
   return function (dispatch) {
     dispatch(isLoaded(false));
     instance
@@ -39,7 +38,6 @@ const getOfficeData = (pos, level, router, monthly) => {
         `/map?level=${level}&SWlat=${SWlat}&SWlng=${SWlng}&NElat=${NElat}&NElng=${NElng}&depositlimit=${depositlimit}&feelimit=${feelimit}&monthly=${monthly}`
       )
       .then((res) => {
-        console.log(res.data, "나는 지도 오피스 DB");
         dispatch(setOfficeList(res.data));
       })
       .catch((err) => {
@@ -60,7 +58,7 @@ const getShareData = (pos, level) => {
         `/map/sharedoffice?level=${level}&SWlat=${SWlat}&SWlng=${SWlng}&NElat=${NElat}&NElng=${NElng}`
       )
       .then((res) => {
-        console.log(res.data, "나는 공유 오피스 DB");
+        //console.log(res.data, "나는 공유 오피스 DB");
         dispatch(setShareList(res.data));
       })
       .catch((err) => {
