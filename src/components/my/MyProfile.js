@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button, Grid, Image, Text } from "../../elements/index";
-import { ProfileModal } from "./index";
+import { Grid, Image, Text } from "../../elements/index";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import defaultImg from "../../assets/default.png";
@@ -62,30 +61,12 @@ const MyProfile = () => {
           </Grid>
         </Grid>
       </Inner>
-      {isOpen ? (
-        <>
-          <ModalBackdrop onClick={openModalHandler}></ModalBackdrop>
-          <ProfileModal isOpen={isOpen} setIsOpen={setIsOpen} />
-        </>
-      ) : null}
     </React.Fragment>
   );
 };
 const Inner = styled.div`
   position: relative;
   top: 80px;
-`;
-const ModalBackdrop = styled.div`
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: flex;
-  z-index: 9999;
-  justify-content: center;
-  align-items: center;
-  background: rgba(153, 153, 153, 0.77);
 `;
 
 export default MyProfile;

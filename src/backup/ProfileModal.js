@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Button, Grid, Image, Text } from "../../elements/index";
+import { Button, Grid, Image, Text } from "../elements/index";
 import defaultImg from "../../assets/default.png";
 import Swal from "sweetalert2";
 
 import { useSelector, useDispatch } from "react-redux";
-import { actionCreators as userActions } from "../../redux/modules/user";
+import { actionCreators as userActions } from "../redux/modules/user";
 
 const ProfileModal = (props) => {
   const dispatch = useDispatch();
