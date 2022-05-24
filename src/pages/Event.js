@@ -1,11 +1,13 @@
 import React from "react";
 import styled from "styled-components";
+import { MyHeader } from "../components/my/index";
 import eventImg from "../assets/eventImg.png";
 import eventBg from "../assets/eventbg.png";
 
 const Event = () => {
   return (
     <React.Fragment>
+      <MyHeader>이벤트</MyHeader>
       <Outter>
         <Inner
           onClick={() => {
@@ -30,8 +32,7 @@ const Inner = styled.div`
   width: 100%;
   height: 510px;
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 57px;
   cursor: pointer;
 `;
 export default Event;
