@@ -206,7 +206,6 @@ const loginBykakao = (code) => {
               setUser({
                 //유저정보를 다시 세팅
                 nickname: res.data.nickname,
-                username: res.data.username,
                 imageUrl: res.data.imageUrl,
                 userEmail: res.data.userEmail,
               })
@@ -239,15 +238,12 @@ const loginBygoogle = (code) => {
           .get("/user/islogin")
           .then((res) => {
             console.log(res, "나는 로그인체크 응답");
-            const nick = res.data.data.nickname;
-            console.log(nick.split("_")[0], "나는스플릿");
 
             dispatch(
               setUser({
                 //유저정보를 다시 세팅
-                nickname: nick.split("_")[0],
-                username: res.data.username,
-                //imageUrl:res.data.imageUrl,
+                nickname: res.data.nickname,
+                imageUrl: res.data.imageUrl,
                 userEmail: res.data.userEmail,
               })
             );
@@ -294,9 +290,9 @@ const editProfileDB = (nickname, image, userimg) => {
   };
 };
 //유저 프로필 삭제
-const userImgDeleteDB = (nickname, image, userimg) => {
+const userImgDeleteDB = (nickname, userimg) => {
   const file = new FormData();
-  file.append("profileImgFile", new File([], "", { type: "text/plane" }));
+  file.append("imageFile", new File([], "", { type: "text/plane" }));
   file.append("nickName", nickname);
   file.append("profileImgUrl", "");
 
@@ -312,7 +308,13 @@ const userImgDeleteDB = (nickname, image, userimg) => {
       .then((res) => {
         console.log(res, "이미지 삭제 성공");
         Swal.fire("이미지 제거가 완료되었습니다.");
-        /* dispatch(user_img(res.data.data.imageUrl)); */
+        instance
+          .get("/user/islogin")
+          .then((res) => {
+            console.log(res, "나는 로그인체크 응답");
+            dispatch(user_img(res.data.imageUrl));
+          })
+          .catch((error) => console.log("유저정보저장오류", error));
       })
       .catch((err) => {
         console.log("프로필 업로드 에러다!!!!", err.response);
