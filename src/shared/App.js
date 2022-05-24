@@ -49,7 +49,7 @@ function App() {
   useEffect(() => {
     const timeout = setTimeout(() => show(), 4000);
     return () => clearTimeout(timeout);
-  }, [text2Ref]);
+  }, []);
 
   const remove = () => {
     const ani = gsap.to(textRef.current, {
