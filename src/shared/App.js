@@ -39,6 +39,8 @@ import backgroundImg from "../assets/bg.jpg";
 import textImg from "../assets/bg02.png";
 import textImg02 from "../assets/bg03.png";
 
+import ScrollToTop from "../components/shared/ScrollToTop";
+
 function App() {
   const textRef = useRef();
   const text2Ref = useRef();
@@ -84,6 +86,7 @@ function App() {
         <GlobalStyle />
         <ThemeProvider theme={theme}>
           <ConnectedRouter history={history}>
+            <ScrollToTop />
             <MobileFrame className="MobileFramePage">
               <Switch>
                 <Route path="/" exact component={Splash} />
