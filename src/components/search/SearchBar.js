@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import styled, { css } from "styled-components";
-
-import { Link } from "react-router-dom";
 import { history } from "../../redux/configStore";
-
 import { ReactComponent as Search } from "../../assets/search.svg";
 
 function SearchBar({ onAddKeyword, activeTab }) {
