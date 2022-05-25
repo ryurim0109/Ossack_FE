@@ -287,8 +287,8 @@ const HotPlaceArticle = () => {
             </Grid>
           </Grid>
           <Grid height="46px" bg="#fff" padding="0 16px">
-            <a href="https://m.blog.naver.com/fast_five_/222648180619">
-              <Sp>출처 https://m.blog.naver.com/fast_five_/222648180619</Sp>
+            <a href="https://www.fmnara.com/news/23121">
+              <Sp>출처 https://www.fmnara.com/news/23121</Sp>
             </a>
           </Grid>
           <Grid height="50px" bg="#fff" padding="0 16px">
