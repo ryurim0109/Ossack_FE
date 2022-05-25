@@ -6,6 +6,6 @@ export const checkName = (nickname) => {
 
 // 검색어 체크 (특수문자 제외)
 export const searchCheck = (search) => {
-  var regSearch = /^[가-힣]{1,20}$/;
+  var regSearch = /^[가-힣\s]{1,20}$/;
   return regSearch.test(search);
 };
