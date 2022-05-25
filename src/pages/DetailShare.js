@@ -32,7 +32,7 @@ const DetailShare = () => {
   return (
     <React.Fragment>
       <Header>
-        <Grid width="5%" display="flex" alignItems="center">
+        <Grid width="28px" display="flex" alignItems="center">
           <Button
             is_back
             _onClick={() => {
@@ -51,7 +51,7 @@ const DetailShare = () => {
           </Text>
         </Grid>
         <Grid
-          width="5%"
+          width="28px"
           display="flex"
           alignItems="center"
           justifyContent="center"
@@ -141,7 +141,7 @@ const Header = styled.div`
   padding: 0 16px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-evenly;
   position: fixed;
   top: 0;
   left: 0;
