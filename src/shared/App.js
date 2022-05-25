@@ -39,9 +39,29 @@ import backgroundImg from "../assets/bg.jpg";
 import textImg from "../assets/bg02.png";
 import textImg02 from "../assets/bg03.png";
 
-import ScrollToTop from "../components/shared/ScrollToTop";
+// import ScrollToTop from "../components/shared/ScrollToTop";
+
+// import { useLocation } from "react-router-dom";
 
 function App() {
+  //const { pathname } = useLocation();
+  // const mobileFrame = useRef();
+
+  //console.log(pathname, "path");
+
+  // useEffect(() => {
+  //   // const element = document.getElementById("mobileFrame");
+  //   // element.scrollTo(0, 0);
+  //   // window.scrollTo(0, 0);
+  //   if (pathname) {
+  //     mobileFrame.current.scrollTo(0, 0);
+  //     console.log("called");
+  //   }
+  // }, [pathname]);
+
+  // const element = document.getElementById("mobileFrame");
+  // element.scrollTo(0, 0);
+
   const textRef = useRef();
   const text2Ref = useRef();
   const [active, setActive] = useState(true);
@@ -86,7 +106,7 @@ function App() {
         <GlobalStyle />
         <ThemeProvider theme={theme}>
           <ConnectedRouter history={history}>
-            <ScrollToTop />
+            {/* <ScrollToTop history={history}> */}
             <MobileFrame className="MobileFramePage">
               <Switch>
                 <Route path="/" exact component={Splash} />
@@ -134,6 +154,7 @@ function App() {
                 <Route path="/*" component={NotFound} />
               </Switch>
             </MobileFrame>
+            {/* </ScrollToTop> */}
           </ConnectedRouter>
         </ThemeProvider>
       </Wrap>
