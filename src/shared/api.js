@@ -4,7 +4,7 @@ import axios from "axios";
 export const instance = axios.create({
   baseURL: "http://3.39.177.59:8080",
 
-  //baseURL: "https://sparta-dk.shop",
+  //baseURL: "https://ossack-dk.shop",
 
   headers: {
     "content-type": "application/json; charset=UTF-8",

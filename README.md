@@ -1,4 +1,12 @@
-# OSSACK_FE
+# <img src="https://avatars.githubusercontent.com/u/104211703?s=200&v=4" align=left width=50 >오싹 소개
+
+![logo](https://velog.velcdn.com/images/ryurim0109/post/617aad8d-f4d4-45a9-9efc-eb23f73b55de/image.jpg)
+<br>
+👻 **[오싹 서비스 바로가기](https://ossack.shop/)**
+
+## 💻 프로젝트 소개
+
+> 오싹은 지도로 오피스 매물과 공유 오피스 매물을 찾아볼 수 있는 모바일 웹입니다.
 
 ## 😇‍ 프론트엔드 팀원
 
