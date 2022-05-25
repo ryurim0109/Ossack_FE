@@ -4,7 +4,7 @@ import { history } from "../../redux/configStore";
 import styled from "styled-components";
 
 const MyHeader = (props) => {
-  const { children, is_close, is_back } = props;
+  const { children, is_close, is_my } = props;
   if (is_close) {
     return (
       <React.Fragment>
@@ -30,7 +30,7 @@ const MyHeader = (props) => {
         </Header>
       </React.Fragment>
     );
-  } else if (is_back) {
+  } else if (is_my) {
     return (
       <React.Fragment>
         <Header>
@@ -38,7 +38,7 @@ const MyHeader = (props) => {
             <Button
               is_back
               _onClick={() => {
-                history.goBack();
+                history.push("/mypage");
               }}
             />
           </Grid>
