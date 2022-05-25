@@ -1,11 +1,13 @@
 import React from "react";
 
-import { useSelector } from "react-redux";
-import { Grid, Image } from "../../elements/index";
+import { useSelector, useDispatch } from "react-redux";
+import { Grid, Image, Button } from "../../elements/index";
 
 import { SlickSlider } from "../../components/shared/home";
+import { actionCreators as officeActions } from "../../redux/modules/office";
 
 const OfficeImage = () => {
+  const dispatch = useDispatch();
   const getOneShareOffice = useSelector(
     (state) => state.office.one_share_office
   );
@@ -36,6 +38,37 @@ const OfficeImage = () => {
                 );
               })}
           </SlickSlider>
+          {getOneShareOffice?.mylike ? (
+            <Button
+              fill_like
+              position="absolute"
+              right="8px"
+              top="8px"
+              color="#FF0000"
+              _onClick={() =>
+                dispatch(
+                  officeActions.oneShareDeleteLikeDB(
+                    getOneShareOffice.shareofficeid
+                  )
+                )
+              }
+            />
+          ) : (
+            <Button
+              is_like
+              position="absolute"
+              right="8px"
+              top="8px"
+              color="#fff"
+              _onClick={() =>
+                dispatch(
+                  officeActions.oneShareClickLikeDB(
+                    getOneShareOffice.shareofficeid
+                  )
+                )
+              }
+            />
+          )}
         </Grid>
       </Grid>
     </React.Fragment>

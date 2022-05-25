@@ -12,10 +12,14 @@ const CLICK_LIKE = "CLICK_LIKE"; //오피스 좋아요
 const DELETE_LIKE = "DELETE_LIKE"; //오피스 좋아요 취소
 const GET_SEARCH_OFFICE_LIST = "GET_SEARCH_OFFICE_LIST"; // 오피스 검색 리스트
 const GET_ONE_OFFICE = "GET_ONE_OFFICE"; //오피스 상세 조회
+const ONE_CLICK_LIKE = "ONE_CLICK_LIKE"; //오피스 상세페이지 좋아요
+const ONE_DELETE_LIKE = "ONE_DELETE_LIKE"; //오피스 상세페이지 좋아요 취소
 const GET_SEARCH_SHARE_LIST = "GET_SEARCH_SHARE_LIST"; // 공유 오피스 검색 리스트
 const SHARE_CLICK_LIKE = "SHARE_CLICK_LIKE"; //공유 오피스 좋아요
 const SHARE_DELETE_LIKE = "SHARE_DELETE_LIKE"; //공유 오피스 좋아요 취소
 const GET_ONE_SHARE_OFFICE = "GET_ONE_SHARE_OFFICE"; //공유 오피스 상세조회
+const ONE_SHARE_CLICK_LIKE = "ONE_SHARE_CLICK_LIKE"; //오피스 상세페이지 좋아요
+const ONE_SHARE_DELETE_LIKE = "ONE_SHARE_DELETE_LIKE"; //오피스 상세페이지 좋아요 취소
 
 // Action Creator
 const getMainOffice = createAction(GET_MAIN_OFFICE, (main_list) => ({
@@ -34,6 +38,18 @@ const shareClickLike = createAction(SHARE_CLICK_LIKE, (shareofficeid) => ({
 }));
 const shareDeleteLike = createAction(SHARE_DELETE_LIKE, (shareofficeid) => ({
   shareofficeid,
+}));
+const oneClickLike = createAction(ONE_CLICK_LIKE, (mylike) => ({
+  mylike,
+}));
+const oneDeleteLike = createAction(ONE_DELETE_LIKE, (mylike) => ({
+  mylike,
+}));
+const oneShareClickLike = createAction(ONE_SHARE_CLICK_LIKE, (mylike) => ({
+  mylike,
+}));
+const oneShareDeleteLike = createAction(ONE_SHARE_DELETE_LIKE, (mylike) => ({
+  mylike,
 }));
 const getSOList = createAction(
   GET_SEARCH_OFFICE_LIST,
@@ -112,7 +128,6 @@ const mainDeleteLikeDB = (estateId) => {
       });
   };
 };
-
 /* 오피스 좋아요 클릭 */
 const clickLikeDB = (estateId) => {
   return (dispatch) => {
@@ -127,7 +142,6 @@ const clickLikeDB = (estateId) => {
       });
   };
 };
-
 /* 오피스 좋아요 취소 */
 const deleteLikeDB = (estateId) => {
   return (dispatch) => {
@@ -167,6 +181,64 @@ const shareDeleteLikeDB = (shareofficeid) => {
       })
       .catch((err) => {
         console.log("공유 오피스 좋아요 취소 에러", err.message);
+      });
+  };
+};
+/* 오피스 상세 좋아요 클릭 */
+const oneClickLikeDB = (estateId) => {
+  return (dispatch) => {
+    instance
+      .post(`/estates/${estateId}/like`)
+      .then((res) => {
+        Swal.fire("좋아요를 누르셨습니다.");
+        console.log(res.data);
+        dispatch(oneClickLike(res.data.mylike));
+      })
+      .catch((err) => {
+        console.log("오피스좋아요 에러", err.message);
+      });
+  };
+};
+/* 오피스 상세 좋아요 취소 */
+const oneDeleteLikeDB = (estateId) => {
+  return (dispatch) => {
+    instance
+      .post(`/estates/${estateId}/unlike`)
+      .then((res) => {
+        Swal.fire("좋아요를 취소하셨습니다.");
+        dispatch(oneDeleteLike(res.data.mylike));
+      })
+      .catch((err) => {
+        console.log("오피스 좋아요 취소 에러", err.message);
+      });
+  };
+};
+/* 공유 오피스 상세 좋아요 클릭 */
+const oneShareClickLikeDB = (shareofficeid) => {
+  return (dispatch) => {
+    instance
+      .post(`/estates/${shareofficeid}/like`)
+      .then((res) => {
+        Swal.fire("좋아요를 누르셨습니다.");
+        console.log(res.data);
+        dispatch(oneShareClickLike(res.data.mylike));
+      })
+      .catch((err) => {
+        console.log("오피스좋아요 에러", err.message);
+      });
+  };
+};
+/* 공유 오피스 상세 좋아요 취소 */
+const oneShareDeleteLikeDB = (shareofficeid) => {
+  return (dispatch) => {
+    instance
+      .post(`/estates/${shareofficeid}/unlike`)
+      .then((res) => {
+        Swal.fire("좋아요를 취소하셨습니다.");
+        dispatch(oneShareDeleteLike(res.data.mylike));
+      })
+      .catch((err) => {
+        console.log("오피스 좋아요 취소 에러", err.message);
       });
   };
 };
@@ -321,6 +393,22 @@ export default handleActions(
         });
         draft.share_list[numArr[0]].mylike = false;
       }),
+    [ONE_CLICK_LIKE]: (state, action) =>
+      produce(state, (draft) => {
+        draft.one_office.mylike = action.payload.mylike;
+      }),
+    [ONE_DELETE_LIKE]: (state, action) =>
+      produce(state, (draft) => {
+        draft.one_office.mylike = action.payload.mylike;
+      }),
+    [ONE_SHARE_CLICK_LIKE]: (state, action) =>
+      produce(state, (draft) => {
+        draft.one_share_office.mylike = action.payload.mylike;
+      }),
+    [ONE_SHARE_DELETE_LIKE]: (state, action) =>
+      produce(state, (draft) => {
+        draft.one_share_office.mylike = action.payload.mylike;
+      }),
     [GET_SEARCH_OFFICE_LIST]: (state, action) =>
       produce(state, (draft) => {
         if (
@@ -363,6 +451,10 @@ const actionCreators = {
   mainDeleteLikeDB,
   shareClickLikeDB,
   shareDeleteLikeDB,
+  oneDeleteLikeDB,
+  oneClickLikeDB,
+  oneShareClickLikeDB,
+  oneShareDeleteLikeDB,
 };
 
 export { actionCreators };
