@@ -31,7 +31,7 @@ const SearchPage = () => {
       id: Date.now(),
       text: text,
     };
-    // 검색 중복저장체크 & 특수문자 제외()
+    // 검색 중복저장체크
     if (!localStorage.getItem("keywords").includes(text)) {
       setKeywords([newKeyword, ...keywords]);
       console.log(localStorage.getItem("keywords").includes(text));
