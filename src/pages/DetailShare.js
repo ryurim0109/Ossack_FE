@@ -36,7 +36,7 @@ const DetailShare = () => {
           <Button
             is_back
             _onClick={() => {
-              history.push("/main");
+              history.goBack();
             }}
           />
         </Grid>

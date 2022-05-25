@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Grid, Button } from "../../elements/index";
+import { Button } from "../../elements/index";
 import { history } from "../../redux/configStore";
 import styled from "styled-components";
 import filterIcon from "../../assets/filter.svg";
@@ -13,15 +13,7 @@ const Search = (props) => {
   };
   return (
     <React.Fragment>
-      <Grid
-        width="100%"
-        height="80px"
-        bg="#fff"
-        padding="0 16px"
-        display="flex"
-        alignItems="center"
-        justifyContent="space-between"
-      >
+      <Outter>
         <Button
           is_back
           _onClick={() => {
@@ -64,10 +56,23 @@ const Search = (props) => {
             <Filter isOpen={isOpen} setIsOpen={setIsOpen} />
           </>
         ) : null}
-      </Grid>
+      </Outter>
     </React.Fragment>
   );
 };
+const Outter = styled.div`
+  width: 100%;
+  height: 80px;
+  background: #fff;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99;
+`;
 const ModalBackdrop = styled.div`
   width: 100%;
   height: 100%;
