@@ -82,7 +82,7 @@ const WithDraw = () => {
             </Grid>
             <label htmlFor="check">
               <Text size="14px">
-                위 내용을 모두 확인하 였으며, 이에 동의합니다.
+                위 내용을 모두 확인하였으며, 이에 동의합니다.
               </Text>
             </label>
           </Grid>

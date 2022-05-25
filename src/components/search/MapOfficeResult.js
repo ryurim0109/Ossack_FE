@@ -47,46 +47,44 @@ const MapOfficeResult = (props) => {
                 position="relative"
                 overflow="hidden"
               >
-                <Grid>
-                  <SlickSlider>
-                    {o?.images?.map((image, idx) => {
-                      return (
-                        <Image
-                          key={idx}
-                          padding="235px"
-                          src={image}
-                          shape="rectangle"
-                          radius="8px"
-                          position="absolute"
-                          bottom="0"
-                        />
-                      );
-                    })}
-                  </SlickSlider>
-                  {o.mylike ? (
-                    <Button
-                      position="absolute"
-                      right="8px"
-                      top="8px"
-                      fill_like
-                      color="#FF0000"
-                      _onClick={() =>
-                        dispatch(officeActions.deleteLikeDB(o.estateid))
-                      }
-                    />
-                  ) : (
-                    <Button
-                      position="absoulte"
-                      right="8px"
-                      top="8px"
-                      is_like
-                      color="#fff"
-                      _onClick={() =>
-                        dispatch(officeActions.clickLikeDB(o.estateid))
-                      }
-                    />
-                  )}
-                </Grid>
+                <SlickSlider>
+                  {o?.images?.map((image, idx) => {
+                    return (
+                      <Image
+                        key={idx}
+                        padding="235px"
+                        src={image}
+                        shape="rectangle"
+                        radius="8px"
+                        position="absolute"
+                        bottom="0"
+                      />
+                    );
+                  })}
+                </SlickSlider>
+                {o.mylike ? (
+                  <Button
+                    position="absolute"
+                    right="8px"
+                    top="8px"
+                    fill_like
+                    color="#FF0000"
+                    _onClick={() =>
+                      dispatch(officeActions.deleteLikeDB(o.estateid))
+                    }
+                  />
+                ) : (
+                  <Button
+                    position="absolute"
+                    right="8px"
+                    top="8px"
+                    is_like
+                    color="#fff"
+                    _onClick={() =>
+                      dispatch(officeActions.clickLikeDB(o.estateid))
+                    }
+                  />
+                )}
               </Grid>
               <Grid
                 _onClick={() => {
