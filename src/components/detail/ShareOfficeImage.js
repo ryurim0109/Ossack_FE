@@ -1,6 +1,6 @@
 import React from "react";
 
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { Grid, Image } from "../../elements/index";
 
 import { SlickSlider } from "../../components/shared/home";
