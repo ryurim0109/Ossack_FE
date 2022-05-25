@@ -33,8 +33,8 @@ const setUserEmail = createAction(SET_USEREMAIL, (userEmail, statusCode) => ({
 const signUpApi = (user) => {
   return async function (dispatch, getState, { history }) {
     try {
-      //const response = await axios.post("https://ossack-dk.shop/user/signup", {
-      const response = await axios.post("http://3.39.177.59:8080/user/signup", {
+      const response = await axios.post("https://ossack-dk.shop/user/signup", {
+        //const response = await axios.post("http://3.39.177.59:8080/user/signup", {
         userEmail: user.userEmail,
         nickname: user.nickname,
         password: user.password,
@@ -43,10 +43,10 @@ const signUpApi = (user) => {
         Swal.fire("회원가입에 성공했습니다!");
         history.replace("/login");
       } else {
-        alert("회원가입에 실패했습니다. 다시 시도해주세요!!");
+        Swal.fire("회원가입에 실패했습니다. 다시 시도해주세요~");
       }
     } catch (err) {
-      alert("회원가입에 실패했습니다. 다시 시도해주세요~");
+      Swal.fire("회원가입에 실패했습니다. 다시 시도해주세요~");
       console.log("에러발생", err);
     }
   };
@@ -55,13 +55,13 @@ const signUpApi = (user) => {
 const loginApi = (userEmail, password) => {
   return async function (dispatch, getState, { history }) {
     try {
-      const response = await axios.post("http://3.39.177.59:8080/user/login", {
-        //const response = await axios.post("https://ossack-dk.shop/user/login", {
+      //const response = await axios.post("http://3.39.177.59:8080/user/login", {
+      const response = await axios.post("https://ossack-dk.shop/user/login", {
         userEmail: userEmail,
         password: password,
       });
       //const response = RESP.USERLOGINPOST;
-      console.log("로그인체크", response);
+      //console.log("로그인체크", response);
 
       if (response.status === 200) {
         Swal.fire("로그인 성공");
@@ -116,10 +116,10 @@ const userEmailCheckDB = (userEmail) => {
       const response = await instance.post("/user/idcheck", {
         userEmail: userEmail,
       });
-      console.log("response : ", response);
+      //console.log("response : ", response);
 
       if (response.data === true) {
-        console.log("response.data : ", typeof response.data);
+        // console.log("response.data : ", typeof response.data);
         dispatch(setUserEmail(userEmail, response.data));
         Swal.fire({
           title: "사용가능한 이메일입니다!",
@@ -260,8 +260,8 @@ const editProfileDB = (nickname, image, userimg) => {
   }
   return function (dispatch, getState, { history }) {
     axios
-      .put("http://3.39.177.59:8080/user/profile", file, {
-        //.put("https://ossack-dk.shop/user/profile", file, {
+      // .put("http://3.39.177.59:8080/user/profile", file, {
+      .put("https://ossack-dk.shop/user/profile", file, {
         headers: {
           Authorization: `BEARER ${localStorage.getItem("token")}`,
           "Content-Type": "multipart/form-data",
@@ -287,8 +287,8 @@ const userImgDeleteDB = (nickname) => {
 
   return function (dispatch, getState, { history }) {
     axios
-      .put("http://3.39.177.59:8080/user/profile", file, {
-        //.put("https://ossack-dk.shop/user/profile", file, {
+      //.put("http://3.39.177.59:8080/user/profile", file, {
+      .put("https://ossack-dk.shop/user/profile", file, {
         headers: {
           Authorization: `BEARER ${localStorage.getItem("token")}`,
           "Content-Type": "multipart/form-data",
@@ -300,7 +300,7 @@ const userImgDeleteDB = (nickname) => {
         instance
           .get("/user/islogin")
           .then((res) => {
-            console.log(res, "나는 로그인체크 응답");
+            //console.log(res, "나는 로그인체크 응답");
             dispatch(user_img(res.data.imageUrl));
           })
           .catch((error) => console.log("유저정보저장오류", error));
