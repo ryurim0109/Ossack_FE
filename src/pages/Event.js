@@ -1,11 +1,32 @@
 import React from "react";
 import styled from "styled-components";
-import { Grid, Text } from "../elements/index";
+import { Grid, Text, Button } from "../elements/index";
 import eventImg from "../assets/banner02.png";
+import { history } from "../redux/configStore";
 
 const Event = () => {
   return (
     <React.Fragment>
+      <Header>
+        <Grid width="5%" display="flex" alignItems="center">
+          <Button
+            is_back
+            _onClick={() => {
+              history.push("/main");
+            }}
+          />
+        </Grid>
+        <Grid
+          width="95%"
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+        >
+          <Text size="18px" bold cursor="pointer">
+            이벤트
+          </Text>
+        </Grid>
+      </Header>
       <Outter>
         <Grid width="275px" height="241px" margin="24px 0 0">
           <img src={eventImg} alt="선물 이미지" />
@@ -96,11 +117,25 @@ const Event = () => {
     </React.Fragment>
   );
 };
+const Header = styled.div`
+  width: 100%;
+  height: 56px;
+  background-color: #fff;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99;
+`;
 const Outter = styled.div`
   width: 100%;
   height: auto;
   background-color: #fcdfdf;
   position: relative;
+  top: 56px;
   display: flex;
   flex-direction: column;
   align-items: center;
