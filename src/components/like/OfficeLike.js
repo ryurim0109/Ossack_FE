@@ -45,7 +45,6 @@ const OfficeLike = (props) => {
                   width="100%"
                   margin="16px 0"
                   height="235px"
-                  bg="#999"
                   borderRadius="8px"
                   position="relative"
                   overflow="hidden"
@@ -62,16 +61,17 @@ const OfficeLike = (props) => {
                               src={image}
                               shape="rectangle"
                               position="absolute"
+                              radius="8px"
                             />
                           );
                         })}
                     </SlickSlider>
                     <Button
-                      fill_like
                       position="absolute"
                       right="8px"
                       top="8px"
-                      color="#FF0000"
+                      color="#FF679E"
+                      fill_like
                       _onClick={() =>
                         dispatch(
                           favoriteActions.unlikeOfficeDB(office.estateid)
@@ -96,7 +96,7 @@ const OfficeLike = (props) => {
                   <Text bold size="14px" cursor="pointer">
                     <Span>월세</Span> {office.rent_fee ? office.rent_fee : 200}
                     만<Span>보증금</Span>
-                    {office.deposit ? office.deposit : "3,000만"}
+                    {office.deposit ? office.deposit : "3,000만"}만
                   </Text>
                 </Grid>
               </Grid>

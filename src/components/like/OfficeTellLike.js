@@ -64,6 +64,7 @@ const OfficeTellLike = (props) => {
                               src={image}
                               shape="rectangle"
                               position="absolute"
+                              radius="8px"
                             />
                           );
                         })}
