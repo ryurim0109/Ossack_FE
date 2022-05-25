@@ -191,7 +191,6 @@ const oneClickLikeDB = (estateId) => {
       .post(`/estates/${estateId}/like`)
       .then((res) => {
         Swal.fire("좋아요를 누르셨습니다.");
-        console.log(res.data);
         dispatch(oneClickLike(res.data.mylike));
       })
       .catch((err) => {
@@ -220,7 +219,6 @@ const oneShareClickLikeDB = (shareofficeid) => {
       .post(`/estates/${shareofficeid}/like`)
       .then((res) => {
         Swal.fire("좋아요를 누르셨습니다.");
-        console.log(res.data);
         dispatch(oneShareClickLike(res.data.mylike));
       })
       .catch((err) => {
