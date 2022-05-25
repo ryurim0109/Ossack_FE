@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import { MyHeader } from "../components/my/index";
 import { OneMap } from "../components/map/index";
 import { Grid, Text, Button } from "../elements/index";
 import { useParams } from "react-router-dom";
