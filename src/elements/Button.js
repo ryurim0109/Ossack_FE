@@ -29,7 +29,6 @@ const Button = (props) => {
     fontSize,
     position,
     is_back,
-    is_edit,
     is_close,
     _disabled,
     fill_like,

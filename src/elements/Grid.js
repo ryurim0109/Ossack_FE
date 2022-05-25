@@ -150,9 +150,8 @@ const GridBox = styled.div`
   text-align: ${(props) => props.textAlign};
   border: ${(props) => props.border};
   gap: ${(props) => props.gap};
-  ${(props) =>
-    props.borderRadius ? `border-radius: ${props.borderRadius}` : ""};
   border-top: ${(props) => props.borderTop};
+  border-radius: ${(props) => props.borderRadius};
   border-bottom: ${(props) => props.borderBottom};
   border-left: ${(props) => props.borderLeft};
   border-right: ${(props) => props.borderRight};
@@ -183,6 +182,9 @@ const GridBox = styled.div`
   cursor: pointer;`
         : ""}
     ${(props) => (props.hover_font ? `color : ${props.hover_font}` : null)}
+  }
+  .safari_only {
+    overflow: ${(props) => props.overflow};
   }
 `;
 

@@ -11,6 +11,8 @@ import {
 } from "@mui/material/";
 import styled from "styled-components";
 import { Text } from "../elements/index";
+import { MdKeyboardArrowLeft } from "react-icons/md";
+import { history } from "../redux/configStore";
 
 import { actionCreators as userActions } from "../redux/modules/user";
 import { useDispatch } from "react-redux";
@@ -137,6 +139,13 @@ const Signup = () => {
           alignItems: "flex-start",
         }}
       >
+        <BackBtn
+          onClick={() => {
+            history.push("/login");
+          }}
+        >
+          <MdKeyboardArrowLeft fontSize="28" />
+        </BackBtn>
         <Grid display="flex" flexDirection="column" component="h1" variant="h5">
           <Text size="1.250rem" bold>
             <Text color="#3E00FF" bold>
@@ -266,5 +275,13 @@ const FormHelperTexts = styled(FormHelperText)`
 
 const Boxs = styled(Box)`
   padding-bottom: 40px;
+`;
+const BackBtn = styled(Box)`
+  width: 28px;
+  height: 28px;
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  cursor: pointer;
 `;
 export default Signup;

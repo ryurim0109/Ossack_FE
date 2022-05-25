@@ -34,27 +34,6 @@ const OfficeImage = () => {
                 );
               })}
           </SlickSlider>
-          {/* {getOneOffice?.mylike ? (
-                <Button
-                  fill_like
-                  position="absolute"
-                  right="8px"
-                  top="8px"
-                  color="#FF0000"
-                  _onClick={() =>
-                    dispatch(officeActions.deleteLikeDB(estateid))
-                  }
-                />
-              ) : (
-                <Button
-                  is_like
-                  position="absolute"
-                  right="8px"
-                  top="8px"
-                  color="#fff"
-                  _onClick={() => dispatch(officeActions.clickLikeDB(estateid))}
-                />
-              )} */}
         </Grid>
       </Grid>
     </React.Fragment>

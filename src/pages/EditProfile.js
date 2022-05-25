@@ -37,10 +37,10 @@ const EditProfile = () => {
     setNickname(e.target.value);
   };
   const editProfile = () => {
-    let maxSize = 3 * 1024 * 1024;
+    let maxSize = 5 * 1024 * 1024;
     let fileSize = image.size;
     if (fileSize > maxSize) {
-      Swal.fire("첨부파일 사이즈는 3MB 이내로 등록 가능합니다.");
+      Swal.fire("첨부파일 사이즈는 5MB 이내로 등록 가능합니다.");
       return false;
     }
     if (!checkName(nickname)) {
@@ -71,7 +71,7 @@ const EditProfile = () => {
   };
   return (
     <React.Fragment>
-      <MyHeader>프로필 변경</MyHeader>
+      <MyHeader is_my>프로필 변경</MyHeader>
       <Outter>
         <Grid
           width="100%"
