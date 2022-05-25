@@ -33,16 +33,14 @@ const setUserEmail = createAction(SET_USEREMAIL, (userEmail, statusCode) => ({
 const signUpApi = (user) => {
   return async function (dispatch, getState, { history }) {
     try {
-      //const response = await axios.post("https://ossack-dk.shop/user/signup", {
-      const response = await axios.post("http://3.39.177.59:8080/user/signup", {
+      const response = await axios.post("https://ossack-dk.shop/user/signup", {
+        //const response = await axios.post("http://3.39.177.59:8080/user/signup", {
         userEmail: user.userEmail,
         nickname: user.nickname,
         password: user.password,
       });
-      //const response = RESP.USERSIGNUPPOST;
-
       if (response.status === 200) {
-        alert(`${user.nickname}님 ${response.data.message}`);
+        Swal.fire("회원가입에 성공했습니다!");
         history.replace("/login");
       } else {
         alert("회원가입에 실패했습니다. 다시 시도해주세요!!");
@@ -57,8 +55,8 @@ const signUpApi = (user) => {
 const loginApi = (userEmail, password) => {
   return async function (dispatch, getState, { history }) {
     try {
-      const response = await axios.post("http://3.39.177.59:8080/user/login", {
-        //const response = await axios.post("https://ossack-dk.shop/user/login", {
+      //const response = await axios.post("http://3.39.177.59:8080/user/login", {
+      const response = await axios.post("https://ossack-dk.shop/user/login", {
         userEmail: userEmail,
         password: password,
       });
@@ -262,8 +260,8 @@ const editProfileDB = (nickname, image, userimg) => {
   }
   return function (dispatch, getState, { history }) {
     axios
-      .put("http://3.39.177.59:8080/user/profile", file, {
-        //.put("https://ossack-dk.shop/user/profile", file, {
+      //.put("http://3.39.177.59:8080/user/profile", file, {
+      .put("https://ossack-dk.shop/user/profile", file, {
         headers: {
           Authorization: `BEARER ${localStorage.getItem("token")}`,
           "Content-Type": "multipart/form-data",
@@ -289,8 +287,8 @@ const userImgDeleteDB = (nickname) => {
 
   return function (dispatch, getState, { history }) {
     axios
-      .put("http://3.39.177.59:8080/user/profile", file, {
-        //.put("https://ossack-dk.shop/user/profile", file, {
+      //.put("http://3.39.177.59:8080/user/profile", file, {
+      .put("https://ossack-dk.shop/user/profile", file, {
         headers: {
           Authorization: `BEARER ${localStorage.getItem("token")}`,
           "Content-Type": "multipart/form-data",
