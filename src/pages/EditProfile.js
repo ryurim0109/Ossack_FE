@@ -45,7 +45,7 @@ const EditProfile = () => {
     }
     if (!checkName(nickname)) {
       Swal.fire({
-        title: "닉네임은 2글자 ~ 8글자에서 정해주세요!",
+        title: "닉네임은 2글자 ~ 8글자로 영어, 한글로만 정해주세요!",
         showCancelButton: false,
         confirmButtonText: "네",
       });

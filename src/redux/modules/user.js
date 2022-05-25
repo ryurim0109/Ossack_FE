@@ -33,8 +33,8 @@ const setUserEmail = createAction(SET_USEREMAIL, (userEmail, statusCode) => ({
 const signUpApi = (user) => {
   return async function (dispatch, getState, { history }) {
     try {
-      const response = await axios.post("https://ossack-dk.shop/user/signup", {
-        //const response = await axios.post("http://3.39.177.59:8080/user/signup", {
+      //const response = await axios.post("https://ossack-dk.shop/user/signup", {
+      const response = await axios.post("http://3.39.177.59:8080/user/signup", {
         userEmail: user.userEmail,
         nickname: user.nickname,
         password: user.password,
@@ -55,8 +55,8 @@ const signUpApi = (user) => {
 const loginApi = (userEmail, password) => {
   return async function (dispatch, getState, { history }) {
     try {
-      //const response = await axios.post("http://3.39.177.59:8080/user/login", {
-      const response = await axios.post("https://ossack-dk.shop/user/login", {
+      const response = await axios.post("http://3.39.177.59:8080/user/login", {
+        //const response = await axios.post("https://ossack-dk.shop/user/login", {
         userEmail: userEmail,
         password: password,
       });
@@ -118,9 +118,9 @@ const userEmailCheckDB = (userEmail) => {
       });
       console.log("response : ", response);
 
-      if (response.data.data.includes("true")) {
-        console.log("response.data.data : ", response.data.data);
-        dispatch(setUserEmail(userEmail, response.data.data));
+      if (response.data === true) {
+        console.log("response.data.data : ", typeof response.data);
+        dispatch(setUserEmail(userEmail, response.data));
         Swal.fire({
           title: "사용가능한 이메일입니다!",
           showCancelButton: false,
@@ -128,7 +128,7 @@ const userEmailCheckDB = (userEmail) => {
           confirmButtonColor: "#3E00FF",
         });
         return true;
-      } else if (response.data.data.includes("false")) {
+      } else if (response.data === false) {
         Swal.fire({
           title: "이미 사용 중인 이메일입니다!",
           showCancelButton: false,
@@ -167,10 +167,12 @@ const logOutApi = () => {
 const resignDB = () => {
   return function (dispatch) {
     instance
-      .put(`/users/resign`)
+      .put(`/user/withdraw`)
       .then((res) => {
-        localStorage.removeItem("token");
+        console.log(res);
         Swal.fire("회원탈퇴가 완료되었습니다.");
+        localStorage.removeItem("token");
+
         window.location.replace("/start");
       })
       .catch((err) => {
@@ -260,8 +262,8 @@ const editProfileDB = (nickname, image, userimg) => {
   }
   return function (dispatch, getState, { history }) {
     axios
-      //.put("http://3.39.177.59:8080/user/profile", file, {
-      .put("https://ossack-dk.shop/user/profile", file, {
+      .put("http://3.39.177.59:8080/user/profile", file, {
+        //.put("https://ossack-dk.shop/user/profile", file, {
         headers: {
           Authorization: `BEARER ${localStorage.getItem("token")}`,
           "Content-Type": "multipart/form-data",
@@ -287,8 +289,8 @@ const userImgDeleteDB = (nickname) => {
 
   return function (dispatch, getState, { history }) {
     axios
-      //.put("http://3.39.177.59:8080/user/profile", file, {
-      .put("https://ossack-dk.shop/user/profile", file, {
+      .put("http://3.39.177.59:8080/user/profile", file, {
+        //.put("https://ossack-dk.shop/user/profile", file, {
         headers: {
           Authorization: `BEARER ${localStorage.getItem("token")}`,
           "Content-Type": "multipart/form-data",

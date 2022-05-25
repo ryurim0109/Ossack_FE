@@ -7,9 +7,6 @@ const Event = () => {
   return (
     <React.Fragment>
       <Outter>
-        {/*  <Inner
-          
-        ></Inner> */}
         <Grid width="275px" height="241px" margin="24px 0 0">
           <img src={eventImg} alt="선물 이미지" />
         </Grid>

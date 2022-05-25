@@ -12,7 +12,7 @@ const MyHeader = (props) => {
           <Button
             is_back
             _onClick={() => {
-              history.goBack();
+              history.push("/main");
             }}
           />
         </Grid>

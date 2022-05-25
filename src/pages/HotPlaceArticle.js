@@ -2,7 +2,7 @@ import React from "react";
 
 import styled from "styled-components";
 import { MyHeader } from "../components/my/index";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Grid, Image, Text, Button } from "../elements/index";
 import { history } from "../redux/configStore";
 
