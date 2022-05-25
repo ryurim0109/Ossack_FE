@@ -49,14 +49,14 @@ const Search = (props) => {
             <img src={filterIcon} alt="필터아이콘" />
           </button>
         ) : null}
-
-        {isOpen ? (
-          <>
-            <ModalBackdrop onClick={openModalHandler}></ModalBackdrop>
-            <Filter isOpen={isOpen} setIsOpen={setIsOpen} />
-          </>
-        ) : null}
       </Outter>
+
+      {isOpen ? (
+        <>
+          <ModalBackdrop onClick={openModalHandler}></ModalBackdrop>
+          <Filter isOpen={isOpen} setIsOpen={setIsOpen} />
+        </>
+      ) : null}
     </React.Fragment>
   );
 };

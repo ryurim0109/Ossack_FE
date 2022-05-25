@@ -99,13 +99,13 @@ const Filter = (props) => {
                 margin="24px 0 0"
               >
                 <Btn id="1000" onClick={GetClick}>
-                  1천만원 이하
+                  1천만원
                 </Btn>
                 <Btn id="2000" onClick={GetClick}>
-                  2천만원대
+                  2천만원
                 </Btn>
                 <Btn id="3000" onClick={GetClick}>
-                  3천만원대
+                  3천만원
                 </Btn>
               </Grid>
               <Grid
@@ -115,13 +115,13 @@ const Filter = (props) => {
                 margin="24px 0 0"
               >
                 <Btn id="4000" onClick={GetClick}>
-                  4천만원대
+                  4천만원
                 </Btn>
                 <Btn id="5000" onClick={GetClick}>
-                  5천만원대
+                  5천만원
                 </Btn>
                 <Btn id="6000" onClick={GetClick}>
-                  6천만원 이상
+                  6천만원
                 </Btn>
               </Grid>
             </Grid>
