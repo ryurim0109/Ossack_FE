@@ -41,7 +41,7 @@ const DetailShare = () => {
           />
         </Grid>
         <Grid
-          width="90%"
+          width="248px"
           display="flex"
           alignItems="center"
           justifyContent="center"
@@ -121,7 +121,9 @@ const DetailShare = () => {
                 <Bp style={{ padding: "3px 16px" }}>위치</Bp>
                 <Sp style={{ padding: "0 16px" }}>
                   {" "}
-                  {getOneShareOffice?.address}{" "}
+                  {getOneShareOffice?.detail_address === getOneShareOffice?.name
+                    ? getOneShareOffice?.address
+                    : getOneShareOffice?.detail_address}{" "}
                 </Sp>
               </Grid>
               <OneMap shareofficeid={shareofficeid}></OneMap>

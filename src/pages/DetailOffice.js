@@ -49,7 +49,7 @@ const DetailOffice = () => {
           />
         </Grid>
         <Grid
-          width="90%"
+          width="248px"
           display="flex"
           alignItems="center"
           justifyContent="center"
