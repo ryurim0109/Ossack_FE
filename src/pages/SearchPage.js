@@ -7,13 +7,9 @@ import SearchHistory from "../components/search/SearchHistory";
 import SearchBar from "../components/search/SearchBar";
 import { actionCreators as officeActions } from "../redux/modules/office";
 import { Bar } from "../components/shared/home";
-
 import { useDispatch } from "react-redux";
-
-import Tabs from "@material-ui/core/Tabs";
-import MapOfficeList from "./MapOfficeList";
-import MapShareList from "./MapShareList";
 import { Grid, Text } from "../elements/index";
+import Tabs from "@material-ui/core/Tabs";
 
 const SearchPage = () => {
   const dispatch = useDispatch();
@@ -35,7 +31,11 @@ const SearchPage = () => {
       id: Date.now(),
       text: text,
     };
-    setKeywords([newKeyword, ...keywords]);
+    // 검색 중복저장체크 & 특수문자 제외()
+    if (!localStorage.getItem("keywords").includes(text)) {
+      setKeywords([newKeyword, ...keywords]);
+      console.log(localStorage.getItem("keywords").includes(text));
+    }
 
     dispatch(officeActions.getSOListDB(newKeyword.text));
   };
