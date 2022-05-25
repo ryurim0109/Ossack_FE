@@ -23,9 +23,10 @@ const MyPage = (props) => {
 };
 const Outter = styled.div`
   width: 100%;
-  height: 600px;
+  height: 700px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  padding-bottom: 70px;
 `;
 export default MyPage;
