@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Grid, Text } from "../elements/index";
 import { actionCreators as userActions } from "../redux/modules/user";
@@ -8,6 +8,9 @@ import { useDispatch, useSelector } from "react-redux";
 
 const WithDraw = () => {
   const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(userActions.loginCheckApi());
+  }, [dispatch]);
   const user_info = useSelector((state) => state.user.user);
   const [isChecked, setIsChecked] = useState(false);
   const handleChecked = () => {
