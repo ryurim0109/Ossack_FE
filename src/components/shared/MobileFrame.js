@@ -7,14 +7,14 @@ const MobileFrame = ({ children }) => {
   const { pathname } = useLocation();
   const mobileFrame = useRef();
 
-  console.log("path : ", pathname);
+  //console.log("path : ", pathname);
 
   useEffect(() => {
     // const element = document.getElementById("mobileFrame");
     // element.scrollTo(0, 0);
 
     mobileFrame.current.scrollTo(0, 0);
-    console.log("called");
+    //console.log("called");
 
     // window.scrollTo(0, 0);
     // console.log("called");

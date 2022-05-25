@@ -22,14 +22,18 @@ const Event = () => {
           </Text>
           <p>
             오싹을 이용하시면서 찾은 버그를 저희에게 알려주세요!
-            <br /> 버그를 찾은 선착순 5분에게 치킨 기프티콘이 팡팡
-            <br /> 버그를 못찾았다고 아쉬워 하지마세요. <br /> 설문조사에서 저희
-            서비스의 아쉬운점을 정성스럽게
+            <br /> 버그를 찾은 5분에게 추첨을 통한 치킨 기프티콘이 팡팡
+            <br /> 버그를 못찾았다고 아쉬워 하지마세요.{" "}
+          </p>
+          <p>
+            설문조사에서 저희 서비스의 아쉬운점을 정성스럽게
             <br /> 작성해주신 분들에게는 추첨을 통해
             <br /> 스타벅스 기프티콘을 드립니다!!
-            <br /> 많은 참여와 관심 부탁드립니다 ❤️ (많관부)
-            <br /> 더 좋은 서비스로 보답하겠습니다.
-            <br /> 칭,,칭찬도 해주시면 감사하겠습니다!
+          </p>
+          <p>
+            많은 참여와 관심 부탁드립니다 ❤️ (많관부)
+            <br />더 좋은 서비스로 보답하겠습니다. <br />
+            칭,,칭찬도 해주시면 감사하겠습니다!
           </p>
         </TextBox>
         <EventBox>
@@ -110,7 +114,7 @@ const Outter = styled.div`
 `;
 const TextBox = styled.div`
   width: 100%;
-  height: 312px;
+  height: 430px;
   margin-top: 11px;
   display: flex;
   flex-direction: column;
@@ -118,10 +122,10 @@ const TextBox = styled.div`
   padding: 0 16px;
   text-align: center;
 
-  &p {
+  & p {
     margin: 8px 0 26px 0;
     font-size: ${({ theme }) => theme.fontSizes.base};
-    line-height: 119%;
+    line-height: 24px;
     font-weight: 500;
   }
 `;
