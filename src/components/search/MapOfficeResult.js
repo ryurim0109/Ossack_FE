@@ -53,38 +53,34 @@ const MapOfficeResult = (props) => {
                       <Image
                         key={idx}
                         padding="235px"
-                        bottom="0"
                         src={image}
                         shape="rectangle"
                         radius="8px"
-                        position="absolute"
                       />
                     );
                   })}
                 </SlickSlider>
-                {o.mylike ? (
-                  <Button
-                    fill_like
-                    position="absolute"
-                    right="8px"
-                    top="8px"
-                    color="#FF0000"
-                    _onClick={() =>
-                      dispatch(officeActions.deleteLikeDB(o.estateid))
-                    }
-                  />
-                ) : (
-                  <Button
-                    is_like
-                    position="absolute"
-                    right="8px"
-                    top="8px"
-                    color="#fff"
-                    _onClick={() =>
-                      dispatch(officeActions.clickLikeDB(o.estateid))
-                    }
-                  />
-                )}
+                <Absolute>
+                  {o.mylike ? (
+                    <Button
+                      position="absoulte"
+                      fill_like
+                      color="#FF0000"
+                      _onClick={() =>
+                        dispatch(officeActions.deleteLikeDB(o.estateid))
+                      }
+                    />
+                  ) : (
+                    <Button
+                      position="absoulte"
+                      is_like
+                      color="#fff"
+                      _onClick={() =>
+                        dispatch(officeActions.clickLikeDB(o.estateid))
+                      }
+                    />
+                  )}
+                </Absolute>
               </Grid>
               <Grid
                 _onClick={() => {
@@ -124,6 +120,18 @@ const MapOfficeResult = (props) => {
     );
   }
 };
+const Absolute = styled.div`
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  top: 8px;
+  right: 8px;
+  z-index: 99;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 const Span = styled.span`
   font-size: ${({ theme }) => theme.fontSizes.xs};
   font-weight: normal;
