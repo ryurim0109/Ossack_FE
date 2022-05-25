@@ -123,7 +123,7 @@ const PlaceList = () => {
                 padding="8px 16px 16px"
                 cursor="pointer"
                 _onClick={() => {
-                  hotOfficeClick("articlesec");
+                  hotOfficeClick("articletrd");
                 }}
               >
                 <Grid

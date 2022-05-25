@@ -7,18 +7,15 @@ import { Grid, Image, Text, Button } from "../elements/index";
 import { history } from "../redux/configStore";
 
 import Bar from "../components/shared/Bar";
-import img01 from "../assets/articlefst_1.png";
-import img02 from "../assets/articlefst_2.png";
-import img03 from "../assets/articlefst_3.png";
-import img04 from "../assets/articlefst_4.png";
+import img01 from "../assets/articlepic_1.png";
+import img02 from "../assets/articlepic_2.png";
+import img03 from "../assets/articlepic_3.png";
+import img04 from "../assets/articlepic_4.png";
+import img05 from "../assets/articlepic_5.png";
+import img06 from "../assets/articlepic_6.png";
 
 const HotPlaceArticle = () => {
   const name = useParams().name;
-
-  //   const List = () => {
-  //     const keyword = "을지로";
-  //     history.push(`/map/office?query=${keyword}`);
-  //   };
 
   const List = (keyword) => {
     //const keyword = "을지로";
@@ -203,6 +200,109 @@ const HotPlaceArticle = () => {
               }}
             >
               성수동 매물 보러 가기
+            </Button>
+          </Grid>
+        </Grid>
+        {/* menu bar */}
+        <Bar />
+      </React.Fragment>
+    );
+  } else if (name === "articletrd") {
+    return (
+      <React.Fragment>
+        <MyHeader>지금 가장 HOT한 지역 🔥</MyHeader>
+        <Grid bg="#fff" minHeight="1400px" paddingBottom="90px">
+          <Grid height="255px" bg="#fff" margin="0 0 10px 0">
+            {/* Image*/}
+            <Grid>
+              <Image
+                padding="251px"
+                bottom="0"
+                src={img05}
+                shape="rectangle"
+                position="absolute"
+              />
+            </Grid>
+          </Grid>
+          <Grid height="90px" bg="#fff" padding="16px 0">
+            <Grid height="25px" bg="#fff" padding="0 16px">
+              <Text color="#111" size="1.5rem">
+                <Span>청년 창업 도시로 급부상,</Span>
+              </Text>
+            </Grid>
+            <Grid height="30px" bg="#fff" padding="0 16px">
+              <Text color="#111" size="1.5rem">
+                <Span>성남시 🍄</Span>
+              </Text>
+            </Grid>
+          </Grid>
+          <Grid height="52px" bg="#fff" padding="0 16px" margin="16px 0">
+            <P>
+              성남시가 청년창업 성공률을 높이고 스타트업 육성을 위한 기반
+              다지기에 나섰다.
+            </P>
+          </Grid>
+          <Grid height="150px" bg="#fff" padding="0 16px" margin="16px 0">
+            <P>
+              성남산업진흥재단(대표이사 장병화)은 8일 분당구 정 자동에 위치한
+              킨스타워 대강당에서 글로벌 투자사인 요즈마그룹코리아와
+              벤처캐피탈리스트, 첨단기술기 반 엑셀러레이터 등 6개 기관이 참여한
+              가운데 업무 협약을 맺고 성남지역 창업 생태계 기반구축을 위해
+              협력해나가기로 했다.
+            </P>
+          </Grid>
+          <Grid height="120px" bg="#fff" padding="0 16px" margin="16px 0">
+            <P>
+              이번 협약은 재단이 청년창업을 전략적으로 육성하기 위해 오는
+              10월까지 킨스타워 3개 층에 (가칭)성남혁 신형창업지원센터를 구축
+              중이어서 창업과 스타트업 지원을 위해 필수적 요건인 사전 투자
+              네트워크를 구 축하기 위해 이루어졌다.
+            </P>
+          </Grid>
+          <Grid height="271px" bg="#fff" margin="25px 0" padding="16px 0">
+            {/* Image*/}
+            <Grid>
+              <Image
+                padding="251px"
+                src={img06}
+                shape="rectangle"
+                position="absolute"
+              />
+            </Grid>
+          </Grid>
+          <Grid
+            height="170px"
+            bg="#fff"
+            padding="0 16px"
+            // margin="25px 0"
+          >
+            <Grid height="60px" bg="#fff" margin="17px 0">
+              <P>
+                성남산업진흥재단 장병화 대표이사는 “청년창업 인프 라를 확대하고
+                기술 아이디어에 대한 투자 등 젊은 창 업자와 스타트업들이 성남
+                지역에서 더 많은 혁신형 창업활동을 할 수 있도록 지속적으로
+                지원해 성남시 가 명실상부한 청춘 창업도시로 발전하도록 기반을
+                조성하겠다”고 밝혔다.
+              </P>
+            </Grid>
+          </Grid>
+          <Grid height="46px" bg="#fff" padding="0 16px">
+            <a href="https://www.fmnara.com/news/23121">
+              <Sp>출처 https://www.fmnara.com/news/23121</Sp>
+            </a>
+          </Grid>
+          <Grid height="50px" bg="#fff" padding="0 16px">
+            <Button
+              width="100%"
+              height="48px"
+              backgroundColor="#3E00FF"
+              borderRadius="8px"
+              color="#FFFFFF"
+              _onClick={() => {
+                List("성남시");
+              }}
+            >
+              성남시 매물 보러 가기
             </Button>
           </Grid>
         </Grid>
