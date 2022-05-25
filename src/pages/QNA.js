@@ -28,7 +28,7 @@ const QNA = () => {
 
   return (
     <React.Fragment>
-      <MyHeader> 자주 묻는 질문</MyHeader>
+      <MyHeader is_back> 자주 묻는 질문</MyHeader>
       <Wrap>
         {contents.map((c, idx) => {
           return (

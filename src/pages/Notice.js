@@ -24,7 +24,7 @@ const Notice = () => {
 
   return (
     <React.Fragment>
-      <MyHeader> 공지사항</MyHeader>
+      <MyHeader is_back> 공지사항</MyHeader>
       <Wrap>
         {contents.map((c, idx) => {
           return (

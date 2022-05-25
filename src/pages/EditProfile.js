@@ -71,7 +71,7 @@ const EditProfile = () => {
   };
   return (
     <React.Fragment>
-      <MyHeader>프로필 변경</MyHeader>
+      <MyHeader is_back>프로필 변경</MyHeader>
       <Outter>
         <Grid
           width="100%"

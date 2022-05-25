@@ -22,7 +22,7 @@ const WithDraw = () => {
   };
   return (
     <React.Fragment>
-      <MyHeader>회원 탈퇴</MyHeader>
+      <MyHeader is_back>회원 탈퇴</MyHeader>
       <Outter>
         <Section>
           <Grid margin="20px 0">

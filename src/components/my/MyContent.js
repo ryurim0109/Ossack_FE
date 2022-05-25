@@ -21,14 +21,11 @@ const MyContent = () => {
             display="flex"
             alignItems="center"
             justifyContent="space-between"
+            _onClick={() => {
+              history.push("/mypage/profile");
+            }}
           >
-            <Grid
-              display="flex"
-              alignItems="center"
-              _onClick={() => {
-                history.push("/mypage/profile");
-              }}
-            >
+            <Grid display="flex" alignItems="center">
               <Text size="16px" cursor="pointer">
                 프로필 변경
               </Text>
@@ -39,14 +36,11 @@ const MyContent = () => {
             display="flex"
             alignItems="center"
             justifyContent="space-between"
+            _onClick={() => {
+              history.push("/mypage/notice");
+            }}
           >
-            <Grid
-              display="flex"
-              alignItems="center"
-              _onClick={() => {
-                history.push("/mypage/notice");
-              }}
-            >
+            <Grid display="flex" alignItems="center">
               <Text size="16px" cursor="pointer">
                 공지사항
               </Text>
@@ -57,14 +51,11 @@ const MyContent = () => {
             display="flex"
             alignItems="center"
             justifyContent="space-between"
+            _onClick={() => {
+              history.push("/mypage/qna");
+            }}
           >
-            <Grid
-              display="flex"
-              alignItems="center"
-              _onClick={() => {
-                history.push("/mypage/qna");
-              }}
-            >
+            <Grid display="flex" alignItems="center">
               <Text size="16px" cursor="pointer">
                 자주 묻는 질문
               </Text>
@@ -75,14 +66,11 @@ const MyContent = () => {
             display="flex"
             alignItems="center"
             justifyContent="space-between"
+            _onClick={() => {
+              history.push("/mypage/member");
+            }}
           >
-            <Grid
-              display="flex"
-              alignItems="center"
-              _onClick={() => {
-                history.push("/mypage/member");
-              }}
-            >
+            <Grid display="flex" alignItems="center">
               <Text size="16px" cursor="pointer">
                 팀원 소개
               </Text>

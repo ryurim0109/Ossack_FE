@@ -18,7 +18,7 @@ import { Grid, Image, Text } from "../elements/index";
 const Member = () => {
   return (
     <React.Fragment>
-      <MyHeader>오싹 팀원소개</MyHeader>
+      <MyHeader is_back>오싹 팀원소개</MyHeader>
       <Outter>
         {/* 팀원소개 민우 */}
         <Left
