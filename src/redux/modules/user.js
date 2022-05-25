@@ -119,7 +119,7 @@ const userEmailCheckDB = (userEmail) => {
       console.log("response : ", response);
 
       if (response.data === true) {
-        console.log("response.data.data : ", typeof response.data);
+        console.log("response.data : ", typeof response.data);
         dispatch(setUserEmail(userEmail, response.data));
         Swal.fire({
           title: "사용가능한 이메일입니다!",
@@ -136,9 +136,7 @@ const userEmailCheckDB = (userEmail) => {
           confirmButtonColor: "#FF5151",
         });
         return false;
-      } else if (
-        response.data.message.includes("이메일 형식이 맞지 않습니다.")
-      ) {
+      } else if (response.data.includes("이메일 형식이 맞지 않습니다.")) {
         Swal.fire({
           title: "이메일 형식이 맞지 않습니다",
           showCancelButton: false,
