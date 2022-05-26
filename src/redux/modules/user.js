@@ -156,7 +156,6 @@ const userEmailCheckDB = (userEmail) => {
 const logOutApi = () => {
   return function (dispatch) {
     localStorage.removeItem("token");
-    Swal.fire("로그아웃이 완료되었습니다.");
     dispatch(logOut());
     window.location.replace("/start");
   };
