@@ -11,7 +11,7 @@ import { useDispatch } from "react-redux";
 import { Grid, Text } from "../elements/index";
 import Tabs from "@material-ui/core/Tabs";
 
-import { searchCheck } from "../shared/nameCheck";
+import { searchCheck } from "../shared/regCheck";
 import Swal from "sweetalert2";
 
 const SearchPage = () => {
