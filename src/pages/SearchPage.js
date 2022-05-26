@@ -119,6 +119,7 @@ const SearchPage = () => {
           keywords={keywords}
           onClearKeywords={handleClearKeywords}
           onRemoveKeyword={handleRemoveKeyword}
+          activeTab={activeTab}
         />
       </Outter>
       <Bar />
