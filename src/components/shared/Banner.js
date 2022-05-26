@@ -35,7 +35,7 @@ const Banner = (props) => {
         >
           <BannerBlue>
             <Div>
-              <SP>오싹의 설문조사에 참여하시면,</SP>
+              <SP>설문조사에 참여하시면,</SP>
               <P>
                 <Text color="#2759F5" bold>
                   추첨
@@ -43,13 +43,19 @@ const Banner = (props) => {
                 을 통해
                 <br />
                 <Text color="#2759F5" bold>
-                  기프티콘을{" "}
+                  스벅 기프티콘을{" "}
                 </Text>
                 보내드려요!
               </P>
             </Div>
           </BannerBlue>
-          <Grid width="142px" height="102px" position="absolute" right="13px">
+          <Grid
+            width="123px"
+            height="123px"
+            position="absolute"
+            right="13px"
+            bottom="25px"
+          >
             <img src={banner01} alt="설문조사 이미지" />
           </Grid>
         </Grid>
@@ -125,7 +131,7 @@ const SP = styled.p`
   width: 100%;
 `;
 const Div = styled.div`
-  width: 50%;
+  width: 60%;
   height: 65px;
   padding-left: 32px;
   display: flex;
