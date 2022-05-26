@@ -87,11 +87,11 @@ const Filter = (props) => {
             <Br />
           </Grid>
           <Grid width="100%" padding="16px">
-            <Text size="1rem" bold>
+            <Text size="16px" bold>
               가격
             </Text>
             <Grid width="100%" height="173px" padding="24px 0">
-              <Text size="1rem">보증금(전세금)</Text>
+              <Text size="16px">보증금(전세금)</Text>
               <Grid
                 display="flex"
                 height="34px"
@@ -126,7 +126,7 @@ const Filter = (props) => {
               </Grid>
             </Grid>
             <Grid width="100%" height="173px" padding="24px 0">
-              <Text size="1rem">월세</Text>
+              <Text size="16px">월세</Text>
               <Grid
                 display="flex"
                 height="34px"

@@ -236,7 +236,7 @@ button {
 }
 
 input {
-  /* padding: 0.2rem 1rem; */
+  /* padding: 0.2rem 16px; */
   font-family: "Pretendard";
   border: 1px solid #F5F5F5;
 }

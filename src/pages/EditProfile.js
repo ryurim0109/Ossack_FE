@@ -10,6 +10,7 @@ import { useSelector, useDispatch } from "react-redux";
 import defaultImg from "../assets/default.png";
 import Swal from "sweetalert2";
 import { actionCreators as userActions } from "../redux/modules/user";
+import { history } from "../redux/configStore";
 
 const EditProfile = () => {
   const dispatch = useDispatch();
