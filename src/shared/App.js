@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState, lazy, Suspense } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { Route, Switch } from "react-router-dom";
 import { gsap } from "gsap";
@@ -23,22 +23,20 @@ import {
   HotPlaceArticle,
   Event,
   EditProfile,
+  MapOfficeList,
+  MapShareList,
+  Start,
 } from "../pages/index";
 import { MobileFrame } from "../components/shared/home";
 import KaKaoLogin from "../components/social/KaKaoLogin";
 
 import GoogleLogin from "../components/social/GoogleLogin";
-import { LoadSpinner } from "../components/shared/home";
 //css
 import GlobalStyle from "../style/GlobalStyle";
 import theme from "../style/theme";
 import backgroundImg from "../assets/bg.jpg";
 import textImg from "../assets/bg02.png";
 import textImg02 from "../assets/bg03.png";
-
-const MapOfficeList = lazy(() => import("../pages/MapOfficeList"));
-const MapShareList = lazy(() => import("../pages/MapShareList"));
-const Start = lazy(() => import("../pages/Start"));
 
 // import ScrollToTop from "../components/shared/ScrollToTop";
 
@@ -108,58 +106,53 @@ function App() {
         <ThemeProvider theme={theme}>
           <ConnectedRouter history={history}>
             {/* <ScrollToTop history={history}> */}
+
             <MobileFrame className="MobileFramePage">
-              <Suspense fallback={<LoadSpinner />}>
-                <Switch>
-                  <Route path="/" exact component={Splash} />
-                  <Route path="/start" exact component={Start} />
-                  <Route path="/login" exact component={Login} />
-                  <Route path="/signup" exact component={Signup} />
-                  <Route
-                    path="/user/google/callback"
-                    exact
-                    component={GoogleLogin}
-                  />
-                  <Route
-                    path="/user/kakao/callback"
-                    exact
-                    component={KaKaoLogin}
-                  />
-                  <Route path="/main" exact component={Main} />
-                  <Route path="/search" exact component={SearchPage} />
-                  <Route path="/officemap/:name" exact component={SaleMap} />
-                  <Route path="/mypage" exact component={MyPage} />
-                  <Route path="/mypage/qna" exact component={QNA} />
-                  <Route path="/mypage/notice" exact component={Notice} />
-                  <Route path="/mypage/member" exact component={Member} />
-                  <Route path="/mypage/withdraw" exact component={WithDraw} />
-                  <Route path="/mypage/profile" exact component={EditProfile} />
-                  <Route path="/like" exact component={Like} />
-                  <Route path="/map/office" exact component={MapOfficeList} />
-                  <Route
-                    path="/map/shareoffice"
-                    exact
-                    component={MapShareList}
-                  />
-                  <Route
-                    path="/detail/:estateId"
-                    exact
-                    component={DetailOffice}
-                  />
-                  <Route
-                    path="/detail/share/:shareofficeid"
-                    exact
-                    component={DetailShare}
-                  />
-                  <Route
-                    path="/hotplacearticle/:name"
-                    exact
-                    component={HotPlaceArticle}
-                  />
-                  <Route path="/event" exact component={Event} />
-                  <Route path="/*" component={NotFound} />
-                </Switch>
-              </Suspense>
+              <Switch>
+                <Route path="/" exact component={Splash} />
+                <Route path="/start" exact component={Start} />
+                <Route path="/login" exact component={Login} />
+                <Route path="/signup" exact component={Signup} />
+                <Route
+                  path="/user/google/callback"
+                  exact
+                  component={GoogleLogin}
+                />
+                <Route
+                  path="/user/kakao/callback"
+                  exact
+                  component={KaKaoLogin}
+                />
+                <Route path="/main" exact component={Main} />
+                <Route path="/search" exact component={SearchPage} />
+                <Route path="/officemap/:name" exact component={SaleMap} />
+                <Route path="/mypage" exact component={MyPage} />
+                <Route path="/mypage/qna" exact component={QNA} />
+                <Route path="/mypage/notice" exact component={Notice} />
+                <Route path="/mypage/member" exact component={Member} />
+                <Route path="/mypage/withdraw" exact component={WithDraw} />
+                <Route path="/mypage/profile" exact component={EditProfile} />
+                <Route path="/like" exact component={Like} />
+                <Route path="/map/office" exact component={MapOfficeList} />
+                <Route path="/map/shareoffice" exact component={MapShareList} />
+                <Route
+                  path="/detail/:estateId"
+                  exact
+                  component={DetailOffice}
+                />
+                <Route
+                  path="/detail/share/:shareofficeid"
+                  exact
+                  component={DetailShare}
+                />
+                <Route
+                  path="/hotplacearticle/:name"
+                  exact
+                  component={HotPlaceArticle}
+                />
+                <Route path="/event" exact component={Event} />
+                <Route path="/*" component={NotFound} />
+              </Switch>
             </MobileFrame>
 
             {/* </ScrollToTop> */}
