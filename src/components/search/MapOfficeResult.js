@@ -10,6 +10,7 @@ import ossack from "../../assets/ossack02.jpg";
 const MapOfficeResult = (props) => {
   const dispatch = useDispatch();
   const officeData = useSelector((state) => state?.office?.list);
+  const { search } = props;
 
   if (officeData?.length === 0) {
     return (
@@ -53,7 +54,7 @@ const MapOfficeResult = (props) => {
                       <Div
                         key={idx}
                         onClick={() => {
-                          history.push(`/detail/${o.estateid}`);
+                          history.push(`/detail/${o.estateid}?query=${search}`);
                         }}
                       >
                         <Image
@@ -94,7 +95,7 @@ const MapOfficeResult = (props) => {
               </Grid>
               <Grid
                 _onClick={() => {
-                  history.push(`/detail/${o.estateid}`);
+                  history.push(`/detail/${o.estateid}?query=${search}`);
                 }}
                 cursor="pointer"
                 width="100%"

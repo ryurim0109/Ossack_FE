@@ -23,6 +23,8 @@ const DetailShare = () => {
     (state) => state.office.one_share_office
   );
   //console.log("getOneShareOffice : ", getOneShareOffice);
+  const router = useSelector((state) => state.router.location.search);
+  const dong = router?.split("=")[1];
 
   useEffect(() => {
     //console.log(shareofficeid);
@@ -36,7 +38,7 @@ const DetailShare = () => {
           <Button
             is_back
             _onClick={() => {
-              history.goBack();
+              window.location.replace(`/map/shareoffice?query=${dong}`);
             }}
           />
         </Grid>

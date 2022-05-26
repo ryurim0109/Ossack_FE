@@ -46,7 +46,7 @@ const MapShareList = (props) => {
     <React.Fragment>
       <MyHeader>{decodeURI(search)} 리스트</MyHeader>
       <Outter>
-        <ShareOfficeResult />
+        <ShareOfficeResult search={search} />
       </Outter>
       {isLoading ? <Spinner /> : null}
       {totalPage > pageno ? <div ref={setTarget}> </div> : null}

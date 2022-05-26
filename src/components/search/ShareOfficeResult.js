@@ -10,6 +10,7 @@ import ossack from "../../assets/ossack02.jpg";
 const ShareOfficeResult = (props) => {
   const dispatch = useDispatch();
   const officeData = useSelector((state) => state.office.share_list);
+  const { search } = props;
 
   if (officeData?.length === 0) {
     return (
@@ -53,7 +54,9 @@ const ShareOfficeResult = (props) => {
                       <Div
                         key={idx}
                         onClick={() => {
-                          history.push(`/detail/share/${o.shareofficeid}`);
+                          history.push(
+                            `/detail/share/${o.shareofficeid}?query=${search}`
+                          );
                         }}
                       >
                         <Image
@@ -94,7 +97,9 @@ const ShareOfficeResult = (props) => {
               </Grid>
               <Grid
                 _onClick={() => {
-                  history.push(`/detail/share/${o.shareofficeid}`);
+                  history.push(
+                    `/detail/share/${o.shareofficeid}?query=${search}`
+                  );
                 }}
                 cursor="pointer"
                 width="100%"
