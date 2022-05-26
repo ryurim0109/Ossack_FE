@@ -116,7 +116,7 @@ const userEmailCheckDB = (userEmail) => {
       const response = await instance.post("/user/idcheck", {
         userEmail: userEmail,
       });
-      //console.log("response : ", response);
+      console.log("response : ", response);
 
       if (response.data === true) {
         // console.log("response.data : ", typeof response.data);

@@ -14,7 +14,7 @@ const MobileFrame = ({ children }) => {
     // element.scrollTo(0, 0);
 
     mobileFrame.current.scrollTo(0, 0);
-    //console.log("called");
+    // console.log("called");
 
     // window.scrollTo(0, 0);
     // console.log("called");
