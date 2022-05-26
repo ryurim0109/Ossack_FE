@@ -134,11 +134,12 @@ const clickLikeDB = (estateId) => {
     instance
       .post(`/estates/${estateId}/like`)
       .then((res) => {
+        console.log(res);
         Swal.fire("좋아요를 누르셨습니다.");
         dispatch(clickLike(estateId));
       })
       .catch((err) => {
-        console.log("오피스좋아요 에러", err.message);
+        console.log("오피스좋아요 에러", err);
       });
   };
 };
@@ -148,11 +149,12 @@ const deleteLikeDB = (estateId) => {
     instance
       .post(`/estates/${estateId}/unlike`)
       .then((res) => {
+        console.log(res);
         Swal.fire("좋아요를 취소하셨습니다.");
         dispatch(deleteLike(estateId));
       })
       .catch((err) => {
-        console.log("오피스 좋아요 취소 에러", err.message);
+        console.log("오피스 좋아요 취소 에러", err);
       });
   };
 };
@@ -174,7 +176,7 @@ const shareClickLikeDB = (shareofficeid) => {
 const shareDeleteLikeDB = (shareofficeid) => {
   return (dispatch) => {
     instance
-      .delete(`/estates/${shareofficeid}/unlike`)
+      .post(`/estates/${shareofficeid}/unlike`)
       .then((res) => {
         Swal.fire("좋아요를 취소하셨습니다.");
         dispatch(shareDeleteLike(shareofficeid));
