@@ -2,8 +2,6 @@ import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import { instance } from "../../shared/api";
 
-import Swal from "sweetalert2";
-
 // Action type
 const GET_MAIN_OFFICE = "GET_MAIN_OFFICE"; // 메인페이지 리스트 조회
 const MAIN_CLICK_LIKE = "MAIN_CLICK_LIKE"; //메인 좋아요
