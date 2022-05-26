@@ -45,7 +45,7 @@ const MapOfficeList = (props) => {
 
   return (
     <React.Fragment>
-      <MyHeader>{decodeURI(search)} 리스트</MyHeader>
+      <MyHeader is_back>{decodeURI(search)} 리스트</MyHeader>
       <Outter>
         <MapOfficeResult search={search} />
       </Outter>

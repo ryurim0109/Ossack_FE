@@ -44,7 +44,7 @@ const MapShareList = (props) => {
 
   return (
     <React.Fragment>
-      <MyHeader>{decodeURI(search)} 리스트</MyHeader>
+      <MyHeader is_back>{decodeURI(search)} 리스트</MyHeader>
       <Outter>
         <ShareOfficeResult search={search} />
       </Outter>

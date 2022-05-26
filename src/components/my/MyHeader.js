@@ -4,8 +4,33 @@ import { history } from "../../redux/configStore";
 import styled from "styled-components";
 
 const MyHeader = (props) => {
-  const { children, is_close, is_my } = props;
-  if (is_close) {
+  const { children, is_close, is_my, is_back } = props;
+  if (is_back) {
+    return (
+      <React.Fragment>
+        <Header>
+          <Grid width="5%" display="flex" alignItems="center">
+            <Button
+              is_back
+              _onClick={() => {
+                history.goBack();
+              }}
+            />
+          </Grid>
+          <Grid
+            width="95%"
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+          >
+            <Text size="18px" bold cursor="pointer">
+              {children}
+            </Text>
+          </Grid>
+        </Header>
+      </React.Fragment>
+    );
+  } else if (is_close) {
     return (
       <React.Fragment>
         <Header>
