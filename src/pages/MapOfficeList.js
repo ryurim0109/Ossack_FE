@@ -11,7 +11,9 @@ const MapOfficeList = (props) => {
   const dispatch = useDispatch();
   const search = props.location.search.split("=")[1].split("&")[0];
   const totalPage = useSelector((state) => state?.office?.page);
+  const officeList = useSelector((state) => state?.office?.list);
   const router = useSelector((state) => state.router.location.search);
+  const title = officeList[0]?.title;
 
   const [pageno, setPageno] = useState(1);
   const [target, setTarget] = useState(null);
@@ -45,9 +47,9 @@ const MapOfficeList = (props) => {
 
   return (
     <React.Fragment>
-      <MyHeader is_back>{decodeURI(search)} 리스트</MyHeader>
+      <MyHeader is_back>{title} 리스트</MyHeader>
       <Outter>
-        <MapOfficeResult search={search} />
+        <MapOfficeResult title={title} />
       </Outter>
       {isLoading ? <Spinner /> : null}
       {totalPage > pageno ? <div ref={setTarget}> </div> : null}

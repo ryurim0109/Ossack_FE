@@ -21,13 +21,21 @@ const PlaceList = () => {
               borderRadius="8px"
               position="relative"
               overflow="hidden"
+              cursor="pointer"
             >
-              <Image
-                padding="180px"
-                src={img01}
-                shape="rectangle"
-                position="absolute"
-              />
+              <Grid
+                cursor="pointer"
+                _onClick={() => {
+                  hotOfficeClick("articlefst");
+                }}
+              >
+                <Image
+                  padding="180px"
+                  src={img01}
+                  shape="rectangle"
+                  position="absolute"
+                />
+              </Grid>
               <Grid
                 position="absolute"
                 bottom="0"
@@ -64,13 +72,21 @@ const PlaceList = () => {
               borderRadius="8px"
               position="relative"
               overflow="hidden"
+              cursor="pointer"
             >
-              <Image
-                padding="180px"
-                src={img02}
-                shape="rectangle"
-                position="absolute"
-              />
+              <Grid
+                cursor="pointer"
+                _onClick={() => {
+                  hotOfficeClick("articlesec");
+                }}
+              >
+                <Image
+                  padding="180px"
+                  src={img02}
+                  shape="rectangle"
+                  position="absolute"
+                />
+              </Grid>
               <Grid
                 position="absolute"
                 bottom="0"
@@ -107,13 +123,21 @@ const PlaceList = () => {
               borderRadius="8px"
               position="relative"
               overflow="hidden"
+              cursor="pointer"
             >
-              <Image
-                padding="180px"
-                src={img03}
-                shape="rectangle"
-                position="absolute"
-              />
+              <Grid
+                cursor="pointer"
+                _onClick={() => {
+                  hotOfficeClick("articletrd");
+                }}
+              >
+                <Image
+                  padding="180px"
+                  src={img03}
+                  shape="rectangle"
+                  position="absolute"
+                />
+              </Grid>
               <Grid
                 position="absolute"
                 bottom="0"

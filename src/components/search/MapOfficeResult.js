@@ -12,7 +12,7 @@ const MapOfficeResult = (props) => {
   const dispatch = useDispatch();
   const officeData = useSelector((state) => state?.office?.list);
   const is_loaded = useSelector((state) => state.office.is_loaded);
-  const { search } = props;
+  const { title } = props;
 
   if (officeData?.length >= 1) {
     return (
@@ -35,7 +35,7 @@ const MapOfficeResult = (props) => {
                       <Div
                         key={idx}
                         onClick={() => {
-                          history.push(`/detail/${o.estateid}?query=${search}`);
+                          history.push(`/detail/${o.estateid}?query=${title}`);
                         }}
                       >
                         <Image
@@ -76,7 +76,7 @@ const MapOfficeResult = (props) => {
               </Grid>
               <Grid
                 _onClick={() => {
-                  history.push(`/detail/${o.estateid}?query=${search}`);
+                  history.push(`/detail/${o.estateid}?query=${title}`);
                 }}
                 cursor="pointer"
                 width="100%"
