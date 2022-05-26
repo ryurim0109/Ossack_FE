@@ -129,7 +129,14 @@ const EditProfile = () => {
           justifyContent="space-between"
           padding="0 16px"
         >
-          <Text bold>닉네임</Text>
+          <Grid height="28px" display="flex" alignItems="center">
+            <Text size="16px" bold>
+              닉네임{" "}
+            </Text>
+            <Text size="12px" color="#666">
+              (2글자 ~ 10글자내의 영어, 한글로만 정해주세요)
+            </Text>
+          </Grid>
           <NickInput
             onChange={changeNickname}
             defaultValue={user_info?.nickname}
