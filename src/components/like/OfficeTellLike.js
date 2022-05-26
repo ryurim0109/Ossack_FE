@@ -6,7 +6,7 @@ import { actionCreators as favoriteActions } from "../../redux/modules/favorite"
 import { useDispatch, useSelector } from "react-redux";
 import { history } from "../../redux/configStore";
 
-import { SlickSlider } from "../shared/home";
+import { SlickSlider, ImageCnt } from "../shared/home";
 import ossack from "../../assets/ossack02.jpg";
 
 const OfficeTellLike = (props) => {
@@ -62,7 +62,7 @@ const OfficeTellLike = (props) => {
                               key={idx}
                               _onClick={() => {
                                 history.push(
-                                  `/detail/share/${office.shareofficeid}`
+                                  `/detail/share/${office.shareofficeid}?query=${office.address}`
                                 );
                               }}
                             >
@@ -78,6 +78,15 @@ const OfficeTellLike = (props) => {
                           );
                         })}
                     </SlickSlider>
+                    <Grid
+                      width="33px"
+                      height="22px"
+                      position="absolute"
+                      right="8px"
+                      bottom="8px"
+                    >
+                      <ImageCnt>{office?.imageList.length}</ImageCnt>
+                    </Grid>
                     <Button
                       position="absolute"
                       right="8px"
@@ -99,7 +108,9 @@ const OfficeTellLike = (props) => {
                   width="100%"
                   height="40px"
                   _onClick={() => {
-                    history.push(`/detail/share/${office.shareofficeid}`);
+                    history.push(
+                      `/detail/share/${office.shareofficeid}?query=${office.address}`
+                    );
                   }}
                 >
                   <Text bold size="14px" cursor="pointer">

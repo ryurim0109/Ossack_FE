@@ -11,9 +11,8 @@ const MapOfficeList = (props) => {
   const dispatch = useDispatch();
   const search = props.location.search.split("=")[1].split("&")[0];
   const totalPage = useSelector((state) => state?.office?.page);
-  const officeList = useSelector((state) => state?.office?.list);
+  const title = useSelector((state) => state?.office?.keyword);
   const router = useSelector((state) => state.router.location.search);
-  const title = officeList[0]?.title;
 
   const [pageno, setPageno] = useState(1);
   const [target, setTarget] = useState(null);

@@ -3,7 +3,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Grid, Image } from "../../elements/index";
 
-import { SlickSlider } from "../../components/shared/home";
+import { SlickSlider, ImageCnt } from "../../components/shared/home";
 
 const OfficeImage = () => {
   const getOneOffice = useSelector((state) => state.office.one_office);
@@ -12,8 +12,8 @@ const OfficeImage = () => {
     <React.Fragment>
       <Grid
         width="100%"
-        margin="16px 0"
-        height="235px"
+        margin="0 0 16px 0"
+        height="251px"
         bg="#999"
         position="relative"
         overflow="hidden"
@@ -25,7 +25,7 @@ const OfficeImage = () => {
                 return (
                   <Image
                     key={idx}
-                    padding="235px"
+                    padding="251px"
                     bottom="0"
                     src={image}
                     shape="rectangle"
@@ -34,6 +34,15 @@ const OfficeImage = () => {
                 );
               })}
           </SlickSlider>
+          <Grid
+            width="33px"
+            height="22px"
+            position="absolute"
+            right="8px"
+            bottom="8px"
+          >
+            <ImageCnt>{getOneOffice?.images.length}</ImageCnt>
+          </Grid>
         </Grid>
       </Grid>
     </React.Fragment>

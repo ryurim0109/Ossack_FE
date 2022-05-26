@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Grid, Button, Text, Image } from "../../elements/index";
 import { actionCreators as favoriteActions } from "../../redux/modules/favorite";
 import { useDispatch, useSelector } from "react-redux";
-import { SlickSlider } from "../shared/home";
+import { SlickSlider, ImageCnt } from "../shared/home";
 import { history } from "../../redux/configStore";
 import ossack from "../../assets/ossack02.jpg";
 
@@ -58,7 +58,9 @@ const OfficeLike = (props) => {
                               cursor="pointer"
                               key={idx}
                               _onClick={() => {
-                                history.push(`/detail/${office.estateid}`);
+                                history.push(
+                                  `/detail/${office.estateid}?query=${office.address}`
+                                );
                               }}
                             >
                               <Image
@@ -73,6 +75,15 @@ const OfficeLike = (props) => {
                           );
                         })}
                     </SlickSlider>
+                    <Grid
+                      width="33px"
+                      height="22px"
+                      position="absolute"
+                      right="8px"
+                      bottom="8px"
+                    >
+                      <ImageCnt>{office?.images.length}</ImageCnt>
+                    </Grid>
                     <Button
                       position="absolute"
                       right="8px"
@@ -94,7 +105,9 @@ const OfficeLike = (props) => {
                   width="100%"
                   height="40px"
                   _onClick={() => {
-                    history.push(`/detail/${office.estateid}`);
+                    history.push(
+                      `/detail/${office.estateid}?query=${office.address}`
+                    );
                   }}
                 >
                   <Text bold size="14px" cursor="pointer">
