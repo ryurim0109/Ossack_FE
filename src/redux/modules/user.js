@@ -39,7 +39,7 @@ const signUpApi = (user) => {
         nickname: user.nickname,
         password: user.password,
       });
-      console.log("response : ", response);
+      // console.log("response : ", response);
       if (response.status === 200 && response.data.includes("회원가입 성공")) {
         Swal.fire("회원가입에 성공했습니다!");
         history.replace("/login");

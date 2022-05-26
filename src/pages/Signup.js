@@ -31,7 +31,7 @@ const Signup = () => {
   const [userEmailCurrent, setUserEmailCurrent] = useState(false);
 
   const emailDup = useSelector((state) => state.user.statusCode);
-  console.log("emeilDup : ", emailDup);
+  //console.log("emeilDup : ", emailDup);
 
   // 비활성화 여부
   const [userEmail, setUserEmail] = useState("");
@@ -61,7 +61,7 @@ const Signup = () => {
 
   const isPassedSignup = () => {
     if (typeof emailDup === "undefined") {
-      console.log("emailDup : ", emailDup);
+      //console.log("emailDup : ", emailDup);
       setEmailError("이메일 중복확인을 해주세요(🔐)");
     }
     return userEmail.includes("@") &&
@@ -135,10 +135,8 @@ const Signup = () => {
   };
 
   const checkDup = () => {
-    console.log("중복체크여부테스트_1", emailDup);
-
     if (typeof emailDup === "undefined") {
-      console.log("emailDup : ", emailDup);
+      //console.log("emailDup : ", emailDup);
       setEmailError("이메일 중복확인을 해주세요(🔐)");
     }
     setEmailError("");

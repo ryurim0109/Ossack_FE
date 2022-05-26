@@ -2,8 +2,6 @@ import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import { instance } from "../../shared/api";
 
-import Swal from "sweetalert2";
-
 const GET_LIKE = "GET_LIKE"; // 찜한 오피스 조회
 const GET_SHARE_LIKE = "GET_SHARE_LIKE"; // 찜한 공유오피스 조회
 const UNLIKE_OFFICE = "UNLIKE_OFFICE"; //오피스 좋아요 취소
@@ -42,7 +40,6 @@ const unlikeOfficeDB = (estateId) => {
     instance
       .post(`/estates/${estateId}/unlike`)
       .then((res) => {
-        Swal.fire("좋아요를 취소하셨습니다.");
         dispatch(unlikeOffice(estateId));
       })
       .catch((err) => {
@@ -69,7 +66,6 @@ const unlikeShareDB = (shareofficeid) => {
     instance
       .post(`/estates/${shareofficeid}/unlike`)
       .then((res) => {
-        Swal.fire("좋아요를 취소하셨습니다.");
         dispatch(unlikeShare(shareofficeid));
       })
       .catch((err) => {
