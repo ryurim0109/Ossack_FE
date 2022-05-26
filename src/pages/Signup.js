@@ -39,6 +39,7 @@ const Signup = () => {
   const handleEmailInput = (event) => {
     setUserEmail(event.target.value);
     const userEmailCurrent = event.target.value;
+    console.log("userEmailCurrent : ", userEmailCurrent);
     setUserEmailCurrent(userEmailCurrent);
   };
 
