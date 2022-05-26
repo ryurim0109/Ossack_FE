@@ -57,15 +57,24 @@ const OfficeTellLike = (props) => {
                       {office.imageList &&
                         office.imageList.map((image, idx) => {
                           return (
-                            <Image
+                            <Grid
+                              cursor="pointer"
                               key={idx}
-                              padding="235px"
-                              bottom="0"
-                              src={image}
-                              shape="rectangle"
-                              position="absolute"
-                              radius="8px"
-                            />
+                              _onClick={() => {
+                                history.push(
+                                  `/detail/share/${office.shareofficeid}`
+                                );
+                              }}
+                            >
+                              <Image
+                                padding="235px"
+                                bottom="0"
+                                src={image}
+                                shape="rectangle"
+                                position="absolute"
+                                radius="8px"
+                              />
+                            </Grid>
                           );
                         })}
                     </SlickSlider>

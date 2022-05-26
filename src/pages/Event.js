@@ -3,12 +3,16 @@ import styled from "styled-components";
 import { Grid, Text } from "../elements/index";
 import { MyHeader } from "../components/my/index";
 import eventImg from "../assets/banner02.png";
+import eventBg from "../assets/eventbg.png";
 
 const Event = () => {
   return (
     <React.Fragment>
       <MyHeader is_close>이벤트</MyHeader>
       <Outter>
+        <Bg>
+          <img src={eventBg} alt="커피, 치킨" />
+        </Bg>
         <Grid width="275px" height="241px" margin="24px 0 0">
           <img src={eventImg} alt="선물 이미지" />
         </Grid>
@@ -111,6 +115,12 @@ const Outter = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+`;
+const Bg = styled.div`
+  position: absolute;
+  top: 403px;
+  width: 100%;
+  height: 229px;
 `;
 const TextBox = styled.div`
   width: 100%;

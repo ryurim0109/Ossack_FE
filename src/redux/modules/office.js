@@ -20,6 +20,7 @@ const SHARE_DELETE_LIKE = "SHARE_DELETE_LIKE"; //공유 오피스 좋아요 취�
 const GET_ONE_SHARE_OFFICE = "GET_ONE_SHARE_OFFICE"; //공유 오피스 상세조회
 const ONE_SHARE_CLICK_LIKE = "ONE_SHARE_CLICK_LIKE"; //오피스 상세페이지 좋아요
 const ONE_SHARE_DELETE_LIKE = "ONE_SHARE_DELETE_LIKE"; //오피스 상세페이지 좋아요 취소
+const LOADED = "LOADED";
 
 // Action Creator
 const getMainOffice = createAction(GET_MAIN_OFFICE, (main_list) => ({
@@ -77,11 +78,12 @@ const getOneShareOffice = createAction(
     one_share_office,
   })
 );
-
+const isLoaded = createAction(LOADED, (loaded) => ({ loaded }));
 const initialState = {
   list: [],
   main_list: [],
   hot_list: [],
+  share_list: [],
   is_loading: false,
 };
 /* 맛집근처 역근처 */
@@ -106,7 +108,6 @@ const mainClickLikeDB = (estateId) => {
     instance
       .post(`/estates/${estateId}/like`)
       .then((res) => {
-        Swal.fire("좋아요를 누르셨습니다.");
         dispatch(mainClickLike(estateId));
       })
       .catch((err) => {
@@ -120,7 +121,6 @@ const mainDeleteLikeDB = (estateId) => {
     instance
       .post(`/estates/${estateId}/unlike`)
       .then((res) => {
-        Swal.fire("좋아요를 취소하셨습니다.");
         dispatch(mainDeleteLike(estateId));
       })
       .catch((err) => {
@@ -134,8 +134,6 @@ const clickLikeDB = (estateId) => {
     instance
       .post(`/estates/${estateId}/like`)
       .then((res) => {
-        console.log(res);
-        Swal.fire("좋아요를 누르셨습니다.");
         dispatch(clickLike(estateId));
       })
       .catch((err) => {
@@ -149,8 +147,6 @@ const deleteLikeDB = (estateId) => {
     instance
       .post(`/estates/${estateId}/unlike`)
       .then((res) => {
-        console.log(res);
-        Swal.fire("좋아요를 취소하셨습니다.");
         dispatch(deleteLike(estateId));
       })
       .catch((err) => {
@@ -164,7 +160,6 @@ const shareClickLikeDB = (shareofficeid) => {
     instance
       .post(`/estates/${shareofficeid}/like`)
       .then((res) => {
-        Swal.fire("좋아요를 누르셨습니다.");
         dispatch(shareClickLike(shareofficeid));
       })
       .catch((err) => {
@@ -178,7 +173,6 @@ const shareDeleteLikeDB = (shareofficeid) => {
     instance
       .post(`/estates/${shareofficeid}/unlike`)
       .then((res) => {
-        Swal.fire("좋아요를 취소하셨습니다.");
         dispatch(shareDeleteLike(shareofficeid));
       })
       .catch((err) => {
@@ -192,7 +186,6 @@ const oneClickLikeDB = (estateId) => {
     instance
       .post(`/estates/${estateId}/like`)
       .then((res) => {
-        Swal.fire("좋아요를 누르셨습니다.");
         dispatch(oneClickLike(res.data.mylike));
       })
       .catch((err) => {
@@ -206,7 +199,6 @@ const oneDeleteLikeDB = (estateId) => {
     instance
       .post(`/estates/${estateId}/unlike`)
       .then((res) => {
-        Swal.fire("좋아요를 취소하셨습니다.");
         dispatch(oneDeleteLike(res.data.mylike));
       })
       .catch((err) => {
@@ -220,7 +212,6 @@ const oneShareClickLikeDB = (shareofficeid) => {
     instance
       .post(`/estates/${shareofficeid}/like`)
       .then((res) => {
-        Swal.fire("좋아요를 누르셨습니다.");
         dispatch(oneShareClickLike(res.data.mylike));
       })
       .catch((err) => {
@@ -234,7 +225,6 @@ const oneShareDeleteLikeDB = (shareofficeid) => {
     instance
       .post(`/estates/${shareofficeid}/unlike`)
       .then((res) => {
-        Swal.fire("좋아요를 취소하셨습니다.");
         dispatch(oneShareDeleteLike(res.data.mylike));
       })
       .catch((err) => {
@@ -248,6 +238,7 @@ const getSOListDB = (keyword, pageno, router, monthly) => {
   const feelimit = router?.split("&")[2]?.split("=")[1];
 
   return (dispatch) => {
+    dispatch(isLoaded(false));
     instance
       .get(
         `/estates/${pageno}?query=${keyword}&depositlimit=${depositlimit}&feelimit=${feelimit}&monthly=${monthly}`
@@ -266,6 +257,7 @@ const getSOListDB = (keyword, pageno, router, monthly) => {
 //공유오피스 검색 리스트 조회
 const getShareListDB = (keyword, pageno) => {
   return (dispatch) => {
+    dispatch(isLoaded(false));
     instance
       .get(`/sharedoffices?query=${keyword}&pagenum=${pageno}`)
       .then((res) => {
@@ -421,6 +413,7 @@ export default handleActions(
         }
         draft.page = action.payload.page;
         draft.keyword = action.payload.keyword;
+        draft.is_loaded = true;
       }),
     [GET_SEARCH_SHARE_LIST]: (state, action) =>
       produce(state, (draft) => {
@@ -434,6 +427,7 @@ export default handleActions(
         }
         draft.page = action.payload.page;
         draft.keyword = action.payload.keyword;
+        draft.is_loaded = true;
       }),
   },
   initialState

@@ -65,7 +65,6 @@ const loginApi = (userEmail, password) => {
       //console.log("로그인체크", response);
 
       if (response.status === 200) {
-        Swal.fire("로그인 성공");
         history.replace("/main");
 
         const token = response.headers.authorization.split("BEARER ");
@@ -117,7 +116,7 @@ const userEmailCheckDB = (userEmail) => {
       const response = await instance.post("/user/idcheck", {
         userEmail: userEmail,
       });
-      console.log("response : ", response);
+      //console.log("response : ", response);
 
       if (response.data === true) {
         // console.log("response.data : ", typeof response.data);
@@ -158,7 +157,6 @@ const userEmailCheckDB = (userEmail) => {
 const logOutApi = () => {
   return function (dispatch) {
     localStorage.removeItem("token");
-    Swal.fire("로그아웃이 완료되었습니다.");
     dispatch(logOut());
     window.location.replace("/start");
   };
@@ -169,7 +167,6 @@ const resignDB = () => {
     instance
       .put(`/user/withdraw`)
       .then((res) => {
-        console.log(res);
         Swal.fire("회원탈퇴가 완료되었습니다.");
         localStorage.removeItem("token");
 
@@ -304,6 +301,7 @@ const userImgDeleteDB = (nickname) => {
           .then((res) => {
             //console.log(res, "나는 로그인체크 응답");
             dispatch(user_img(res.data.imageUrl));
+            history.push("/mypage");
           })
           .catch((error) => console.log("유저정보저장오류", error));
       })

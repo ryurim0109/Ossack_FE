@@ -36,14 +36,15 @@ const Office = () => {
               justifyContent="center"
               margin="0 4px 0 0"
             >
-              <Text
-                size="12px"
-                bold
-                color={openTab === idx ? "#fff" : "#3E00FF"}
-              >
-                {" "}
-                #{title}근처
-              </Text>
+              {openTab === idx ? (
+                <Text size="12px" bold color="#fff">
+                  {title}근처
+                </Text>
+              ) : (
+                <Text size="12px" color="#3E00FF">
+                  {title}근처
+                </Text>
+              )}
             </Grid>
           );
         })}

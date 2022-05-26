@@ -15,7 +15,7 @@ function Sale() {
     <React.Fragment>
       <Outter>
         <Grid width="100%" margin="50px 0 0">
-          <Text size="1.250rem" bold>
+          <Text size="24px" bold>
             <Text color="#3E00FF" bold>
               {user_info?.nickname ? user_info?.nickname : "게스트"}님
             </Text>{" "}

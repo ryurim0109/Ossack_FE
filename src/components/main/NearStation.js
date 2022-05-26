@@ -41,6 +41,10 @@ const NearStation = (props) => {
                 height="235px"
                 bottom="0"
                 position="absolute"
+                cursor="pointer"
+                _onClick={() => {
+                  history.push(`/detail/${o.estateid}`);
+                }}
                 bg="linear-gradient(0deg, rgba(0, 0, 0, 0.8) 5.74%, rgba(108, 108, 108, 0.0421707) 86.75%, rgba(118, 118, 118, 0) 93.49%)"
               ></Grid>
               {o.mylike ? (

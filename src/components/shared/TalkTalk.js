@@ -19,7 +19,10 @@ const TalkTalk = () => {
         position="relative"
       >
         <Talk>
-          <Text color="#FF6868">3초면</Text> 빠른 로그인 완료!
+          <Text color="#FF6868" size="12px">
+            3초면
+          </Text>{" "}
+          빠른 로그인 완료!
         </Talk>
         <Grid
           width="114px"
@@ -50,7 +53,7 @@ const Talk = styled.div`
   background-color: #fff;
   top: -15px;
   border: 1px solid #c4c4c4;
-  font-size: 0.75rem;
+  font-size: 12px;
   display: flex;
   justify-content: center;
   align-items: center;

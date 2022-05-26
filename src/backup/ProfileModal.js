@@ -63,7 +63,7 @@ const ProfileModal = (props) => {
               alignItems="center"
               justifyContent="center"
             >
-              <Text bold size="1rem">
+              <Text bold size="16px">
                 프로필 이미지 변경
               </Text>
             </Grid>
