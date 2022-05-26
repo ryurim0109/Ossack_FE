@@ -1,7 +1,9 @@
 import React from "react";
 import styled from "styled-components";
+import { ReactComponent as Close } from "../../assets/close.svg";
+import { history } from "../../redux/configStore";
 
-function History({ keywords, onRemoveKeyword, onClearKeywords }) {
+function History({ keywords, onRemoveKeyword, onClearKeywords, activeTab }) {
   //console.log("keyword : ", keywords);
   if (keywords.length === 0) {
     return <HistoryContainer>최근 검색된 기록이 없습니다.</HistoryContainer>;
@@ -16,7 +18,23 @@ function History({ keywords, onRemoveKeyword, onClearKeywords }) {
         {keywords.map(({ id, text }) => {
           return (
             <KeywordContainer key={id}>
-              <Keyword>{text}</Keyword>
+              {!activeTab ? (
+                <Keyword
+                  onClick={() => {
+                    history.push(`/map/office?query=${text}`);
+                  }}
+                >
+                  {text}
+                </Keyword>
+              ) : (
+                <Keyword
+                  onClick={() => {
+                    history.push(`/map/shareoffice?query=${text}`);
+                  }}
+                >
+                  {text}
+                </Keyword>
+              )}
               <RemoveButton
                 //눌렸을때 해야하는거라 arrow function을 사용하여 실행
                 //그냥 함수 쓰면은 그려지자마자 바로 실행됨
@@ -24,7 +42,7 @@ function History({ keywords, onRemoveKeyword, onClearKeywords }) {
                   onRemoveKeyword(id);
                 }}
               >
-                삭제
+                <Close fill="none" stroke="#ccc" />
               </RemoveButton>
             </KeywordContainer>
           );
@@ -65,17 +83,18 @@ const KeywordContainer = styled.li`
 `;
 
 const RemoveButton = styled.button`
+  width: 20px;
+  height: 20px;
   float: right;
   color: #ccc;
-  border: 1px solid #ccc;
-  padding: 5px;
-  border-radius: 15px;
-  font-size: 15px;
+  border: none;
+  background: none;
 `;
 
 const Keyword = styled.span`
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 400;
+  cursor: pointer;
 `;
 
 export default History;
