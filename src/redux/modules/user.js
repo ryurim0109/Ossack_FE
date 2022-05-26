@@ -64,7 +64,6 @@ const loginApi = (userEmail, password) => {
       //console.log("로그인체크", response);
 
       if (response.status === 200) {
-        Swal.fire("로그인 성공");
         history.replace("/main");
 
         const token = response.headers.authorization.split("BEARER ");

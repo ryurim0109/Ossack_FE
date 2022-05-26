@@ -26,7 +26,7 @@ const MainMap = (props) => {
   const is_loaded = useSelector((state) => state.map.is_loaded);
 
   const { kakao } = window;
-  const [level, setLevel] = useState(3); //지도레벨
+  const [level, setLevel] = useState(8); //지도레벨
   const [map, setMap] = useState(); //지도
   const [pos, setPos] = useState(); //경도 위도
 
