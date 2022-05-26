@@ -83,6 +83,7 @@ const initialState = {
   list: [],
   main_list: [],
   hot_list: [],
+  share_list: [],
   is_loading: false,
 };
 /* 맛집근처 역근처 */
