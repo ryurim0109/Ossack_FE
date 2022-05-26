@@ -15,8 +15,9 @@ import { MdKeyboardArrowLeft } from "react-icons/md";
 import { history } from "../redux/configStore";
 
 import { actionCreators as userActions } from "../redux/modules/user";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import _ from "lodash";
+import Swal from "sweetalert2";
 
 const Signup = () => {
   const dispatch = useDispatch();
@@ -28,6 +29,9 @@ const Signup = () => {
 
   // 중복체크
   const [userEmailCurrent, setUserEmailCurrent] = useState(false);
+
+  const emailDup = useSelector((state) => state.user.statusCode);
+  console.log("emeilDup : ", emailDup);
 
   // 비활성화 여부
   const [userEmail, setUserEmail] = useState("");
@@ -56,6 +60,10 @@ const Signup = () => {
   };
 
   const isPassedSignup = () => {
+    if (typeof emailDup === "undefined") {
+      console.log("emailDup : ", emailDup);
+      setEmailError("이메일 중복확인을 해주세요(🔐)");
+    }
     return userEmail.includes("@") &&
       password.length >= 5 &&
       checkPassword.length >= 5 &&
@@ -103,11 +111,23 @@ const Signup = () => {
       setNickNameError("올바른 이름을 입력해주세요.(글자수 제한 2~10자리)");
     else setNickNameError("");
 
+    if (!emailDup) {
+      Swal.fire({
+        title: "이메일 중복 확인을 해주세요!(🔐)",
+        showCancelButton: false,
+        confirmButtonText: "확인",
+        confirmButtonColor: "#FF5151",
+      });
+      setEmailError("이메일 중복확인을 해주세요(🔐)");
+      return;
+    }
+
     if (
       emailRegex.test(userEmail) &&
       passwordRegex.test(password) &&
       password === passwordCheck &&
-      nicknameRegex.test(nickname)
+      nicknameRegex.test(nickname) &&
+      emailDup === true
       // &&checked
     ) {
       dispatch(userActions.signUpApi(joinData));
@@ -115,7 +135,22 @@ const Signup = () => {
   };
 
   const checkDup = () => {
+    console.log("중복체크여부테스트_1", emailDup);
+
+    if (typeof emailDup === "undefined") {
+      console.log("emailDup : ", emailDup);
+      setEmailError("이메일 중복확인을 해주세요(🔐)");
+    }
+    setEmailError("");
+    userEmail.includes("@") &&
+    password.length >= 5 &&
+    checkPassword.length >= 5 &&
+    nickname.length >= 1
+      ? setIsActive(true)
+      : setIsActive(false);
+
     dispatch(userActions.userEmailCheckDB(userEmail));
+    setEmailError("");
   };
 
   const style = {
@@ -191,6 +226,7 @@ const Signup = () => {
                   onClick={() => {
                     checkDup();
                   }}
+                  //onKeyUp={isPassedSignup}
                 >
                   🔐
                 </Grid>
@@ -255,7 +291,11 @@ const Signup = () => {
                   ? { backgroundColor: "#3E00FF" }
                   : { backgroundColor: "#D5D8DB" }
               }
-              disabled={userEmail === "" || password === "" ? true : false}
+              disabled={
+                userEmail === "" || password === "" || emailDup === ""
+                  ? true
+                  : false
+              }
             >
               회원가입
             </Button>
