@@ -129,7 +129,6 @@ const Input = styled.input`
   box-sizing: border-box;
   border: none;
   outline: none;
-  background-image: url("SearchImg.png");
   ${({ active }) =>
     active &&
     `

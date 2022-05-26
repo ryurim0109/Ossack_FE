@@ -14,6 +14,7 @@ import { Text } from "../elements/index";
 import { MdKeyboardArrowLeft } from "react-icons/md";
 import { history } from "../redux/configStore";
 
+import { emailRegex, passwordRegex, nickNameRegex } from "../shared/regCheck";
 import { actionCreators as userActions } from "../redux/modules/user";
 import { useDispatch, useSelector } from "react-redux";
 import _ from "lodash";
@@ -29,9 +30,9 @@ const Signup = () => {
 
   // 중복체크
   const [userEmailCurrent, setUserEmailCurrent] = useState(false);
-
+  // 리덕스에서 statusCode 가져오기
   const emailDup = useSelector((state) => state.user.statusCode);
-  //console.log("emeilDup : ", emailDup);
+
 
   // 비활성화 여부
   const [userEmail, setUserEmail] = useState("");
@@ -85,16 +86,11 @@ const Signup = () => {
     const { userEmail, nickname, password, passwordCheck } = joinData;
 
     // 이메일 유효성 체크
-    const emailRegex =
-      /([\w-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
-    if (!emailRegex.test(userEmail))
-      setEmailError("올바른 이메일 형식이 아닙니다.");
+    if (!emailRegex(userEmail)) setEmailError("올바른 이메일 형식이 아닙니다.");
     else setEmailError("");
 
     // 비밀번호 유효성 체크
-    const passwordRegex =
-      /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/;
-    if (!passwordRegex.test(password))
+    if (!passwordRegex(password))
       setPasswordState(
         "숫자+영문자+특수문자 조합으로 8자리 이상 입력해주세요!"
       );
@@ -106,8 +102,7 @@ const Signup = () => {
     else setPasswordError("");
 
     // 닉네임 유효성 검사
-    const nicknameRegex = /^[가-힣a-zA-Z]{2,10}$/;
-    if (!nicknameRegex.test(nickname) || nickname.length < 1)
+    if (!nickNameRegex(nickname) || nickname.length < 1)
       setNickNameError("올바른 이름을 입력해주세요.(글자수 제한 2~10자리)");
     else setNickNameError("");
 
@@ -118,7 +113,7 @@ const Signup = () => {
         confirmButtonText: "확인",
         confirmButtonColor: "#FF5151",
       });
-      setEmailError("이메일 중복확인을 해주세요(🔐)");
+      // setEmailError("이메일 중복확인을 해주세요(🔐)");
       return;
     }
 
@@ -126,7 +121,7 @@ const Signup = () => {
       emailRegex.test(userEmail) &&
       passwordRegex.test(password) &&
       password === passwordCheck &&
-      nicknameRegex.test(nickname) &&
+      nickNameRegex.test(nickname) &&
       emailDup === true
       // &&checked
     ) {
