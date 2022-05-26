@@ -37,11 +37,11 @@ const SearchPage = () => {
     // 검색 중복저장체크
     if (!localStorage.getItem("keywords").includes(text) && searchCheck(text)) {
       setKeywords([newKeyword, ...keywords]);
-      console.log(localStorage.getItem("keywords").includes(text));
+      // console.log(localStorage.getItem("keywords").includes(text));
     }
 
     if (!searchCheck(text)) {
-      console.log("searchCheck : ", searchCheck(text));
+      // console.log("searchCheck : ", searchCheck(text));
       Swal.fire({
         title: "한글로만 입력해주세요!",
         showCancelButton: false,
