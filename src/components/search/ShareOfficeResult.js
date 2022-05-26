@@ -50,15 +50,21 @@ const ShareOfficeResult = (props) => {
                 <SlickSlider>
                   {o?.imageList?.map((image, idx) => {
                     return (
-                      <Image
+                      <Div
                         key={idx}
-                        padding="235px"
-                        bottom="0"
-                        src={image}
-                        radius="8px"
-                        shape="rectangle"
-                        position="absolute"
-                      />
+                        onClick={() => {
+                          history.push(`/detail/share/${o.shareofficeid}`);
+                        }}
+                      >
+                        <Image
+                          padding="235px"
+                          bottom="0"
+                          src={image}
+                          radius="8px"
+                          shape="rectangle"
+                          position="absolute"
+                        />
+                      </Div>
                     );
                   })}
                 </SlickSlider>
@@ -97,14 +103,20 @@ const ShareOfficeResult = (props) => {
                 flexDirection="column"
                 justifyContent="space-between"
               >
-                <Text size="10px" bold color="#666">
-                  {o.address}
-                </Text>
-                <Text size="14px" bold>
-                  {o.name}
-                </Text>
-                <Text size="10px">최소기간 {o.minimum_days}</Text>
-                <Grid display="flex">
+                <Grid display="flex" height="12px" alignItems="center">
+                  <Text size="10px" bold color="#666">
+                    {o.address}
+                  </Text>
+                </Grid>
+                <Grid display="flex" height="17px" alignItems="center">
+                  <Text size="14px" bold>
+                    {o.name}
+                  </Text>
+                </Grid>
+                <Grid display="flex" height="12px" alignItems="center">
+                  <Text size="10px">최소기간 {o.minimum_days}</Text>
+                </Grid>
+                <Grid display="flex" height="17px" alignItems="center">
                   <Text size="14px" bold>
                     {o.price}
                   </Text>
@@ -117,4 +129,7 @@ const ShareOfficeResult = (props) => {
     );
   }
 };
+const Div = styled.div`
+  cursor: pointer;
+`;
 export default ShareOfficeResult;

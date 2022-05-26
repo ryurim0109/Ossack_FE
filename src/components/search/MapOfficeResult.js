@@ -50,15 +50,21 @@ const MapOfficeResult = (props) => {
                 <SlickSlider>
                   {o?.images?.map((image, idx) => {
                     return (
-                      <Image
+                      <Div
                         key={idx}
-                        padding="235px"
-                        src={image}
-                        shape="rectangle"
-                        radius="8px"
-                        position="absolute"
-                        bottom="0"
-                      />
+                        onClick={() => {
+                          history.push(`/detail/${o.estateid}`);
+                        }}
+                      >
+                        <Image
+                          padding="235px"
+                          src={image}
+                          shape="rectangle"
+                          radius="8px"
+                          position="absolute"
+                          bottom="0"
+                        />
+                      </Div>
                     );
                   })}
                 </SlickSlider>
@@ -97,14 +103,20 @@ const MapOfficeResult = (props) => {
                 flexDirection="column"
                 justifyContent="space-between"
               >
-                <Text size="10px" bold color="#666">
-                  {o?.type} ∙ {o?.roomFloor}층
-                </Text>
-                <Text size="14px" bold>
-                  {o?.buildingInfo}
-                </Text>
-                <Text size="10px">{o.area}</Text>
-                <Grid display="flex">
+                <Grid display="flex" height="12px" alignItems="center">
+                  <Text size="10px" bold color="#666">
+                    {o?.type} ∙ {o?.roomFloor}층
+                  </Text>
+                </Grid>
+                <Grid display="flex" height="17px" alignItems="center">
+                  {" "}
+                  <Text size="14px">{o?.buildingInfo}</Text>
+                </Grid>
+
+                <Grid display="flex" height="12px" alignItems="center">
+                  <Text size="10px">{o.area}</Text>
+                </Grid>
+                <Grid display="flex" height="17px" alignItems="center">
                   {o?.rent_fee === "0" ? null : (
                     <Text size="14px" bold>
                       <Span>월세</Span>
@@ -124,20 +136,13 @@ const MapOfficeResult = (props) => {
     );
   }
 };
-const Absolute = styled.div`
-  position: absolute;
-  width: 28px;
-  height: 28px;
-  top: 8px;
-  right: 8px;
-  z-index: 99;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+const Div = styled.div`
+  cursor: pointer;
 `;
 
 const Span = styled.span`
   font-size: ${({ theme }) => theme.fontSizes.xs};
   font-weight: normal;
+  margin-left: 2px;
 `;
 export default MapOfficeResult;
