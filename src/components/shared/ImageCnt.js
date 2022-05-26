@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Text } from "../../elements/index";
 import { ReactComponent as Img } from "../../assets/img.svg";
 
-const ImgaeCnt = (props) => {
+const ImageCnt = (props) => {
   const { children } = props;
   return (
     <React.Fragment>
@@ -17,7 +17,7 @@ const ImgaeCnt = (props) => {
   );
 };
 
-ImgaeCnt.defaultProps = {
+ImageCnt.defaultProps = {
   children: null,
 };
 const Div = styled.div`
@@ -29,4 +29,4 @@ const Div = styled.div`
   justify-content: space-around;
   align-items: center;
 `;
-export default ImgaeCnt;
+export default ImageCnt;

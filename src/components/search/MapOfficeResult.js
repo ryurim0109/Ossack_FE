@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { history } from "../../redux/configStore";
 import { Grid, Image, Button, Text } from "../../elements/index";
-import { SlickSlider } from "../shared/home";
+import { SlickSlider, ImageCnt } from "../shared/home";
 import { actionCreators as officeActions } from "../../redux/modules/office";
 import ossack from "../../assets/ossack02.jpg";
 import { LoadSpinner } from "../shared/home";
@@ -50,6 +50,15 @@ const MapOfficeResult = (props) => {
                     );
                   })}
                 </SlickSlider>
+                <Grid
+                  width="33px"
+                  height="22px"
+                  position="absolute"
+                  right="8px"
+                  bottom="8px"
+                >
+                  <ImageCnt>{o?.images.length}</ImageCnt>
+                </Grid>
                 {o.mylike ? (
                   <Button
                     position="absolute"
