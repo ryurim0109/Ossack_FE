@@ -271,7 +271,6 @@ const editProfileDB = (nickname, image, userimg) => {
         // console.log(res, "이미지 데이터 성공");
         Swal.fire("프로필 변경이 완료되었습니다.");
         history.push("/mypage");
-        /* dispatch(user_img(res.data.data.imageUrl)); */
       })
       .catch((err) => {
         console.log("프로필 업로드 에러다!!!!", err.response);
