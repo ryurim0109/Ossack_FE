@@ -62,7 +62,7 @@ const OfficeTellLike = (props) => {
                               key={idx}
                               _onClick={() => {
                                 history.push(
-                                  `/detail/share/${office.shareofficeid}`
+                                  `/detail/share/${office.shareofficeid}?query=${office.address}`
                                 );
                               }}
                             >
@@ -99,7 +99,9 @@ const OfficeTellLike = (props) => {
                   width="100%"
                   height="40px"
                   _onClick={() => {
-                    history.push(`/detail/share/${office.shareofficeid}`);
+                    history.push(
+                      `/detail/share/${office.shareofficeid}?query=${office.address}`
+                    );
                   }}
                 >
                   <Text bold size="14px" cursor="pointer">

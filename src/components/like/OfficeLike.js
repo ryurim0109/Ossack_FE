@@ -58,7 +58,9 @@ const OfficeLike = (props) => {
                               cursor="pointer"
                               key={idx}
                               _onClick={() => {
-                                history.push(`/detail/${office.estateid}`);
+                                history.push(
+                                  `/detail/${office.estateid}?query=${office.address}`
+                                );
                               }}
                             >
                               <Image
@@ -94,7 +96,9 @@ const OfficeLike = (props) => {
                   width="100%"
                   height="40px"
                   _onClick={() => {
-                    history.push(`/detail/${office.estateid}`);
+                    history.push(
+                      `/detail/${office.estateid}?query=${office.address}`
+                    );
                   }}
                 >
                   <Text bold size="14px" cursor="pointer">
