@@ -54,15 +54,22 @@ const OfficeLike = (props) => {
                       {office.images &&
                         office.images.map((image, idx) => {
                           return (
-                            <Image
+                            <Grid
+                              cursor="pointer"
                               key={idx}
-                              padding="235px"
-                              bottom="0"
-                              src={image}
-                              shape="rectangle"
-                              position="absolute"
-                              radius="8px"
-                            />
+                              _onClick={() => {
+                                history.push(`/detail/${office.estateid}`);
+                              }}
+                            >
+                              <Image
+                                padding="235px"
+                                bottom="0"
+                                src={image}
+                                shape="rectangle"
+                                position="absolute"
+                                radius="8px"
+                              />
+                            </Grid>
                           );
                         })}
                     </SlickSlider>
