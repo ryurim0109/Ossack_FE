@@ -222,7 +222,7 @@ const Lev = styled.div`
   width: 40px;
   height: 125px;
   position: absolute;
-  bottom: 150px;
+  bottom: 100px;
   left: 16px;
   z-index: 2;
   display: flex;

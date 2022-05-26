@@ -28,12 +28,12 @@ const Banner = (props) => {
           display="flex"
           alignItems="center"
           position="relative"
+          cursor="pointer"
+          _onClick={() => {
+            history.push("/event");
+          }}
         >
-          <BannerBlue
-            onClick={() => {
-              history.push("/event");
-            }}
-          >
+          <BannerBlue>
             <Div>
               <SP>오싹의 설문조사에 참여하시면,</SP>
               <P>
@@ -59,12 +59,12 @@ const Banner = (props) => {
           display="flex"
           alignItems="center"
           position="relative"
+          cursor="pointer"
+          _onClick={() => {
+            history.push("/event");
+          }}
         >
-          <BannerGreen
-            onClick={() => {
-              history.push("/event");
-            }}
-          >
+          <BannerGreen>
             <Div>
               <SP>오싹 오픈기념 EVENT</SP>
               <P>
