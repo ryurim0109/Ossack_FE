@@ -20,6 +20,7 @@ const SHARE_DELETE_LIKE = "SHARE_DELETE_LIKE"; //공유 오피스 좋아요 취�
 const GET_ONE_SHARE_OFFICE = "GET_ONE_SHARE_OFFICE"; //공유 오피스 상세조회
 const ONE_SHARE_CLICK_LIKE = "ONE_SHARE_CLICK_LIKE"; //오피스 상세페이지 좋아요
 const ONE_SHARE_DELETE_LIKE = "ONE_SHARE_DELETE_LIKE"; //오피스 상세페이지 좋아요 취소
+const LOADED = "LOADED";
 
 // Action Creator
 const getMainOffice = createAction(GET_MAIN_OFFICE, (main_list) => ({
@@ -77,7 +78,7 @@ const getOneShareOffice = createAction(
     one_share_office,
   })
 );
-
+const isLoaded = createAction(LOADED, (loaded) => ({ loaded }));
 const initialState = {
   list: [],
   main_list: [],
@@ -248,6 +249,7 @@ const getSOListDB = (keyword, pageno, router, monthly) => {
   const feelimit = router?.split("&")[2]?.split("=")[1];
 
   return (dispatch) => {
+    dispatch(isLoaded(false));
     instance
       .get(
         `/estates/${pageno}?query=${keyword}&depositlimit=${depositlimit}&feelimit=${feelimit}&monthly=${monthly}`
@@ -266,6 +268,7 @@ const getSOListDB = (keyword, pageno, router, monthly) => {
 //공유오피스 검색 리스트 조회
 const getShareListDB = (keyword, pageno) => {
   return (dispatch) => {
+    dispatch(isLoaded(false));
     instance
       .get(`/sharedoffices?query=${keyword}&pagenum=${pageno}`)
       .then((res) => {
@@ -421,6 +424,7 @@ export default handleActions(
         }
         draft.page = action.payload.page;
         draft.keyword = action.payload.keyword;
+        draft.is_loaded = true;
       }),
     [GET_SEARCH_SHARE_LIST]: (state, action) =>
       produce(state, (draft) => {
@@ -434,6 +438,7 @@ export default handleActions(
         }
         draft.page = action.payload.page;
         draft.keyword = action.payload.keyword;
+        draft.is_loaded = true;
       }),
   },
   initialState

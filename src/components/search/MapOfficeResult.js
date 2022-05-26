@@ -6,34 +6,15 @@ import { Grid, Image, Button, Text } from "../../elements/index";
 import { SlickSlider } from "../shared/home";
 import { actionCreators as officeActions } from "../../redux/modules/office";
 import ossack from "../../assets/ossack02.jpg";
+import { LoadSpinner } from "../shared/home";
 
 const MapOfficeResult = (props) => {
   const dispatch = useDispatch();
   const officeData = useSelector((state) => state?.office?.list);
+  const is_loaded = useSelector((state) => state.office.is_loaded);
   const { search } = props;
 
-  if (officeData?.length === 0) {
-    return (
-      <React.Fragment>
-        <Grid
-          display="flex"
-          flexDirection="column"
-          justifyContent="center"
-          alignItems="center"
-        >
-          <Grid display="flex" justifyContent="center" padding="91px 0 13px 0">
-            <Image src={ossack} size="117" />
-          </Grid>
-          <Text size="14px" color="#808080">
-            검색한 결과를 찾을 수가 없어오!
-          </Text>
-          <Text size="14px" color="#808080">
-            다른검색어로 다시 검색해주시겠어오?
-          </Text>
-        </Grid>
-      </React.Fragment>
-    );
-  } else {
+  if (officeData?.length >= 1) {
     return (
       <React.Fragment>
         {officeData?.map((o, idx) => {
@@ -133,6 +114,29 @@ const MapOfficeResult = (props) => {
             </Grid>
           );
         })}
+        {!is_loaded && <LoadSpinner />}
+      </React.Fragment>
+    );
+  } else {
+    return (
+      <React.Fragment>
+        <Grid
+          display="flex"
+          flexDirection="column"
+          justifyContent="center"
+          alignItems="center"
+        >
+          <Grid display="flex" justifyContent="center" padding="91px 0 13px 0">
+            <Image src={ossack} size="117" />
+          </Grid>
+          <Text size="14px" color="#808080">
+            검색한 결과를 찾을 수가 없어오!
+          </Text>
+          <Text size="14px" color="#808080">
+            다른검색어로 다시 검색해주시겠어오?
+          </Text>
+        </Grid>
+        {!is_loaded && <LoadSpinner />}
       </React.Fragment>
     );
   }
