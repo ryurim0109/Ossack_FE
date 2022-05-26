@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import { Grid, Image } from "../elements/index";
+import { Grid } from "../elements/index";
 import { history } from "../redux/configStore";
-import moomgu from "../assets/logo01.svg";
+import styled from "styled-components";
 import ossack from "../assets/logo02.png";
 
 const Splash = () => {
@@ -34,14 +34,18 @@ const Splash = () => {
             width="217px"
             height="14px"
             position="absolute"
-            top="0"
-            right="15px"
+            top="37px"
+            right="10%"
           >
-            <Image shape="rectangle" padding="14px" src={moomgu} />
+            <P bold>오피스 구할 땐 오싹으로 싹가능</P>
           </Grid>
         </Grid>
       </Grid>
     </React.Fragment>
   );
 };
+const P = styled.p`
+  font-weight: 900;
+  color: ${({ theme }) => theme.colors.buttonTitle};
+`;
 export default Splash;

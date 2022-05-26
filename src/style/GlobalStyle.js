@@ -199,7 +199,7 @@ textarea {
 }
 input,
 textarea {
-  font-size: 1rem;
+  font-size: 16px;
   font-family: "Pretendard";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

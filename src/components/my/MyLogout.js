@@ -49,6 +49,7 @@ const LogoutInner = styled.div`
   height: 22px;
   display: flex;
   padding: 0 107px;
+  margin-top: 100px;
   align-items: center;
   justify-content: space-between;
   position: relative;

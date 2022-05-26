@@ -20,6 +20,8 @@ const DetailOffice = () => {
   const dispatch = useDispatch();
   const estateid = useParams().estateId;
   const getOneOffice = useSelector((state) => state.office.one_office);
+  const router = useSelector((state) => state.router.location.search);
+  const dong = router?.split("=")[1];
   //console.log("getOneOffice : ", getOneOffice);
 
   // const getImage = getOneOffice.images.map((images) => images);
@@ -44,7 +46,7 @@ const DetailOffice = () => {
           <Button
             is_back
             _onClick={() => {
-              history.goBack();
+              window.location.replace(`/map/office?query=${dong}`);
             }}
           />
         </Grid>

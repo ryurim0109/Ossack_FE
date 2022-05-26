@@ -171,6 +171,7 @@ const Outter = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  padding-bottom: 70px;
 
   & label {
     position: absolute;

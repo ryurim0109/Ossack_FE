@@ -41,8 +41,7 @@ const Banner = (props) => {
                   추첨
                 </Text>
                 을 통해
-              </P>
-              <P>
+                <br />
                 <Text color="#2759F5" bold>
                   기프티콘을{" "}
                 </Text>
@@ -68,8 +67,9 @@ const Banner = (props) => {
           >
             <Div>
               <SP>오싹 오픈기념 EVENT</SP>
-              <P>버그찾고</P>
               <P>
+                버그찾고
+                <br />
                 <Text color="#FF6868" bold>
                   치킨🍗{" "}
                 </Text>
@@ -78,11 +78,11 @@ const Banner = (props) => {
             </Div>
           </BannerGreen>
           <Grid
-            width="151px"
-            height="133px"
+            width="134px"
+            height="118px"
             position="absolute"
             right="13px"
-            bottom="20px"
+            bottom="30px"
           >
             <img src={banner02} alt="선물 이미지" />
           </Grid>
@@ -126,11 +126,11 @@ const SP = styled.p`
 `;
 const Div = styled.div`
   width: 50%;
-  height: 58px;
+  height: 65px;
   padding-left: 32px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 `;
 export default Banner;

@@ -7,10 +7,7 @@ import { actionCreators as userActions } from "../../redux/modules/user";
 
 const MyProfile = () => {
   const dispatch = useDispatch();
-  const [isOpen, setIsOpen] = useState(false);
-  const openModalHandler = () => {
-    setIsOpen(!isOpen);
-  };
+
   const user_info = useSelector((state) => state.user.user);
 
   useEffect(() => {

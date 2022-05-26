@@ -36,7 +36,7 @@ const Overlay = (props) => {
               {position?.title ? position?.title : "서울시"}
             </Text>
             <Text color="#fff" bold size="14px">
-              약{position?.average}만원
+              {position?.average}만원
             </Text>
           </Grid>
         )}
