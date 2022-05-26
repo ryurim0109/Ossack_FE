@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Grid, Button, Text, Image } from "../../elements/index";
 import { actionCreators as favoriteActions } from "../../redux/modules/favorite";
 import { useDispatch, useSelector } from "react-redux";
-import { SlickSlider } from "../shared/home";
+import { SlickSlider, ImgaeCnt } from "../shared/home";
 import { history } from "../../redux/configStore";
 import ossack from "../../assets/ossack02.jpg";
 
@@ -75,6 +75,15 @@ const OfficeLike = (props) => {
                           );
                         })}
                     </SlickSlider>
+                    <Grid
+                      width="33px"
+                      height="22px"
+                      position="absolute"
+                      right="8px"
+                      bottom="8px"
+                    >
+                      <ImgaeCnt>{office.images.length}</ImgaeCnt>
+                    </Grid>
                     <Button
                       position="absolute"
                       right="8px"
