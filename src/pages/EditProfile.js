@@ -4,7 +4,7 @@ import { MyHeader } from "../components/my/index";
 import { Bar } from "../components/shared/home";
 import { Grid, Image, Button, Text } from "../elements/index";
 import { ReactComponent as ProEdit } from "../assets/pro_edit.svg";
-import { checkName } from "../shared/nameCheck";
+import { nickNameRegex } from "../shared/regCheck";
 
 import { useSelector, useDispatch } from "react-redux";
 import defaultImg from "../assets/default.png";
@@ -44,7 +44,7 @@ const EditProfile = () => {
       Swal.fire("첨부파일 사이즈는 5MB 이내로 등록 가능합니다.");
       return false;
     }
-    if (!checkName(nickname)) {
+    if (!nickNameRegex(nickname)) {
       Swal.fire({
         title: "닉네임은 2글자 ~ 10글자로 영어, 한글로만 정해주세요!",
         showCancelButton: false,
