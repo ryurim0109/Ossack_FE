@@ -107,7 +107,6 @@ const mainClickLikeDB = (estateId) => {
     instance
       .post(`/estates/${estateId}/like`)
       .then((res) => {
-        Swal.fire("좋아요를 누르셨습니다.");
         dispatch(mainClickLike(estateId));
       })
       .catch((err) => {
@@ -121,7 +120,6 @@ const mainDeleteLikeDB = (estateId) => {
     instance
       .post(`/estates/${estateId}/unlike`)
       .then((res) => {
-        Swal.fire("좋아요를 취소하셨습니다.");
         dispatch(mainDeleteLike(estateId));
       })
       .catch((err) => {
@@ -135,8 +133,6 @@ const clickLikeDB = (estateId) => {
     instance
       .post(`/estates/${estateId}/like`)
       .then((res) => {
-        console.log(res);
-        Swal.fire("좋아요를 누르셨습니다.");
         dispatch(clickLike(estateId));
       })
       .catch((err) => {
@@ -150,8 +146,6 @@ const deleteLikeDB = (estateId) => {
     instance
       .post(`/estates/${estateId}/unlike`)
       .then((res) => {
-        console.log(res);
-        Swal.fire("좋아요를 취소하셨습니다.");
         dispatch(deleteLike(estateId));
       })
       .catch((err) => {
@@ -165,7 +159,6 @@ const shareClickLikeDB = (shareofficeid) => {
     instance
       .post(`/estates/${shareofficeid}/like`)
       .then((res) => {
-        Swal.fire("좋아요를 누르셨습니다.");
         dispatch(shareClickLike(shareofficeid));
       })
       .catch((err) => {
@@ -179,7 +172,6 @@ const shareDeleteLikeDB = (shareofficeid) => {
     instance
       .post(`/estates/${shareofficeid}/unlike`)
       .then((res) => {
-        Swal.fire("좋아요를 취소하셨습니다.");
         dispatch(shareDeleteLike(shareofficeid));
       })
       .catch((err) => {
@@ -193,7 +185,6 @@ const oneClickLikeDB = (estateId) => {
     instance
       .post(`/estates/${estateId}/like`)
       .then((res) => {
-        Swal.fire("좋아요를 누르셨습니다.");
         dispatch(oneClickLike(res.data.mylike));
       })
       .catch((err) => {
@@ -207,7 +198,6 @@ const oneDeleteLikeDB = (estateId) => {
     instance
       .post(`/estates/${estateId}/unlike`)
       .then((res) => {
-        Swal.fire("좋아요를 취소하셨습니다.");
         dispatch(oneDeleteLike(res.data.mylike));
       })
       .catch((err) => {
@@ -221,7 +211,6 @@ const oneShareClickLikeDB = (shareofficeid) => {
     instance
       .post(`/estates/${shareofficeid}/like`)
       .then((res) => {
-        Swal.fire("좋아요를 누르셨습니다.");
         dispatch(oneShareClickLike(res.data.mylike));
       })
       .catch((err) => {
@@ -235,7 +224,6 @@ const oneShareDeleteLikeDB = (shareofficeid) => {
     instance
       .post(`/estates/${shareofficeid}/unlike`)
       .then((res) => {
-        Swal.fire("좋아요를 취소하셨습니다.");
         dispatch(oneShareDeleteLike(res.data.mylike));
       })
       .catch((err) => {
