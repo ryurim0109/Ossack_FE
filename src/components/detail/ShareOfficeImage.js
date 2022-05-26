@@ -14,8 +14,8 @@ const OfficeImage = () => {
     <React.Fragment>
       <Grid
         width="100%"
-        margin="16px 0"
-        height="235px"
+        margin="0 0 16px 0"
+        height="251px"
         bg="#999"
         position="relative"
         overflow="hidden"
@@ -27,7 +27,7 @@ const OfficeImage = () => {
                 return (
                   <Image
                     key={idx}
-                    padding="235px"
+                    padding="251px"
                     bottom="0"
                     src={image}
                     shape="rectangle"

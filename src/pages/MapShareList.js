@@ -11,8 +11,7 @@ const MapShareList = (props) => {
   const dispatch = useDispatch();
   const search = props.location.search.split("=")[1];
   const totalPage = useSelector((state) => state?.office?.page);
-  const shareList = useSelector((state) => state?.office?.share_list);
-  const title = shareList[0]?.dong;
+  const title = useSelector((state) => state?.office?.keyword);
 
   const [pageno, setPageno] = useState(1);
   const [target, setTarget] = useState(null);

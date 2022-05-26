@@ -242,9 +242,12 @@ const getSOListDB = (keyword, pageno, router, monthly) => {
         `/estates/${pageno}?query=${keyword}&depositlimit=${depositlimit}&feelimit=${feelimit}&monthly=${monthly}`
       )
       .then((res) => {
-        const key = decodeURI(keyword);
         dispatch(
-          getSOList(res.data.estateResponseDtoList, res.data.totalpage, key)
+          getSOList(
+            res.data.estateResponseDtoList,
+            res.data.totalpage,
+            res.data.keyword
+          )
         );
       })
       .catch((err) => {
@@ -259,12 +262,11 @@ const getShareListDB = (keyword, pageno) => {
     instance
       .get(`/sharedoffices?query=${keyword}&pagenum=${pageno}`)
       .then((res) => {
-        const key = decodeURI(keyword);
         dispatch(
           getShareList(
             res.data.sharedOfficeResponseDtos,
             res.data.totalpage,
-            key
+            res.data.keyword
           )
         );
       })

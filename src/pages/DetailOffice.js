@@ -89,7 +89,7 @@ const DetailOffice = () => {
       </Header>
       <Outter>
         <Grid bg="#F5F5F5" minHeight="1540px" paddingBottom="90px">
-          <Grid height="400px" bg="#fff" margin="0 0 10px 0">
+          <Grid height="400px" bg="#fff">
             <OfficeImage />
             <OfficeBtmInfo />
           </Grid>
@@ -149,7 +149,7 @@ const Header = styled.div`
 const Outter = styled.div`
   width: 100%;
   position: relative;
-  top: 80px;
+  top: 56px;
   padding-bottom: 60px;
 `;
 
