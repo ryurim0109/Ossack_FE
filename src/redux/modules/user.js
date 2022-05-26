@@ -33,20 +33,21 @@ const setUserEmail = createAction(SET_USEREMAIL, (userEmail, statusCode) => ({
 const signUpApi = (user) => {
   return async function (dispatch, getState, { history }) {
     try {
-      //const response = await axios.post("https://ossack-dk.shop/user/signup", {
+      // const response = await axios.post("https://ossack-dk.shop/user/signup", {
       const response = await axios.post("http://3.39.177.59:8080/user/signup", {
         userEmail: user.userEmail,
         nickname: user.nickname,
         password: user.password,
       });
-      if (response.status === 200) {
+      console.log("response : ", response);
+      if (response.status === 200 && response.data.includes("회원가입 성공")) {
         Swal.fire("회원가입에 성공했습니다!");
         history.replace("/login");
       } else {
-        Swal.fire("회원가입에 실패했습니다. 다시 시도해주세요~");
+        Swal.fire("회원가입에 실패했습니다. 다시 시도해주세요.");
       }
     } catch (err) {
-      Swal.fire("회원가입에 실패했습니다. 다시 시도해주세요~");
+      Swal.fire("회원가입에 실패했습니다. 다시 시도해주세요.");
       console.log("에러발생", err);
     }
   };
@@ -129,6 +130,7 @@ const userEmailCheckDB = (userEmail) => {
         });
         return true;
       } else if (response.data === false) {
+        dispatch(setUserEmail(userEmail, response.data));
         Swal.fire({
           title: "이미 사용 중인 이메일입니다!",
           showCancelButton: false,
@@ -271,6 +273,7 @@ const editProfileDB = (nickname, image, userimg) => {
         // console.log(res, "이미지 데이터 성공");
         Swal.fire("프로필 변경이 완료되었습니다.");
         history.push("/mypage");
+        /* dispatch(user_img(res.data.data.imageUrl)); */
       })
       .catch((err) => {
         console.log("프로필 업로드 에러다!!!!", err.response);
