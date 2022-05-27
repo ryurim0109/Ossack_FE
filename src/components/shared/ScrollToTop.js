@@ -1,17 +1,17 @@
 import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
-export default function ScrollToTop() {
-  const { pathname } = useLocation();
-
-  //console.log("path : ", pathname);
-
+function ScrollToTop({ history }) {
   useEffect(() => {
-    const element = document.getElementById("mobileFrame");
-    element.scrollTo(0, 0);
-    // window.scrollTo(0, 0);
-    // console.log("called");
-  }, [pathname]);
+    const unlisten = history.listen(() => {
+      window.scrollTo(0, 0);
+    });
+    return () => {
+      unlisten();
+    };
+  }, []);
 
   return null;
 }
+
+export default withRouter(ScrollToTop);
