@@ -6,6 +6,7 @@ import { SlickSlider, ImageCnt } from "../shared/home";
 import { actionCreators as officeActions } from "../../redux/modules/office";
 import ossack from "../../assets/ossack02.jpg";
 import { LoadSpinner } from "../shared/home";
+import { history } from "../../redux/configStore";
 
 const MapOfficeResult = (props) => {
   const dispatch = useDispatch();
@@ -34,9 +35,7 @@ const MapOfficeResult = (props) => {
                       <Div
                         key={idx}
                         onClick={() => {
-                          window.location.replace(
-                            `/detail/${o.estateid}?query=${title}`
-                          );
+                          history.push(`/detail/${o.estateid}?query=${title}`);
                         }}
                       >
                         <Image
@@ -86,9 +85,7 @@ const MapOfficeResult = (props) => {
               </Grid>
               <Grid
                 _onClick={() => {
-                  window.location.replace(
-                    `/detail/${o.estateid}?query=${title}`
-                  );
+                  history.push(`/detail/${o.estateid}?query=${title}`);
                 }}
                 cursor="pointer"
                 width="100%"

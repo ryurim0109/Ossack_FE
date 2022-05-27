@@ -10,6 +10,7 @@ import { Bar, Spinner } from "../components/shared/home";
 const MapOfficeList = (props) => {
   const dispatch = useDispatch();
   const search = props.location.search.split("=")[1].split("&")[0];
+
   const totalPage = useSelector((state) => state?.office?.page);
   const title = useSelector((state) => state?.office?.keyword);
   const router = useSelector((state) => state.router.location.search);

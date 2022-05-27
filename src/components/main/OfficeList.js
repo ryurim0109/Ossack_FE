@@ -3,6 +3,7 @@ import { Grid, Button, Text, Image } from "../../elements/index";
 import styled from "styled-components";
 import { actionCreators as officeActions } from "../../redux/modules/office";
 import { useDispatch, useSelector } from "react-redux";
+import { history } from "../../redux/configStore";
 
 const OfficeList = (props) => {
   const dispatch = useDispatch();
@@ -42,9 +43,7 @@ const OfficeList = (props) => {
                 bottom="0"
                 position="absolute"
                 _onClick={() => {
-                  window.location.replace(
-                    `/detail/${o.estateid}?query=${o.title}`
-                  );
+                  history.push(`/detail/${o.estateid}?query=${o.title}`);
                 }}
                 cursor="pointer"
                 bg="linear-gradient(0deg, rgba(0, 0, 0, 0.8) 5.74%, rgba(108, 108, 108, 0.0421707) 86.75%, rgba(118, 118, 118, 0) 93.49%)"
@@ -84,9 +83,7 @@ const OfficeList = (props) => {
                 height="60px"
                 cursor="pointer"
                 _onClick={() => {
-                  window.location.replace(
-                    `/detail/${o.estateid}?query=${o.title}`
-                  );
+                  history.push(`/detail/${o.estateid}?query=${o.title}`);
                 }}
               >
                 <Text color="#fff" size="14px">

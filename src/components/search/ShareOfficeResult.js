@@ -6,6 +6,7 @@ import { SlickSlider, ImageCnt } from "../shared/home";
 import { actionCreators as officeActions } from "../../redux/modules/office";
 import ossack from "../../assets/ossack02.jpg";
 import { LoadSpinner } from "../shared/home";
+import { history } from "../../redux/configStore";
 
 const ShareOfficeResult = (props) => {
   const dispatch = useDispatch();
@@ -34,7 +35,7 @@ const ShareOfficeResult = (props) => {
                       <Div
                         key={idx}
                         onClick={() => {
-                          window.location.replace(
+                          history.push(
                             `/detail/share/${o.shareofficeid}?query=${search}`
                           );
                         }}
@@ -86,7 +87,7 @@ const ShareOfficeResult = (props) => {
               </Grid>
               <Grid
                 _onClick={() => {
-                  window.location.replace(
+                  history.push(
                     `/detail/share/${o.shareofficeid}?query=${search}`
                   );
                 }}
