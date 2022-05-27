@@ -33,7 +33,6 @@ const Signup = () => {
   // 리덕스에서 statusCode 가져오기
   const emailDup = useSelector((state) => state.user.statusCode);
 
-
   // 비활성화 여부
   const [userEmail, setUserEmail] = useState("");
   const [nickname, setNickname] = useState("");
@@ -62,7 +61,7 @@ const Signup = () => {
 
   const isPassedSignup = () => {
     if (typeof emailDup === "undefined") {
-      //console.log("emailDup : ", emailDup);
+      console.log("emailDup : ", emailDup);
       setEmailError("이메일 중복확인을 해주세요(🔐)");
     }
     return userEmail.includes("@") &&
@@ -116,16 +115,18 @@ const Signup = () => {
       // setEmailError("이메일 중복확인을 해주세요(🔐)");
       return;
     }
+    console.log("1");
 
     if (
-      emailRegex.test(userEmail) &&
-      passwordRegex.test(password) &&
+      emailRegex(userEmail) &&
+      passwordRegex(password) &&
       password === passwordCheck &&
-      nickNameRegex.test(nickname) &&
+      nickNameRegex(nickname) &&
       emailDup === true
       // &&checked
     ) {
       dispatch(userActions.signUpApi(joinData));
+      console.log("2");
     }
   };
 
