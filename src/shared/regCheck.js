@@ -19,7 +19,6 @@ export const emailRegex = (email) => {
 
 // password 체크
 export const passwordRegex = (password) => {
-  var regPassword =
-    /([\w-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+  var regPassword = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/;
   return regPassword.test(password);
 };
