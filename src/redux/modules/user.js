@@ -1,7 +1,6 @@
 import { createAction, handleActions } from "redux-actions";
 import produce from "immer";
-import axios from "axios";
-import { instance } from "../../shared/api";
+import { instance, instances } from "../../shared/api";
 import Swal from "sweetalert2";
 
 // actions
@@ -258,14 +257,8 @@ const editProfileDB = (nickname, image, userimg) => {
     file.append("profileImgUrl", userimg);
   }
   return function (dispatch, getState, { history }) {
-    axios
-      .put("http://3.39.177.59:8080/user/profile", file, {
-        //.put("https://ossack-dk.shop/user/profile", file, {
-        headers: {
-          Authorization: `BEARER ${localStorage.getItem("token")}`,
-          "Content-Type": "multipart/form-data",
-        },
-      })
+    instances
+      .put("/user/profile", file)
       .then((res) => {
         // console.log(res, "이미지 데이터 성공");
         Swal.fire("프로필 변경이 완료되었습니다.");
@@ -285,14 +278,8 @@ const userImgDeleteDB = (nickname) => {
   file.append("profileImgUrl", "");
 
   return function (dispatch, getState, { history }) {
-    axios
-      .put("http://3.39.177.59:8080/user/profile", file, {
-        //.put("https://ossack-dk.shop/user/profile", file, {
-        headers: {
-          Authorization: `BEARER ${localStorage.getItem("token")}`,
-          "Content-Type": "multipart/form-data",
-        },
-      })
+    instances
+      .put("/user/profile", file)
       .then((res) => {
         //console.log(res, "이미지 삭제 성공");
         Swal.fire("이미지 제거가 완료되었습니다.");

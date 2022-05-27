@@ -12,6 +12,16 @@ export const instance = axios.create({
   },
   withCredentials: false,
 });
+export const instances = axios.create({
+  baseURL: "http://3.39.177.59:8080",
+
+  //baseURL: "https://ossack-dk.shop",
+
+  headers: {
+    Authorization: `BEARER ${localStorage.getItem("token")}`,
+    "Content-Type": "multipart/form-data",
+  },
+});
 
 //2. 요청 인터셉터
 instance.interceptors.request.use(
