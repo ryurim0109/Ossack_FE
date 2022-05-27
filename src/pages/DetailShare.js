@@ -87,53 +87,56 @@ const DetailShare = () => {
           )}
         </Grid>
       </Header>
-      <Outter>
-        <Grid bg="#F5F5F5" minHeight="1540px" paddingBottom="90px">
-          <Grid height="400px" bg="#fff">
-            <ShareOfficeImage />
-            <ShareOfficeBtmInfo />
-          </Grid>
+      <Div>
+        <Outter>
+          <Grid bg="#F5F5F5" minHeight="1540px" paddingBottom="90px">
+            <Grid height="400px" bg="#fff">
+              <ShareOfficeImage />
+              <ShareOfficeBtmInfo />
+            </Grid>
 
-          {/* 상세정보 */}
-          <ShareOfficeBasicInfo />
+            {/* 상세정보 */}
+            <ShareOfficeBasicInfo />
 
-          {/* 중개사 코멘트 */}
-          <ShareOfficeCmntInfo />
+            {/* 중개사 코멘트 */}
+            <ShareOfficeCmntInfo />
 
-          {/* 위치 */}
-          <Grid
-            bottom="0"
-            //padding="0 16px"
-            display="flex"
-            flexDirection="column"
-            justifyContent="center"
-            width="100%"
-            height="340px"
-            bg="#fff"
-          >
+            {/* 위치 */}
             <Grid
+              bottom="0"
+              //padding="0 16px"
               display="flex"
               flexDirection="column"
               justifyContent="center"
-              padding="16px 0"
+              width="100%"
+              height="340px"
               bg="#fff"
-              minHeight="330px"
             >
-              <Grid margin="0 0 10px" height="55px">
-                <Bp style={{ padding: "3px 16px" }}>위치</Bp>
-                <Sp style={{ padding: "0 16px" }}>
-                  {" "}
-                  {getOneShareOffice?.detail_address === getOneShareOffice?.name
-                    ? getOneShareOffice?.address
-                    : getOneShareOffice?.detail_address}{" "}
-                </Sp>
+              <Grid
+                display="flex"
+                flexDirection="column"
+                justifyContent="center"
+                padding="16px 0"
+                bg="#fff"
+                minHeight="330px"
+              >
+                <Grid margin="0 0 10px" height="55px">
+                  <Bp style={{ padding: "3px 16px" }}>위치</Bp>
+                  <Sp style={{ padding: "0 16px" }}>
+                    {" "}
+                    {getOneShareOffice?.detail_address ===
+                    getOneShareOffice?.name
+                      ? getOneShareOffice?.address
+                      : getOneShareOffice?.detail_address}{" "}
+                  </Sp>
+                </Grid>
+                <OneMap shareofficeid={shareofficeid}></OneMap>
               </Grid>
-              <OneMap shareofficeid={shareofficeid}></OneMap>
             </Grid>
+            <ShareOfficeAgentInfo />
           </Grid>
-          <ShareOfficeAgentInfo />
-        </Grid>
-      </Outter>
+        </Outter>
+      </Div>
       {!is_loaded && <LoadSpinner />}
       <Bar />
     </React.Fragment>
@@ -170,5 +173,11 @@ const Bp = styled.p`
   width: 60%;
   color: #000;
   font-size: ${({ theme }) => theme.fontSizes.xlg};
+`;
+
+const Div = styled.div`
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
 `;
 export default DetailShare;

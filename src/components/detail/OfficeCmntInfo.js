@@ -8,6 +8,7 @@ const CommentInfo = () => {
   const getOneOffice = useSelector((state) => state.office.one_office);
   const contentRef = useRef(null);
   const divBoxRef = useRef(null);
+
   const onClick = (e) => {
     contentRef.current.classList.add("show");
     e.currentTarget.classList.add("hide");
@@ -83,6 +84,11 @@ const CommentInfo = () => {
                   <Btn onClick={onClick}>
                     <Text size="16px" color="#3E00FF">
                       더보기
+                    </Text>
+                  </Btn>
+                  <Btn onClick={onClick}>
+                    <Text size="16px" color="#3E00FF">
+                      접기
                     </Text>
                   </Btn>
                 </Ellipsis>
