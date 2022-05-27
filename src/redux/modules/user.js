@@ -32,7 +32,6 @@ const setUserEmail = createAction(SET_USEREMAIL, (userEmail, statusCode) => ({
 const signUpApi = (user) => {
   return async function (dispatch, getState, { history }) {
     try {
-      // const response = await axios.post("https://ossack-dk.shop/user/signup", {
       const response = await instance.post("/user/signup", {
         userEmail: user.userEmail,
         nickname: user.nickname,
@@ -56,7 +55,6 @@ const loginApi = (userEmail, password) => {
   return async function (dispatch, getState, { history }) {
     try {
       const response = await instance.post("/user/login", {
-        //const response = await axios.post("https://ossack-dk.shop/user/login", {
         userEmail: userEmail,
         password: password,
       });
