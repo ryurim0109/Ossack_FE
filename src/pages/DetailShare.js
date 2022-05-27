@@ -5,8 +5,7 @@ import { OneMap } from "../components/map/index";
 import { Grid, Button, Text } from "../elements/index";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { history } from "../redux/configStore";
-import Bar from "../components/shared/Bar";
+import { Bar, LoadSpinner } from "../components/shared/home";
 import { actionCreators as officeActions } from "../redux/modules/office";
 import {
   ShareOfficeBasicInfo,
@@ -25,6 +24,7 @@ const DetailShare = () => {
   //console.log("getOneShareOffice : ", getOneShareOffice);
   const router = useSelector((state) => state.router.location.search);
   const dong = router?.split("=")[1];
+  const is_loaded = useSelector((state) => state.office.is_loaded);
 
   useEffect(() => {
     //console.log(shareofficeid);
@@ -134,6 +134,7 @@ const DetailShare = () => {
           <ShareOfficeAgentInfo />
         </Grid>
       </Outter>
+      {!is_loaded && <LoadSpinner />}
       <Bar />
     </React.Fragment>
   );

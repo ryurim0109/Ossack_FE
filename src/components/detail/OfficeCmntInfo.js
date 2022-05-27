@@ -7,14 +7,16 @@ import styled from "styled-components";
 const CommentInfo = () => {
   const getOneOffice = useSelector((state) => state.office.one_office);
   const contentRef = useRef(null);
+  const divBoxRef = useRef(null);
   const onClick = (e) => {
     contentRef.current.classList.add("show");
     e.currentTarget.classList.add("hide");
+    divBoxRef.current.classList.add("hide");
   };
 
   return (
     <React.Fragment>
-      <Grid height="500px" bg="#fff" margin="0 0 10px 0" overflowY="auto">
+      <Grid height="auto" bg="#fff" margin="0 0 10px 0" padding="0 0 20px 0">
         <Grid
           bottom="0"
           padding="0 16px"
@@ -77,6 +79,7 @@ const CommentInfo = () => {
                         </div>
                       );
                     })}{" "}
+                  <Div ref={divBoxRef} />
                   <Btn onClick={onClick}>
                     <Text size="16px" color="#3E00FF">
                       더보기
@@ -122,7 +125,17 @@ const Ellipsis = styled.div`
     -webkit-line-clamp: unset;
   }
 `;
-
+const Div = styled.div`
+  width: 100%;
+  height: 111px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #ffffff 100%);
+  &.hide {
+    display: none;
+  }
+`;
 const Btn = styled.button`
   width: 100%;
   height: 48px;
@@ -135,14 +148,15 @@ const Btn = styled.button`
   bottom: 0;
   right: 0;
   //max-height: 2rem;
+  background-color: #fff;
   line-height: 48px;
-  background: rgb(2, 0, 36);
+  /* background: rgb(2, 0, 36);
   background: linear-gradient(
     180deg,
     rgba(2, 0, 36, 1) 0%,
     rgba(255, 255, 255, 0) 0%,
     rgba(255, 255, 255, 1) 18%
-  );
+  ); */
   &.hide {
     display: none;
   }

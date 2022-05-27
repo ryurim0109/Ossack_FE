@@ -4,8 +4,8 @@ import { Grid, Button, Text, Image } from "../../elements/index";
 import { actionCreators as favoriteActions } from "../../redux/modules/favorite";
 import { useDispatch, useSelector } from "react-redux";
 import { SlickSlider, ImageCnt } from "../shared/home";
-import { history } from "../../redux/configStore";
 import ossack from "../../assets/ossack02.jpg";
+import { history } from "../../redux/configStore";
 
 const OfficeLike = (props) => {
   const dispatch = useDispatch();
