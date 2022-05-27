@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
-import { history } from "../../redux/configStore";
 import { Grid, Image, Button, Text } from "../../elements/index";
 import { SlickSlider, ImageCnt } from "../shared/home";
 import { actionCreators as officeActions } from "../../redux/modules/office";
@@ -35,7 +34,9 @@ const MapOfficeResult = (props) => {
                       <Div
                         key={idx}
                         onClick={() => {
-                          history.push(`/detail/${o.estateid}?query=${title}`);
+                          window.location.replace(
+                            `/detail/${o.estateid}?query=${title}`
+                          );
                         }}
                       >
                         <Image
@@ -85,7 +86,9 @@ const MapOfficeResult = (props) => {
               </Grid>
               <Grid
                 _onClick={() => {
-                  history.push(`/detail/${o.estateid}?query=${title}`);
+                  window.location.replace(
+                    `/detail/${o.estateid}?query=${title}`
+                  );
                 }}
                 cursor="pointer"
                 width="100%"

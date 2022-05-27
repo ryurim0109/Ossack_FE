@@ -3,9 +3,8 @@ import styled from "styled-components";
 import { OneMap } from "../components/map/index";
 import { Grid, Text, Button } from "../elements/index";
 import { useParams } from "react-router-dom";
-import { history } from "../redux/configStore";
 import { useSelector, useDispatch } from "react-redux";
-import Bar from "../components/shared/Bar";
+import { Bar, LoadSpinner } from "../components/shared/home";
 import { actionCreators as officeActions } from "../redux/modules/office";
 import { ReactComponent as Heart } from "../assets/favourite.svg";
 import {
@@ -22,6 +21,7 @@ const DetailOffice = () => {
   const getOneOffice = useSelector((state) => state.office.one_office);
   const router = useSelector((state) => state.router.location.search);
   const dong = router?.split("=")[1];
+  const is_loaded = useSelector((state) => state.office.is_loaded);
   //console.log("getOneOffice : ", getOneOffice);
 
   // const getImage = getOneOffice.images.map((images) => images);
@@ -130,6 +130,7 @@ const DetailOffice = () => {
           <OfficeAgentInfo />
         </Grid>
       </Outter>
+      {!is_loaded && <LoadSpinner />}
       <Bar />
     </React.Fragment>
   );

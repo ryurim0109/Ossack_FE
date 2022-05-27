@@ -278,6 +278,7 @@ const getShareListDB = (keyword, pageno) => {
 /* 오피스 상세 조회 */
 const getOneOfficeDB = (estateid) => {
   return (dispatch) => {
+    dispatch(isLoaded(false));
     instance
       .get(`/estate/${estateid}`)
       .then((res) => {
@@ -292,6 +293,7 @@ const getOneOfficeDB = (estateid) => {
 /* 공유오피스 상세 조회 */
 const getOneShareOfficeDB = (shareofficeid) => {
   return (dispatch) => {
+    dispatch(isLoaded(false));
     instance
       .get(`/sharedoffice/${shareofficeid}`)
       .then((res) => {
@@ -310,10 +312,12 @@ export default handleActions(
     [GET_ONE_SHARE_OFFICE]: (state, action) =>
       produce(state, (draft) => {
         draft.one_share_office = action.payload.one_share_office;
+        draft.is_loaded = true;
       }),
     [GET_ONE_OFFICE]: (state, action) =>
       produce(state, (draft) => {
         draft.one_office = action.payload.one_office;
+        draft.is_loaded = true;
       }),
     [GET_MAIN_OFFICE]: (state, action) =>
       produce(state, (draft) => {

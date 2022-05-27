@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
-import { history } from "../../redux/configStore";
 import { Grid, Image, Button, Text } from "../../elements/index";
 import { SlickSlider, ImageCnt } from "../shared/home";
 import { actionCreators as officeActions } from "../../redux/modules/office";
@@ -35,7 +34,7 @@ const ShareOfficeResult = (props) => {
                       <Div
                         key={idx}
                         onClick={() => {
-                          history.push(
+                          window.location.replace(
                             `/detail/share/${o.shareofficeid}?query=${search}`
                           );
                         }}
@@ -87,7 +86,7 @@ const ShareOfficeResult = (props) => {
               </Grid>
               <Grid
                 _onClick={() => {
-                  history.push(
+                  window.location.replace(
                     `/detail/share/${o.shareofficeid}?query=${search}`
                   );
                 }}

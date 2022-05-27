@@ -4,7 +4,6 @@ import { Grid, Button, Text, Image } from "../../elements/index";
 import { actionCreators as favoriteActions } from "../../redux/modules/favorite";
 import { useDispatch, useSelector } from "react-redux";
 import { SlickSlider, ImageCnt } from "../shared/home";
-import { history } from "../../redux/configStore";
 import ossack from "../../assets/ossack02.jpg";
 
 const OfficeLike = (props) => {
@@ -58,7 +57,7 @@ const OfficeLike = (props) => {
                               cursor="pointer"
                               key={idx}
                               _onClick={() => {
-                                history.push(
+                                window.location.replace(
                                   `/detail/${office.estateid}?query=${office.address}`
                                 );
                               }}
@@ -105,7 +104,7 @@ const OfficeLike = (props) => {
                   width="100%"
                   height="40px"
                   _onClick={() => {
-                    history.push(
+                    window.location.replace(
                       `/detail/${office.estateid}?query=${office.address}`
                     );
                   }}
