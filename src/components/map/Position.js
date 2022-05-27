@@ -15,7 +15,7 @@ const Position = (props) => {
     } else {
       dispatch(mapActions.getOfficeData(pos, level, router));
     }
-  }, [pos]);
+  }, [pos, level]);
 
   return <React.Fragment></React.Fragment>;
 };
