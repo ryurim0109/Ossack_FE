@@ -16,7 +16,7 @@ const CommentInfo = () => {
 
   return (
     <React.Fragment>
-      <Grid height="500px" bg="#fff" margin="0 0 10px 0" overflowY="auto">
+      <Grid height="auto" bg="#fff" margin="0 0 10px 0">
         <Grid
           bottom="0"
           padding="0 16px"
@@ -138,13 +138,14 @@ const Btn = styled.button`
   right: 0;
   //max-height: 2rem;
   line-height: 48px;
-  background: rgb(2, 0, 36);
+  background-color: #fff;
+  /*  background: rgb(2, 0, 36);
   background: linear-gradient(
     180deg,
     rgba(2, 0, 36, 1) 0%,
     rgba(255, 255, 255, 0) 0%,
     rgba(255, 255, 255, 1) 18%
-  );
+  ); */
   &.hide {
     display: none;
   }
