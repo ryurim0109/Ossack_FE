@@ -26,15 +26,15 @@ const Member = () => {
             window.open("https://github.com/Littlecold4", "_blank");
           }}
         >
-          <Grid width="120px" height="120px">
+          <Grid width="120px" height="120px" cursor="pointer">
             <Image src={member1} shape="rectangle" />
           </Grid>
           <LeftContent>
             <Inner>
-              <Grid>
+              <Grid cursor="pointer">
                 <Text bold>미누 : 백엔드 개발자</Text>
               </Grid>
-              <Grid>
+              <Grid cursor="pointer">
                 <p>개발이 나, 내가 곧 개발이다.</p>
                 <p>개발에 죽고 못 사는 사람🧑‍💻</p>
               </Grid>
@@ -49,16 +49,16 @@ const Member = () => {
         >
           <RightContent>
             <Inner>
-              <Grid>
+              <Grid cursor="pointer">
                 <Text bold>다콩 : 백엔드 개발자</Text>
               </Grid>
-              <Grid>
+              <Grid cursor="pointer">
                 <p>왜들 그리 서버다운 돼있어,</p>
                 <p>뭐가 오류야 세이 썸띵 🤷‍♀️</p>
               </Grid>
             </Inner>
           </RightContent>
-          <Grid width="120px" height="120px">
+          <Grid width="120px" height="120px" cursor="pointer">
             <Image src={member2} shape="rectangle" />
           </Grid>
         </Right>
@@ -68,15 +68,15 @@ const Member = () => {
             window.open("https://github.com/sumye", "_blank");
           }}
         >
-          <Grid width="120px" height="120px">
+          <Grid width="120px" height="120px" cursor="pointer">
             <Image src={member3} shape="rectangle" />
           </Grid>
           <LeftContent>
             <Inner>
-              <Grid>
+              <Grid cursor="pointer">
                 <Text bold>쑤마 : 백엔드 개발자</Text>
               </Grid>
-              <Grid>
+              <Grid cursor="pointer">
                 <p>다이어트가 너무 힘든 애견인🐶</p>
                 <p>강아지 이름은 아추!</p>
               </Grid>
@@ -91,16 +91,16 @@ const Member = () => {
         >
           <RightContent>
             <Inner>
-              <Grid>
+              <Grid cursor="pointer">
                 <Text bold>유짱 : 프론트엔드 개발자</Text>
               </Grid>
-              <Grid>
+              <Grid cursor="pointer">
                 <p>귀엽다면 뭐든 오케이</p>
                 <p>제일 좋아하는 캐릭터는 알린😍</p>
               </Grid>
             </Inner>
           </RightContent>
-          <Grid width="120px" height="120px">
+          <Grid width="120px" height="120px" cursor="pointer">
             <Image src={member4} shape="rectangle" />
           </Grid>
         </Right>
@@ -110,15 +110,15 @@ const Member = () => {
             window.open("https://github.com/devkevinsoon", "_blank");
           }}
         >
-          <Grid width="120px" height="120px">
+          <Grid width="120px" height="120px" cursor="pointer">
             <Image src={member5} shape="rectangle" />
           </Grid>
           <LeftContent>
             <Inner>
-              <Grid>
+              <Grid cursor="pointer">
                 <Text bold>SOON : 프론트엔드 개발자</Text>
               </Grid>
-              <Grid>
+              <Grid cursor="pointer">
                 <p>이상을 실현하는 과정은</p>
                 <p>언제나 두근거려요~(진지😆)</p>
               </Grid>
@@ -210,7 +210,6 @@ const Left = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
-  cursor: pointer;
 
   & p {
     font-size: ${({ theme }) => theme.fontSizes.base};
@@ -239,7 +238,6 @@ const Right = styled.div`
   align-items: center;
   margin-bottom: 20px;
   padding-left: 25%;
-  cursor: pointer;
   & p {
     font-size: ${({ theme }) => theme.fontSizes.base};
     color: ${({ theme }) => theme.colors.subTitle};
