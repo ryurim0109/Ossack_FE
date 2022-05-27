@@ -87,49 +87,54 @@ const DetailOffice = () => {
           )}
         </Grid>
       </Header>
-      <Outter>
-        <Grid bg="#F5F5F5" minHeight="1540px" paddingBottom="90px">
-          <Grid height="400px" bg="#fff">
-            <OfficeImage />
-            <OfficeBtmInfo />
-          </Grid>
+      <Div>
+        <Outter>
+          <Grid bg="#F5F5F5" minHeight="1540px" paddingBottom="90px">
+            <Grid height="400px" bg="#fff">
+              <OfficeImage />
+              <OfficeBtmInfo />
+            </Grid>
 
-          {/* 상세정보 */}
-          <OfficeBasicInfo />
+            {/* 상세정보 */}
+            <OfficeBasicInfo />
 
-          {/* 중개사 코멘트 */}
-          <OfficeCmntInfo />
+            {/* 중개사 코멘트 */}
+            <OfficeCmntInfo />
 
-          {/* 위치 */}
-          <Grid
-            bottom="0"
-            //padding="0 16px"
-            display="flex"
-            flexDirection="column"
-            justifyContent="center"
-            width="100%"
-            height="340px"
-            bg="#fff"
-          >
+            {/* 위치 */}
             <Grid
+              bottom="0"
+              //padding="0 16px"
               display="flex"
               flexDirection="column"
               justifyContent="center"
-              padding="16px 0"
+              width="100%"
+              height="340px"
               bg="#fff"
-              minHeight="330px"
             >
-              <Grid margin="0 0 10px" height="55px">
-                <Bp style={{ padding: "3px 16px" }}>위치</Bp>
-                <Sp style={{ padding: "0 16px" }}> {getOneOffice?.address} </Sp>
-              </Grid>
+              <Grid
+                display="flex"
+                flexDirection="column"
+                justifyContent="center"
+                padding="16px 0"
+                bg="#fff"
+                minHeight="330px"
+              >
+                <Grid margin="0 0 10px" height="55px">
+                  <Bp style={{ padding: "3px 16px" }}>위치</Bp>
+                  <Sp style={{ padding: "0 16px" }}>
+                    {" "}
+                    {getOneOffice?.address}{" "}
+                  </Sp>
+                </Grid>
 
-              <OneMap />
+                <OneMap />
+              </Grid>
             </Grid>
+            <OfficeAgentInfo />
           </Grid>
-          <OfficeAgentInfo />
-        </Grid>
-      </Outter>
+        </Outter>
+      </Div>
       {!is_loaded && <LoadSpinner />}
       <Bar />
     </React.Fragment>
@@ -166,6 +171,12 @@ const Bp = styled.p`
   width: 60%;
   color: #000;
   font-size: ${({ theme }) => theme.fontSizes.xlg};
+`;
+
+const Div = styled.div`
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
 `;
 
 export default DetailOffice;
