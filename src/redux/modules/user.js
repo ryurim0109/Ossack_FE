@@ -34,7 +34,7 @@ const signUpApi = (user) => {
   return async function (dispatch, getState, { history }) {
     try {
       // const response = await axios.post("https://ossack-dk.shop/user/signup", {
-      const response = await axios.post("http://3.39.177.59:8080/user/signup", {
+      const response = await instance.post("/user/signup", {
         userEmail: user.userEmail,
         nickname: user.nickname,
         password: user.password,
@@ -56,7 +56,7 @@ const signUpApi = (user) => {
 const loginApi = (userEmail, password) => {
   return async function (dispatch, getState, { history }) {
     try {
-      const response = await axios.post("http://3.39.177.59:8080/user/login", {
+      const response = await instance.post("/user/login", {
         //const response = await axios.post("https://ossack-dk.shop/user/login", {
         userEmail: userEmail,
         password: password,
