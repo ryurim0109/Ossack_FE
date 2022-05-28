@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Bar, LoadSpinner } from "../components/shared/home";
 import { actionCreators as officeActions } from "../redux/modules/office";
 import { ReactComponent as Heart } from "../assets/favourite.svg";
+import { history } from "../redux/configStore";
 import {
   OfficeImage,
   OfficeBtmInfo,
@@ -19,8 +20,7 @@ const DetailOffice = () => {
   const dispatch = useDispatch();
   const estateid = useParams().estateId;
   const getOneOffice = useSelector((state) => state.office.one_office);
-  const router = useSelector((state) => state.router.location.search);
-  const dong = router?.split("=")[1];
+
   const is_loaded = useSelector((state) => state.office.is_loaded);
   //console.log("getOneOffice : ", getOneOffice);
 
@@ -46,7 +46,7 @@ const DetailOffice = () => {
           <Button
             is_back
             _onClick={() => {
-              window.location.replace(`/map/office?query=${dong}`);
+              history.goBack();
             }}
           />
         </Grid>

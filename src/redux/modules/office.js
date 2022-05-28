@@ -24,8 +24,14 @@ const LOADED = "LOADED";
 const getMainOffice = createAction(GET_MAIN_OFFICE, (main_list) => ({
   main_list,
 }));
-const clickLike = createAction(CLICK_LIKE, (estate_id) => ({ estate_id }));
-const deleteLike = createAction(DELETE_LIKE, (estate_id) => ({ estate_id }));
+const clickLike = createAction(CLICK_LIKE, (estate_id, mylike) => ({
+  estate_id,
+  mylike,
+}));
+const deleteLike = createAction(DELETE_LIKE, (estate_id, mylike) => ({
+  estate_id,
+  mylike,
+}));
 const mainClickLike = createAction(MAIN_CLICK_LIKE, (estate_id) => ({
   estate_id,
 }));
@@ -52,18 +58,20 @@ const oneShareDeleteLike = createAction(ONE_SHARE_DELETE_LIKE, (mylike) => ({
 }));
 const getSOList = createAction(
   GET_SEARCH_OFFICE_LIST,
-  (list, page, keyword) => ({
+  (list, page, keyword, presentpage) => ({
     list,
     page,
     keyword,
+    presentpage,
   })
 );
 const getShareList = createAction(
   GET_SEARCH_SHARE_LIST,
-  (share_list, page, keyword) => ({
+  (share_list, page, keyword, presentpage) => ({
     share_list,
     page,
     keyword,
+    presentpage,
   })
 );
 const getOneOffice = createAction(GET_ONE_OFFICE, (one_office) => ({
@@ -82,7 +90,9 @@ const initialState = {
   main_list: [],
   hot_list: [],
   share_list: [],
-  is_loading: false,
+  is_loaded: false,
+  one_office: [],
+  one_share_office: [],
 };
 /* 맛집근처 역근처 */
 const getMainOfficeDB = (dong) => {
@@ -132,7 +142,8 @@ const clickLikeDB = (estateId) => {
     instance
       .post(`/estates/${estateId}/like`)
       .then((res) => {
-        dispatch(clickLike(estateId));
+        console.log(res);
+        dispatch(clickLike(estateId, res.data.mylike));
       })
       .catch((err) => {
         console.log("오피스좋아요 에러", err);
@@ -145,7 +156,7 @@ const deleteLikeDB = (estateId) => {
     instance
       .post(`/estates/${estateId}/unlike`)
       .then((res) => {
-        dispatch(deleteLike(estateId));
+        dispatch(deleteLike(estateId, res.data.mylike));
       })
       .catch((err) => {
         console.log("오피스 좋아요 취소 에러", err);
@@ -158,7 +169,7 @@ const shareClickLikeDB = (shareofficeid) => {
     instance
       .post(`/estates/${shareofficeid}/like`)
       .then((res) => {
-        dispatch(shareClickLike(shareofficeid));
+        dispatch(shareClickLike(shareofficeid, res.data.mylike));
       })
       .catch((err) => {
         console.log("공유오피스 좋아요 클릭 에러", err.message);
@@ -171,7 +182,7 @@ const shareDeleteLikeDB = (shareofficeid) => {
     instance
       .post(`/estates/${shareofficeid}/unlike`)
       .then((res) => {
-        dispatch(shareDeleteLike(shareofficeid));
+        dispatch(shareDeleteLike(shareofficeid, res.data.mylike));
       })
       .catch((err) => {
         console.log("공유 오피스 좋아요 취소 에러", err.message);
@@ -184,7 +195,7 @@ const oneClickLikeDB = (estateId) => {
     instance
       .post(`/estates/${estateId}/like`)
       .then((res) => {
-        dispatch(oneClickLike(res.data.mylike));
+        dispatch(oneClickLike(res.data.mylike, estateId));
       })
       .catch((err) => {
         console.log("오피스좋아요 에러", err.message);
@@ -246,7 +257,8 @@ const getSOListDB = (keyword, pageno, router, monthly) => {
           getSOList(
             res.data.estateResponseDtoList,
             res.data.totalpage,
-            res.data.keyword
+            res.data.keyword,
+            res.data.presentpage
           )
         );
       })
@@ -266,7 +278,8 @@ const getShareListDB = (keyword, pageno) => {
           getShareList(
             res.data.sharedOfficeResponseDtos,
             res.data.totalpage,
-            res.data.keyword
+            res.data.keyword,
+            res.data.presentpage
           )
         );
       })
@@ -332,7 +345,7 @@ export default handleActions(
           }
           return false;
         });
-        draft.list[numArr[0]].mylike = true;
+        draft.list[numArr[0]].mylike = action.payload.mylike;
       }),
     [DELETE_LIKE]: (state, action) =>
       produce(state, (draft) => {
@@ -343,7 +356,7 @@ export default handleActions(
           }
           return false;
         });
-        draft.list[numArr[0]].mylike = false;
+        draft.list[numArr[0]].mylike = action.payload.mylike;
       }),
     [MAIN_CLICK_LIKE]: (state, action) =>
       produce(state, (draft) => {
@@ -376,7 +389,7 @@ export default handleActions(
           }
           return false;
         });
-        draft.share_list[numArr[0]].mylike = true;
+        draft.share_list[numArr[0]].mylike = action.payload.mylike;
       }),
     [SHARE_DELETE_LIKE]: (state, action) =>
       produce(state, (draft) => {
@@ -387,7 +400,7 @@ export default handleActions(
           }
           return false;
         });
-        draft.share_list[numArr[0]].mylike = false;
+        draft.share_list[numArr[0]].mylike = action.payload.mylike;
       }),
     [ONE_CLICK_LIKE]: (state, action) =>
       produce(state, (draft) => {
@@ -408,7 +421,7 @@ export default handleActions(
     [GET_SEARCH_OFFICE_LIST]: (state, action) =>
       produce(state, (draft) => {
         if (
-          action.payload.page > 1 &&
+          action.payload.presentpage > 1 &&
           action.payload.keyword === draft.keyword
         ) {
           draft.list.push(...action.payload.list);
@@ -416,13 +429,14 @@ export default handleActions(
           draft.list = action.payload.list;
         }
         draft.page = action.payload.page;
+        draft.presentpage = action.payload.presentpage;
         draft.keyword = action.payload.keyword;
         draft.is_loaded = true;
       }),
     [GET_SEARCH_SHARE_LIST]: (state, action) =>
       produce(state, (draft) => {
         if (
-          action.payload.page > 1 &&
+          action.payload.presentpage > 1 &&
           action.payload.keyword === draft.keyword
         ) {
           draft.share_list.push(...action.payload.share_list);
@@ -431,6 +445,7 @@ export default handleActions(
         }
         draft.page = action.payload.page;
         draft.keyword = action.payload.keyword;
+        draft.presentpage = action.payload.presentpage;
         draft.is_loaded = true;
       }),
   },

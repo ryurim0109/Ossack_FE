@@ -49,7 +49,7 @@ const MapOfficeList = (props) => {
     <React.Fragment>
       <MyHeader is_back>{title} 리스트</MyHeader>
       <Outter>
-        <MapOfficeResult title={title} />
+        <MapOfficeResult />
       </Outter>
       {isLoading ? <Spinner /> : null}
       {totalPage > pageno ? <div ref={setTarget}> </div> : null}

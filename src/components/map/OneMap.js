@@ -15,12 +15,12 @@ const KakaoMap = (props) => {
 
   let firstY =
     is_share === true
-      ? shareList?.coordinateResponseDto.lat
-      : list?.coordinateResponseDto.lat;
+      ? shareList?.coordinateResponseDto?.lat
+      : list?.coordinateResponseDto?.lat;
   let firstX =
     is_share === true
-      ? shareList?.coordinateResponseDto.lng
-      : list?.coordinateResponseDto.lng;
+      ? shareList?.coordinateResponseDto?.lng
+      : list?.coordinateResponseDto?.lng;
 
   useEffect(() => {
     let container = document.getElementById("map");

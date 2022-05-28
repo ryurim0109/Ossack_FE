@@ -11,8 +11,9 @@ import { history } from "../../redux/configStore";
 const MapOfficeResult = (props) => {
   const dispatch = useDispatch();
   const officeData = useSelector((state) => state?.office?.list);
+  //console.log(officeData[0]?.mylike);
+
   const is_loaded = useSelector((state) => state.office.is_loaded);
-  const { title } = props;
 
   if (officeData?.length >= 1) {
     return (
@@ -35,7 +36,7 @@ const MapOfficeResult = (props) => {
                       <Div
                         key={idx}
                         onClick={() => {
-                          history.push(`/detail/${o.estateid}?query=${title}`);
+                          history.push(`/detail/${o.estateid}`);
                         }}
                       >
                         <Image
@@ -85,7 +86,7 @@ const MapOfficeResult = (props) => {
               </Grid>
               <Grid
                 _onClick={() => {
-                  history.push(`/detail/${o.estateid}?query=${title}`);
+                  history.push(`/detail/${o.estateid}`);
                 }}
                 cursor="pointer"
                 width="100%"
