@@ -54,7 +54,7 @@ function SearchBar({ onAddKeyword, activeTab }) {
       </SearchIcon>
       <InputContainer>
         <Input
-          placeholder="시,구,동으로 검색어를 입력하세요"
+          placeholder="시 ,구 ,동으로 검색어를 입력하세요."
           active={hasKeyword}
           value={keyword}
           onChange={handleKeyword}
@@ -124,8 +124,7 @@ const InputContainer = styled.div`
 const Input = styled.input`
   width: 100%;
   background-color: #f5f5f5;
-  font-weight: 700;
-  font-size: 15px;
+  font-size: ${({ theme }) => theme.fontSizes.large};
   box-sizing: border-box;
   border: none;
   outline: none;
