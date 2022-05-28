@@ -24,13 +24,11 @@ const LOADED = "LOADED";
 const getMainOffice = createAction(GET_MAIN_OFFICE, (main_list) => ({
   main_list,
 }));
-const clickLike = createAction(CLICK_LIKE, (estate_id, mylike) => ({
+const clickLike = createAction(CLICK_LIKE, (estate_id) => ({
   estate_id,
-  mylike,
 }));
-const deleteLike = createAction(DELETE_LIKE, (estate_id, mylike) => ({
+const deleteLike = createAction(DELETE_LIKE, (estate_id) => ({
   estate_id,
-  mylike,
 }));
 const mainClickLike = createAction(MAIN_CLICK_LIKE, (estate_id) => ({
   estate_id,
@@ -142,7 +140,6 @@ const clickLikeDB = (estateId) => {
     instance
       .post(`/estates/${estateId}/like`)
       .then((res) => {
-        console.log(res);
         dispatch(clickLike(estateId, res.data));
       })
       .catch((err) => {
@@ -169,7 +166,7 @@ const shareClickLikeDB = (shareofficeid) => {
     instance
       .post(`/estates/${shareofficeid}/like`)
       .then((res) => {
-        dispatch(shareClickLike(shareofficeid, res.data));
+        dispatch(shareClickLike(shareofficeid));
       })
       .catch((err) => {
         console.log("공유오피스 좋아요 클릭 에러", err.message);
@@ -182,7 +179,7 @@ const shareDeleteLikeDB = (shareofficeid) => {
     instance
       .post(`/estates/${shareofficeid}/unlike`)
       .then((res) => {
-        dispatch(shareDeleteLike(shareofficeid, res.data));
+        dispatch(shareDeleteLike(shareofficeid));
       })
       .catch((err) => {
         console.log("공유 오피스 좋아요 취소 에러", err.message);
@@ -345,7 +342,7 @@ export default handleActions(
           }
           return false;
         });
-        draft.list[numArr[0]].mylike = action.payload.mylike;
+        draft.list[numArr[0]].mylike = true;
       }),
     [DELETE_LIKE]: (state, action) =>
       produce(state, (draft) => {
@@ -356,7 +353,7 @@ export default handleActions(
           }
           return false;
         });
-        draft.list[numArr[0]].mylike = action.payload.mylike;
+        draft.list[numArr[0]].mylike = false;
       }),
     [MAIN_CLICK_LIKE]: (state, action) =>
       produce(state, (draft) => {
@@ -389,7 +386,7 @@ export default handleActions(
           }
           return false;
         });
-        draft.share_list[numArr[0]].mylike = action.payload.mylike;
+        draft.share_list[numArr[0]].mylike = true;
       }),
     [SHARE_DELETE_LIKE]: (state, action) =>
       produce(state, (draft) => {
@@ -400,7 +397,7 @@ export default handleActions(
           }
           return false;
         });
-        draft.share_list[numArr[0]].mylike = action.payload.mylike;
+        draft.share_list[numArr[0]].mylike = false;
       }),
     [ONE_CLICK_LIKE]: (state, action) =>
       produce(state, (draft) => {
