@@ -98,8 +98,6 @@ const getMainOfficeDB = (dong) => {
     instance
       .get(`/estates?query=${dong}`)
       .then((res) => {
-        //console.log(res.data, "나는 메인 오피스 DB");
-        //console.log(res, "나는 메인 오피스 res");
         dispatch(getMainOffice(res.data));
       })
       .catch((err) => {
@@ -292,7 +290,6 @@ const getOneOfficeDB = (estateid) => {
     instance
       .get(`/estate/${estateid}`)
       .then((res) => {
-        // console.log("res : ", res);
         dispatch(getOneOffice(res.data));
       })
       .catch((err) => {
@@ -307,7 +304,6 @@ const getOneShareOfficeDB = (shareofficeid) => {
     instance
       .get(`/sharedoffice/${shareofficeid}`)
       .then((res) => {
-        //console.log("res : ", res);
         dispatch(getOneShareOffice(res.data));
       })
       .catch((err) => {

@@ -58,7 +58,6 @@ const getShareData = (pos, level) => {
         `/map/sharedoffice?level=${level}&SWlat=${SWlat}&SWlng=${SWlng}&NElat=${NElat}&NElng=${NElng}`
       )
       .then((res) => {
-        //console.log(res.data, "나는 공유 오피스 DB");
         dispatch(setShareList(res.data));
       })
       .catch((err) => {
