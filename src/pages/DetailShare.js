@@ -7,6 +7,7 @@ import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Bar, LoadSpinner } from "../components/shared/home";
 import { actionCreators as officeActions } from "../redux/modules/office";
+import { history } from "../redux/configStore";
 import {
   ShareOfficeBasicInfo,
   ShareOfficeBtmInfo,
@@ -22,8 +23,6 @@ const DetailShare = () => {
     (state) => state.office.one_share_office
   );
   //console.log("getOneShareOffice : ", getOneShareOffice);
-  const router = useSelector((state) => state.router.location.search);
-  const dong = router?.split("=")[1];
   const is_loaded = useSelector((state) => state.office.is_loaded);
 
   useEffect(() => {
@@ -38,7 +37,7 @@ const DetailShare = () => {
           <Button
             is_back
             _onClick={() => {
-              window.location.replace(`/map/shareoffice?query=${dong}`);
+              history.goBack();
             }}
           />
         </Grid>

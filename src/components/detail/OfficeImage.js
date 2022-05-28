@@ -41,7 +41,7 @@ const OfficeImage = () => {
             right="8px"
             bottom="8px"
           >
-            <ImageCnt>{getOneOffice?.images.length}</ImageCnt>
+            <ImageCnt>{getOneOffice?.images?.length}</ImageCnt>
           </Grid>
         </Grid>
       </Grid>
