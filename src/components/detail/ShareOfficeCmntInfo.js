@@ -84,8 +84,8 @@ const CommentInfo = () => {
                     );
                   })}{" "}
                   <Div ref={divBoxRef} />
-                  <Btn onClick={onClick}>
-                    <Text size="16px" color="#3E00FF" ref={BtnRef}>
+                  <Btn onClick={onClick} ref={BtnRef}>
+                    <Text size="16px" color="#3E00FF">
                       더보기
                     </Text>
                   </Btn>
