@@ -91,7 +91,7 @@ const OfficeList = (props) => {
                 </Text>
                 <Text color="#fff" size="14px" bold>
                   <Span>월세</Span> {o.rent_fee}만 <Span>보증금</Span>{" "}
-                  {o.deposit}만
+                  {o.deposit}
                 </Text>
               </Grid>
             </Grid>
