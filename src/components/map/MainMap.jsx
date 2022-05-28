@@ -74,20 +74,7 @@ const MainMap = (props) => {
           <Map
             center={state.center}
             onCreate={(map) => setMap(map)}
-            onZoomChanged={(map) =>
-              setPos({
-                lat: map.getCenter().getLat(),
-                lng: map.getCenter().getLng(),
-                swLatLng: {
-                  lat: map.getBounds().getSouthWest().getLat(),
-                  lng: map.getBounds().getSouthWest().getLng(),
-                },
-                neLatLng: {
-                  lat: map.getBounds().getNorthEast().getLat(),
-                  lng: map.getBounds().getNorthEast().getLng(),
-                },
-              })
-            }
+            onZoomChanged={(map) => setLevel(map.getLevel())}
             onDragEnd={(map) =>
               setPos({
                 lat: map.getCenter().getLat(),
@@ -100,6 +87,7 @@ const MainMap = (props) => {
                   lat: map.getBounds().getNorthEast().getLat(),
                   lng: map.getBounds().getNorthEast().getLng(),
                 },
+                setLevel: map.getLevel(),
               })
             }
             style={{ width: "100%", height: "inherit" }}
