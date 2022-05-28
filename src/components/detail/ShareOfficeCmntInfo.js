@@ -121,7 +121,7 @@ const Ellipsis = styled.div`
   overflow: hidden;
   text-overflow: ellipsis;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 8;
+  -webkit-line-clamp: 5;
   padding-bottom: 60px;
   &.show {
     display: block;
