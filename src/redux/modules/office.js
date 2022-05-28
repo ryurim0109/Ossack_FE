@@ -143,7 +143,7 @@ const clickLikeDB = (estateId) => {
       .post(`/estates/${estateId}/like`)
       .then((res) => {
         console.log(res);
-        dispatch(clickLike(estateId, res.data.mylike));
+        dispatch(clickLike(estateId, res.data));
       })
       .catch((err) => {
         console.log("오피스좋아요 에러", err);
@@ -156,7 +156,7 @@ const deleteLikeDB = (estateId) => {
     instance
       .post(`/estates/${estateId}/unlike`)
       .then((res) => {
-        dispatch(deleteLike(estateId, res.data.mylike));
+        dispatch(deleteLike(estateId, res.data));
       })
       .catch((err) => {
         console.log("오피스 좋아요 취소 에러", err);
@@ -169,7 +169,7 @@ const shareClickLikeDB = (shareofficeid) => {
     instance
       .post(`/estates/${shareofficeid}/like`)
       .then((res) => {
-        dispatch(shareClickLike(shareofficeid, res.data.mylike));
+        dispatch(shareClickLike(shareofficeid, res.data));
       })
       .catch((err) => {
         console.log("공유오피스 좋아요 클릭 에러", err.message);
@@ -182,7 +182,7 @@ const shareDeleteLikeDB = (shareofficeid) => {
     instance
       .post(`/estates/${shareofficeid}/unlike`)
       .then((res) => {
-        dispatch(shareDeleteLike(shareofficeid, res.data.mylike));
+        dispatch(shareDeleteLike(shareofficeid, res.data));
       })
       .catch((err) => {
         console.log("공유 오피스 좋아요 취소 에러", err.message);
@@ -195,7 +195,7 @@ const oneClickLikeDB = (estateId) => {
     instance
       .post(`/estates/${estateId}/like`)
       .then((res) => {
-        dispatch(oneClickLike(res.data.mylike, estateId));
+        dispatch(oneClickLike(res.data));
       })
       .catch((err) => {
         console.log("오피스좋아요 에러", err.message);
@@ -208,7 +208,7 @@ const oneDeleteLikeDB = (estateId) => {
     instance
       .post(`/estates/${estateId}/unlike`)
       .then((res) => {
-        dispatch(oneDeleteLike(res.data.mylike));
+        dispatch(oneDeleteLike(res.data));
       })
       .catch((err) => {
         console.log("오피스 좋아요 취소 에러", err.message);
@@ -221,7 +221,7 @@ const oneShareClickLikeDB = (shareofficeid) => {
     instance
       .post(`/estates/${shareofficeid}/like`)
       .then((res) => {
-        dispatch(oneShareClickLike(res.data.mylike));
+        dispatch(oneShareClickLike(res.data));
       })
       .catch((err) => {
         console.log("오피스좋아요 에러", err.message);
@@ -234,7 +234,7 @@ const oneShareDeleteLikeDB = (shareofficeid) => {
     instance
       .post(`/estates/${shareofficeid}/unlike`)
       .then((res) => {
-        dispatch(oneShareDeleteLike(res.data.mylike));
+        dispatch(oneShareDeleteLike(res.data));
       })
       .catch((err) => {
         console.log("오피스 좋아요 취소 에러", err.message);
