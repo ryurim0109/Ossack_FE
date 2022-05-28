@@ -115,7 +115,6 @@ const Signup = () => {
       // setEmailError("이메일 중복확인을 해주세요(🔐)");
       return;
     }
-    console.log("1");
 
     if (
       emailRegex(userEmail) &&
@@ -126,7 +125,6 @@ const Signup = () => {
       // &&checked
     ) {
       dispatch(userActions.signUpApi(joinData));
-      console.log("2");
     }
   };
 
