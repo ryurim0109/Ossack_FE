@@ -10,12 +10,19 @@ const CommentInfo = () => {
   );
   const contentRef = useRef(null);
   const divBoxRef = useRef(null);
+  const BtnRef = useRef(null);
+
   const onClick = (e) => {
     contentRef.current.classList.add("show");
     e.currentTarget.classList.add("hide");
     divBoxRef.current.classList.add("hide");
   };
-
+  const onClose = (e) => {
+    contentRef.current.classList.remove("show");
+    e.currentTarget.classList.add("hide");
+    BtnRef.current.classList.remove("hide");
+    divBoxRef.current.classList.remove("hide");
+  };
   return (
     <React.Fragment>
       <Grid height="auto" bg="#fff" margin="0 0 10px 0" padding="0 0 20px 0">
@@ -64,26 +71,21 @@ const CommentInfo = () => {
               <Text>
                 {/* {" "} */}
                 <Ellipsis ref={contentRef}>
-                  {/* Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry. Lorem Ipsum has been the industry's
-                    standard dummy text ever since the 1500s, when an unknown
-                    printer took a galley of type and scrambled it to make a
-                    type specimen book. It has survived not only five centuries,
-                    but also the leap into electronic typesetting, remaining
-                    essentially unchanged. It was popularised in the 1960s with
-                    the release of Letraset sheets containing Lorem Ipsum
-                    passages, and more recently with desktop publishing software
-                    like Aldus PageMaker including versions of Lorem Ipsum. */}
                   {getOneShareOffice?.detail?.split("\n").map((line, idx) => {
                     return (
                       <div key={idx}>
                         {line} <br />
+                        <CloseBtn onClick={onClose}>
+                          <Text size="16px" color="#3E00FF">
+                            접기
+                          </Text>
+                        </CloseBtn>
                       </div>
                     );
                   })}{" "}
                   <Div ref={divBoxRef} />
                   <Btn onClick={onClick}>
-                    <Text size="16px" color="#3E00FF">
+                    <Text size="16px" color="#3E00FF" ref={BtnRef}>
                       더보기
                     </Text>
                   </Btn>
@@ -120,6 +122,7 @@ const Ellipsis = styled.div`
   text-overflow: ellipsis;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 8;
+  padding-bottom: 60px;
   &.show {
     display: block;
     max-height: none;
@@ -159,6 +162,24 @@ const Btn = styled.button`
     rgba(255, 255, 255, 0) 0%,
     rgba(255, 255, 255, 1) 18%
   ); */
+  &.hide {
+    display: none;
+  }
+`;
+
+const CloseBtn = styled.button`
+  width: 100%;
+  height: 48px;
+  border-radius: 8px;
+  border: 1px solid #eee;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: #fff;
+  line-height: 48px;
   &.hide {
     display: none;
   }
