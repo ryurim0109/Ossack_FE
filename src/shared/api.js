@@ -3,9 +3,9 @@ import Swal from "sweetalert2";
 
 //1. axios 인터셉터 생성
 export const instance = axios.create({
-  baseURL: "http://3.39.177.59:8080",
+  //baseURL: "http://3.39.177.59:8080",
 
-  //baseURL: "https://ossack-dk.shop",
+  baseURL: "https://ossack-dk.shop",
 
   headers: {
     "content-type": "application/json; charset=UTF-8",
@@ -14,9 +14,9 @@ export const instance = axios.create({
   withCredentials: false,
 });
 export const instances = axios.create({
-  baseURL: "http://3.39.177.59:8080",
+  //baseURL: "http://3.39.177.59:8080",
 
-  //baseURL: "https://ossack-dk.shop",
+  baseURL: "https://ossack-dk.shop",
 
   headers: {
     Authorization: `BEARER ${localStorage.getItem("token")}`,
