@@ -66,7 +66,6 @@ const StyledSlider = styled(Slider)`
   .dotContainer ul {
     padding: 0;
     display: flex;
-    justify-content: space-between;
     transition: all 0.2s;
     position: relative;
     margin: 0;
