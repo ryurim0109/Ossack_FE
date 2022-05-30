@@ -87,7 +87,7 @@ const StyledSlider = styled(Slider)`
     transition: 0.35s;
   }
   .dotContainer li.slick-active button::before {
-    color: #fff;
+    background-color: #fff;
     transform: scale(2);
     border-radius: 4px;
   }
