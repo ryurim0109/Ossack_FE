@@ -2,14 +2,14 @@ name: React build
 on:
   push: # master Branch에서 push 이벤트가 일어났을 때만 실행
     branches:
-      - dev
+      - main
 
 jobs:
   build:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout source code. # 레포지토리 체크아웃
-        uses: actions/checkout@dev
+        uses: actions/checkout@v2
 
       - name: Cache node modules # node modules 캐싱
         uses: actions/cache@v1
@@ -20,18 +20,30 @@ jobs:
             ${{ runner.OS }}-build-
             ${{ runner.OS }}-
 
+      - name: Generate Environment Variables File for Production
+        run: |
+          echo "REACT_APP_KAKAO_KEY=$REACT_APP_KAKAO_KEY" >> .env.production
+          echo "REACT_APP_KAKAO_LOGIN=$REACT_APP_KAKAO_LOGIN" >> .env.production
+          echo "REACT_APP_KAKAO_ID=$REACT_APP_KAKAO_ID" >> .env.production
+          echo "REACT_APP_GOOGLE_ID=$REACT_APP_GOOGLE_ID" >> .env.production
+
+        env:
+          REACT_APP_KAKAO_KEY: ${{ secrets.REACT_APP_KAKAO_KEY }}
+          REACT_APP_KAKAO_LOGIN: ${{ secrets.REACT_APP_KAKAO_LOGIN }}
+          REACT_APP_KAKAO_ID: ${{ secrets.REACT_APP_KAKAO_ID }}
+          REACT_APP_GOOGLE_ID: ${{ secrets.REACT_APP_GOOGLE_ID }}
+
       - name: Install Dependencies # 의존 파일 설치
         run: yarn install
 
       - name: Build # React Build
         run: yarn build
+        env:
+          CI: ""
 
       - name: Deploy # S3에 배포하기
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: |
-          aws s3 cp \
-            --recursive \
-            --region ap-northeast-2 \
-            build s3://Ossack_FE
+          aws s3 cp --recursive --region ap-northeast-2 build s3://ossack.shop

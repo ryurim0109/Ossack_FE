@@ -6,23 +6,32 @@ import { useParams } from "react-router-dom";
 import { Grid, Image, Text, Button } from "../elements/index";
 import { history } from "../redux/configStore";
 
-import Bar from "../components/shared/Bar";
+import { Bar, NotUser } from "../components/shared/home";
 import img01 from "../assets/articlepic_1.png";
 import img02 from "../assets/articlepic_2.png";
 import img03 from "../assets/articlepic_3.png";
 import img04 from "../assets/articlepic_4.png";
 import img05 from "../assets/articlepic_5.png";
 import img06 from "../assets/articlepic_6.png";
+import { useSelector } from "react-redux";
 
 const HotPlaceArticle = () => {
   const name = useParams().name;
+
+  const login = useSelector((state) => state.user.is_login);
+  const is_session = localStorage.getItem("token");
 
   const List = (keyword) => {
     //const keyword = "을지로";
     history.push(`/map/office?query=${keyword}`);
   };
-
-  if (name === "articlefst") {
+  if (!login || !is_session) {
+    return (
+      <React.Fragment>
+        <NotUser />
+      </React.Fragment>
+    );
+  } else if (name === "articlefst") {
     return (
       <React.Fragment>
         <MyHeader>지금 가장 HOT한 지역 🔥</MyHeader>

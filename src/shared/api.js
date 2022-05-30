@@ -1,4 +1,5 @@
 import axios from "axios";
+import Swal from "sweetalert2";
 
 //1. axios 인터셉터 생성
 export const instance = axios.create({
@@ -63,25 +64,21 @@ instance.interceptors.response.use(
   (error) => {
     console.log(error);
 
-    if (
-      error.response.status === 403 &&
-      error.response.responseMessage === "권한이 없습니다."
-    ) {
+    if (error.response.status === 403) {
       window.alert("권한이 없습니다.");
     }
-
-    if (
-      error.response.status === 404 &&
-      error.response.responseMessage === "게시글을 찾을 수 없습니다."
-    ) {
-      window.alert("게시글을 찾을 수 없습니다.");
+    if (error.response.status === 500) {
+      Swal.fire({
+        position: "top-end",
+        icon: "error",
+        title: "로그인 한 유저만 볼 수 있습니다.",
+        showConfirmButton: false,
+        timer: 1500,
+      }).then(window.location.replace("/start"));
     }
 
-    if (
-      error.response.data.statusCode === 403 &&
-      error.response.data.responseMessage === "권한이 없습니다."
-    ) {
-      return window.alert("권한이 없습니다.");
+    if (error.response.status === 404) {
+      Swal.fire("결과를 찾을 수 없습니다.");
     }
 
     return error;

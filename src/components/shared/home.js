@@ -8,6 +8,7 @@ import LoadSpinner from "./LoadSpinner";
 import TalkTalk from "./TalkTalk";
 import Accordion from "./Accordion";
 import ImageCnt from "./ImageCnt";
+import NotUser from "./NotUser";
 
 export {
   Bar,
@@ -20,4 +21,5 @@ export {
   TalkTalk,
   Accordion,
   ImageCnt,
+  NotUser,
 };

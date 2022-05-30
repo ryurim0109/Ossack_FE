@@ -4,7 +4,7 @@ import { OneMap } from "../components/map/index";
 import { Grid, Text, Button } from "../elements/index";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { Bar, LoadSpinner } from "../components/shared/home";
+import { Bar, LoadSpinner, NotUser } from "../components/shared/home";
 import { actionCreators as officeActions } from "../redux/modules/office";
 import { ReactComponent as Heart } from "../assets/favourite.svg";
 import { history } from "../redux/configStore";
@@ -22,6 +22,9 @@ const DetailOffice = () => {
   const getOneOffice = useSelector((state) => state.office.one_office);
 
   const is_loaded = useSelector((state) => state.office.is_loaded);
+  const login = useSelector((state) => state.user.is_login);
+  const is_session = localStorage.getItem("token");
+
   //console.log("getOneOffice : ", getOneOffice);
 
   // const getImage = getOneOffice.images.map((images) => images);
@@ -39,106 +42,116 @@ const DetailOffice = () => {
     dispatch(officeActions.getOneOfficeDB(estateid));
   }, [estateid]);
 
-  return (
-    <React.Fragment>
-      <Header>
-        <Grid width="28px" display="flex" alignItems="center">
-          <Button
-            is_back
-            _onClick={() => {
-              history.goBack();
-            }}
-          />
-        </Grid>
-        <Grid
-          width="248px"
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-        >
-          <Text size="18px" bold cursor="pointer">
-            매물번호 {estateid}
-          </Text>
-        </Grid>
-        <Grid
-          width="28px"
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-        >
-          {getOneOffice?.mylike ? (
+  if (!login || !is_session) {
+    return (
+      <React.Fragment>
+        <NotUser />
+      </React.Fragment>
+    );
+  } else {
+    return (
+      <React.Fragment>
+        <Header>
+          <Grid width="28px" display="flex" alignItems="center">
             <Button
-              backgroundColor="none"
+              is_back
               _onClick={() => {
-                dispatch(officeActions.oneDeleteLikeDB(getOneOffice.estateid));
+                history.goBack();
               }}
-            >
-              <Heart stroke="none" />
-            </Button>
-          ) : (
-            <Button
-              backgroundColor="none"
-              _onClick={() => {
-                dispatch(officeActions.oneClickLikeDB(getOneOffice.estateid));
-              }}
-            >
-              <Heart stroke="#111" fill="none" />
-            </Button>
-          )}
-        </Grid>
-      </Header>
-      <Div>
-        <Outter>
-          <Grid bg="#F5F5F5" minHeight="1540px" paddingBottom="90px">
-            <Grid height="400px" bg="#fff">
-              <OfficeImage />
-              <OfficeBtmInfo />
-            </Grid>
+            />
+          </Grid>
+          <Grid
+            width="248px"
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+          >
+            <Text size="18px" bold cursor="pointer">
+              매물번호 {estateid}
+            </Text>
+          </Grid>
+          <Grid
+            width="28px"
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+          >
+            {getOneOffice?.mylike ? (
+              <Button
+                backgroundColor="none"
+                _onClick={() => {
+                  dispatch(
+                    officeActions.oneDeleteLikeDB(getOneOffice.estateid)
+                  );
+                }}
+              >
+                <Heart stroke="none" />
+              </Button>
+            ) : (
+              <Button
+                backgroundColor="none"
+                _onClick={() => {
+                  dispatch(officeActions.oneClickLikeDB(getOneOffice.estateid));
+                }}
+              >
+                <Heart stroke="#111" fill="none" />
+              </Button>
+            )}
+          </Grid>
+        </Header>
+        <Div>
+          <Outter>
+            <Grid bg="#F5F5F5" minHeight="1540px" paddingBottom="90px">
+              <Grid height="400px" bg="#fff">
+                <OfficeImage />
+                <OfficeBtmInfo />
+              </Grid>
 
-            {/* 상세정보 */}
-            <OfficeBasicInfo />
+              {/* 상세정보 */}
+              <OfficeBasicInfo />
 
-            {/* 중개사 코멘트 */}
-            <OfficeCmntInfo />
+              {/* 중개사 코멘트 */}
+              <OfficeCmntInfo />
 
-            {/* 위치 */}
-            <Grid
-              bottom="0"
-              //padding="0 16px"
-              display="flex"
-              flexDirection="column"
-              justifyContent="center"
-              width="100%"
-              height="340px"
-              bg="#fff"
-            >
+              {/* 위치 */}
               <Grid
+                bottom="0"
+                //padding="0 16px"
                 display="flex"
                 flexDirection="column"
                 justifyContent="center"
-                padding="16px 0"
+                width="100%"
+                height="340px"
                 bg="#fff"
-                minHeight="330px"
               >
-                <Grid margin="0 0 10px" height="55px">
-                  <Bp style={{ padding: "3px 16px" }}>위치</Bp>
-                  <Sp style={{ padding: "0 16px" }}>
-                    {" "}
-                    {getOneOffice?.address}{" "}
-                  </Sp>
-                </Grid>
+                <Grid
+                  display="flex"
+                  flexDirection="column"
+                  justifyContent="center"
+                  padding="16px 0"
+                  bg="#fff"
+                  minHeight="330px"
+                >
+                  <Grid margin="0 0 10px" height="55px">
+                    <Bp style={{ padding: "3px 16px" }}>위치</Bp>
+                    <Sp style={{ padding: "0 16px" }}>
+                      {" "}
+                      {getOneOffice?.address}{" "}
+                    </Sp>
+                  </Grid>
 
-                <OneMap />
+                  <OneMap />
+                </Grid>
               </Grid>
+              <OfficeAgentInfo />
             </Grid>
-            <OfficeAgentInfo />
-          </Grid>
-        </Outter>
-      </Div>
-      {!is_loaded && <LoadSpinner />}
-      <Bar />
-    </React.Fragment>
-  );
+          </Outter>
+        </Div>
+        {!is_loaded && <LoadSpinner />}
+        <Bar />
+      </React.Fragment>
+    );
+  }
 };
 const Header = styled.div`
   width: 100%;

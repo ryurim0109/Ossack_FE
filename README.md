@@ -10,7 +10,7 @@
 
 ## ⚙️ 아키텍쳐
 
-![아키텍처](https://velog.velcdn.com/images/ryurim0109/post/0a30cec0-d32e-4e37-ba69-61c34a43916f/image.jpg)
+![아키텍처](https://velog.velcdn.com/images/ryurim0109/post/620da5d2-17d1-441c-bb6a-ceceec1f7afd/image.jpg)
 
 ## 😇‍ 프론트엔드 팀원
 
@@ -48,7 +48,7 @@
 
 ## ⚛️ 개인 역할
 
-<code>김유림</code> 메인, 지도, 필터 , 검색 리스트, 프로필 페이지, 좋아요 기능, 무한스크롤, 스플래쉬, 시작하기 페이지, https배포
+<code>김유림</code> 메인, 지도, 필터 , 검색 리스트, 프로필 페이지, 좋아요 기능, 무한스크롤, 스플래쉬, 시작하기 페이지, https배포, 무중단 배포
 
 <code>박태순</code> 로그인, 회원가입, 검색, 상세페이지 , 핫한 오피스 페이지, 찜목록 페이지 , 찜한 매물 불러오기, 최근 검색어 기능
 

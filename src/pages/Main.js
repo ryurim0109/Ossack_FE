@@ -1,17 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { Sale, PopUp } from "../components/main/index";
-import { Bar } from "../components/shared/home";
-import { actionCreators as userActions } from "../redux/modules/user";
+import { Bar, NotUser } from "../components/shared/home";
+import { useSelector } from "react-redux";
 
 function Main() {
-  const dispatch = useDispatch();
   const [showPopUp, setShowPopUp] = useState(false);
   const HAS_VISITED_BEFORE = localStorage.getItem("hasVisitedBefore");
-  useEffect(() => {
-    dispatch(userActions.loginCheckApi());
-  }, [dispatch]);
+  const login = useSelector((state) => state.user.is_login);
+  const is_session = localStorage.getItem("token");
 
   useEffect(() => {
     const handleShowModal = () => {
@@ -31,20 +28,29 @@ function Main() {
     return () => clearTimeout(timeout);
   }, [HAS_VISITED_BEFORE]);
   const handleClose = () => setShowPopUp(false);
-  return (
-    <React.Fragment>
-      <Outter>
-        <Sale />
-      </Outter>
-      <Bar />
-      {showPopUp ? (
-        <>
-          <ModalBackdrop onClick={handleClose}></ModalBackdrop>
-          <PopUp showPopUp={showPopUp} setShowPopUp={setShowPopUp} />
-        </>
-      ) : null}
-    </React.Fragment>
-  );
+
+  if (!login || !is_session) {
+    return (
+      <React.Fragment>
+        <NotUser />
+      </React.Fragment>
+    );
+  } else {
+    return (
+      <React.Fragment>
+        <Outter>
+          <Sale />
+        </Outter>
+        <Bar />
+        {showPopUp ? (
+          <>
+            <ModalBackdrop onClick={handleClose}></ModalBackdrop>
+            <PopUp showPopUp={showPopUp} setShowPopUp={setShowPopUp} />
+          </>
+        ) : null}
+      </React.Fragment>
+    );
+  }
 }
 const Outter = styled.div`
   width: 100%;

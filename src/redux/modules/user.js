@@ -94,6 +94,7 @@ const loginCheckApi = () => {
       })
       .catch((err) => {
         console.log("체크에러다!!!!", err.response);
+        localStorage.removeItem("token");
         Swal.fire(
           "로그인 여부 확인에 문제가 생겼습니다. 로그인을 다시 해주세요!"
         );

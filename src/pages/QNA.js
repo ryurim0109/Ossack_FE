@@ -1,9 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import { Accordion, Bar } from "../components/shared/home";
+import { Accordion, Bar, NotUser } from "../components/shared/home";
 import { MyHeader } from "../components/my/index";
+import { useSelector } from "react-redux";
 
 const QNA = () => {
+  const login = useSelector((state) => state.user.is_login);
+
   const contents = [
     {
       title: "💡 오싹은 어떤 서비스인가요?",
@@ -26,21 +29,31 @@ const QNA = () => {
     },
   ];
 
-  return (
-    <React.Fragment>
-      <MyHeader is_my> 자주 묻는 질문</MyHeader>
-      <Wrap>
-        {contents.map((c, idx) => {
-          return (
-            <Outter key={idx}>
-              <Accordion title={c.title} contents={c.content} />
-            </Outter>
-          );
-        })}
-      </Wrap>
-      <Bar />
-    </React.Fragment>
-  );
+  const is_session = localStorage.getItem("token");
+
+  if (!login || !is_session) {
+    return (
+      <React.Fragment>
+        <NotUser />
+      </React.Fragment>
+    );
+  } else {
+    return (
+      <React.Fragment>
+        <MyHeader is_my> 자주 묻는 질문</MyHeader>
+        <Wrap>
+          {contents.map((c, idx) => {
+            return (
+              <Outter key={idx}>
+                <Accordion title={c.title} contents={c.content} />
+              </Outter>
+            );
+          })}
+        </Wrap>
+        <Bar />
+      </React.Fragment>
+    );
+  }
 };
 const Wrap = styled.div`
   width: 100%;

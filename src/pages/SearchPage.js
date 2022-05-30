@@ -6,8 +6,9 @@ import { MyHeader } from "../components/my/index";
 import SearchHistory from "../components/search/SearchHistory";
 import SearchBar from "../components/search/SearchBar";
 import { actionCreators as officeActions } from "../redux/modules/office";
-import { Bar } from "../components/shared/home";
-import { useDispatch } from "react-redux";
+import { Bar, NotUser } from "../components/shared/home";
+import { useDispatch, useSelector } from "react-redux";
+
 import { Grid, Text } from "../elements/index";
 import Tabs from "@material-ui/core/Tabs";
 
@@ -16,6 +17,8 @@ import Swal from "sweetalert2";
 
 const SearchPage = () => {
   const dispatch = useDispatch();
+  const login = useSelector((state) => state.user.is_login);
+  const is_session = localStorage.getItem("token");
 
   const [keywords, setKeywords] = useState(
     JSON.parse(localStorage.getItem("keywords") || "[]")
@@ -76,55 +79,63 @@ const SearchPage = () => {
     setActiveTab(idx);
   };
 
-  return (
-    <React.Fragment>
-      <Outter>
-        <MyHeader>검색</MyHeader>
-        <Tabs
-          value={activeTab}
-          textColor="primary"
-          TabIndicatorProps={{ style: { background: "#3E00FF", top: "0px" } }}
-        >
-          {/* tab 메뉴 */}
-          {tabTitle.map((title, idx) => {
-            return (
-              <Grid
-                key={idx}
-                width="100%"
-                height="50px"
-                textAlign="center"
-                fontWeight="bold"
-                fontSize="14px"
-                display="flex"
-                alignItems="center"
-                justifyContent="center"
-                _onClick={() => onClickTab(idx)}
-              >
-                <Text
-                  bold
-                  cursor="pointer"
-                  color={activeTab === idx ? "#3E00FF" : "#E5E5EC"}
+  if (!login || !is_session) {
+    return (
+      <React.Fragment>
+        <NotUser />
+      </React.Fragment>
+    );
+  } else {
+    return (
+      <React.Fragment>
+        <Outter>
+          <MyHeader>검색</MyHeader>
+          <Tabs
+            value={activeTab}
+            textColor="primary"
+            TabIndicatorProps={{ style: { background: "#3E00FF", top: "0px" } }}
+          >
+            {/* tab 메뉴 */}
+            {tabTitle.map((title, idx) => {
+              return (
+                <Grid
+                  key={idx}
+                  width="100%"
+                  height="50px"
+                  textAlign="center"
+                  fontWeight="bold"
+                  fontSize="14px"
+                  display="flex"
+                  alignItems="center"
+                  justifyContent="center"
+                  _onClick={() => onClickTab(idx)}
                 >
-                  {title}
-                </Text>
-              </Grid>
-            );
-          })}
-        </Tabs>
+                  <Text
+                    bold
+                    cursor="pointer"
+                    color={activeTab === idx ? "#3E00FF" : "#E5E5EC"}
+                  >
+                    {title}
+                  </Text>
+                </Grid>
+              );
+            })}
+          </Tabs>
 
-        <InputContainer>
-          <SearchBar onAddKeyword={handleAddKeyword} activeTab={activeTab} />
-        </InputContainer>
-        <SearchHistory
-          keywords={keywords}
-          onClearKeywords={handleClearKeywords}
-          onRemoveKeyword={handleRemoveKeyword}
-          activeTab={activeTab}
-        />
-      </Outter>
-      <Bar />
-    </React.Fragment>
-  );
+          <InputContainer>
+            <SearchBar onAddKeyword={handleAddKeyword} activeTab={activeTab} />
+          </InputContainer>
+          <SearchHistory
+            keywords={keywords}
+            onClearKeywords={handleClearKeywords}
+            onRemoveKeyword={handleRemoveKeyword}
+            activeTab={activeTab}
+          />
+        </Outter>
+        <Bar />
+      </React.Fragment>
+    );
+  }
 };
 const Outter = styled.div`
   width: 100%;
