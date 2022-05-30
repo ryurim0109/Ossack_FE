@@ -8,6 +8,10 @@
 
 > 오싹은 지도로 오피스 매물과 공유 오피스 매물을 찾아볼 수 있는 모바일 웹입니다.
 
+## ⚙️ 아키텍쳐
+
+![아키텍처](https://velog.velcdn.com/images/ryurim0109/post/0a30cec0-d32e-4e37-ba69-61c34a43916f/image.jpg)
+
 ## 😇‍ 프론트엔드 팀원
 
 <table>
@@ -41,6 +45,53 @@
 | chore    | 빌드 업무 수정, 패키지 매니저 수정                       |
 | docs     | 문서 수정(md, git관련 파일, 이미지파일 수정)             |
 | style    | 코드 formatting, 세미콜론(;) 누락, 코드 변경이 없는 경우 |
+
+## ⚛️ 개인 역할
+
+<code>김유림</code> 메인, 지도, 필터 , 검색 리스트, 프로필 페이지, 좋아요 기능, 무한스크롤, 스플래쉬, 시작하기 페이지, https배포
+
+<code>박태순</code> 로그인, 회원가입, 검색, 상세페이지 , 핫한 오피스 페이지, 찜목록 페이지 , 찜한 매물 불러오기, 최근 검색어 기능
+
+## 🔨 Trouble Shooting
+
+<details markdown="1">
+<summary>지도 페이지에 로딩 스피너 연결 하던 중 발생한 문제</summary>
+  
+### ✅ 문제상황
+
+> 지도페이지 들어오면, 매물들을 못 불러와서 로딩 스피너만 계속 뜨는 문제 발생
+> onDragend이벤트가 발생할 시에만 매물들이 불러와져서 이러한 문제가 발생하는 것이라고 판단
+
+### ✅ 해결
+
+> 카카오 map안에 내장되어있는 지도 영역을 호출하는 메소드를 사용하여  
+> map이 있을 때만 dispatch를 1번 실행하여 해결함
+> <br/>
+
+### ✅ 해결코드
+
+```
+const po = {
+
+    swLatLng: {
+      lat: map?.getBounds().getSouthWest().getLat(),
+      lng: map?.getBounds().getSouthWest().getLng(),
+    },
+    neLatLng: {
+      lat: map?.getBounds().getNorthEast().getLat(),
+      lng: map?.getBounds().getNorthEast().getLng(),
+    },};
+
+useEffect(() => {
+if (map && name === "office") {
+dispatch(mapActions.getOfficeData(po, level, router));
+} else if (map && name === "share") {
+dispatch(mapActions.getShareData(po, level));
+}
+}, [map]);
+```
+
+</br>
 
 ### 👀 사용 라이브러리 👀
 

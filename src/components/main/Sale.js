@@ -36,7 +36,7 @@ function Sale() {
             cursor="pointer"
             alignItems="center"
             color="#999"
-            borderRadius="10px"
+            borderRadius="4px"
             _onClick={() => {
               history.push("/search");
             }}

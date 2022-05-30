@@ -49,7 +49,7 @@ function SearchBar({ onAddKeyword, activeTab }) {
 
   return (
     <Container>
-      <SearchIcon width="50px" position="absolute" top="12px" left="7px">
+      <SearchIcon>
         <Search fill="none" stroke="#AFB4BE" />
       </SearchIcon>
       <InputContainer>
@@ -80,15 +80,15 @@ const Container = styled.div`
   width: 92%;
   margin: 10px 4%;
   background: #f5f5f5;
-  border-radius: 8px;
-  padding: 15px 50px;
+  border-radius: 4px;
+  padding: 15px 40px;
   box-sizing: border-box;
 `;
 
 const SearchIcon = styled.span`
   ${horizontalCenter}
   position: absolute;
-  left: 19px;
+  left: 10px;
   right: 18px;
   width: 24px;
   height: 24px;

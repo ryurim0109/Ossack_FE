@@ -117,7 +117,7 @@ const MapOfficeResult = (props) => {
                   )}
                   <Text size="14px" bold>
                     <Span>보증금</Span>
-                    {o?.deposit}만원
+                    {o?.deposit}
                   </Text>
                 </Grid>
               </Grid>

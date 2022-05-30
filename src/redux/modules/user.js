@@ -37,7 +37,6 @@ const signUpApi = (user) => {
         nickname: user.nickname,
         password: user.password,
       });
-      // console.log("response : ", response);
       if (response.status === 200 && response.data.includes("회원가입 성공")) {
         Swal.fire("회원가입에 성공했습니다!");
         history.replace("/login");
@@ -58,9 +57,6 @@ const loginApi = (userEmail, password) => {
         userEmail: userEmail,
         password: password,
       });
-      //const response = RESP.USERLOGINPOST;
-      //console.log("로그인체크", response);
-
       if (response.status === 200) {
         history.replace("/main");
 
@@ -113,10 +109,8 @@ const userEmailCheckDB = (userEmail) => {
       const response = await instance.post("/user/idcheck", {
         userEmail: userEmail,
       });
-      //console.log("response : ", response);
 
       if (response.data === true) {
-        // console.log("response.data : ", typeof response.data);
         dispatch(setUserEmail(userEmail, response.data));
         Swal.fire({
           title: "사용가능한 이메일입니다!",
@@ -183,9 +177,7 @@ const loginBykakao = (code) => {
       .then((res) => {
         const token = res.headers.authorization.split("BEARER ");
         localStorage.setItem("token", token[1]);
-        history.push("/main"); // 토큰 받았고 로그인됐으니 화면 전환시켜줌(메인으로)
-        // 바로 유저정보 저장하기
-        Swal.fire("로그인 성공 !");
+        history.push("/main");
         instance
           .get("/user/islogin")
           .then((res) => {
@@ -203,7 +195,7 @@ const loginBykakao = (code) => {
       .catch((err) => {
         console.log("소셜로그인 에러", err);
         Swal.fire("로그인 실패 !");
-        history.replace("/start"); // 로그인 실패하면 처음화면으로 돌려보냄
+        history.replace("/start");
       });
   };
 };
@@ -217,8 +209,7 @@ const loginBygoogle = (code) => {
         const token = res.headers.authorization.split("BEARER ");
 
         localStorage.setItem("token", token[1]);
-        Swal.fire("로그인 성공!");
-        history.push("/main"); // 토큰 받았고 로그인됐으니 화면 전환시켜줌(메인으로)
+        history.push("/main");
         // 바로 유저정보 저장하기
 
         instance
@@ -238,7 +229,7 @@ const loginBygoogle = (code) => {
       .catch((err) => {
         console.log("소셜로그인 에러", err);
         Swal.fire("로그인에 실패하였습니다.");
-        history.replace("/start"); // 로그인 실패하면 처음화면으로 돌려보냄
+        history.replace("/start");
       });
   };
 };
@@ -258,10 +249,8 @@ const editProfileDB = (nickname, image, userimg) => {
     instances
       .put("/user/profile", file)
       .then((res) => {
-        // console.log(res, "이미지 데이터 성공");
         Swal.fire("프로필 변경이 완료되었습니다.");
         history.push("/mypage");
-        /* dispatch(user_img(res.data.data.imageUrl)); */
       })
       .catch((err) => {
         console.log("프로필 업로드 에러다!!!!", err.response);
@@ -279,12 +268,10 @@ const userImgDeleteDB = (nickname) => {
     instances
       .put("/user/profile", file)
       .then((res) => {
-        //console.log(res, "이미지 삭제 성공");
         Swal.fire("이미지 제거가 완료되었습니다.");
         instance
           .get("/user/islogin")
           .then((res) => {
-            //console.log(res, "나는 로그인체크 응답");
             dispatch(user_img(res.data.imageUrl));
             history.push("/mypage");
           })
@@ -305,13 +292,11 @@ export default handleActions(
       }),
     [SET_USER]: (state, action) =>
       produce(state, (draft) => {
-        // setCookie("is_login", "success");
         draft.is_login = true;
         draft.user = action.payload.user;
       }),
     [LOG_OUT]: (state, action) =>
       produce(state, (draft) => {
-        //deleteCookie("is_login");
         draft.is_login = false;
         draft.user = null;
         localStorage.clear();

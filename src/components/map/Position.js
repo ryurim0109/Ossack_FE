@@ -1,6 +1,5 @@
 /*global kakao*/
 import React, { useEffect } from "react";
-import Axios from "axios";
 import { useDispatch } from "react-redux";
 import { actionCreators as mapActions } from "../../redux/modules/map";
 

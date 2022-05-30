@@ -24,13 +24,11 @@ const LOADED = "LOADED";
 const getMainOffice = createAction(GET_MAIN_OFFICE, (main_list) => ({
   main_list,
 }));
-const clickLike = createAction(CLICK_LIKE, (estate_id, mylike) => ({
+const clickLike = createAction(CLICK_LIKE, (estate_id) => ({
   estate_id,
-  mylike,
 }));
-const deleteLike = createAction(DELETE_LIKE, (estate_id, mylike) => ({
+const deleteLike = createAction(DELETE_LIKE, (estate_id) => ({
   estate_id,
-  mylike,
 }));
 const mainClickLike = createAction(MAIN_CLICK_LIKE, (estate_id) => ({
   estate_id,
@@ -100,8 +98,6 @@ const getMainOfficeDB = (dong) => {
     instance
       .get(`/estates?query=${dong}`)
       .then((res) => {
-        //console.log(res.data, "나는 메인 오피스 DB");
-        //console.log(res, "나는 메인 오피스 res");
         dispatch(getMainOffice(res.data));
       })
       .catch((err) => {
@@ -142,8 +138,7 @@ const clickLikeDB = (estateId) => {
     instance
       .post(`/estates/${estateId}/like`)
       .then((res) => {
-        console.log(res);
-        dispatch(clickLike(estateId, res.data.mylike));
+        dispatch(clickLike(estateId, res.data));
       })
       .catch((err) => {
         console.log("오피스좋아요 에러", err);
@@ -156,7 +151,7 @@ const deleteLikeDB = (estateId) => {
     instance
       .post(`/estates/${estateId}/unlike`)
       .then((res) => {
-        dispatch(deleteLike(estateId, res.data.mylike));
+        dispatch(deleteLike(estateId, res.data));
       })
       .catch((err) => {
         console.log("오피스 좋아요 취소 에러", err);
@@ -169,7 +164,7 @@ const shareClickLikeDB = (shareofficeid) => {
     instance
       .post(`/estates/${shareofficeid}/like`)
       .then((res) => {
-        dispatch(shareClickLike(shareofficeid, res.data.mylike));
+        dispatch(shareClickLike(shareofficeid));
       })
       .catch((err) => {
         console.log("공유오피스 좋아요 클릭 에러", err.message);
@@ -182,7 +177,7 @@ const shareDeleteLikeDB = (shareofficeid) => {
     instance
       .post(`/estates/${shareofficeid}/unlike`)
       .then((res) => {
-        dispatch(shareDeleteLike(shareofficeid, res.data.mylike));
+        dispatch(shareDeleteLike(shareofficeid));
       })
       .catch((err) => {
         console.log("공유 오피스 좋아요 취소 에러", err.message);
@@ -195,7 +190,7 @@ const oneClickLikeDB = (estateId) => {
     instance
       .post(`/estates/${estateId}/like`)
       .then((res) => {
-        dispatch(oneClickLike(res.data.mylike, estateId));
+        dispatch(oneClickLike(res.data));
       })
       .catch((err) => {
         console.log("오피스좋아요 에러", err.message);
@@ -208,7 +203,7 @@ const oneDeleteLikeDB = (estateId) => {
     instance
       .post(`/estates/${estateId}/unlike`)
       .then((res) => {
-        dispatch(oneDeleteLike(res.data.mylike));
+        dispatch(oneDeleteLike(res.data));
       })
       .catch((err) => {
         console.log("오피스 좋아요 취소 에러", err.message);
@@ -221,7 +216,7 @@ const oneShareClickLikeDB = (shareofficeid) => {
     instance
       .post(`/estates/${shareofficeid}/like`)
       .then((res) => {
-        dispatch(oneShareClickLike(res.data.mylike));
+        dispatch(oneShareClickLike(res.data));
       })
       .catch((err) => {
         console.log("오피스좋아요 에러", err.message);
@@ -234,7 +229,7 @@ const oneShareDeleteLikeDB = (shareofficeid) => {
     instance
       .post(`/estates/${shareofficeid}/unlike`)
       .then((res) => {
-        dispatch(oneShareDeleteLike(res.data.mylike));
+        dispatch(oneShareDeleteLike(res.data));
       })
       .catch((err) => {
         console.log("오피스 좋아요 취소 에러", err.message);
@@ -295,7 +290,6 @@ const getOneOfficeDB = (estateid) => {
     instance
       .get(`/estate/${estateid}`)
       .then((res) => {
-        // console.log("res : ", res);
         dispatch(getOneOffice(res.data));
       })
       .catch((err) => {
@@ -310,7 +304,6 @@ const getOneShareOfficeDB = (shareofficeid) => {
     instance
       .get(`/sharedoffice/${shareofficeid}`)
       .then((res) => {
-        //console.log("res : ", res);
         dispatch(getOneShareOffice(res.data));
       })
       .catch((err) => {
@@ -345,7 +338,7 @@ export default handleActions(
           }
           return false;
         });
-        draft.list[numArr[0]].mylike = action.payload.mylike;
+        draft.list[numArr[0]].mylike = true;
       }),
     [DELETE_LIKE]: (state, action) =>
       produce(state, (draft) => {
@@ -356,7 +349,7 @@ export default handleActions(
           }
           return false;
         });
-        draft.list[numArr[0]].mylike = action.payload.mylike;
+        draft.list[numArr[0]].mylike = false;
       }),
     [MAIN_CLICK_LIKE]: (state, action) =>
       produce(state, (draft) => {
@@ -389,7 +382,7 @@ export default handleActions(
           }
           return false;
         });
-        draft.share_list[numArr[0]].mylike = action.payload.mylike;
+        draft.share_list[numArr[0]].mylike = true;
       }),
     [SHARE_DELETE_LIKE]: (state, action) =>
       produce(state, (draft) => {
@@ -400,7 +393,7 @@ export default handleActions(
           }
           return false;
         });
-        draft.share_list[numArr[0]].mylike = action.payload.mylike;
+        draft.share_list[numArr[0]].mylike = false;
       }),
     [ONE_CLICK_LIKE]: (state, action) =>
       produce(state, (draft) => {
