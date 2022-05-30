@@ -71,7 +71,7 @@ const StyledSlider = styled(Slider)`
     margin: 0;
   }
   .dotContainer li {
-    padding-left: 20px;
+    padding-left: 25px;
   }
   .dotContainer li button {
     font-size: 0px;
