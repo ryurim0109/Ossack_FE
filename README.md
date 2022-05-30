@@ -48,7 +48,7 @@
 
 ## ⚛️ 개인 역할
 
-<code>김유림</code> 메인, 지도, 필터 , 검색 리스트, 프로필 페이지, 좋아요 기능, 무한스크롤
+<code>김유림</code> 메인, 지도, 필터 , 검색 리스트, 프로필 페이지, 좋아요 기능, 무한스크롤, 스플래쉬, 시작하기 페이지, https배포
 
 <code>박태순</code> 로그인, 회원가입, 검색, 상세페이지 , 핫한 오피스 페이지, 찜목록 페이지 , 찜한 매물 불러오기, 최근 검색어 기능
 
@@ -59,11 +59,37 @@
   
 ### ✅ 문제상황
 
-> 문제상황
->
-> 문제상황
->
-> <br>
+> 지도페이지 들어오면, 매물들을 못 불러와서 로딩 스피너만 계속 뜨는 문제 발생
+> onDragend이벤트가 발생할 시에만 매물들이 불러와져서 이러한 문제가 발생하는 것이라고 판단
+
+### ✅ 해결
+
+> 카카오 map안에 내장되어있는 지도 영역을 호출하는 메소드를 사용하여  
+> map이 있을 때만 dispatch를 1번 실행하여 해결함
+> <br/>
+
+### ✅ 해결코드
+
+```
+const po = {
+
+    swLatLng: {
+      lat: map?.getBounds().getSouthWest().getLat(),
+      lng: map?.getBounds().getSouthWest().getLng(),
+    },
+    neLatLng: {
+      lat: map?.getBounds().getNorthEast().getLat(),
+      lng: map?.getBounds().getNorthEast().getLng(),
+    },};
+
+useEffect(() => {
+if (map && name === "office") {
+dispatch(mapActions.getOfficeData(po, level, router));
+} else if (map && name === "share") {
+dispatch(mapActions.getShareData(po, level));
+}
+}, [map]);
+```
 
 </br>
 
