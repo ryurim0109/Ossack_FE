@@ -5,6 +5,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick-theme.css"; */
 import { ReactComponent as Next } from "../../assets/next.svg";
 import { ReactComponent as Prev } from "../../assets/prev.svg";
+import MagicSliderDots from "react-magic-slider-dots";
 
 const SlickSlider = (props) => {
   const { children } = props;
@@ -16,7 +17,7 @@ const SlickSlider = (props) => {
     slideToScroll: 1,
     autoplay: false,
     autoplaySpeed: 5000,
-    dots: false,
+    dots: true,
     nextArrow: (
       <Div>
         <Next />
@@ -27,6 +28,16 @@ const SlickSlider = (props) => {
         <Prev />
       </DivPre>
     ),
+    appendDots: (dots) => {
+      return (
+        <MagicSliderDots
+          dots={dots}
+          numDotsToShow={4}
+          dotWidth={30}
+          dotContainerClassName="dotContainer"
+        />
+      );
+    },
   };
   return (
     <React.Fragment>
@@ -46,6 +57,43 @@ const StyledSlider = styled(Slider)`
   .slick-slide div {
     //슬라이더  컨텐츠
     cursor: pointer;
+  }
+  .dotContainer {
+    top: -30px;
+    display: flex;
+    width: 180px;
+  }
+  .dotContainer ul {
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    transition: all 0.2s;
+    position: relative;
+    margin: 0;
+  }
+  .dotContainer li {
+    padding-left: 20px;
+  }
+  .dotContainer li button {
+    font-size: 0px;
+  }
+  .dotContainer li button::before {
+    display: block;
+    content: "";
+    width: 4px;
+    height: 4px;
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.5);
+    transition: 0.35s;
+  }
+  .dotContainer li.slick-active button::before {
+    color: #fff;
+    transform: scale(2);
+    border-radius: 4px;
+  }
+  .dotContainer li.small button:before {
+    font-size: 8px;
+    line-height: 20px;
   }
 `;
 const Div = styled.div`
