@@ -117,11 +117,11 @@ const Ellipsis = styled.div`
   position: relative;
   display: -webkit-box;
   max-height: 55rem;
-  line-height: 2rem;
+  line-height: 2.5rem;
   overflow: hidden;
   text-overflow: ellipsis;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 8;
+  -webkit-line-clamp: 5;
   padding-bottom: 60px;
   &.show {
     display: block;

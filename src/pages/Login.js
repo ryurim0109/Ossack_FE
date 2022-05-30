@@ -91,7 +91,6 @@ const Login = () => {
           >
             <TextField
               margin="normal"
-              required
               fullWidth
               id="userEmail"
               label="이메일"
@@ -105,7 +104,6 @@ const Login = () => {
             />
             <TextField
               margin="normal"
-              required
               fullWidth
               name="password"
               label="비밀번호"

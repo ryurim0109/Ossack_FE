@@ -193,7 +193,6 @@ const Signup = () => {
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <TextField
-                  required
                   autoFocus
                   fullWidth
                   type="email"
@@ -226,7 +225,6 @@ const Signup = () => {
               <FormHelperTexts>{emailError}</FormHelperTexts>
               <Grid item xs={12}>
                 <TextField
-                  required
                   fullWidth
                   id="nickname"
                   name="nickname"
@@ -241,7 +239,6 @@ const Signup = () => {
               <FormHelperTexts>{nickNameError}</FormHelperTexts>
               <Grid item xs={12}>
                 <TextField
-                  required
                   fullWidth
                   type="password"
                   id="password"
@@ -257,7 +254,6 @@ const Signup = () => {
               <FormHelperTexts>{passwordState}</FormHelperTexts>
               <Grid item xs={12}>
                 <TextField
-                  required
                   fullWidth
                   type="password"
                   id="passwordCheck"
