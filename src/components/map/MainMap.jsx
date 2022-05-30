@@ -53,7 +53,7 @@ const MainMap = (props) => {
     } else if (map && name === "share") {
       dispatch(mapActions.getShareData(po, level));
     }
-  }, [map]);
+  }, [map, router]);
 
   const setLocation = () => {
     if (navigator.geolocation) {
