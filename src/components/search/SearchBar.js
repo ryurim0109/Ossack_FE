@@ -81,7 +81,7 @@ const Container = styled.div`
   margin: 10px 4%;
   background: #f5f5f5;
   border-radius: 4px;
-  padding: 15px 50px;
+  padding: 15px 40px;
   box-sizing: border-box;
 `;
 
