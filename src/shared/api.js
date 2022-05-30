@@ -1,6 +1,5 @@
 import axios from "axios";
 import Swal from "sweetalert2";
-import React, { useEffect } from "react";
 
 //1. axios 인터셉터 생성
 export const instance = axios.create({
