@@ -1,8 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import Slider from "react-slick";
-/* import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css"; */
 import { ReactComponent as Next } from "../../assets/next.svg";
 import { ReactComponent as Prev } from "../../assets/prev.svg";
 import MagicSliderDots from "react-magic-slider-dots";
