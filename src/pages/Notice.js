@@ -1,9 +1,16 @@
 import React from "react";
 import styled from "styled-components";
-import { Accordion, Bar } from "../components/shared/home";
+import { Accordion, Bar, NotUser } from "../components/shared/home";
 import { MyHeader } from "../components/my/index";
+import { useSelector } from "react-redux";
+import Swal from "sweetalert2";
 
 const Notice = () => {
+  const login = useSelector((state) => state.user.is_login);
+  if (!login) {
+    Swal.fire("로그인 여부 확인에 문제가 생겼습니다. 로그인을 다시 해주세요!");
+    window.location.replace("/start");
+  }
   const contents = [
     {
       title: "📢 거래완료된 대상물 과태료 부과 시행 알림",
@@ -21,22 +28,31 @@ const Notice = () => {
         "최근 이용자로부터 접수되는 허위매물에 관한 신고나 리뷰가 급증하고 있습니다.\n\n오싹에서는 허위매물 등록으로 인해 서비스의 신뢰도가 떨어지게 되면 결국,오싹을 이용하는 전체 중개사님이 피해를 받게 된다는 점을 항상 염두에 두고 타서비스에 비해 강도 높은 매물등록 관리정책과 허위매물 관리정책을 수행해왔습니다.\n\n다만,모든 중개사무소에 동일하게 적용할 수 있고 객관적으로 입증할 수 있는 기준에 따라 허위매물 관리정책을 수행하려다 보니, 허위매물을 올리는 중개사님들에게 즉각적인 제재가 이루어지기 힘든 점이 있고 이를 악용하는 중개사님이 있는 것으로 알고 있습니다.\n\n이에 따라 오싹에서는 허위매물임을 확인하는 기존의 절차 및 기준 이외에도 내부적인 기준을 마련하여 다소 주관적일 수 있더라도 악의적인 허위매물 등록자의 이용을 제한하려고 합니다.",
     },
   ];
+  const is_session = localStorage.getItem("token");
 
-  return (
-    <React.Fragment>
-      <MyHeader is_my> 공지사항</MyHeader>
-      <Wrap>
-        {contents.map((c, idx) => {
-          return (
-            <Outter key={idx}>
-              <Accordion title={c.title} contents={c.content} />
-            </Outter>
-          );
-        })}
-      </Wrap>
-      <Bar />
-    </React.Fragment>
-  );
+  if (!login || !is_session) {
+    return (
+      <React.Fragment>
+        <NotUser />
+      </React.Fragment>
+    );
+  } else {
+    return (
+      <React.Fragment>
+        <MyHeader is_my> 공지사항</MyHeader>
+        <Wrap>
+          {contents.map((c, idx) => {
+            return (
+              <Outter key={idx}>
+                <Accordion title={c.title} contents={c.content} />
+              </Outter>
+            );
+          })}
+        </Wrap>
+        <Bar />
+      </React.Fragment>
+    );
+  }
 };
 const Wrap = styled.div`
   width: 100%;

@@ -5,7 +5,7 @@ import { OneMap } from "../components/map/index";
 import { Grid, Button, Text } from "../elements/index";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { Bar, LoadSpinner } from "../components/shared/home";
+import { Bar, LoadSpinner, NotUser } from "../components/shared/home";
 import { actionCreators as officeActions } from "../redux/modules/office";
 import { history } from "../redux/configStore";
 import {
@@ -24,122 +24,131 @@ const DetailShare = () => {
   );
   //console.log("getOneShareOffice : ", getOneShareOffice);
   const is_loaded = useSelector((state) => state.office.is_loaded);
+  const login = useSelector((state) => state.user.is_login);
+  const is_session = localStorage.getItem("token");
 
   useEffect(() => {
     //console.log(shareofficeid);
     dispatch(officeActions.getOneShareOfficeDB(shareofficeid));
   }, [shareofficeid]);
-
-  return (
-    <React.Fragment>
-      <Header>
-        <Grid width="28px" display="flex" alignItems="center">
-          <Button
-            is_back
-            _onClick={() => {
-              history.goBack();
-            }}
-          />
-        </Grid>
-        <Grid
-          width="248px"
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-        >
-          <Text size="18px" bold cursor="pointer">
-            {getOneShareOffice?.dong ? getOneShareOffice?.dong : null}
-          </Text>
-        </Grid>
-        <Grid
-          width="28px"
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-        >
-          {getOneShareOffice?.mylike ? (
+  if (!login || !is_session) {
+    return (
+      <React.Fragment>
+        <NotUser />
+      </React.Fragment>
+    );
+  } else {
+    return (
+      <React.Fragment>
+        <Header>
+          <Grid width="28px" display="flex" alignItems="center">
             <Button
-              backgroundColor="none"
+              is_back
               _onClick={() => {
-                dispatch(
-                  officeActions.oneShareDeleteLikeDB(
-                    getOneShareOffice.shareofficeid
-                  )
-                );
+                history.goBack();
               }}
-            >
-              <Heart stroke="none" />
-            </Button>
-          ) : (
-            <Button
-              backgroundColor="none"
-              _onClick={() => {
-                dispatch(
-                  officeActions.oneShareClickLikeDB(
-                    getOneShareOffice.shareofficeid
-                  )
-                );
-              }}
-            >
-              <Heart stroke="#111" fill="none" />
-            </Button>
-          )}
-        </Grid>
-      </Header>
-      <Div>
-        <Outter>
-          <Grid bg="#F5F5F5" minHeight="1540px" paddingBottom="90px">
-            <Grid height="400px" bg="#fff">
-              <ShareOfficeImage />
-              <ShareOfficeBtmInfo />
-            </Grid>
+            />
+          </Grid>
+          <Grid
+            width="248px"
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+          >
+            <Text size="18px" bold cursor="pointer">
+              {getOneShareOffice?.dong ? getOneShareOffice?.dong : null}
+            </Text>
+          </Grid>
+          <Grid
+            width="28px"
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+          >
+            {getOneShareOffice?.mylike ? (
+              <Button
+                backgroundColor="none"
+                _onClick={() => {
+                  dispatch(
+                    officeActions.oneShareDeleteLikeDB(
+                      getOneShareOffice.shareofficeid
+                    )
+                  );
+                }}
+              >
+                <Heart stroke="none" />
+              </Button>
+            ) : (
+              <Button
+                backgroundColor="none"
+                _onClick={() => {
+                  dispatch(
+                    officeActions.oneShareClickLikeDB(
+                      getOneShareOffice.shareofficeid
+                    )
+                  );
+                }}
+              >
+                <Heart stroke="#111" fill="none" />
+              </Button>
+            )}
+          </Grid>
+        </Header>
+        <Div>
+          <Outter>
+            <Grid bg="#F5F5F5" minHeight="1540px" paddingBottom="90px">
+              <Grid height="400px" bg="#fff">
+                <ShareOfficeImage />
+                <ShareOfficeBtmInfo />
+              </Grid>
 
-            {/* 상세정보 */}
-            <ShareOfficeBasicInfo />
+              {/* 상세정보 */}
+              <ShareOfficeBasicInfo />
 
-            {/* 중개사 코멘트 */}
-            <ShareOfficeCmntInfo />
+              {/* 중개사 코멘트 */}
+              <ShareOfficeCmntInfo />
 
-            {/* 위치 */}
-            <Grid
-              bottom="0"
-              //padding="0 16px"
-              display="flex"
-              flexDirection="column"
-              justifyContent="center"
-              width="100%"
-              height="340px"
-              bg="#fff"
-            >
+              {/* 위치 */}
               <Grid
+                bottom="0"
+                //padding="0 16px"
                 display="flex"
                 flexDirection="column"
                 justifyContent="center"
-                padding="16px 0"
+                width="100%"
+                height="340px"
                 bg="#fff"
-                minHeight="330px"
               >
-                <Grid margin="0 0 10px" height="55px">
-                  <Bp style={{ padding: "3px 16px" }}>위치</Bp>
-                  <Sp style={{ padding: "0 16px" }}>
-                    {" "}
-                    {getOneShareOffice?.detail_address ===
-                    getOneShareOffice?.name
-                      ? getOneShareOffice?.address
-                      : getOneShareOffice?.detail_address}{" "}
-                  </Sp>
+                <Grid
+                  display="flex"
+                  flexDirection="column"
+                  justifyContent="center"
+                  padding="16px 0"
+                  bg="#fff"
+                  minHeight="330px"
+                >
+                  <Grid margin="0 0 10px" height="55px">
+                    <Bp style={{ padding: "3px 16px" }}>위치</Bp>
+                    <Sp style={{ padding: "0 16px" }}>
+                      {" "}
+                      {getOneShareOffice?.detail_address ===
+                      getOneShareOffice?.name
+                        ? getOneShareOffice?.address
+                        : getOneShareOffice?.detail_address}{" "}
+                    </Sp>
+                  </Grid>
+                  <OneMap shareofficeid={shareofficeid}></OneMap>
                 </Grid>
-                <OneMap shareofficeid={shareofficeid}></OneMap>
               </Grid>
+              <ShareOfficeAgentInfo />
             </Grid>
-            <ShareOfficeAgentInfo />
-          </Grid>
-        </Outter>
-      </Div>
-      {!is_loaded && <LoadSpinner />}
-      <Bar />
-    </React.Fragment>
-  );
+          </Outter>
+        </Div>
+        {!is_loaded && <LoadSpinner />}
+        <Bar />
+      </React.Fragment>
+    );
+  }
 };
 const Header = styled.div`
   width: 100%;

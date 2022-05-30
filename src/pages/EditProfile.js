@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { MyHeader } from "../components/my/index";
-import { Bar } from "../components/shared/home";
+import { Bar, NotUser } from "../components/shared/home";
 import { Grid, Image, Button, Text } from "../elements/index";
 import { ReactComponent as ProEdit } from "../assets/pro_edit.svg";
 import { nickNameRegex } from "../shared/regCheck";
@@ -10,7 +10,6 @@ import { useSelector, useDispatch } from "react-redux";
 import defaultImg from "../assets/default.png";
 import Swal from "sweetalert2";
 import { actionCreators as userActions } from "../redux/modules/user";
-import { history } from "../redux/configStore";
 
 const EditProfile = () => {
   const dispatch = useDispatch();
@@ -18,9 +17,8 @@ const EditProfile = () => {
   const [image, setImage] = useState("");
   const [preview, setPreview] = useState(null);
   const [nickname, setNickname] = useState(user_info?.nickname);
-  useEffect(() => {
-    dispatch(userActions.loginCheckApi());
-  }, [dispatch]);
+  const login = useSelector((state) => state.user.is_login);
+  const is_session = localStorage.getItem("token");
   //사진 미리보기
   const encodeFileToBase64 = (fileBlob) => {
     const reader = new FileReader();
@@ -70,106 +68,115 @@ const EditProfile = () => {
       dispatch(userActions.userImgDeleteDB(nickname));
     }
   };
-  return (
-    <React.Fragment>
-      <MyHeader is_my>프로필 변경</MyHeader>
-      <Outter>
-        <Grid
-          width="100%"
-          margin="40px 0 0"
-          height="154px"
-          position="relative"
-          display="flex"
-          flexDirection="column"
-          alignItems="start"
-          justifyContent="center"
-        >
-          {/* 프로필 이미지 부분 */}
+
+  if (!login || !is_session) {
+    return (
+      <React.Fragment>
+        <NotUser />
+      </React.Fragment>
+    );
+  } else {
+    return (
+      <React.Fragment>
+        <MyHeader is_my>프로필 변경</MyHeader>
+        <Outter>
           <Grid
             width="100%"
-            display="flex"
-            justifyContent="center"
+            margin="40px 0 0"
+            height="154px"
             position="relative"
-            height="112px"
+            display="flex"
+            flexDirection="column"
+            alignItems="start"
+            justifyContent="center"
           >
-            <Image
-              border="2px solid #F3F3F3"
-              type="circle"
-              size="112"
-              src={
-                preview
-                  ? preview
-                  : user_info?.imageUrl
-                  ? user_info?.imageUrl
-                  : defaultImg
-              }
+            {/* 프로필 이미지 부분 */}
+            <Grid
+              width="100%"
+              display="flex"
+              justifyContent="center"
+              position="relative"
+              height="112px"
+            >
+              <Image
+                border="2px solid #F3F3F3"
+                type="circle"
+                size="112"
+                src={
+                  preview
+                    ? preview
+                    : user_info?.imageUrl
+                    ? user_info?.imageUrl
+                    : defaultImg
+                }
+              />
+              <label htmlFor="file_input" className="upload-box">
+                <ProEdit />
+              </label>
+            </Grid>
+            <input
+              type="file"
+              id="file_input"
+              accept="image/jpeg, image/png, image/jpg"
+              onChange={(e) => {
+                encodeFileToBase64(e.target.files[0]);
+                setImage(e.target.files[0]);
+              }}
+              style={{ display: "none" }}
             />
-            <label htmlFor="file_input" className="upload-box">
-              <ProEdit />
-            </label>
           </Grid>
-          <input
-            type="file"
-            id="file_input"
-            accept="image/jpeg, image/png, image/jpg"
-            onChange={(e) => {
-              encodeFileToBase64(e.target.files[0]);
-              setImage(e.target.files[0]);
-            }}
-            style={{ display: "none" }}
-          />
-        </Grid>
-        {/* 닉네임 */}
-        <Grid
-          width="100%"
-          height="76px"
-          display="flex"
-          flexDirection="column"
-          alignItems="start"
-          justifyContent="space-between"
-          padding="0 16px"
-        >
-          <Grid height="28px" display="flex" alignItems="center">
-            <Text size="16px" bold>
-              닉네임{" "}
-            </Text>
-            <Text size="12px" color="#666">
-              (2글자 ~ 10글자내의 영어, 한글로만 정해주세요)
-            </Text>
-          </Grid>
-          <NickInput
-            onChange={changeNickname}
-            defaultValue={user_info?.nickname}
-            type="text"
-          />
-        </Grid>
-        {/* 사진삭제 완료 버튼 */}
-        <Grid
-          width="100%"
-          height="94px"
-          display="flex"
-          flexDirection="column"
-          alignItems="center"
-          justifyContent="space-between"
-          padding="0 16px"
-        >
-          <Text
-            bold
-            color="#3E00FF"
-            borderBottom="1px solid #3E00FF"
-            cursor="pointer"
-            _onClick={ImgDelete}
+          {/* 닉네임 */}
+          <Grid
+            width="100%"
+            height="76px"
+            display="flex"
+            flexDirection="column"
+            alignItems="start"
+            justifyContent="space-between"
+            padding="0 16px"
           >
-            이미지 삭제
-          </Text>
-          <Button color="#fff" borderRadius="8px" _onClick={editProfile}>
-            완료
-          </Button>
-        </Grid>
-      </Outter>
-      <Bar />
-    </React.Fragment>
-  );
+            <Grid height="28px" display="flex" alignItems="center">
+              <Text size="16px" bold>
+                닉네임{" "}
+              </Text>
+              <Text size="12px" color="#666">
+                (2글자 ~ 10글자내의 영어, 한글로만 정해주세요)
+              </Text>
+            </Grid>
+            <NickInput
+              onChange={changeNickname}
+              defaultValue={user_info?.nickname}
+              type="text"
+            />
+          </Grid>
+          {/* 사진삭제 완료 버튼 */}
+          <Grid
+            width="100%"
+            height="94px"
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+            justifyContent="space-between"
+            padding="0 16px"
+          >
+            <Text
+              bold
+              color="#3E00FF"
+              borderBottom="1px solid #3E00FF"
+              cursor="pointer"
+              _onClick={ImgDelete}
+            >
+              이미지 삭제
+            </Text>
+            <Button color="#fff" borderRadius="8px" _onClick={editProfile}>
+              완료
+            </Button>
+          </Grid>
+        </Outter>
+        <Bar />
+      </React.Fragment>
+    );
+  }
 };
 const Outter = styled.div`
   width: 100%;

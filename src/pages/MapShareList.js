@@ -5,13 +5,14 @@ import { actionCreators as officeActions } from "../redux/modules/office";
 
 import { MyHeader } from "../components/my/index";
 import { ShareOfficeResult } from "../components/search/index";
-import { Bar, Spinner } from "../components/shared/home";
+import { Bar, Spinner, NotUser } from "../components/shared/home";
 
 const MapShareList = (props) => {
   const dispatch = useDispatch();
   const search = props.location.search.split("=")[1];
   const totalPage = useSelector((state) => state?.office?.page);
   const title = useSelector((state) => state?.office?.keyword);
+  const login = useSelector((state) => state.user.is_login);
 
   const [pageno, setPageno] = useState(1);
   const [target, setTarget] = useState(null);
@@ -42,18 +43,27 @@ const MapShareList = (props) => {
   useEffect(() => {
     dispatch(officeActions.getShareListDB(search, pageno));
   }, [pageno, search, dispatch]);
+  const is_session = localStorage.getItem("token");
 
-  return (
-    <React.Fragment>
-      <MyHeader is_back>{title} 리스트</MyHeader>
-      <Outter>
-        <ShareOfficeResult />
-      </Outter>
-      {isLoading ? <Spinner /> : null}
-      {totalPage > pageno ? <div ref={setTarget}> </div> : null}
-      <Bar />
-    </React.Fragment>
-  );
+  if (!login || !is_session) {
+    return (
+      <React.Fragment>
+        <NotUser />
+      </React.Fragment>
+    );
+  } else {
+    return (
+      <React.Fragment>
+        <MyHeader is_back>{title} 리스트</MyHeader>
+        <Outter>
+          <ShareOfficeResult />
+        </Outter>
+        {isLoading ? <Spinner /> : null}
+        {totalPage > pageno ? <div ref={setTarget}> </div> : null}
+        <Bar />
+      </React.Fragment>
+    );
+  }
 };
 const Outter = styled.div`
   width: 100%;

@@ -1,19 +1,31 @@
 import React from "react";
 import styled from "styled-components";
-import { Bar } from "../components/shared/home";
+import { Bar, NotUser } from "../components/shared/home";
 import { MyHeader } from "../components/my/index";
 import { LikeTab } from "../components/like/index";
+import { useSelector } from "react-redux";
 
 const Like = (props) => {
-  return (
-    <React.Fragment>
-      <MyHeader>찜리스트</MyHeader>
-      <Outter>
-        <LikeTab />
-      </Outter>
-      <Bar />
-    </React.Fragment>
-  );
+  const login = useSelector((state) => state.user.is_login);
+  const is_session = localStorage.getItem("token");
+
+  if (!login || !is_session) {
+    return (
+      <React.Fragment>
+        <NotUser />
+      </React.Fragment>
+    );
+  } else {
+    return (
+      <React.Fragment>
+        <MyHeader>찜리스트</MyHeader>
+        <Outter>
+          <LikeTab />
+        </Outter>
+        <Bar />
+      </React.Fragment>
+    );
+  }
 };
 const Outter = styled.div`
   width: 100%;

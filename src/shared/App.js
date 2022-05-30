@@ -4,6 +4,8 @@ import { Route, Switch } from "react-router-dom";
 import { gsap } from "gsap";
 import { ConnectedRouter } from "connected-react-router";
 import { history } from "../redux/configStore";
+import { useDispatch } from "react-redux";
+import { actionCreators as userActions } from "../redux/modules/user";
 import {
   Login,
   Main,
@@ -73,6 +75,13 @@ function App() {
       ani2.kill();
     };
   };
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const is_session = localStorage.getItem("token");
+    if (is_session) {
+      dispatch(userActions.loginCheckApi());
+    }
+  }, [dispatch]);
   return (
     <>
       <Wrap>
