@@ -59,7 +59,7 @@ const StyledSlider = styled(Slider)`
     cursor: pointer;
   }
   .dotContainer {
-    top: -30px;
+    top: -35px;
     display: flex;
     width: 180px;
   }
