@@ -2,13 +2,18 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Sale, PopUp } from "../components/main/index";
 import { Bar, NotUser } from "../components/shared/home";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { actionCreators as userActions } from "../redux/modules/user";
 
 function Main() {
+  const dispatch = useDispatch();
   const [showPopUp, setShowPopUp] = useState(false);
   const HAS_VISITED_BEFORE = localStorage.getItem("hasVisitedBefore");
   const login = useSelector((state) => state.user.is_login);
   const is_session = localStorage.getItem("token");
+  useEffect(() => {
+    dispatch(userActions.loginCheckApi());
+  }, [dispatch]);
 
   useEffect(() => {
     const handleShowModal = () => {
