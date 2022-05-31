@@ -50,7 +50,7 @@
 
 <code>김유림</code> 메인, 지도, 필터 , 검색 리스트, 프로필 페이지, 좋아요 기능, 무한스크롤, 스플래쉬, 시작하기 페이지, https배포, 무중단 배포
 
-<code>박태순</code> 로그인, 회원가입, 검색, 상세페이지 , 핫한 오피스 페이지, 찜목록 페이지 , 찜한 매물 불러오기, 최근 검색어 기능
+<code>박태순</code> 로그인, 회원가입, 검색, 상세페이지 , 핫한 오피스 페이지, 찜목록 페이지 , 찜한 매물 불러오기, 최근 검색어 기능, 무중단 배포
 
 ## 🔨 Trouble Shooting
 
@@ -91,7 +91,9 @@ dispatch(mapActions.getShareData(po, level));
 }, [map]);
 ```
 
-</br>
+<br/>
+</details>
+<br/>
 
 ### 👀 사용 라이브러리 👀
 
@@ -106,4 +108,5 @@ dispatch(mapActions.getShareData(po, level));
   <img src='https://img.shields.io/badge/AWS-Amazon AWS-yellow?logo=Amazon AWS'/>
    <img src='https://img.shields.io/badge/Amazon S3-569A31?logo=Amazon S3&logoColor=white'/>
   <img src='https://img.shields.io/badge/CLOUDFRONT-1261FE?logo=cloudfront'/>
+   <img src='https://img.shields.io/badge/GithubActions-fff?logo=GithubActions'/>
 </div>
