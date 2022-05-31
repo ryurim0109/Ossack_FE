@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Grid, Image, Text, Button } from "../../elements/index";
+import { Grid, Text, Button } from "../../elements/index";
 import ossack from "../../assets/login.png";
 
 const NotUser = () => {
