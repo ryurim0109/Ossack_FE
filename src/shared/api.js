@@ -19,8 +19,8 @@ export const instances = axios.create({
   //baseURL: "https://ossack-dk.shop",
 
   headers: {
-    Authorization: `BEARER ${localStorage.getItem("token")}`,
     "Content-Type": "multipart/form-data",
+    accept: "application/json",
   },
 });
 
@@ -36,6 +36,27 @@ instance.interceptors.request.use(
     // const tokens = Token.split('=')[1];
     config.headers = {
       "content-type": "application/json;charset=UTF-8",
+      accept: "application/json",
+      Authorization: `Bearer ${Token}`,
+    };
+    return config;
+  },
+  //에러 전 호출
+  (err) => {
+    console.log(err);
+  }
+);
+instances.interceptors.request.use(
+  //요청직전 호출
+  (config) => {
+    const Token = localStorage.getItem("token");
+    if (Token === "") {
+      window.alert("로그인을 먼저 해주세요!");
+      return config;
+    }
+    // const tokens = Token.split('=')[1];
+    config.headers = {
+      "Content-Type": "multipart/form-data",
       accept: "application/json",
       Authorization: `Bearer ${Token}`,
     };
