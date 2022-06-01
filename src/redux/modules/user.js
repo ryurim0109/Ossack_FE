@@ -250,10 +250,9 @@ const editProfileDB = (nickname, image, userimg) => {
       .put("/user/profile", file)
       .then((res) => {
         Swal.fire("프로필 변경이 완료되었습니다.");
-        history.push("/mypage");
       })
       .catch((err) => {
-        console.log("프로필 업로드 에러다!!!!", err.response);
+        console.log("프로필 업로드 에러다!!!!", err);
       });
   };
 };
@@ -273,7 +272,6 @@ const userImgDeleteDB = (nickname) => {
           .get("/user/islogin")
           .then((res) => {
             dispatch(user_img(res.data.imageUrl));
-            history.push("/mypage");
           })
           .catch((error) => console.log("유저정보저장오류", error));
       })
