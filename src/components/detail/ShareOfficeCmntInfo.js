@@ -69,7 +69,6 @@ const CommentInfo = () => {
 
             <Grid>
               <Text>
-                {/* {" "} */}
                 <Ellipsis ref={contentRef}>
                   {getOneShareOffice?.detail?.split("\n").map((line, idx) => {
                     return (
@@ -152,16 +151,8 @@ const Btn = styled.button`
   position: absolute;
   bottom: 0;
   right: 0;
-  //max-height: 2rem;
   line-height: 48px;
   background-color: #fff;
-  /*  background: rgb(2, 0, 36);
-  background: linear-gradient(
-    180deg,
-    rgba(2, 0, 36, 1) 0%,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 1) 18%
-  ); */
   &.hide {
     display: none;
   }

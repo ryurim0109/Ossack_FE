@@ -24,15 +24,12 @@ const SearchPage = () => {
     JSON.parse(localStorage.getItem("keywords") || "[]")
   );
 
-  // Keyword에 변화가 일어날때만 렌더링
   useEffect(() => {
-    // array 타입을 string 형태로 바꾸기 위해 json.stringfy를 사용
     localStorage.setItem("keywords", JSON.stringify(keywords));
   }, [keywords]);
 
   //검색어 추가
   const handleAddKeyword = (text) => {
-    //console.log("text : ", text);
     const newKeyword = {
       id: Date.now(),
       text: text,
@@ -40,11 +37,9 @@ const SearchPage = () => {
     // 검색 중복저장체크
     if (!localStorage.getItem("keywords").includes(text) && searchCheck(text)) {
       setKeywords([newKeyword, ...keywords]);
-      // console.log(localStorage.getItem("keywords").includes(text));
     }
 
     if (!searchCheck(text)) {
-      // console.log("searchCheck : ", searchCheck(text));
       Swal.fire({
         title: "한글로만 입력해주세요!",
         showCancelButton: false,

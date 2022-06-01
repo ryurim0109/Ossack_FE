@@ -22,13 +22,11 @@ const DetailShare = () => {
   const getOneShareOffice = useSelector(
     (state) => state.office.one_share_office
   );
-  //console.log("getOneShareOffice : ", getOneShareOffice);
   const is_loaded = useSelector((state) => state.office.is_loaded);
   const login = useSelector((state) => state.user.is_login);
   const is_session = localStorage.getItem("token");
 
   useEffect(() => {
-    //console.log(shareofficeid);
     dispatch(officeActions.getOneShareOfficeDB(shareofficeid));
   }, [shareofficeid]);
   if (!login || !is_session) {
@@ -101,13 +99,10 @@ const DetailShare = () => {
                 <ShareOfficeImage />
                 <ShareOfficeBtmInfo />
               </Grid>
-
               {/* 상세정보 */}
               <ShareOfficeBasicInfo />
-
               {/* 중개사 코멘트 */}
               <ShareOfficeCmntInfo />
-
               {/* 위치 */}
               <Grid
                 bottom="0"
@@ -172,7 +167,6 @@ const Outter = styled.div`
 const Sp = styled.p`
   width: 60%;
   color: #000;
-  //font-size: 0.975rem;
   font-size: ${({ theme }) => theme.fontSizes.small};
 `;
 

@@ -22,7 +22,6 @@ const HotPlaceArticle = () => {
   const is_session = localStorage.getItem("token");
 
   const List = (keyword) => {
-    //const keyword = "을지로";
     history.push(`/map/office?query=${keyword}`);
   };
   if (!login || !is_session) {
@@ -187,12 +186,7 @@ const HotPlaceArticle = () => {
                 />
               </Grid>
             </Grid>
-            <Grid
-              height="236px"
-              bg="#fff"
-              padding="0 16px"
-              // margin="25px 0"
-            >
+            <Grid height="236px" bg="#fff" padding="0 16px">
               <Grid height="80px" bg="#fff" margin="17px 0">
                 <P>
                   또, MZ 세대가 선호하는 상권이 형성돼 있는 점도 대 표님들의
@@ -348,7 +342,6 @@ const HotPlaceArticle = () => {
 };
 
 const Span = styled.span`
-  //font-size: 0.625rem;
   font-weight: bold;
   font-size: ${({ theme }) => theme.fontSizes.xlg};
 `;
@@ -361,7 +354,6 @@ const P = styled.p`
 `;
 
 const Sp = styled.p`
-  //font-size: 0.975rem;
   color: ${({ theme }) => theme.colors.darkgray1};
   font-size: ${({ theme }) => theme.fontSizes.small};
   text-align: justify;

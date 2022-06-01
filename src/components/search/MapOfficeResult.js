@@ -11,8 +11,6 @@ import { history } from "../../redux/configStore";
 const MapOfficeResult = (props) => {
   const dispatch = useDispatch();
   const officeData = useSelector((state) => state?.office?.list);
-  //console.log(officeData[0]?.mylike);
-
   const is_loaded = useSelector((state) => state.office.is_loaded);
 
   if (officeData?.length >= 1) {

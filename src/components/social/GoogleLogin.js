@@ -8,8 +8,6 @@ const GoogleLogin = (props) => {
 
   // 인가코드
   let code = new URL(window.location.href).searchParams.get("code");
-  // const GOOGLE_CLIENT_ID = process.env.REACT_APP_GOOGLE_ID;
-  // console.log("code : ", GOOGLE_CLIENT_ID);
 
   React.useEffect(() => {
     if (code) {
