@@ -92,8 +92,6 @@ function App() {
         <GlobalStyle />
         <ThemeProvider theme={theme}>
           <ConnectedRouter history={history}>
-            {/* <ScrollToTop history={history}> */}
-
             <MobileFrame className="MobileFramePage">
               <Switch>
                 <Route path="/" exact component={Splash} />
@@ -141,8 +139,6 @@ function App() {
                 <Route path="/*" component={NotFound} />
               </Switch>
             </MobileFrame>
-
-            {/* </ScrollToTop> */}
           </ConnectedRouter>
         </ThemeProvider>
       </Wrap>

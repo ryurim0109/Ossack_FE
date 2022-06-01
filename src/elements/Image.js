@@ -12,11 +12,9 @@ const Image = (props) => {
     border: border,
   };
   if (shape === "circle") {
-    //프로필 이미지
     return <ImageCircle {...styles}></ImageCircle>;
   }
   if (shape === "rectangle") {
-    //일반 이미지
     return (
       <AspectOutter>
         <AspectInner {...styles}></AspectInner>

@@ -246,7 +246,7 @@ const editProfileDB = (nickname, image, userimg) => {
     file.append("nickname", nickname);
     file.append("profileImgUrl", userimg);
   }
-  return function (dispatch, getState, { history }) {
+  return function (dispatch, { history }) {
     instances
       .put("/user/profile", file)
       .then((res) => {
@@ -265,7 +265,7 @@ const userImgDeleteDB = (nickname) => {
   file.append("nickname", nickname);
   file.append("profileImgUrl", "");
 
-  return function (dispatch, getState, { history }) {
+  return function (dispatch, { history }) {
     instances
       .put("/user/profile", file)
       .then((res) => {
