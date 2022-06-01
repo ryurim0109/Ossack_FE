@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState } from "react";
 import {
   Button,
   CssBaseline,
@@ -32,7 +32,6 @@ const Signup = () => {
   const [userEmailCurrent, setUserEmailCurrent] = useState(false);
   // 리덕스에서 statusCode 가져오기
   const emailDup = useSelector((state) => state.user.statusCode);
-
   // 비활성화 여부
   const [userEmail, setUserEmail] = useState("");
   const [nickname, setNickname] = useState("");
@@ -43,7 +42,6 @@ const Signup = () => {
   const handleEmailInput = (event) => {
     setUserEmail(event.target.value);
     const userEmailCurrent = event.target.value;
-    //console.log("userEmailCurrent : ", userEmailCurrent);
     setUserEmailCurrent(userEmailCurrent);
   };
 
@@ -84,23 +82,19 @@ const Signup = () => {
     };
     const { userEmail, nickname, password, passwordCheck } = joinData;
 
-    // 이메일 유효성 체크
     if (!emailRegex(userEmail)) setEmailError("올바른 이메일 형식이 아닙니다.");
     else setEmailError("");
 
-    // 비밀번호 유효성 체크
     if (!passwordRegex(password))
       setPasswordState(
         "숫자+영문자+특수문자 조합으로 8자리 이상 입력해주세요!"
       );
     else setPasswordState("");
 
-    // 비밀번호 같은지 체크
     if (password !== passwordCheck)
       setPasswordError("비밀번호가 일치하지 않습니다.");
     else setPasswordError("");
 
-    // 닉네임 유효성 검사
     if (!nickNameRegex(nickname) || nickname.length < 1)
       setNickNameError("올바른 이름을 입력해주세요.(글자수 제한 2~10자리)");
     else setNickNameError("");
@@ -112,7 +106,6 @@ const Signup = () => {
         confirmButtonText: "확인",
         confirmButtonColor: "#FF5151",
       });
-      // setEmailError("이메일 중복확인을 해주세요(🔐)");
       return;
     }
 
@@ -122,7 +115,6 @@ const Signup = () => {
       password === passwordCheck &&
       nickNameRegex(nickname) &&
       emailDup === true
-      // &&checked
     ) {
       dispatch(userActions.signUpApi(joinData));
     }
@@ -130,7 +122,6 @@ const Signup = () => {
 
   const checkDup = () => {
     if (typeof emailDup === "undefined") {
-      //console.log("emailDup : ", emailDup);
       setEmailError("이메일 중복확인을 해주세요(🔐)");
     }
     setEmailError("");
@@ -217,7 +208,6 @@ const Signup = () => {
                   onClick={() => {
                     checkDup();
                   }}
-                  //onKeyUp={isPassedSignup}
                 >
                   🔐
                 </Grid>
