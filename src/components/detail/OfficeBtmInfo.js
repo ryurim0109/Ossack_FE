@@ -68,7 +68,6 @@ const OfficeBottomInfo = () => {
 };
 
 const Span = styled.span`
-  //font-size: 0.625rem;
   font-weight: bold;
   font-size: ${({ theme }) => theme.fontSizes.xlg};
 `;
@@ -76,7 +75,6 @@ const Span = styled.span`
 const Sp = styled.p`
   width: 60%;
   color: #000;
-  //font-size: 0.975rem;
   font-size: ${({ theme }) => theme.fontSizes.small};
 `;
 

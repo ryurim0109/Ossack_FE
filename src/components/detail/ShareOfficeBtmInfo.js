@@ -3,13 +3,11 @@ import React from "react";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
 import { Grid, Text } from "../../elements/index";
-import { useParams } from "react-router-dom";
 
 const OfficeBottomInfo = () => {
   const getOneShareOffice = useSelector(
     (state) => state.office.one_share_office
   );
-  const shareofficeid = useParams().shareofficeid;
 
   return (
     <React.Fragment>
@@ -69,7 +67,6 @@ const OfficeBottomInfo = () => {
 };
 
 const Span = styled.span`
-  //font-size: 0.625rem;
   font-weight: bold;
   font-size: ${({ theme }) => theme.fontSizes.xlg};
 `;
@@ -77,7 +74,6 @@ const Span = styled.span`
 const Sp = styled.p`
   width: 55px;
   color: #000;
-  //font-size: 0.975rem;
   font-size: ${({ theme }) => theme.fontSizes.small};
 `;
 
@@ -99,7 +95,6 @@ const CenterInner = styled.div`
   width: 100%;
   height: 32px;
   display: flex;
-  /* margin: 0 0 13px; */
   align-items: center;
 `;
 export default OfficeBottomInfo;

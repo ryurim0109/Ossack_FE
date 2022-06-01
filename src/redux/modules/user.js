@@ -169,7 +169,6 @@ const resignDB = () => {
       });
   };
 };
-
 //카카오 로그인
 const loginBykakao = (code) => {
   return function (dispatch, getState, { history }) {

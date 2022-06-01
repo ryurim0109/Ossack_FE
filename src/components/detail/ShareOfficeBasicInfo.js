@@ -81,7 +81,6 @@ const P = styled.p`
 const Sp = styled.p`
   width: 60%;
   color: #000;
-  //font-size: 0.975rem;
   font-size: ${({ theme }) => theme.fontSizes.small};
 `;
 
@@ -96,7 +95,6 @@ const CenterInner = styled.div`
   width: 100%;
   height: 32px;
   display: flex;
-  /* margin: 0 0 13px; */
   align-items: center;
 `;
 export default OfficeBasicInfo;

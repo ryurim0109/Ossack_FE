@@ -39,11 +39,10 @@ const Login = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    /* console.log({
-      userEmail: data.get("userEmail"),
-      password: data.get("password"),
-    }); */
-    dispatch(userActions.loginApi(data.get("userEmail"), data.get("password")));
+    const userEmail = data.get("userEmail");
+    const password = data.get("password");
+
+    dispatch(userActions.loginApi(userEmail, password));
   };
 
   const style = {
@@ -117,8 +116,6 @@ const Login = () => {
             />
 
             <Grid container>
-              {/* 회원가입 */}
-
               <Button
                 type="submit"
                 fullWidth
