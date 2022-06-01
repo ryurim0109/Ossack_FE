@@ -39,16 +39,25 @@ const EditProfile = () => {
     let fileSize = image.size;
     if (fileSize > maxSize) {
       Swal.fire("첨부파일 사이즈는 5MB 이내로 등록 가능합니다.");
-      return false;
+      return;
     }
-    if (nickname.length > 10 && nickname.length < 2) {
+    if (nickname.length < 2) {
       Swal.fire({
-        title: "닉네임은 2글자 ~ 10글자로 영어, 한글로만 정해주세요!",
+        title: "닉네임은 2글자 이상이어야 됩니다.",
         showCancelButton: false,
         confirmButtonText: "네",
       });
-      return false;
-    } else if (!nickname) {
+      return;
+    }
+    if (nickname?.length > 10) {
+      Swal.fire({
+        title: "닉네임은 10글자 이하여야 됩니다.",
+        showCancelButton: false,
+        confirmButtonText: "네",
+      });
+      return;
+    }
+    if (!nickname) {
       dispatch(
         userActions.editProfileDB(
           user_info.nickname,
