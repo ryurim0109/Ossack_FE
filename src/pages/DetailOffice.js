@@ -25,20 +25,7 @@ const DetailOffice = () => {
   const login = useSelector((state) => state.user.is_login);
   const is_session = localStorage.getItem("token");
 
-  //console.log("getOneOffice : ", getOneOffice);
-
-  // const getImage = getOneOffice.images.map((images) => images);
-  // console.log("getImage : ", getImage);
-
-  //const list = useSelector((state) => state.search.list);
-  // console.log("list : ", list);
-  //   const officeData = list?.filter((a) => a.estateid === +estateid);
-
-  // const buildingDetail = getOneOffice?.buildingDetail.split("\n").map((v) => v);
-  // console.log("buildingDetail : ", buildingDetail);
-
   useEffect(() => {
-    //console.log(estateid);
     dispatch(officeActions.getOneOfficeDB(estateid));
   }, [estateid]);
 
@@ -106,13 +93,10 @@ const DetailOffice = () => {
                 <OfficeImage />
                 <OfficeBtmInfo />
               </Grid>
-
               {/* 상세정보 */}
               <OfficeBasicInfo />
-
               {/* 중개사 코멘트 */}
               <OfficeCmntInfo />
-
               {/* 위치 */}
               <Grid
                 bottom="0"
@@ -175,7 +159,6 @@ const Outter = styled.div`
 const Sp = styled.p`
   width: 60%;
   color: #000;
-  //font-size: 0.975rem;
   font-size: ${({ theme }) => theme.fontSizes.small};
 `;
 
