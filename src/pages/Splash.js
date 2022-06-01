@@ -5,17 +5,14 @@ import styled from "styled-components";
 import ossack from "../assets/logo02.png";
 
 const Splash = () => {
-  // 2초 뒤 채팅 메인으로 넘어가는 함수 작성
   const timeout = () => {
     setTimeout(() => {
       history.push("/start");
     }, 2000);
   };
-  // 컴포넌트가 화면에 다 나타나면 timeout 함수 실행
   useEffect(() => {
     timeout();
     return () => {
-      // clear 해줌
       clearTimeout(timeout);
     };
   });

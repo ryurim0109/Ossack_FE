@@ -6,7 +6,6 @@ import { actionCreators as officeActions } from "../redux/modules/office";
 import { MyHeader } from "../components/my/index";
 import { MapOfficeResult } from "../components/search/index";
 import { Bar, Spinner, NotUser } from "../components/shared/home";
-import Swal from "sweetalert2";
 
 const MapOfficeList = (props) => {
   const dispatch = useDispatch();
@@ -16,10 +15,6 @@ const MapOfficeList = (props) => {
   const title = useSelector((state) => state?.office?.keyword);
   const router = useSelector((state) => state.router.location.search);
   const login = useSelector((state) => state.user.is_login);
-  if (!login) {
-    Swal.fire("로그인 여부 확인에 문제가 생겼습니다. 로그인을 다시 해주세요!");
-    window.location.replace("/start");
-  }
 
   const [pageno, setPageno] = useState(1);
   const [target, setTarget] = useState(null);

@@ -3,14 +3,9 @@ import styled from "styled-components";
 import { Accordion, Bar, NotUser } from "../components/shared/home";
 import { MyHeader } from "../components/my/index";
 import { useSelector } from "react-redux";
-import Swal from "sweetalert2";
 
 const Notice = () => {
   const login = useSelector((state) => state.user.is_login);
-  if (!login) {
-    Swal.fire("로그인 여부 확인에 문제가 생겼습니다. 로그인을 다시 해주세요!");
-    window.location.replace("/start");
-  }
   const contents = [
     {
       title: "📢 거래완료된 대상물 과태료 부과 시행 알림",

@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Grid, Text, Image } from "../../elements/index";
+import { Grid, Text } from "../../elements/index";
 import { history } from "../../redux/configStore";
 import { ReactComponent as Search } from "../../assets/search.svg";
 import { SaleList, HotPlaceList, Office } from "./index";
