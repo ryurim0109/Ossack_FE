@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Grid, Image, Text } from "../../elements/index";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
@@ -46,12 +46,12 @@ const MyProfile = () => {
             padding="12px 0"
             justifyContent="center"
           >
-            <Text size="18px" cursor="pointer" bold>
+            <Text size="18px" bold>
               {user_info?.nickname ? user_info?.nickname : "게스트"}님
             </Text>
           </Grid>
           <Grid width="100%" display="flex" justifyContent="center">
-            <Text size="0.85rem" cursor="pointer">
+            <Text size="10px" color="#666">
               {user_info?.userEmail ? user_info?.userEmail : "이메일 없음"}
             </Text>
           </Grid>

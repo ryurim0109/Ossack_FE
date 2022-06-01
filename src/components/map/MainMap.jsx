@@ -103,7 +103,7 @@ const MainMap = (props) => {
                       return (
                         <CustomOverlayMap
                           key={`${position.title}-${position.coordinate}`}
-                          position={position.coordinate} // 마커를 표시할 위치
+                          position={position.coordinate}
                         >
                           <div
                             onClick={() =>
@@ -185,11 +185,11 @@ const MainMap = (props) => {
               <>
                 {shareOffice?.cityResponseDtoList?.length === 0
                   ? null
-                  : shareOffice?.cityResponseDtoList?.map((position, index) => {
+                  : shareOffice?.cityResponseDtoList?.map((position) => {
                       return (
                         <CustomOverlayMap
                           key={`${position.title}-${position.coordinate}`}
-                          position={position.coordinate} // 마커를 표시할 위치
+                          position={position.coordinate}
                         >
                           <div
                             onClick={() =>
