@@ -5,11 +5,11 @@ import { Bar, NotUser } from "../components/shared/home";
 import { Grid, Image, Button, Text } from "../elements/index";
 import { ReactComponent as ProEdit } from "../assets/pro_edit.svg";
 import { nickNameRegex } from "../shared/regCheck";
-
 import { useSelector, useDispatch } from "react-redux";
 import defaultImg from "../assets/default.png";
 import Swal from "sweetalert2";
 import { actionCreators as userActions } from "../redux/modules/user";
+import { history } from "../redux/configStore";
 
 const EditProfile = () => {
   const dispatch = useDispatch();
@@ -36,20 +36,21 @@ const EditProfile = () => {
     setNickname(e.target.value);
   };
   const editProfile = () => {
-    let maxSize = 4.7 * 1024 * 1024;
+    let maxSize = 3 * 1024 * 1024;
     let fileSize = image.size;
     if (fileSize > maxSize) {
-      Swal.fire("첨부파일 사이즈는 5MB 이내로 등록 가능합니다.");
-      return false;
+      Swal.fire("첨부파일 사이즈는 3MB 이내로 등록 가능합니다.");
+      return;
     }
     if (!nickNameRegex(nickname)) {
       Swal.fire({
-        title: "닉네임은 2글자 ~ 10글자로 영어, 한글로만 정해주세요!",
+        title: "닉네임은 2글자 이상10글자 이하여야 됩니다.",
         showCancelButton: false,
         confirmButtonText: "네",
       });
-      return false;
-    } else if (!nickname) {
+      return;
+    }
+    if (!nickname) {
       dispatch(
         userActions.editProfileDB(
           user_info.nickname,
@@ -60,6 +61,7 @@ const EditProfile = () => {
     } else {
       dispatch(userActions.editProfileDB(nickname, image, user_info?.imageUrl));
     }
+    history.push("/mypage");
   };
   const ImgDelete = () => {
     if (!nickname) {
@@ -67,6 +69,7 @@ const EditProfile = () => {
     } else {
       dispatch(userActions.userImgDeleteDB(nickname));
     }
+    history.push("/mypage");
   };
 
   if (!login || !is_session) {

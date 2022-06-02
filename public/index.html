@@ -5,30 +5,37 @@
     <meta charset="utf-8" />
     <link rel="manifest" href="./manifest.json" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="theme-color" content="#000000" />
     <meta
-      http-equiv="Cache-Control"
-      content="no-cache, no-store, must-revalidate"
+      name="viewport"
+      content="width=device-width, viewport-fit=cover, initial-scale=1.0, minimal-ui, maximum-scale=1.0"
     />
-    <meta http-equiv="Pragma" content="no-cache" />
-    <meta http-equiv="Expires" content="0" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="upgrade-insecure-requests"
+    />
+    <!-- 주소창 등의 웹 브라우저 UI를 표시하지 않기 -->
     <meta name="apple-mobile-web-app-capable" content="yes" />
+    <!-- 상태 바의 스타일을 지정 -->
     <meta
       name="apple-mobile-web-app-status-bar-style"
       content="black-translucent"
     />
-    <meta name="apple-mobile-web-app-title" content="OSSACK" />
-    <meta name="title" property="og:title" content="오싹👻" />
-    <meta
-      name="description"
-      property="og:description"
-      content="오피스 구할 땐 오싹으로 싹가능!"
-    />
-    <meta name="image" property="og:image" content="%PUBLIC_URL%/metaImg.jpg" />
-    <meta name="url" property="og:url" content="ossack.shop" />
+    <!-- 홈 화면에서 표시되는 앱 이름을 지정 -->
+    <meta name="apple-mobile-web-app-title" content="오싹 OSSACK" />
+    <!-- 홈 화면에서 표시되는 앱 아이콘을 지정 -->
+    <link rel="apple-touch-icon" href="images/192x192.png" />
+    <meta http-equiv="Cache-Control" content="max-age=600" />
+    <meta property="og:title" content="오싹 👻" />
     <meta property="og:type" , content="website" />
+    <meta property="og:url" , content="https://ossack.shop/" />
 
+    <meta property="og:description" content="오피스 구할 땐 오싹으로 싹가능!" />
+    <meta
+      property="og:image"
+      content="https://velog.velcdn.com/images/ryurim0109/post/6bcd49f6-5fca-48f5-a298-e986844ce459/image.png"
+    />
+    <meta name="description" content="오피스 구할 땐 오싹으로 싹가능!" />
     <title>OSSACK</title>
     <script
       type="text/javascript"

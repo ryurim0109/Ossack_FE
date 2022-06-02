@@ -51,7 +51,7 @@ const MyProfile = () => {
             </Text>
           </Grid>
           <Grid width="100%" display="flex" justifyContent="center">
-            <Text size="10px" color="#666">
+            <Text size="12px" color="#666">
               {user_info?.userEmail ? user_info?.userEmail : "이메일 없음"}
             </Text>
           </Grid>

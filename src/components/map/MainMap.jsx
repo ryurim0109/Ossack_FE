@@ -37,7 +37,7 @@ const MainMap = (props) => {
       lng: 127.047377408384,
     },
   });
-  const po = {
+  const _position = {
     swLatLng: {
       lat: map?.getBounds().getSouthWest().getLat(),
       lng: map?.getBounds().getSouthWest().getLng(),
@@ -49,9 +49,9 @@ const MainMap = (props) => {
   };
   useEffect(() => {
     if (map && name === "office") {
-      dispatch(mapActions.getOfficeData(po, level, router));
+      dispatch(mapActions.getOfficeData(_position, level, router));
     } else if (map && name === "share") {
-      dispatch(mapActions.getShareData(po, level));
+      dispatch(mapActions.getShareData(_position, level));
     }
   }, [map, router]);
 
