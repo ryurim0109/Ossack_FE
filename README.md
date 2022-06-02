@@ -10,7 +10,7 @@
 
 ## ⚙️ 아키텍쳐
 
-![아키텍처](https://velog.velcdn.com/images/ryurim0109/post/404ad545-6c11-44b3-b050-d95b8a266416/image.jpg)
+![아키텍처](https://velog.velcdn.com/images/ryurim0109/post/94c8fd2f-7ea2-44da-b425-fac874853c5c/image.jpg)
 
 ## 😇‍ 프론트엔드 팀원
 
