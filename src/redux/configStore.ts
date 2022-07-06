@@ -1,6 +1,6 @@
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
-import { createBrowserHistory } from "history";
+import { createBrowserHistory,History } from "history";
 import { connectRouter } from "connected-react-router";
 import { useDispatch } from "react-redux";
 import Map from "./modules/map";
@@ -14,7 +14,7 @@ declare global {
   }
 }
 
-export const history = createBrowserHistory();
+export const history: History = createBrowserHistory();
 
 const rootReducer = combineReducers({
   map: Map,

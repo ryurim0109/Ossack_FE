@@ -12,6 +12,8 @@
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
+    "@types/gsap": "^3.0.0",
+    "@types/history": "^5.0.0",
     "@types/react-redux": "^7.1.24",
     "@types/react-router-dom": "^5.3.3",
     "@types/redux-logger": "^3.0.9",

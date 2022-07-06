@@ -40,9 +40,10 @@ import backgroundImg from "../assets/bg.jpg";
 import textImg from "../assets/bg02.png";
 import textImg02 from "../assets/bg03.png";
 
-function App() {
-  const textRef = useRef();
-  const text2Ref = useRef();
+
+const App:React.FC =(history)=> {
+  const textRef = useRef<HTMLDivElement>(null);
+  const text2Ref = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(true);
   useEffect(() => {
     const timeout = setTimeout(() => remove(), 2000);
@@ -75,13 +76,13 @@ function App() {
       ani2.kill();
     };
   };
-  const dispatch = useDispatch();
-  useEffect(() => {
-    const is_session = localStorage.getItem("token");
-    if (is_session) {
-      dispatch(userActions.loginCheckApi());
-    }
-  }, [dispatch]);
+  //const dispatch = useDispatch();
+  // useEffect(() => {
+  //   const is_session = localStorage.getItem("token");
+  //   if (is_session) {
+  //     dispatch(userActions.loginCheckApi());
+  //   }
+  // }, [dispatch]);
   return (
     <>
       <Wrap>
