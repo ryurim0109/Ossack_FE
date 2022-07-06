@@ -2,7 +2,6 @@ import React, { useRef, useEffect, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import { gsap } from "gsap";
-import { ConnectedRouter } from "connected-react-router";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
