@@ -1,13 +1,14 @@
 import React, { useEffect } from "react";
 import { Grid } from "../elements/index";
-import { history } from "../redux/configStore";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import ossack from "../assets/logo02.png";
 
 const Splash = () => {
+  const navigate = useNavigate();
   const timeout = () => {
     setTimeout(() => {
-      history.push("/start");
+      navigate("/start");
     }, 2000);
   };
   useEffect(() => {

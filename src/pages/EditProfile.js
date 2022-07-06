@@ -9,10 +9,11 @@ import { useSelector, useDispatch } from "react-redux";
 import defaultImg from "../assets/default.png";
 import Swal from "sweetalert2";
 import { actionCreators as userActions } from "../redux/modules/user";
-import { history } from "../redux/configStore";
+import { useNavigate } from "react-router-dom";
 
 const EditProfile = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const user_info = useSelector((state) => state.user.user);
   const [image, setImage] = useState("");
   const [preview, setPreview] = useState(null);
@@ -61,7 +62,7 @@ const EditProfile = () => {
     } else {
       dispatch(userActions.editProfileDB(nickname, image, user_info?.imageUrl));
     }
-    history.push("/mypage");
+    navigate("/mypage");
   };
   const ImgDelete = () => {
     if (!nickname) {
@@ -69,7 +70,7 @@ const EditProfile = () => {
     } else {
       dispatch(userActions.userImgDeleteDB(nickname));
     }
-    history.push("/mypage");
+    navigate("/mypage");
   };
 
   if (!login || !is_session) {

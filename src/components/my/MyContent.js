@@ -1,9 +1,10 @@
 import React from "react";
 import { Button, Grid, Text } from "../../elements/index";
-import { history } from "../../redux/configStore";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const MyContent = () => {
+  const navigate = useNavigate();
   return (
     <React.Fragment>
       <Inner>
@@ -22,7 +23,7 @@ const MyContent = () => {
             alignItems="center"
             justifyContent="space-between"
             _onClick={() => {
-              history.push("/mypage/profile");
+              navigate("/mypage/profile");
             }}
           >
             <Grid display="flex" alignItems="center">
@@ -37,7 +38,7 @@ const MyContent = () => {
             alignItems="center"
             justifyContent="space-between"
             _onClick={() => {
-              history.push("/mypage/notice");
+              navigate("/mypage/notice");
             }}
           >
             <Grid display="flex" alignItems="center">
@@ -52,7 +53,7 @@ const MyContent = () => {
             alignItems="center"
             justifyContent="space-between"
             _onClick={() => {
-              history.push("/mypage/qna");
+              navigate("/mypage/qna");
             }}
           >
             <Grid display="flex" alignItems="center">
@@ -67,7 +68,7 @@ const MyContent = () => {
             alignItems="center"
             justifyContent="space-between"
             _onClick={() => {
-              history.push("/mypage/member");
+              navigate("/mypage/member");
             }}
           >
             <Grid display="flex" alignItems="center">

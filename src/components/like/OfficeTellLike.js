@@ -4,13 +4,14 @@ import { Grid, Button, Text, Image } from "../../elements/index";
 
 import { actionCreators as favoriteActions } from "../../redux/modules/favorite";
 import { useDispatch, useSelector } from "react-redux";
-import { history } from "../../redux/configStore";
+import { useNavigate } from "react-router-dom";
 
 import { SlickSlider, ImageCnt } from "../shared/home";
 import ossack from "../../assets/ossack02.jpg";
 
 const OfficeTellLike = (props) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const ShareLikeList = useSelector((state) => state.favorite.share_like_list);
 
@@ -61,7 +62,7 @@ const OfficeTellLike = (props) => {
                               cursor="pointer"
                               key={idx}
                               _onClick={() => {
-                                history.push(
+                                navigate(
                                   `/detail/share/${office.shareofficeid}?query=${office.address}`
                                 );
                               }}
@@ -108,7 +109,7 @@ const OfficeTellLike = (props) => {
                   width="100%"
                   height="40px"
                   _onClick={() => {
-                    history.push(
+                    navigate(
                       `/detail/share/${office.shareofficeid}?query=${office.address}`
                     );
                   }}

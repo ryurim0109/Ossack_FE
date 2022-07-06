@@ -1,9 +1,10 @@
 import React from "react";
 import { Button, Grid, Text } from "../../elements/index";
-import { history } from "../../redux/configStore";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const MyHeader = (props) => {
+  const navigate = useNavigate();
   const { children, is_close, is_my, is_back } = props;
   if (is_back) {
     return (
@@ -13,7 +14,7 @@ const MyHeader = (props) => {
             <Button
               is_back
               _onClick={() => {
-                history.goBack();
+                navigate(-1);
               }}
             />
           </Grid>
@@ -38,7 +39,7 @@ const MyHeader = (props) => {
             <Button
               is_close
               _onClick={() => {
-                history.push("/main");
+                navigate("/main");
               }}
             />
           </Grid>
@@ -63,7 +64,7 @@ const MyHeader = (props) => {
             <Button
               is_back
               _onClick={() => {
-                history.push("/mypage");
+                navigate("/mypage");
               }}
             />
           </Grid>
@@ -88,7 +89,7 @@ const MyHeader = (props) => {
           <Button
             is_back
             _onClick={() => {
-              history.push("/main");
+              navigate("/main");
             }}
           />
         </Grid>

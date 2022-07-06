@@ -1,11 +1,12 @@
 import React from "react";
 import { Grid, Text } from "../../elements/index";
-import { history } from "../../redux/configStore";
+import { useNavigate } from "react-router-dom";
 import officeImg from "../../assets/office.png";
 import shareImg from "../../assets/share.png";
 const SaleList = () => {
+  const navigate = useNavigate();
   const officeClick = (name) => {
-    history.push(`/officemap/${name}`);
+    navigate(`/officemap/${name}`);
   };
 
   return (

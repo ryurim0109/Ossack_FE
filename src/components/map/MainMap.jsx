@@ -9,7 +9,7 @@ import Spinner from "../shared/Spinner";
 import { ReactComponent as Minus } from "../../assets/minus.svg";
 import { ReactComponent as Plus } from "../../assets/plus.svg";
 
-import { history } from "../../redux/configStore";
+import { useNavigate } from "react-router-dom";
 
 import { Map, CustomOverlayMap } from "react-kakao-maps-sdk";
 import { ReactComponent as Location } from "../../assets/location.svg";
@@ -17,6 +17,7 @@ import { Position, Overlay } from "./index";
 
 const MainMap = (props) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { name } = props;
   const router = useSelector((state) => state.router.location.search);
   const depositlimit = router?.split("&")[0]?.split("=")[1];
@@ -107,7 +108,7 @@ const MainMap = (props) => {
                         >
                           <div
                             onClick={() =>
-                              history.push(
+                              navigate(
                                 `/map/office?query=${position.title}&depositlimit=${depositlimit}&feelimit=${feelimit}`
                               )
                             }
@@ -193,7 +194,7 @@ const MainMap = (props) => {
                         >
                           <div
                             onClick={() =>
-                              history.push(
+                              navigate(
                                 `/map/shareoffice?query=${position.title}`
                               )
                             }

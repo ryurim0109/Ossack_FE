@@ -1,9 +1,9 @@
 import React, { useRef, useEffect, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import { Route, Switch } from "react-router-dom";
+import { Route, Routes, BrowserRouter } from "react-router-dom";
 import { gsap } from "gsap";
 import { ConnectedRouter } from "connected-react-router";
-import { history } from "../redux/configStore";
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 import {
@@ -40,8 +40,7 @@ import backgroundImg from "../assets/bg.jpg";
 import textImg from "../assets/bg02.png";
 import textImg02 from "../assets/bg03.png";
 
-
-const App:React.FC =(history)=> {
+const App: React.FC = () => {
   const textRef = useRef<HTMLDivElement>(null);
   const text2Ref = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(true);
@@ -85,67 +84,53 @@ const App:React.FC =(history)=> {
   // }, [dispatch]);
   return (
     <>
-      <Wrap>
-        <Background>
-          <TextImg ref={textRef} />
-          {!active && <Text02Img ref={text2Ref} />}
-        </Background>
-        <GlobalStyle />
-        <ThemeProvider theme={theme}>
-          <ConnectedRouter history={history}>
+      <BrowserRouter>
+        <Wrap>
+          <Background>
+            <TextImg ref={textRef} />
+            {!active && <Text02Img ref={text2Ref} />}
+          </Background>
+          <GlobalStyle />
+          <ThemeProvider theme={theme}>
             <MobileFrame className="MobileFramePage">
-              <Switch>
-                <Route path="/" exact component={Splash} />
-                <Route path="/start" exact component={Start} />
-                <Route path="/login" exact component={Login} />
-                <Route path="/signup" exact component={Signup} />
-                <Route
-                  path="/user/google/callback"
-                  exact
-                  component={GoogleLogin}
-                />
-                <Route
-                  path="/user/kakao/callback"
-                  exact
-                  component={KaKaoLogin}
-                />
-                <Route path="/main" exact component={Main} />
-                <Route path="/search" exact component={SearchPage} />
-                <Route path="/officemap/:name" exact component={SaleMap} />
-                <Route path="/mypage" exact component={MyPage} />
-                <Route path="/mypage/qna" exact component={QNA} />
-                <Route path="/mypage/notice" exact component={Notice} />
-                <Route path="/mypage/member" exact component={Member} />
-                <Route path="/mypage/withdraw" exact component={WithDraw} />
-                <Route path="/mypage/profile" exact component={EditProfile} />
-                <Route path="/like" exact component={Like} />
-                <Route path="/map/office" exact component={MapOfficeList} />
-                <Route path="/map/shareoffice" exact component={MapShareList} />
-                <Route
-                  path="/detail/:estateId"
-                  exact
-                  component={DetailOffice}
-                />
+              <Routes>
+                <Route path="/" element={<Splash />} />
+                <Route path="/start" element={<Start />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/signup" element={<Signup />} />
+                <Route path="/user/google/callback" element={<GoogleLogin />} />
+                <Route path="/user/kakao/callback" element={<KaKaoLogin />} />
+                <Route path="/main" element={<Main />} />
+                <Route path="/search" element={<SearchPage />} />
+                <Route path="/officemap/:name" element={<SaleMap />} />
+                <Route path="/mypage" element={<MyPage />} />
+                <Route path="/mypage/qna" element={<QNA />} />
+                <Route path="/mypage/notice" element={<Notice />} />
+                <Route path="/mypage/member" element={<Member />} />
+                <Route path="/mypage/withdraw" element={<WithDraw />} />
+                <Route path="/mypage/profile" element={<EditProfile />} />
+                <Route path="/like" element={<Like />} />
+                <Route path="/map/office" element={<MapOfficeList />} />
+                <Route path="/map/shareoffice" element={<MapShareList />} />
+                <Route path="/detail/:estateId" element={<DetailOffice />} />
                 <Route
                   path="/detail/share/:shareofficeid"
-                  exact
-                  component={DetailShare}
+                  element={<DetailShare />}
                 />
-                <Route
+                {/*  <Route
                   path="/hotplacearticle/:name"
-                  exact
-                  component={HotPlaceArticle}
-                />
-                <Route path="/event" exact component={Event} />
-                <Route path="/*" component={NotFound} />
-              </Switch>
+                  element={<HotPlaceArticle/>}
+                /> */}
+                <Route path="/event" element={<Event />} />
+                <Route path="/*" element={<NotFound />} />
+              </Routes>
             </MobileFrame>
-          </ConnectedRouter>
-        </ThemeProvider>
-      </Wrap>
+          </ThemeProvider>
+        </Wrap>
+      </BrowserRouter>
     </>
   );
-}
+};
 
 const Wrap = styled.div`
   width: 100vw;

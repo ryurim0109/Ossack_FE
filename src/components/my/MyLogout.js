@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { Button } from "../../elements/index";
 import styled from "styled-components";
 import { LogoutModal } from "./index";
-import { history } from "../../redux/configStore";
+import { useNavigate } from "react-router-dom";
 
 const MyLogout = () => {
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const openModalHandler = () => {
     setIsOpen(!isOpen);
@@ -29,7 +30,7 @@ const MyLogout = () => {
           color="#999"
           backgroundColor="none"
           _onClick={() => {
-            history.push("/mypage/withdraw");
+            navigate("/mypage/withdraw");
           }}
         >
           회원탈퇴

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Grid, Text } from "../../elements/index";
-import { history } from "../../redux/configStore";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 //아이콘
 import { ReactComponent as Heart } from "../../assets/favourite.svg";
@@ -10,15 +10,16 @@ import { ReactComponent as Search } from "../../assets/search.svg";
 import { ReactComponent as User } from "../../assets/user.svg";
 
 function Bar() {
+  const navigate = useNavigate();
   const gnbClick = (e, gnbname) => {
     if (gnbname === "home") {
-      history.push("/main");
+      navigate("/main");
     } else if (gnbname === "search") {
-      history.push("/search");
+      navigate("/search");
     } else if (gnbname === "like") {
-      history.push("/like");
+      navigate("/like");
     } else if (gnbname === "mypage") {
-      history.push("/mypage");
+      navigate("/mypage");
     }
   };
   const router = useSelector((state) => state.router.location.pathname);

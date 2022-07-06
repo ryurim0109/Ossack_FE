@@ -8,7 +8,7 @@ import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 
 import { Text } from "../elements/index";
-import { history } from "../redux/configStore";
+import { useNavigate } from "react-router-dom";
 
 import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
@@ -16,6 +16,7 @@ import { TalkTalk } from "../components/shared/home";
 
 const Login = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   // 비활성화 여부
   const [userEmail, setUserEmail] = useState("");
@@ -136,7 +137,7 @@ const Login = () => {
                 textAlign="center"
                 margin="8px 0 0"
                 onClick={() => {
-                  history.push("/signup");
+                  navigate("/signup");
                 }}
               >
                 <Text size="0.750em" bold>

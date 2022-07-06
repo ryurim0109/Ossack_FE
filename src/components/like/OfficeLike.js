@@ -5,10 +5,11 @@ import { actionCreators as favoriteActions } from "../../redux/modules/favorite"
 import { useDispatch, useSelector } from "react-redux";
 import { SlickSlider, ImageCnt } from "../shared/home";
 import ossack from "../../assets/ossack02.jpg";
-import { history } from "../../redux/configStore";
+import { useNavigate } from "react-router-dom";
 
 const OfficeLike = (props) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const OfficeLikeList = useSelector((state) => state.favorite.like_list);
 
@@ -58,7 +59,7 @@ const OfficeLike = (props) => {
                               cursor="pointer"
                               key={idx}
                               _onClick={() => {
-                                history.push(
+                                navigate(
                                   `/detail/${office.estateid}?query=${office.address}`
                                 );
                               }}
@@ -105,7 +106,7 @@ const OfficeLike = (props) => {
                   width="100%"
                   height="40px"
                   _onClick={() => {
-                    history.push(
+                    navigate(
                       `/detail/${office.estateid}?query=${office.address}`
                     );
                   }}

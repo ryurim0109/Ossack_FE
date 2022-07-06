@@ -1,9 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import { ReactComponent as Close } from "../../assets/close.svg";
-import { history } from "../../redux/configStore";
+import { useNavigate } from "react-router-dom";
 
 function History({ keywords, onRemoveKeyword, onClearKeywords, activeTab }) {
+  const navigate = useNavigate();
   if (keywords.length === 0) {
     return <HistoryContainer>최근 검색된 기록이 없습니다.</HistoryContainer>;
   }
@@ -20,7 +21,7 @@ function History({ keywords, onRemoveKeyword, onClearKeywords, activeTab }) {
               {!activeTab ? (
                 <Keyword
                   onClick={() => {
-                    history.push(`/map/office?query=${text}`);
+                    navigate(`/map/office?query=${text}`);
                   }}
                 >
                   {text}
@@ -28,7 +29,7 @@ function History({ keywords, onRemoveKeyword, onClearKeywords, activeTab }) {
               ) : (
                 <Keyword
                   onClick={() => {
-                    history.push(`/map/shareoffice?query=${text}`);
+                    navigate(`/map/shareoffice?query=${text}`);
                   }}
                 >
                   {text}

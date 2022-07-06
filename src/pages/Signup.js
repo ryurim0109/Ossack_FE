@@ -12,7 +12,7 @@ import {
 import styled from "styled-components";
 import { Text } from "../elements/index";
 import { MdKeyboardArrowLeft } from "react-icons/md";
-import { history } from "../redux/configStore";
+import { useNavigate } from "react-router-dom";
 
 import { emailRegex, passwordRegex, nickNameRegex } from "../shared/regCheck";
 import { actionCreators as userActions } from "../redux/modules/user";
@@ -22,6 +22,7 @@ import Swal from "sweetalert2";
 
 const Signup = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [emailError, setEmailError] = useState("");
   const [passwordState, setPasswordState] = useState("");
   const [passwordError, setPasswordError] = useState("");
@@ -160,7 +161,7 @@ const Signup = () => {
       >
         <BackBtn
           onClick={() => {
-            history.push("/login");
+            navigate("/login");
           }}
         >
           <MdKeyboardArrowLeft fontSize="28" />

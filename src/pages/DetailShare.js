@@ -7,7 +7,7 @@ import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Bar, LoadSpinner, NotUser } from "../components/shared/home";
 import { actionCreators as officeActions } from "../redux/modules/office";
-import { history } from "../redux/configStore";
+import { useNavigate } from "react-router-dom";
 import {
   ShareOfficeBasicInfo,
   ShareOfficeBtmInfo,
@@ -18,6 +18,7 @@ import {
 
 const DetailShare = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const shareofficeid = useParams().shareofficeid;
   const getOneShareOffice = useSelector(
     (state) => state.office.one_share_office
@@ -43,7 +44,7 @@ const DetailShare = () => {
             <Button
               is_back
               _onClick={() => {
-                history.goBack();
+                navigate(-1);
               }}
             />
           </Grid>

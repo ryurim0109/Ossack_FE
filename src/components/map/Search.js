@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { Button } from "../../elements/index";
-import { history } from "../../redux/configStore";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import filterIcon from "../../assets/filter.svg";
 import { Filter } from "../map/index";
 
 const Search = (props) => {
+  const navigate = useNavigate();
   const { name } = props;
   const [isOpen, setIsOpen] = useState(false);
   const openModalHandler = () => {
@@ -17,7 +18,7 @@ const Search = (props) => {
         <Button
           is_back
           _onClick={() => {
-            history.push("/main");
+            navigate("/main");
           }}
         />
         <Button
@@ -29,7 +30,7 @@ const Search = (props) => {
           color="#767676"
           backgroundColor="#F5F5F5"
           _onClick={() => {
-            history.push("/search");
+            navigate("/search");
           }}
         >
           시, 구, 동으로 검색어를 입력하세요.

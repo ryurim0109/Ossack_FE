@@ -1,14 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 import { Grid, Image, Text } from "../../elements/index";
-import { history } from "../../redux/configStore";
+import { useNavigate } from "react-router-dom";
 import { XScrollDrag } from "../shared/home";
 import img01 from "../../assets/hotImg01.jpg";
 import img02 from "../../assets/hotImg02.jpg";
 import img03 from "../../assets/hotImg03.jpg";
 const PlaceList = () => {
+  const navigate = useNavigate();
   const hotOfficeClick = (name) => {
-    history.push(`/hotplacearticle/${name}`);
+    navigate(`/hotplacearticle/${name}`);
   };
   return (
     <React.Fragment>

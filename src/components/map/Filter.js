@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { Grid, Text, Button } from "../../elements/index";
-import { history } from "../../redux/configStore";
+import { useNavigate } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
 import refresh from "../../assets/refresh.svg";
 
 const Filter = (props) => {
+  const navigate = useNavigate();
   const { isOpen, setIsOpen } = props;
   const ModalClose = () => {
     setIsOpen(!isOpen);
@@ -63,7 +64,7 @@ const Filter = (props) => {
   );
 
   const findOffice = () => {
-    history.push(
+    navigate(
       `/officemap/office?depositlimit=${currentClick}&feelimit=${rentClick}`
     );
     setIsOpen(!isOpen);

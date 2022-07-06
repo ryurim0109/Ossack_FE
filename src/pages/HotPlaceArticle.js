@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { MyHeader } from "../components/my/index";
 import { useParams } from "react-router-dom";
 import { Grid, Image, Text, Button } from "../elements/index";
-import { history } from "../redux/configStore";
+import { useNavigate } from "react-router-dom";
 
 import { Bar, NotUser } from "../components/shared/home";
 import img01 from "../assets/articlepic_1.png";
@@ -17,12 +17,12 @@ import { useSelector } from "react-redux";
 
 const HotPlaceArticle = () => {
   const name = useParams().name;
-
+  const navigate = useNavigate();
   const login = useSelector((state) => state.user.is_login);
   const is_session = localStorage.getItem("token");
 
   const List = (keyword) => {
-    history.push(`/map/office?query=${keyword}`);
+    navigate(`/map/office?query=${keyword}`);
   };
   if (!login || !is_session) {
     return (

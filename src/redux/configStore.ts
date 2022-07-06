@@ -1,42 +1,20 @@
-import { createStore, combineReducers, applyMiddleware, compose } from "redux";
-import thunk from "redux-thunk";
-import { createBrowserHistory,History } from "history";
-import { connectRouter } from "connected-react-router";
+import { configureStore, combineReducers } from "@reduxjs/toolkit";
+import logger from "redux-logger";
 import { useDispatch } from "react-redux";
-import Map from "./modules/map";
-import User from "./modules/user";
-import Office from "./modules/office";
-import Favorite from "./modules/favorite";
 
-declare global {
-  interface Window {
-    __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
-  }
-}
+const rootReducer = combineReducers({});
 
-export const history: History = createBrowserHistory();
-
-const rootReducer = combineReducers({
-  map: Map,
-  user: User,
-  office: Office,
-  favorite: Favorite,
-  router: connectRouter(history),
+export const store = configureStore({
+  reducer: rootReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({ serializableCheck: false }),
+  // .concat(logger),
 });
 
-const middlewares = [thunk.withExtraArgument({ history: history })];
+export type RootState = ReturnType<typeof store.getState>;
 
-const env = process.env.NODE_ENV;
+export type AppDispatch = typeof store.dispatch;
 
-if (env === "development") {
-  const { logger } = require("redux-logger");
-  middlewares.push(logger);
-}
+export const useAppDispatch = () => useDispatch<AppDispatch>();
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-
-const enhancer = composeEnhancers(applyMiddleware(...middlewares));
-
-let store = (initialStore? :any) => createStore(rootReducer, enhancer);
-
-export default store();
+export default store;

@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Grid, Text } from "../../elements/index";
-import { history } from "../../redux/configStore";
+import { useNavigate } from "react-router-dom";
 import { ReactComponent as Search } from "../../assets/search.svg";
 import { SaleList, HotPlaceList, Office } from "./index";
 import { Banner } from "../shared/home";
@@ -10,6 +10,7 @@ import { useSelector } from "react-redux";
 
 function Sale() {
   const user_info = useSelector((state) => state.user.user);
+  const navigate = useNavigate();
 
   return (
     <React.Fragment>
@@ -38,7 +39,7 @@ function Sale() {
             color="#999"
             borderRadius="4px"
             _onClick={() => {
-              history.push("/search");
+              navigate("/search");
             }}
           >
             시, 구, 동으로 검색어를 입력하세요.

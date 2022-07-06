@@ -6,10 +6,11 @@ import { SlickSlider, ImageCnt } from "../shared/home";
 import { actionCreators as officeActions } from "../../redux/modules/office";
 import ossack from "../../assets/ossack02.jpg";
 import { LoadSpinner } from "../shared/home";
-import { history } from "../../redux/configStore";
+import { useNavigate } from "react-router-dom";
 
 const ShareOfficeResult = (props) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const officeData = useSelector((state) => state.office.share_list);
   const is_loaded = useSelector((state) => state.office.is_loaded);
 
@@ -34,7 +35,7 @@ const ShareOfficeResult = (props) => {
                       <Div
                         key={idx}
                         onClick={() => {
-                          history.push(`/detail/share/${o.shareofficeid}`);
+                          navigate(`/detail/share/${o.shareofficeid}`);
                         }}
                       >
                         <Image
@@ -84,7 +85,7 @@ const ShareOfficeResult = (props) => {
               </Grid>
               <Grid
                 _onClick={() => {
-                  history.push(`/detail/share/${o.shareofficeid}`);
+                  navigate(`/detail/share/${o.shareofficeid}`);
                 }}
                 cursor="pointer"
                 width="100%"

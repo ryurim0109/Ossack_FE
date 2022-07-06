@@ -30,7 +30,7 @@ const setUserEmail = createAction(SET_USEREMAIL, (userEmail, statusCode) => ({
 // middleWares
 //회원가입
 const signUpApi = (user) => {
-  return async function (dispatch, getState, { history }) {
+  return async function (dispatch, getState) {
     try {
       const response = await instance.post("/user/signup", {
         userEmail: user.userEmail,
@@ -39,7 +39,7 @@ const signUpApi = (user) => {
       });
       if (response.status === 200 && response.data.includes("회원가입 성공")) {
         Swal.fire("회원가입에 성공했습니다!");
-        history.replace("/login");
+        //history.replace("/login");
       } else {
         Swal.fire("회원가입에 실패했습니다. 다시 시도해주세요.");
       }
@@ -51,14 +51,14 @@ const signUpApi = (user) => {
 };
 //로그인
 const loginApi = (userEmail, password) => {
-  return async function (dispatch, getState, { history }) {
+  return async function (dispatch, getState) {
     try {
       const response = await instance.post("/user/login", {
         userEmail: userEmail,
         password: password,
       });
       if (response.status === 200) {
-        history.replace("/main");
+        // history.replace("/main");
 
         const token = response.headers.authorization.split("BEARER ");
         localStorage.setItem("token", token[1]);
@@ -80,7 +80,7 @@ const loginApi = (userEmail, password) => {
 };
 //유저정보확인
 const loginCheckApi = () => {
-  return function (dispatch, { history }) {
+  return function (dispatch) {
     instance
       .get("/user/islogin")
       .then((res) => {
@@ -105,7 +105,7 @@ const loginCheckApi = () => {
 
 // 이메일 중복검사
 const userEmailCheckDB = (userEmail) => {
-  return async function (dispatch, getState, { history }) {
+  return async function (dispatch, getState) {
     try {
       const response = await instance.post("/user/idcheck", {
         userEmail: userEmail,
@@ -171,13 +171,13 @@ const resignDB = () => {
 };
 //카카오 로그인
 const loginBykakao = (code) => {
-  return function (dispatch, getState, { history }) {
+  return function (dispatch, getState) {
     instance
       .get(`/user/kakao/callback?code=${code}`)
       .then((res) => {
         const token = res.headers.authorization.split("BEARER ");
         localStorage.setItem("token", token[1]);
-        history.push("/main");
+        //navigate("/main");
         instance
           .get("/user/islogin")
           .then((res) => {
@@ -195,21 +195,21 @@ const loginBykakao = (code) => {
       .catch((err) => {
         console.log("소셜로그인 에러", err);
         Swal.fire("로그인 실패 !");
-        history.replace("/start");
+        // history.replace("/start");
       });
   };
 };
 
 //Google Login
 const loginBygoogle = (code) => {
-  return function (dispatch, getState, { history }) {
+  return function (dispatch, getState) {
     instance
       .get(`/user/google/callback?code=${code}`)
       .then((res) => {
         const token = res.headers.authorization.split("BEARER ");
 
         localStorage.setItem("token", token[1]);
-        history.push("/main");
+        //navigate("/main");
         // 바로 유저정보 저장하기
 
         instance
@@ -229,7 +229,6 @@ const loginBygoogle = (code) => {
       .catch((err) => {
         console.log("소셜로그인 에러", err);
         Swal.fire("로그인에 실패하였습니다.");
-        history.replace("/start");
       });
   };
 };
@@ -245,7 +244,7 @@ const editProfileDB = (nickname, image, userimg) => {
     file.append("nickname", nickname);
     file.append("profileImgUrl", userimg);
   }
-  return function (dispatch, { history }) {
+  return function (dispatch) {
     instances
       .put("/user/profile", file)
       .then((res) => {
@@ -269,7 +268,7 @@ const userImgDeleteDB = (nickname) => {
   file.append("nickname", nickname);
   file.append("profileImgUrl", "");
 
-  return function (dispatch, { history }) {
+  return function (dispatch) {
     instances
       .put("/user/profile", file)
       .then((res) => {

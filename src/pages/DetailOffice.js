@@ -7,7 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Bar, LoadSpinner, NotUser } from "../components/shared/home";
 import { actionCreators as officeActions } from "../redux/modules/office";
 import { ReactComponent as Heart } from "../assets/favourite.svg";
-import { history } from "../redux/configStore";
+import { useNavigate } from "react-router-dom";
 import {
   OfficeImage,
   OfficeBtmInfo,
@@ -17,6 +17,7 @@ import {
 } from "../components/detail/index";
 
 const DetailOffice = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const estateid = useParams().estateId;
   const getOneOffice = useSelector((state) => state.office.one_office);
@@ -43,7 +44,7 @@ const DetailOffice = () => {
             <Button
               is_back
               _onClick={() => {
-                history.goBack();
+                navigate(-1);
               }}
             />
           </Grid>

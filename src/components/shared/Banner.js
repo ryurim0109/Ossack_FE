@@ -3,12 +3,13 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Grid, Text } from "../../elements/index";
-import { history } from "../../redux/configStore";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import banner01 from "../../assets/banner01.png";
 import banner02 from "../../assets/banner02.png";
 
 const Banner = (props) => {
+  const navigate = useNavigate();
   const settings = {
     infinite: true,
     speed: 500,
@@ -30,7 +31,7 @@ const Banner = (props) => {
           position="relative"
           cursor="pointer"
           _onClick={() => {
-            history.push("/event");
+            navigate("/event");
           }}
         >
           <BannerBlue>
@@ -67,7 +68,7 @@ const Banner = (props) => {
           position="relative"
           cursor="pointer"
           _onClick={() => {
-            history.push("/event");
+            navigate("/event");
           }}
         >
           <BannerGreen>

@@ -1,7 +1,7 @@
 import React from "react";
 import { Grid, Button, Text } from "../elements/index";
 import styled from "styled-components";
-import { history } from "../redux/configStore";
+import { useNavigate } from "react-router-dom";
 
 import { TalkTalk } from "../components/shared/home";
 
@@ -9,6 +9,7 @@ import ossack from "../assets/logo03.svg";
 import ossacke from "../assets/ossacke.svg";
 
 const Start = () => {
+  const navigate = useNavigate();
   return (
     <React.Fragment>
       <Grid
@@ -58,7 +59,7 @@ const Start = () => {
                 alignItems="center"
                 justifyContent="center"
                 _onClick={() => {
-                  history.push("/login");
+                  navigate("/login");
                 }}
               >
                 <Text size="14px" color="#3E00FF">
@@ -72,7 +73,7 @@ const Start = () => {
                 textAlign="center"
                 margin="8px 0 0"
                 _onClick={() => {
-                  history.push("/signup");
+                  navigate("/signup");
                 }}
               >
                 <P>

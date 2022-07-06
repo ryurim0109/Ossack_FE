@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import styled, { css } from "styled-components";
-import { history } from "../../redux/configStore";
+import { useNavigate } from "react-router-dom";
 import { ReactComponent as Search } from "../../assets/search.svg";
 
 function SearchBar({ onAddKeyword, activeTab }) {
   const [keyword, setKeyword] = useState("");
+  const navigate = useNavigate();
 
   const handleKeyword = (e) => {
     setKeyword(e.target.value);
@@ -18,9 +19,9 @@ function SearchBar({ onAddKeyword, activeTab }) {
   const Entercheck = (e) => {
     if (keyword && e.key === "Enter") {
       if (!activeTab) {
-        history.push(`/map/office?query=${keyword}`);
+        navigate(`/map/office?query=${keyword}`);
       } else {
-        history.push(`/map/shareoffice?query=${keyword}`);
+        navigate(`/map/shareoffice?query=${keyword}`);
       }
     }
   };
