@@ -49,7 +49,7 @@ const LikeTab = () => {
       </Tabs>
       <div>
         {/* 해당 콘텐츠 */}
-        {activeTab === 0 ?  <OfficeLike tabTitle={tabTitle} />:<OfficeTellLike tabTitle={tabTitle} />}
+        {activeTab === 0 ?  <OfficeLike  />:<OfficeTellLike />}
       </div>
     </React.Fragment>
   );

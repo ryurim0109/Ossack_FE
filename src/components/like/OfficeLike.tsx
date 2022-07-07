@@ -8,11 +8,11 @@ import { SlickSlider, ImageCnt } from "../shared/home";
 import ossack from "../../assets/ossack02.jpg";
 import { useNavigate } from "react-router-dom";
 
-const OfficeLike = (props) => {
+const OfficeLike = () => {
   const appDispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const OfficeLikeList = useSelector((state ) => state.favorite.like_list);
+  const OfficeLikeList = useSelector((state:RootState ) => state.favorite.like_list);
 
   useEffect(() => {
     appDispatch(getOfficeLikeDB());
@@ -54,7 +54,7 @@ const OfficeLike = (props) => {
                   <Grid>
                     <SlickSlider>
                       {office.images &&
-                        office.images.map((image, idx) => {
+                        office.images.map((image:string, idx:number) => {
                           return (
                             <Grid
                               cursor="pointer"
