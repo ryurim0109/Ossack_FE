@@ -5,17 +5,17 @@ import { MyHeader } from "../components/my/index";
 import { LikeTab } from "../components/like/index";
 import { useSelector } from "react-redux";
 
-const Like = (props) => {
-  const login = useSelector((state) => state.user.is_login);
-  const is_session = localStorage.getItem("token");
+const Like = () => {
+  // const login = useSelector((state) => state.user.is_login);
+  // const is_session = localStorage.getItem("token");
 
-  if (!login || !is_session) {
-    return (
-      <React.Fragment>
-        <NotUser />
-      </React.Fragment>
-    );
-  } else {
+  // if (!login || !is_session) {
+  //   return (
+  //     <React.Fragment>
+  //       <NotUser />
+  //     </React.Fragment>
+  //   );
+  // } else {
     return (
       <React.Fragment>
         <MyHeader>찜리스트</MyHeader>
@@ -26,7 +26,7 @@ const Like = (props) => {
       </React.Fragment>
     );
   }
-};
+// };
 const Outter = styled.div`
   width: 100%;
   padding: 0 16px 68px 16px;

@@ -1,23 +1,23 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import { Grid, Button, Text, Image } from "../../elements/index";
-
-import { actionCreators as favoriteActions } from "../../redux/modules/favorite";
-import { useDispatch, useSelector } from "react-redux";
+import { RootState, useAppDispatch } from "../../redux/configStore";
+import { getShareLikeDB,unlikeShareDB } from "../../redux/modules/favorite";
+import {  useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import { SlickSlider, ImageCnt } from "../shared/home";
 import ossack from "../../assets/ossack02.jpg";
 
 const OfficeTellLike = (props) => {
-  const dispatch = useDispatch();
+  const appDispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const ShareLikeList = useSelector((state) => state.favorite.share_like_list);
 
   useEffect(() => {
-    dispatch(favoriteActions.getShareLikeDB());
-  }, [dispatch]);
+    appDispatch(getShareLikeDB());
+  }, []);
 
   if (ShareLikeList?.length === 0) {
     return (
@@ -95,8 +95,8 @@ const OfficeTellLike = (props) => {
                       color="#FF679E"
                       fill_like
                       _onClick={() => {
-                        dispatch(
-                          favoriteActions.unlikeShareDB(office.shareofficeid)
+                        appDispatch(
+                          unlikeShareDB(office.shareofficeid)
                         );
                       }}
                     />

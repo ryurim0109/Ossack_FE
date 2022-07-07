@@ -6,14 +6,11 @@ import Tabs from "@material-ui/core/Tabs";
 
 import { Grid, Text } from "../../elements/index";
 
+
 const LikeTab = () => {
-  const tabTitle = ["오피스", "공유오피스"];
-  const tab = {
-    0: <OfficeLike tabTitle={tabTitle} />,
-    1: <OfficeTellLike tabTitle={tabTitle} />,
-  };
-  const [activeTab, setActiveTab] = useState(0);
-  const onClickTab = (idx) => {
+  const tabTitle: string[] = ["오피스", "공유오피스"];
+  const [activeTab, setActiveTab] = useState<number | string>(0);
+  const onClickTab = (idx :number) => {
     setActiveTab(idx);
   };
 
@@ -52,7 +49,7 @@ const LikeTab = () => {
       </Tabs>
       <div>
         {/* 해당 콘텐츠 */}
-        {tab[activeTab]}
+        {activeTab === 0 ?  <OfficeLike tabTitle={tabTitle} />:<OfficeTellLike tabTitle={tabTitle} />}
       </div>
     </React.Fragment>
   );

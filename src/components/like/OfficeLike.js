@@ -1,21 +1,22 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import { Grid, Button, Text, Image } from "../../elements/index";
-import { actionCreators as favoriteActions } from "../../redux/modules/favorite";
-import { useDispatch, useSelector } from "react-redux";
+import {  useSelector } from "react-redux";
+import { RootState, useAppDispatch } from "../../redux/configStore";
+import { getOfficeLikeDB,unlikeOfficeDB } from "../../redux/modules/favorite";
 import { SlickSlider, ImageCnt } from "../shared/home";
 import ossack from "../../assets/ossack02.jpg";
 import { useNavigate } from "react-router-dom";
 
 const OfficeLike = (props) => {
-  const dispatch = useDispatch();
+  const appDispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const OfficeLikeList = useSelector((state) => state.favorite.like_list);
+  const OfficeLikeList = useSelector((state ) => state.favorite.like_list);
 
   useEffect(() => {
-    dispatch(favoriteActions.getOfficeLikeDB());
-  }, [dispatch]);
+    appDispatch(getOfficeLikeDB());
+  }, []);
 
   if (OfficeLikeList?.length === 0) {
     return (
@@ -92,8 +93,8 @@ const OfficeLike = (props) => {
                       color="#FF679E"
                       fill_like
                       _onClick={() =>
-                        dispatch(
-                          favoriteActions.unlikeOfficeDB(office.estateid)
+                        appDispatch(
+                          unlikeOfficeDB(office.estateid)
                         )
                       }
                     />

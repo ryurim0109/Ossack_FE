@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Grid, Text } from "../../elements/index";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 //아이콘
 import { ReactComponent as Heart } from "../../assets/favourite.svg";
@@ -11,7 +11,11 @@ import { ReactComponent as User } from "../../assets/user.svg";
 
 function Bar() {
   const navigate = useNavigate();
-  const gnbClick = (e, gnbname) => {
+  const location = useLocation();
+  //ßconst user = useSelector((state: RootState) => state.user);
+  const currentLocation = location.pathname.split('/')[1];
+ 
+  const gnbClick = (e:React.MouseEvent<HTMLButtonElement>, gnbname :string) => {
     if (gnbname === "home") {
       navigate("/main");
     } else if (gnbname === "search") {
@@ -22,18 +26,16 @@ function Bar() {
       navigate("/mypage");
     }
   };
-  const router = useSelector((state) => state.router.location.pathname);
-  const [params, setParams] = useState(window.location.pathname);
+  //const router = useSelector((state) => state.router.location.pathname);
+
 
   //const [activeNav, setActiveNav] = useState(1);
-  useEffect(() => {
-    setParams(router);
-  }, [router]);
+  
   return (
     <React.Fragment>
       <Container>
         <Grid
-          _onClick={(e) => {
+          _onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
             gnbClick(e, "home");
           }}
           width="25%"
@@ -44,7 +46,7 @@ function Bar() {
           alignItems="center"
         >
           <Grid width="24px" height="24px">
-            {params === "/main" ? (
+            {currentLocation === "main" ? (
               <Home fill="none" stroke="#3E00FF" />
             ) : (
               <Home fill="none" stroke="#BEBDC4" />
@@ -52,7 +54,7 @@ function Bar() {
           </Grid>
           <Text
             cursor="pointer"
-            color={params === "/main" ? "#3E00FF" : "#BEBDC4"}
+            color={currentLocation === "main" ? "#3E00FF" : "#BEBDC4"}
             size="12px"
           >
             홈
@@ -60,7 +62,7 @@ function Bar() {
           <div />
         </Grid>
         <Grid
-          _onClick={(e) => {
+          _onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
             gnbClick(e, "search");
           }}
           width="25%"
@@ -71,10 +73,10 @@ function Bar() {
           alignItems="center"
         >
           <Grid width="24px" height="24px">
-            {params.includes("/officemap") ||
-            params.includes("/map") ||
-            params.includes("/search") ||
-            params.includes("/detail") ? (
+            {currentLocation.includes("officemap") ||
+            currentLocation.includes("map") ||
+            currentLocation.includes("search") ||
+            currentLocation.includes("detail") ? (
               <Search fill="none" stroke="#3E00FF" />
             ) : (
               <Search fill="none" stroke="#BEBDC4" />
@@ -83,10 +85,10 @@ function Bar() {
           <Text
             cursor="pointer"
             color={
-              params.includes("/officemap") ||
-              params.includes("/map") ||
-              params.includes("/search") ||
-              params.includes("/detail")
+              currentLocation.includes("officemap") ||
+              currentLocation.includes("map") ||
+              currentLocation.includes("search") ||
+              currentLocation.includes("detail")
                 ? "#3E00FF"
                 : "#BEBDC4"
             }
@@ -97,7 +99,7 @@ function Bar() {
           <div />
         </Grid>
         <Grid
-          _onClick={(e) => {
+          _onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
             gnbClick(e, "like");
           }}
           width="25%"
@@ -108,7 +110,7 @@ function Bar() {
           alignItems="center"
         >
           <Grid width="24px" height="24px">
-            {params === "/like" ? (
+            {currentLocation === "like" ? (
               <Heart fill="none" stroke="#3E00FF" />
             ) : (
               <Heart fill="none" stroke="#BEBDC4" />
@@ -116,14 +118,14 @@ function Bar() {
           </Grid>
           <Text
             cursor="pointer"
-            color={params === "/like" ? "#3E00FF" : "#BEBDC4"}
+            color={currentLocation === "like" ? "#3E00FF" : "#BEBDC4"}
             size="12px"
           >
             찜
           </Text>
         </Grid>
         <Grid
-          _onClick={(e) => {
+          _onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
             gnbClick(e, "mypage");
           }}
           width="25%"
@@ -134,7 +136,7 @@ function Bar() {
           alignItems="center"
         >
           <Grid width="24px" height="24px">
-            {params.includes("/mypage") ? (
+            {currentLocation.includes("mypage") ? (
               <User fill="none" stroke="#3E00FF" />
             ) : (
               <User fill="none" stroke="#BEBDC4" />
@@ -142,7 +144,7 @@ function Bar() {
           </Grid>
           <Text
             cursor="pointer"
-            color={params.includes("/mypage") ? "#3E00FF" : "#BEBDC4"}
+            color={currentLocation.includes("mypage") ? "#3E00FF" : "#BEBDC4"}
             size="12px"
           >
             마이페이지
