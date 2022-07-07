@@ -9,7 +9,8 @@ import { Banner } from "../shared/home";
 import { useSelector } from "react-redux";
 
 function Sale() {
-  const user_info = useSelector((state) => state.user.user);
+  //const user_info = useSelector((state) => state.user.user);
+  
   const navigate = useNavigate();
 
   return (
@@ -18,7 +19,7 @@ function Sale() {
         <Grid width="100%" margin="50px 0 0">
           <Text size="24px" bold>
             <Text color="#3E00FF" bold>
-              {user_info?.nickname ? user_info?.nickname : "게스트"}님
+             게스트님
             </Text>{" "}
             어떤 🏢오피스를 <br />
             찾고 계시나요?

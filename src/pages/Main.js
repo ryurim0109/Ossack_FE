@@ -9,11 +9,11 @@ function Main() {
   const dispatch = useDispatch();
   const [showPopUp, setShowPopUp] = useState(false);
   const HAS_VISITED_BEFORE = localStorage.getItem("hasVisitedBefore");
-  const login = useSelector((state) => state.user.is_login);
-  const is_session = localStorage.getItem("token");
-  useEffect(() => {
-    dispatch(userActions.loginCheckApi());
-  }, [dispatch]);
+  // const login = useSelector((state) => state.user.is_login);
+  // const is_session = localStorage.getItem("token");
+  // useEffect(() => {
+  //   dispatch(userActions.loginCheckApi());
+  // }, [dispatch]);
 
   useEffect(() => {
     const handleShowModal = () => {
@@ -34,13 +34,13 @@ function Main() {
   }, [HAS_VISITED_BEFORE]);
   const handleClose = () => setShowPopUp(false);
 
-  if (!login || !is_session) {
-    return (
-      <React.Fragment>
-        <NotUser />
-      </React.Fragment>
-    );
-  } else {
+  // if (!login || !is_session) {
+  //   return (
+  //     <React.Fragment>
+  //       <NotUser />
+  //     </React.Fragment>
+  //   );
+  // } else {
     return (
       <React.Fragment>
         <Outter>
@@ -56,7 +56,7 @@ function Main() {
       </React.Fragment>
     );
   }
-}
+// }
 const Outter = styled.div`
   width: 100%;
   padding-bottom: 90px;

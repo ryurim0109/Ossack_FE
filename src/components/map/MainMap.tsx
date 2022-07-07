@@ -15,7 +15,11 @@ import { useNavigate,useParams } from "react-router-dom";
 import { Map, CustomOverlayMap } from "react-kakao-maps-sdk";
 import { ReactComponent as Location } from "../../assets/location.svg";
 import { Position, Overlay } from "./index";
-
+declare global {
+  interface Window {
+    kakao: any;
+  }
+}
 const MainMap = () => {
   const appDispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -29,7 +33,7 @@ const MainMap = () => {
   const is_loaded = useSelector((state:RootState) => state.map.is_loaded);
   
 
-  const { kakao } = window;
+  const { kakao } = window as any;
   const [level, setLevel] = useState(8); //지도레벨
   const [map, setMap] = useState(); //지도
   const [pos, setPos] = useState(); //경도 위도
