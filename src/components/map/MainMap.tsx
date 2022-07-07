@@ -1,256 +1,168 @@
 /*global kakao*/
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import styled from "styled-components";
 
 import { useSelector } from "react-redux";
-import { getOfficeData} from "../../redux/modules/map";
+import { getOfficeData } from "../../redux/modules/map";
 import { RootState, useAppDispatch } from "../../redux/configStore";
 //아이콘
 import Spinner from "../shared/Spinner";
 import { ReactComponent as Minus } from "../../assets/minus.svg";
 import { ReactComponent as Plus } from "../../assets/plus.svg";
 
-import { useNavigate,useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import { Map, CustomOverlayMap } from "react-kakao-maps-sdk";
 import { ReactComponent as Location } from "../../assets/location.svg";
 import { Position, Overlay } from "./index";
+import { jsx } from "@emotion/react";
 declare global {
   interface Window {
     kakao: any;
   }
 }
-const MainMap = () => {
+const { kakao } = window;
+const MainMap = (): React.ReactElement | null => {
   const appDispatch = useAppDispatch();
   const navigate = useNavigate();
-  const name: string| undefined = useParams().name;
-  
-  //const router = useSelector((state) => state.router.location.search);
- // const depositlimit = router?.split("&")[0]?.split("=")[1];
- // const feelimit = router?.split("&")[1]?.split("=")[1];
-  const getOffice = useSelector((state:RootState) => state.map.office_list);
-  // const shareOffice = useSelector((state) => state.map.share_list);
-  const is_loaded = useSelector((state:RootState) => state.map.is_loaded);
-  
+  const name: string | undefined = useParams().name;
 
-  const { kakao } = window as any;
+  //const router = useSelector((state) => state.router.location.search);
+  // const depositlimit = router?.split("&")[0]?.split("=")[1];
+  // const feelimit = router?.split("&")[1]?.split("=")[1];
+  const getOffice = useSelector((state: RootState) => state.map.office_list);
+  // const shareOffice = useSelector((state) => state.map.share_list);
+  const is_loaded = useSelector((state: RootState) => state.map.is_loaded);
+
   const [level, setLevel] = useState(8); //지도레벨
-  const [map, setMap] = useState(); //지도
+  //const [map, setMap] = useState(); //지도
   const [pos, setPos] = useState(); //경도 위도
 
-  const [state, setState] = useState({
+  /*   const [state, setState] = useState({
     //기본 설정값
     center: {
       lat: 37.5173319258532,
       lng: 127.047377408384,
     },
-  });
-  const _position = {
-    swLatLng: {
-      lat: map?.getBounds().getSouthWest().getLat(),
-      lng: map?.getBounds().getSouthWest().getLng(),
-    },
-    neLatLng: {
-      lat: map?.getBounds().getNorthEast().getLat(),
-      lng: map?.getBounds().getNorthEast().getLng(),
-    },
-  };
-  // useEffect(() => {
-  //   if (map && name === "office") {
-  //     appDispatch(getOfficeData(_position, level, router));
-  //   } else if (map && name === "share") {
-  //     appDispatch(getShareData(_position, level));
-  //   }
-  // }, [map, router]);
-  let data = [];
-  data.push([_position, level]);
-  useEffect (()=>{
-    if (map && name === "office") {
-          appDispatch(getOfficeData(data));
-        }
-  },[map])
+  }); */
+  useEffect(() => {
+    let container = document.getElementById("map");
+
+    let options = {
+      center: new kakao.maps.LatLng(37.5173319258532, 127.047377408384),
+      level: 8,
+    };
+    let map = new kakao.maps.Map(container, options);
+  }, []);
   const setLocation = () => {
+    let container = document.getElementById("map");
+
+    let options = {
+      center: new kakao.maps.LatLng(37.5173319258532, 127.047377408384),
+      level: 8,
+    };
+    let map = new kakao.maps.Map(container, options);
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function (position) {
-        map.setCenter(
-          new kakao.maps.LatLng(
-            position.coords.latitude,
-            position.coords.longitude
-          )
-        );
+        let lat = position.coords.latitude, // 위도
+          lon = position.coords.longitude; // 경도
+
+        let locPosition = new kakao.maps.LatLng(lat, lon);
+        map.setCenter(locPosition);
       });
     }
+  };
+  const zoomIn = () => {
+    // 현재 지도의 레벨을 얻어옵니다
+    let container = document.getElementById("map");
+
+    let options = {
+      center: new kakao.maps.LatLng(37.5173319258532, 127.047377408384),
+      level: 8,
+    };
+    let map = new kakao.maps.Map(container, options);
+    let level = map.getLevel();
+    console.log(level);
+    // 지도를 1레벨 내립니다 (지도가 확대됩니다)
+
+    map.setLevel(level - 1);
+  };
+
+  const zoomOut = () => {
+    // 현재 지도의 레벨을 얻어옵니다
+    let container = document.getElementById("map");
+
+    let options = {
+      center: new kakao.maps.LatLng(37.5173319258532, 127.047377408384),
+      level: 8,
+    };
+    let map = new kakao.maps.Map(container, options);
+    let level = map.getLevel();
+
+    // 지도를 1레벨 올립니다 (지도가 축소됩니다)
+
+    map.setLevel(level + 1);
   };
   if (name === "office") {
     return (
       <React.Fragment>
+        <MapWrap id="map"></MapWrap>
         <MainContent>
-          <Map
-            center={state.center}
-            onCreate={(map) => setMap(map)}
-            onZoomChanged={(map) => setLevel(map.getLevel())}
-            onDragEnd={(map) =>
-              setPos({
-                lat: map.getCenter().getLat(),
-                lng: map.getCenter().getLng(),
-                swLatLng: {
-                  lat: map.getBounds().getSouthWest().getLat(),
-                  lng: map.getBounds().getSouthWest().getLng(),
-                },
-                neLatLng: {
-                  lat: map.getBounds().getNorthEast().getLat(),
-                  lng: map.getBounds().getNorthEast().getLng(),
-                },
-                setLevel: map.getLevel(),
-              })
-            }
-            style={{ width: "100%", height: "inherit" }}
-            level={level}
-            minLevel={5}
-            maxLevel={10}
-          >
-            {is_loaded ? (
-              <>
-                {getOffice?.cityResponseDtoList?.length === 0
-                  ? null
-                  : getOffice?.cityResponseDtoList?.map((position, index) => {
-                      return (
-                        <CustomOverlayMap
-                          key={`${position.title}-${position.coordinate}`}
-                          position={position.coordinate}
-                        >
-                          <div
-                            onClick={() =>
-                              navigate(
-                                `/map/office?query=${position.title}&depositlimit=${depositlimit}&feelimit=${feelimit}`
-                              )
-                            }
-                          >
-                            <Overlay position={position} />
-                          </div>
-                        </CustomOverlayMap>
-                      );
-                    })}
-              </>
-            ) : (
-              <Spinner />
-            )}
-          </Map>
+          {is_loaded ? null : <Spinner />}
           <Lev>
             <Btn onClick={setLocation}>
               <Location />
             </Btn>
             <PlusBtn>
-              <button onClick={() => (level > 5 ? setLevel(level - 1) : null)}>
+              <button onClick={zoomIn}>
                 <Plus />
               </button>
-              <button onClick={() => (level < 10 ? setLevel(level + 1) : null)}>
+              <button onClick={zoomOut}>
                 <Minus />
               </button>
             </PlusBtn>
           </Lev>
-          {pos && (
-            <Position pos={pos} level={level} name={name} router={router} />
-          )}
         </MainContent>
       </React.Fragment>
     );
-  } else if (name === "share") {
+  } else {
     return (
       <React.Fragment>
+        <MapWrap id="map"></MapWrap>
         <MainContent>
-          <Map
-            center={state.center}
-            onCreate={(map) => setMap(map)}
-            onZoomChanged={(map) =>
-              setPos({
-                lat: map.getCenter().getLat(),
-                lng: map.getCenter().getLng(),
-                swLatLng: {
-                  lat: map.getBounds().getSouthWest().getLat(),
-                  lng: map.getBounds().getSouthWest().getLng(),
-                },
-                neLatLng: {
-                  lat: map.getBounds().getNorthEast().getLat(),
-                  lng: map.getBounds().getNorthEast().getLng(),
-                },
-              })
-            }
-            onDragEnd={(map) =>
-              setPos({
-                lat: map.getCenter().getLat(),
-                lng: map.getCenter().getLng(),
-                swLatLng: {
-                  lat: map.getBounds().getSouthWest().getLat(),
-                  lng: map.getBounds().getSouthWest().getLng(),
-                },
-                neLatLng: {
-                  lat: map.getBounds().getNorthEast().getLat(),
-                  lng: map.getBounds().getNorthEast().getLng(),
-                },
-              })
-            }
-            style={{ width: "100%", height: "inherit" }}
-            level={level}
-            minLevel={5}
-            maxLevel={10}
-          >
-            {is_loaded ? (
-              <>
-                {shareOffice?.cityResponseDtoList?.length === 0
-                  ? null
-                  : shareOffice?.cityResponseDtoList?.map((position) => {
-                      return (
-                        <CustomOverlayMap
-                          key={`${position.title}-${position.coordinate}`}
-                          position={position.coordinate}
-                        >
-                          <div
-                            onClick={() =>
-                              navigate(
-                                `/map/shareoffice?query=${position.title}`
-                              )
-                            }
-                          >
-                            <Overlay position={position} name={name} />
-                          </div>
-                        </CustomOverlayMap>
-                      );
-                    })}
-              </>
-            ) : (
-              <Spinner />
-            )}
-          </Map>
+          {is_loaded ? null : <Spinner />}
           <Lev>
             <Btn onClick={setLocation}>
               <Location />
             </Btn>
             <PlusBtn>
-              <button onClick={() => (level > 5 ? setLevel(level - 1) : null)}>
+              <button onClick={zoomIn}>
                 <Plus />
               </button>
-              <button onClick={() => (level < 10 ? setLevel(level + 1) : null)}>
+              <button onClick={zoomOut}>
                 <Minus />
               </button>
             </PlusBtn>
           </Lev>
-          {pos && <Position pos={pos} level={level} name={name} />}
         </MainContent>
       </React.Fragment>
     );
   }
 };
+const MapWrap = styled.div`
+  width: 100%;
+  height: 100vh;
+`;
 const MainContent = styled.div`
   height: inherit;
-  position: relative;
+  position: absolute;
 `;
 
 const Lev = styled.div`
   width: 40px;
   height: 125px;
   position: absolute;
-  bottom: 100px;
+  bottom: 800px;
   left: 16px;
   z-index: 2;
   display: flex;

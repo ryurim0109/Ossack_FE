@@ -4,9 +4,8 @@ import { Bar, NotUser } from "../components/shared/home";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-
 function SaleMap() {
-  const name: string| undefined = useParams().name;
+  const name: string | undefined = useParams().name;
   // const login = useSelector((state) => state.user.is_login);
   // const is_session = localStorage.getItem("token");
 
@@ -17,14 +16,14 @@ function SaleMap() {
   //     </React.Fragment>
   //   );
   // } else {
-    return (
-      <>
-        <Search name={name} />
-        <MainMap/>
-        <Bar />
-      </>
-    );
-  }
+  return (
+    <React.Fragment>
+      <Search name={name} />
+      <MainMap />
+      <Bar />
+    </React.Fragment>
+  );
+}
 // }
 
 export default SaleMap;
