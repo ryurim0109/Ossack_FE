@@ -2,7 +2,7 @@ import React from "react";
 import "../../shared/css/MobileFrame.css";
 
 interface MobileFrameProps {
-  children: React.ReactNode;
+  children: React.ReactNode | JSX.Element;
   className: string;
   // any other props you might have
 }
@@ -12,7 +12,7 @@ const MobileFrame = ({ children, className }: MobileFrameProps) => {
       <div className="WebFullFrame">
         <div className="MobileFullFrame">
           <div id="scroll" className="Container">
-            {children}
+            <>{children}</>
           </div>
         </div>
       </div>

@@ -2,29 +2,32 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
-import { useDispatch, useSelector } from "react-redux";
-import { actionCreators as mapActions } from "../../redux/modules/map";
+import { useSelector } from "react-redux";
+import { getOfficeData} from "../../redux/modules/map";
+import { RootState, useAppDispatch } from "../../redux/configStore";
 //아이콘
 import Spinner from "../shared/Spinner";
 import { ReactComponent as Minus } from "../../assets/minus.svg";
 import { ReactComponent as Plus } from "../../assets/plus.svg";
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useParams } from "react-router-dom";
 
 import { Map, CustomOverlayMap } from "react-kakao-maps-sdk";
 import { ReactComponent as Location } from "../../assets/location.svg";
 import { Position, Overlay } from "./index";
 
-const MainMap = (props) => {
-  const dispatch = useDispatch();
+const MainMap = () => {
+  const appDispatch = useAppDispatch();
   const navigate = useNavigate();
-  const { name } = props;
-  const router = useSelector((state) => state.router.location.search);
-  const depositlimit = router?.split("&")[0]?.split("=")[1];
-  const feelimit = router?.split("&")[1]?.split("=")[1];
-  const getOffice = useSelector((state) => state.map.office_list);
-  const shareOffice = useSelector((state) => state.map.share_list);
-  const is_loaded = useSelector((state) => state.map.is_loaded);
+  const name: string| undefined = useParams().name;
+  
+  //const router = useSelector((state) => state.router.location.search);
+ // const depositlimit = router?.split("&")[0]?.split("=")[1];
+ // const feelimit = router?.split("&")[1]?.split("=")[1];
+  const getOffice = useSelector((state:RootState) => state.map.office_list);
+  // const shareOffice = useSelector((state) => state.map.share_list);
+  const is_loaded = useSelector((state:RootState) => state.map.is_loaded);
+  
 
   const { kakao } = window;
   const [level, setLevel] = useState(8); //지도레벨
@@ -48,14 +51,20 @@ const MainMap = (props) => {
       lng: map?.getBounds().getNorthEast().getLng(),
     },
   };
-  useEffect(() => {
+  // useEffect(() => {
+  //   if (map && name === "office") {
+  //     appDispatch(getOfficeData(_position, level, router));
+  //   } else if (map && name === "share") {
+  //     appDispatch(getShareData(_position, level));
+  //   }
+  // }, [map, router]);
+  let data = [];
+  data.push([_position, level]);
+  useEffect (()=>{
     if (map && name === "office") {
-      dispatch(mapActions.getOfficeData(_position, level, router));
-    } else if (map && name === "share") {
-      dispatch(mapActions.getShareData(_position, level));
-    }
-  }, [map, router]);
-
+          appDispatch(getOfficeData(data));
+        }
+  },[map])
   const setLocation = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function (position) {

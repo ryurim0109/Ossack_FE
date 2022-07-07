@@ -1,3 +1,84 @@
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { instance } from "../../shared/api";
+
+// export interface ListItemDataParams {
+//     office_list: Array<any>;
+//     share_list: Array<any>;
+//   }
+export interface MapType {
+    office_list: any;
+    share_list: any;
+    is_loaded: boolean;
+  }
+
+  const initialState: MapType = {
+            office_list: [],
+            share_list: [],
+          is_loaded: false,
+  };
+
+  export interface PosType {
+    SWlat : any;
+    SWlng : any;
+    NElat : any;
+    NElng : any;
+    swLatLng: object | any;
+    lat: any;
+    lng: any;
+    neLatLng : any;
+  }
+
+  export interface PositionDataType {
+    pos:PosType;
+    level: number;
+    router?: any;
+    monthly?: any| null;
+  }
+
+  export const  getOfficeData= createAsyncThunk(
+    "SET_OFFICE_LIST",
+    //pos, level, router, monthly
+    async (data:PositionDataType , thunkAPI) => {
+      try{
+
+        console.log(data)
+            // const SWlat = data.pos.swLatLng.lat;
+            // const SWlng = data.pos.swLatLng.lng;
+            // const NElat = data.pos.neLatLng.lat;
+            // const NElng = data.pos.neLatLng.lng;
+      //const response = await instance.get(`/map?level=${level}&SWlat=${SWlat}&SWlng=${SWlng}&NElat=${NElat}&NElng=${NElng}&depositlimit=${depositlimit}&feelimit=${feelimit}&monthly=${monthly}`)
+       
+       
+      }catch (err){
+        return;
+      }
+    }
+  )
+
+  export const mapSlice = createSlice({
+    name: 'mapReducer',
+    initialState,
+    reducers: {
+        setOfficeList: (state, action: PayloadAction<any>) => {
+        state.office_list = action.payload.office_list;
+        state.is_loaded = true;
+        return;
+      },
+    },
+    extraReducers: () => {
+      //
+    },
+  });
+
+  export default mapSlice;
+
+  export const { setOfficeList} = mapSlice.actions;
+  
+const mapActionsCreators = {
+    getOfficeData
+};
+
+export { mapActionsCreators };
 // import { createAction, handleActions } from "redux-actions";
 // import produce from "immer";
 // import { instance } from "../../shared/api";

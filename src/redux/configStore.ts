@@ -2,9 +2,10 @@ import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import logger from "redux-logger";
 import { useDispatch } from "react-redux";
 import favoriteSlice from "./modules/favorite";
+import mapSlice from "./modules/map";
 
 const rootReducer = combineReducers({
-  // map: Map,
+  map: mapSlice.reducer,
   // user: User,
   // office: Office,
   favorite: favoriteSlice.reducer,
