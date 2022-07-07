@@ -11,7 +11,7 @@ const initialState: favoriteType = {
 };
 
 export const  getOfficeLikeDB= createAsyncThunk(
-  "favoriteReducer/get",
+  "GET_LIKE",
   async (_, thunkAPI) => {
     try{
       await instance.get(`/estates/favorite`)
@@ -24,7 +24,7 @@ export const  getOfficeLikeDB= createAsyncThunk(
   }
 )
 export const  getShareLikeDB= createAsyncThunk(
-  "favoriteReducer/get",
+  "GET_SHARE_LIKE",
   async (_, thunkAPI) => {
     try{
       await instance.get(`/estates/favorite`)
@@ -37,7 +37,7 @@ export const  getShareLikeDB= createAsyncThunk(
   }
 )
 export const  unlikeOfficeDB= createAsyncThunk(
-  "favoriteReducer/unlike",
+  "UNLIKE_OFFICE",
   async (estateId:number,thunkAPI) => {
     try{
       await instance.post(`/estates/${estateId}/unlike`)
@@ -51,7 +51,7 @@ export const  unlikeOfficeDB= createAsyncThunk(
 )
 
 export const  unlikeShareDB= createAsyncThunk(
-  "favoriteReducer/unlike",
+  "UNLIKE_SHARE",
   async (shareofficeid:number,thunkAPI) => {
     try{
       await instance.post(`/estates/${shareofficeid}/unlike`)
