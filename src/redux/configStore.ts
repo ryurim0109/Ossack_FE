@@ -3,11 +3,12 @@ import logger from "redux-logger";
 import { useDispatch } from "react-redux";
 import favoriteSlice from "./modules/favorite";
 import mapSlice from "./modules/map";
+import officeSlice from "./modules/office";
 
 const rootReducer = combineReducers({
   map: mapSlice.reducer,
   // user: User,
-  // office: Office,
+  office: officeSlice.reducer,
   favorite: favoriteSlice.reducer,
 });
 

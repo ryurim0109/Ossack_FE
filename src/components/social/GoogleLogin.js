@@ -4,7 +4,7 @@ import { actionCreators as userActions } from "../../redux/modules/user";
 import Spinner from "../shared/Spinner";
 
 const GoogleLogin = (props) => {
-  const dispatch = useDispatch();
+  const appDispatch = useAppDispatch();
 
   // 인가코드
   let code = new URL(window.location.href).searchParams.get("code");

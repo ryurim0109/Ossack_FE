@@ -17,7 +17,7 @@ import {
 } from "../components/detail/index";
 
 const DetailShare = () => {
-  const dispatch = useDispatch();
+  const appDispatch = useAppDispatch();
   const navigate = useNavigate();
   const shareofficeid = useParams().shareofficeid;
   const getOneShareOffice = useSelector(

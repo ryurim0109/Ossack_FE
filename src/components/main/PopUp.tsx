@@ -3,9 +3,12 @@ import styled from "styled-components";
 import { Grid, Text, Button } from "../../elements/index";
 import PopImg from "../../assets/wel.jpg";
 
-const PopUp = (props) => {
-  const { showPopUp, setShowPopUp } = props;
-  const handleClose = () => setShowPopUp(false);
+interface PropsType {
+  showPopUp: boolean;
+  setShowPopUp: ()=>{};
+}
+const PopUp = ({showPopUp, setShowPopUp}:PropsType) => {
+
   return (
     <React.Fragment>
       {showPopUp ? (
@@ -24,7 +27,7 @@ const PopUp = (props) => {
             <img src={PopImg} alt="오싹 환영 이미지" />
           </Grid>
           <Button
-            _onClick={handleClose}
+            _onClick={setShowPopUp}
             is_close
             position="absolute"
             top="16px"

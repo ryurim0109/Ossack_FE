@@ -8,7 +8,7 @@ import { ShareOfficeResult } from "../components/search/index";
 import { Bar, Spinner, NotUser } from "../components/shared/home";
 
 const MapShareList = (props) => {
-  const dispatch = useDispatch();
+  const appDispatch = useAppDispatch();
   const search = props.location.search.split("=")[1];
   const totalPage = useSelector((state) => state?.office?.page);
   const title = useSelector((state) => state?.office?.keyword);

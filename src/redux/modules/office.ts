@@ -1,7 +1,263 @@
-// import { createAction, handleActions } from "redux-actions";
-// import { produce } from "immer";
-// import { instance } from "../../shared/api";
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { instance } from "../../shared/api";
 
+export interface officeType {
+    list: Array<any>;
+    main_list: Array<any>;
+    hot_list: Array<any>;
+    share_list: Array<any>;
+    is_loaded: boolean;
+    one_office: Array<any>;
+    one_share_office: Array<any>;
+    mylike:boolean;
+  } 
+const initialState:officeType = {
+  list: [],
+  main_list: [],
+  hot_list: [],
+  share_list: [],
+  is_loaded: false,
+  one_office: [],
+  mylike: false,
+  one_share_office: [],
+};
+
+export const  getMainOfficeDB= createAsyncThunk(
+    "GET_MAIN_OFFICE",
+    async (dong:string, thunkAPI) => {
+      try{
+        await instance.get(`/estates?query=${dong}`)
+        .then((res)=>{
+          thunkAPI.dispatch(getMainOffice(res.data));
+        });
+      }catch (err){
+        return;
+      }
+    }
+  )
+  export const  mainClickLikeDB= createAsyncThunk(
+    "MAIN_CLICK_LIKE",
+    async (estateId:number, thunkAPI) => {
+      try{
+        await instance.post(`/estates/${estateId}/like`)
+        .then((res)=>{
+          thunkAPI.dispatch(mainClickLike(estateId));
+        });
+      }catch (err){
+        return;
+      }
+    }
+  )
+  export const  mainDeleteLikeDB= createAsyncThunk(
+    "MAIN_DELETE_LIKE",
+    async (estateId:number, thunkAPI) => {
+      try{
+        await instance.post(`/estates/${estateId}/unlike`)
+        .then((res)=>{
+          thunkAPI.dispatch(mainDeleteLike(estateId));
+        });
+      }catch (err){
+        return;
+      }
+    }
+  )
+  export const  clickLikeDB= createAsyncThunk(
+    "CLICK_LIKE",
+    async (estateId:number, thunkAPI) => {
+      try{
+        await instance.post(`/estates/${estateId}/like`)
+        .then((res)=>{
+          thunkAPI.dispatch(clickLike(estateId));
+        });
+      }catch (err){
+        return;
+      }
+    }
+  )
+  export const  deleteLikeDB= createAsyncThunk(
+    "DELETE_LIKE",
+    async (estateId:number, thunkAPI) => {
+      try{
+        await instance.post(`/estates/${estateId}/unlike`)
+        .then((res)=>{
+          thunkAPI.dispatch(deleteLike(estateId));
+        });
+      }catch (err){
+        return;
+      }
+    }
+  )
+  export const  shareClickLikeDB= createAsyncThunk(
+    "SHARE_CLICK_LIKE",
+    async (shareofficeid:number, thunkAPI) => {
+      try{
+        await instance.post(`/estates/${shareofficeid}/like`)
+        .then((res)=>{
+          thunkAPI.dispatch(shareClickLike(shareofficeid));
+        });
+      }catch (err){
+        return;
+      }
+    }
+  )
+  export const  shareDeleteLikeDB = createAsyncThunk(
+    "SHARE_DELETE_LIKE",
+    async (shareofficeid:number, thunkAPI) => {
+      try{
+        await instance.post(`/estates/${shareofficeid}/unlike`)
+        .then((res)=>{
+          thunkAPI.dispatch(shareDeleteLike(shareofficeid));
+        });
+      }catch (err){
+        return;
+      }
+    }
+  )
+  export const  oneClickLikeDB= createAsyncThunk(
+    "ONE_CLICK_LIKE",
+    async (estateId:number, thunkAPI) => {
+      try{
+        await instance.post(`/estates/${estateId}/like`)
+        .then((res)=>{
+          thunkAPI.dispatch(oneClickLike(res.data));
+        });
+      }catch (err){
+        return;
+      }
+    }
+  )
+  export const  oneDeleteLikeDB = createAsyncThunk(
+    "ONE_DELETE_LIKE",
+    async (estateId:number, thunkAPI) => {
+      try{
+        await instance.post(`/estates/${estateId}/unlike`)
+        .then((res)=>{
+          thunkAPI.dispatch(oneDeleteLike(res.data));
+        });
+      }catch (err){
+        return;
+      }
+    }
+  )
+  export const officeSlice = createSlice({
+    name: 'officeReducer',
+    initialState,
+    reducers: {
+        getMainOffice: (state, action: PayloadAction<any>) => {
+        state.main_list = action.payload.main_list;
+        return;
+      },
+      mainClickLike: (state, action: PayloadAction<any>) => {
+        let numArr :Array<any> = [];
+        state.main_list.filter((val, idx) => {
+          if (val.estateid === action.payload.estate_id) {
+            return numArr.push(idx);
+          }
+          return false;
+        });
+        state.main_list[numArr[0]].mylike = true;
+        return;
+      },
+      mainDeleteLike: (state, action: PayloadAction<any>) => {
+        let numArr :Array<any> = [];
+        state.main_list.filter((val, idx) => {
+          if (val.estateid === action.payload.estate_id) {
+            return numArr.push(idx);
+          }
+          return false;
+        });
+        state.main_list[numArr[0]].mylike = false;
+        return;
+      },
+      clickLike: (state, action: PayloadAction<any>) => {
+        let numArr :Array<any> = [];
+        state.list.filter((val, idx) => {
+          if (val.estateid === action.payload.estate_id) {
+            return numArr.push(idx);
+          }
+          return false;
+        });
+        state.list[numArr[0]].mylike = true;
+        return;
+      },
+      deleteLike: (state, action: PayloadAction<any>) => {
+        let numArr :Array<any> = [];
+        state.list.filter((val, idx) => {
+          if (val.estateid === action.payload.estate_id) {
+            return numArr.push(idx);
+          }
+          return false;
+        });
+        state.list[numArr[0]].mylike = false;
+        return;
+      },
+      shareClickLike: (state, action: PayloadAction<any>) => {
+        let numArr :Array<any> = [];
+        state.share_list.filter((val, idx) => {
+          if (val.shareofficeid === action.payload.shareofficeid) {
+            return numArr.push(idx);
+          }
+          return false;
+        });
+        state.share_list[numArr[0]].mylike = true;
+        return;
+      },
+      shareDeleteLike: (state, action: PayloadAction<any>) => {
+        let numArr :Array<any> = [];
+        state.share_list.filter((val, idx) => {
+          if (val.shareofficeid === action.payload.shareofficeid) {
+            return numArr.push(idx);
+          }
+          return false;
+        });
+        state.share_list[numArr[0]].mylike = false;
+        return;
+      },
+      oneClickLike: (state, action: PayloadAction<any>) => {
+        state.mylike = true;
+        return;
+      },
+      oneDeleteLike: (state, action: PayloadAction<any>) => {
+        state.mylike = false;
+        return;
+      },
+    },
+    extraReducers: () => {
+      //
+    },
+  });
+  export default officeSlice;
+  
+  export const { 
+    getMainOffice,
+    mainClickLike,
+    mainDeleteLike,
+    clickLike,
+    deleteLike,
+    shareClickLike,
+    shareDeleteLike,
+    oneClickLike,
+    oneDeleteLike,
+ } = officeSlice.actions;
+    
+  const officeActionsCreators = {
+    getMainOfficeDB,
+    mainClickLikeDB,
+    mainDeleteLikeDB,
+    clickLikeDB,
+    deleteLikeDB,
+    shareClickLikeDB,
+    shareDeleteLikeDB,
+    oneClickLikeDB,
+    oneDeleteLikeDB,
+    
+    // getSOListDB,
+    // getOneOfficeDB,
+    // getShareListDB,
+    // getOneShareOfficeDB,
+  };
+  
+  export { officeActionsCreators };
 // // Action type
 // const GET_MAIN_OFFICE = "GET_MAIN_OFFICE"; // 메인페이지 리스트 조회
 // const MAIN_CLICK_LIKE = "MAIN_CLICK_LIKE"; //메인 좋아요

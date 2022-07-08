@@ -6,7 +6,7 @@ import defaultImg from "../../assets/default.png";
 import { actionCreators as userActions } from "../../redux/modules/user";
 
 const MyProfile = () => {
-  const dispatch = useDispatch();
+  const appDispatch = useAppDispatch();
 
   const user_info = useSelector((state) => state.user.user);
 

@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 
 function Main() {
-  const dispatch = useDispatch();
+  //const appDispatch = useAppDispatch();
   const [showPopUp, setShowPopUp] = useState(false);
   const HAS_VISITED_BEFORE = localStorage.getItem("hasVisitedBefore");
   // const login = useSelector((state) => state.user.is_login);
@@ -50,7 +50,7 @@ function Main() {
         {showPopUp ? (
           <>
             <ModalBackdrop onClick={handleClose}></ModalBackdrop>
-            <PopUp showPopUp={showPopUp} setShowPopUp={setShowPopUp} />
+            <PopUp showPopUp={showPopUp} setShowPopUp={handleClose} />
           </>
         ) : null}
       </React.Fragment>

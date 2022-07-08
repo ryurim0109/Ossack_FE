@@ -15,7 +15,7 @@ import { actionCreators as userActions } from "../redux/modules/user";
 import { TalkTalk } from "../components/shared/home";
 
 const Login = () => {
-  const dispatch = useDispatch();
+  const appDispatch = useAppDispatch();
   const navigate = useNavigate();
 
   // 비활성화 여부

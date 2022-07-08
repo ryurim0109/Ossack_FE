@@ -1,25 +1,25 @@
 import React, { useEffect } from "react";
 import { Grid, Button, Text, Image } from "../../elements/index";
 import styled from "styled-components";
-import { actionCreators as officeActions } from "../../redux/modules/office";
-import { useDispatch, useSelector } from "react-redux";
+import { getMainOfficeDB,mainDeleteLikeDB,mainClickLikeDB } from "../../redux/modules/office";
+import {  useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { useAppDispatch,RootState } from "../../redux/configStore";
 
-const OfficeList = (props) => {
-  const dispatch = useDispatch();
+
+const NearStation = () => {
+  const appDispatch = useAppDispatch();
   const navigate = useNavigate();
-  const foodOfficeList = useSelector((state) => state.office.main_list);
-
-  const { tabTitle } = props;
+  const stationOfficeList = useSelector((state:RootState) => state.office.main_list);
 
   useEffect(() => {
-    dispatch(officeActions.getMainOfficeDB(tabTitle[0]));
-  }, [dispatch, tabTitle]);
+    appDispatch(getMainOfficeDB("역"));
+  }, []);
+
   return (
     <React.Fragment>
-      {/* map돌리기 */}
-      {foodOfficeList &&
-        foodOfficeList?.map((o, idx) => {
+      {stationOfficeList &&
+        stationOfficeList.map((o, idx) => {
           return (
             <Grid
               key={idx}
@@ -34,7 +34,7 @@ const OfficeList = (props) => {
               <Image
                 padding="235px"
                 bottom="0"
-                src={o?.images[0]}
+                src={o.images[0]}
                 shape="rectangle"
                 position="absolute"
               />
@@ -43,10 +43,10 @@ const OfficeList = (props) => {
                 height="235px"
                 bottom="0"
                 position="absolute"
+                cursor="pointer"
                 _onClick={() => {
                   navigate(`/detail/${o.estateid}?query=${o.title}`);
                 }}
-                cursor="pointer"
                 bg="linear-gradient(0deg, rgba(0, 0, 0, 0.8) 5.74%, rgba(108, 108, 108, 0.0421707) 86.75%, rgba(118, 118, 118, 0) 93.49%)"
               ></Grid>
               {o.mylike ? (
@@ -55,9 +55,9 @@ const OfficeList = (props) => {
                   position="absolute"
                   right="8px"
                   top="8px"
-                  color="#fff"
+                  color="#FF0000"
                   _onClick={() =>
-                    dispatch(officeActions.mainDeleteLikeDB(o.estateid))
+                    appDispatch(mainDeleteLikeDB(o.estateid))
                   }
                 />
               ) : (
@@ -68,7 +68,7 @@ const OfficeList = (props) => {
                   top="8px"
                   color="#fff"
                   _onClick={() =>
-                    dispatch(officeActions.mainClickLikeDB(o.estateid))
+                    appDispatch(mainClickLikeDB(o.estateid))
                   }
                 />
               )}
@@ -88,11 +88,11 @@ const OfficeList = (props) => {
                 }}
               >
                 <Text color="#fff" size="14px">
-                  {o.type}
+                  {o.type ? o.type : "트리플 역세권 사무실"}
                 </Text>
-                <Text color="#fff" size="14px" bold>
-                  <Span>월세</Span> {o.rent_fee}만 <Span>보증금</Span>{" "}
-                  {o.deposit}
+                <Text color="#fff" size="14px">
+                  <Span>월세</Span> {o.rent_fee ? o.rent_fee : 200}만{" "}
+                  <Span>보증금</Span> {o.deposit ? o.deposit : "3000만"}
                 </Text>
               </Grid>
             </Grid>
@@ -101,10 +101,7 @@ const OfficeList = (props) => {
     </React.Fragment>
   );
 };
-
 const Span = styled.span`
   font-size: 10px;
-  font-weight: normal;
 `;
-
-export default OfficeList;
+export default NearStation;

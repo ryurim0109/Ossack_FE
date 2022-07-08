@@ -9,7 +9,7 @@ import { LoadSpinner } from "../shared/home";
 import { useNavigate } from "react-router-dom";
 
 const MapOfficeResult = (props) => {
-  const dispatch = useDispatch();
+  const appDispatch = useAppDispatch();
   const navigate = useNavigate();
   const officeData = useSelector((state) => state?.office?.list);
   const is_loaded = useSelector((state) => state.office.is_loaded);

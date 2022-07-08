@@ -5,7 +5,7 @@ import officeImg from "../../assets/office.png";
 import shareImg from "../../assets/share.png";
 const SaleList = () => {
   const navigate = useNavigate();
-  const officeClick = (name) => {
+  const officeClick = (name:string) => {
     navigate(`/officemap/${name}`);
   };
 

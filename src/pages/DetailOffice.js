@@ -18,7 +18,7 @@ import {
 
 const DetailOffice = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const appDispatch = useAppDispatch();
   const estateid = useParams().estateId;
   const getOneOffice = useSelector((state) => state.office.one_office);
 

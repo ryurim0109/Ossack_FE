@@ -8,7 +8,7 @@ import eventBg from "../assets/eventbg.png";
 import { useSelector } from "react-redux";
 
 const Event = () => {
-  const login = useSelector((state) => state.user.is_login);
+ /*  const login = useSelector((state) => state.user.is_login);
   const is_session = localStorage.getItem("token");
 
   if (!login || !is_session) {
@@ -17,7 +17,7 @@ const Event = () => {
         <NotUser />
       </React.Fragment>
     );
-  } else {
+  } else { */
     return (
       <React.Fragment>
         <MyHeader is_close>이벤트</MyHeader>
@@ -120,7 +120,7 @@ const Event = () => {
       </React.Fragment>
     );
   }
-};
+/* }; */
 const Div = styled.div`
   width: 100%;
   height: 100%;

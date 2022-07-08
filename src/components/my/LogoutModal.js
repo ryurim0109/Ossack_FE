@@ -5,7 +5,7 @@ import { actionCreators as userActions } from "../../redux/modules/user";
 import { useDispatch } from "react-redux";
 
 const LogoutModal = (props) => {
-  const dispatch = useDispatch();
+  const appDispatch = useAppDispatch();
   const { isOpen, setIsOpen } = props;
   const ModalClose = () => {
     setIsOpen(!isOpen);

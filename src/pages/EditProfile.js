@@ -12,7 +12,7 @@ import { actionCreators as userActions } from "../redux/modules/user";
 import { useNavigate } from "react-router-dom";
 
 const EditProfile = () => {
-  const dispatch = useDispatch();
+  const appDispatch = useAppDispatch();
   const navigate = useNavigate();
   const user_info = useSelector((state) => state.user.user);
   const [image, setImage] = useState("");

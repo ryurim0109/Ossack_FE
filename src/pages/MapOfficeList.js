@@ -8,7 +8,7 @@ import { MapOfficeResult } from "../components/search/index";
 import { Bar, Spinner, NotUser } from "../components/shared/home";
 
 const MapOfficeList = (props) => {
-  const dispatch = useDispatch();
+  const appDispatch = useAppDispatch();
   const search = props.location.search.split("=")[1].split("&")[0];
 
   const totalPage = useSelector((state) => state?.office?.page);

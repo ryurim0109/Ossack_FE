@@ -18,19 +18,19 @@ import { useSelector } from "react-redux";
 const HotPlaceArticle = () => {
   const name = useParams().name;
   const navigate = useNavigate();
-  const login = useSelector((state) => state.user.is_login);
+  /* const login = useSelector((state) => state.user.is_login);
   const is_session = localStorage.getItem("token");
-
-  const List = (keyword) => {
+ */
+  const List = (keyword:string) => {
     navigate(`/map/office?query=${keyword}`);
   };
-  if (!login || !is_session) {
+  /* if (!login || !is_session) {
     return (
       <React.Fragment>
         <NotUser />
       </React.Fragment>
     );
-  } else if (name === "articlefst") {
+  } else */ if (name === "articlefst") {
     return (
       <React.Fragment>
         <MyHeader>지금 가장 HOT한 지역 🔥</MyHeader>

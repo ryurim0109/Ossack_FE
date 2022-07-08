@@ -1,6 +1,7 @@
 import axios from "axios";
 import Swal from "sweetalert2";
 
+
 //1. axios 인터셉터 생성
 export const instance = axios.create({
   baseURL: "http://3.39.177.59:8080",
@@ -71,7 +72,7 @@ instances.interceptors.request.use(
 //3. 응답 인터셉터
 instance.interceptors.response.use(
   (success) => {
-    const response = success.data;
+    const response:any = success.data;
 
     if (
       response.statusCode === 200 &&
@@ -95,7 +96,7 @@ instance.interceptors.response.use(
         title: "로그인 한 유저만 볼 수 있습니다.",
         showConfirmButton: false,
         timer: 1500,
-      }).then(window.location.replace("/start"));
+      })/* .then(window.location.replace("/start")) */;
     }
 
     if (error.response.status === 404) {

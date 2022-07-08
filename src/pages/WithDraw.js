@@ -7,7 +7,7 @@ import { MyHeader } from "../components/my/index";
 import { useDispatch, useSelector } from "react-redux";
 
 const WithDraw = () => {
-  const dispatch = useDispatch();
+  const appDispatch = useAppDispatch();
   useEffect(() => {
     dispatch(userActions.loginCheckApi());
   }, [dispatch]);

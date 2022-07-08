@@ -5,14 +5,11 @@ import XScrollDrag from "../shared/XScrollDrag";
 import { OfficeList, NearStation } from "./index";
 
 const Office = () => {
-  const tabTitle = ["맛집", "역"];
-  const tab = {
-    0: <OfficeList tabTitle={tabTitle} />,
-    1: <NearStation tabTitle={tabTitle} />,
-  };
+  const tabTitle: string[] = ["맛집", "역"];
+  
   const [openTab, setOpenTab] = useState(0);
 
-  const onClickTab = (idx) => {
+  const onClickTab = (idx:number) => {
     setOpenTab(idx);
   };
   return (
@@ -51,7 +48,7 @@ const Office = () => {
       </Grid>
       <Grid overflow="hidden" width="100%">
         <XScrollDrag>
-          <FlexBox>{tab[openTab]}</FlexBox>
+          <FlexBox>{openTab === 0 ?<OfficeList/>:<NearStation />}</FlexBox>
         </XScrollDrag>
       </Grid>
     </React.Fragment>

@@ -8,7 +8,7 @@ import img02 from "../../assets/hotImg02.jpg";
 import img03 from "../../assets/hotImg03.jpg";
 const PlaceList = () => {
   const navigate = useNavigate();
-  const hotOfficeClick = (name) => {
+  const hotOfficeClick = (name:string) => {
     navigate(`/hotplacearticle/${name}`);
   };
   return (

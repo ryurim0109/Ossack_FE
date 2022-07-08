@@ -1,5 +1,5 @@
 /*global kakao*/
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import { useSelector } from "react-redux";
@@ -10,12 +10,12 @@ import Spinner from "../shared/Spinner";
 import { ReactComponent as Minus } from "../../assets/minus.svg";
 import { ReactComponent as Plus } from "../../assets/plus.svg";
 
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 
 import { Map, CustomOverlayMap } from "react-kakao-maps-sdk";
 import { ReactComponent as Location } from "../../assets/location.svg";
 import { Position, Overlay } from "./index";
-import { jsx } from "@emotion/react";
+
 declare global {
   interface Window {
     kakao: any;
@@ -25,32 +25,24 @@ const { kakao } = window;
 const MainMap = (): React.ReactElement | null => {
   const appDispatch = useAppDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
   const name: string | undefined = useParams().name;
 
-  //const router = useSelector((state) => state.router.location.search);
-  // const depositlimit = router?.split("&")[0]?.split("=")[1];
-  // const feelimit = router?.split("&")[1]?.split("=")[1];
+  const router =location?.search;
+  const depositlimit = location.search?.split("&")[0]?.split("=")[1];
+  const feelimit = location.search?.split("&")[1]?.split("=")[1];
   const getOffice = useSelector((state: RootState) => state.map.office_list);
   // const shareOffice = useSelector((state) => state.map.share_list);
   const is_loaded = useSelector((state: RootState) => state.map.is_loaded);
 
   const [level, setLevel] = useState(8); //지도레벨
-  //const [map, setMap] = useState(); //지도
   const [pos, setPos] = useState(); //경도 위도
-
-  /*   const [state, setState] = useState({
-    //기본 설정값
-    center: {
-      lat: 37.5173319258532,
-      lng: 127.047377408384,
-    },
-  }); */
   useEffect(() => {
     let container = document.getElementById("map");
 
     let options = {
       center: new kakao.maps.LatLng(37.5173319258532, 127.047377408384),
-      level: 8,
+      level: level,
     };
     let map = new kakao.maps.Map(container, options);
   }, []);
@@ -59,7 +51,7 @@ const MainMap = (): React.ReactElement | null => {
 
     let options = {
       center: new kakao.maps.LatLng(37.5173319258532, 127.047377408384),
-      level: 8,
+      level: level,
     };
     let map = new kakao.maps.Map(container, options);
     if (navigator.geolocation) {
@@ -72,36 +64,34 @@ const MainMap = (): React.ReactElement | null => {
       });
     }
   };
+  //줌인
   const zoomIn = () => {
-    // 현재 지도의 레벨을 얻어옵니다
+    if(level>5){
+      setLevel(level - 1);
+    }
+    
     let container = document.getElementById("map");
 
     let options = {
       center: new kakao.maps.LatLng(37.5173319258532, 127.047377408384),
-      level: 8,
+      level: level,
     };
     let map = new kakao.maps.Map(container, options);
-    let level = map.getLevel();
-    console.log(level);
-    // 지도를 1레벨 내립니다 (지도가 확대됩니다)
-
-    map.setLevel(level - 1);
+    
   };
-
+//줌아웃
   const zoomOut = () => {
-    // 현재 지도의 레벨을 얻어옵니다
+    if(level<10){
+      setLevel(level + 1);
+    }
+    
     let container = document.getElementById("map");
 
     let options = {
       center: new kakao.maps.LatLng(37.5173319258532, 127.047377408384),
-      level: 8,
+      level: level,
     };
     let map = new kakao.maps.Map(container, options);
-    let level = map.getLevel();
-
-    // 지도를 1레벨 올립니다 (지도가 축소됩니다)
-
-    map.setLevel(level + 1);
   };
   if (name === "office") {
     return (
@@ -154,15 +144,18 @@ const MapWrap = styled.div`
   height: 100vh;
 `;
 const MainContent = styled.div`
-  height: inherit;
   position: absolute;
+  width: 100%;
+  height:90%;
+  top:0;
+  left:0;
 `;
 
 const Lev = styled.div`
   width: 40px;
   height: 125px;
   position: absolute;
-  bottom: 800px;
+  bottom: 5%;
   left: 16px;
   z-index: 2;
   display: flex;

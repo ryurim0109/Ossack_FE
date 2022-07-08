@@ -21,7 +21,7 @@ import _ from "lodash";
 import Swal from "sweetalert2";
 
 const Signup = () => {
-  const dispatch = useDispatch();
+  const appDispatch = useAppDispatch();
   const navigate = useNavigate();
   const [emailError, setEmailError] = useState("");
   const [passwordState, setPasswordState] = useState("");

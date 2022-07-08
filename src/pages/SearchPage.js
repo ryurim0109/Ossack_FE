@@ -16,7 +16,7 @@ import { searchCheck } from "../shared/regCheck";
 import Swal from "sweetalert2";
 
 const SearchPage = () => {
-  const dispatch = useDispatch();
+  const appDispatch = useAppDispatch();
   const login = useSelector((state) => state.user.is_login);
   const is_session = localStorage.getItem("token");
 
