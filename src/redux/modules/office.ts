@@ -11,6 +11,13 @@ export interface officeType {
     one_share_office: Array<any>;
     mylike:boolean;
   } 
+
+/*   export interface SearchItemDataParams {
+    page: number | undefined;
+    presentpage: number | undefined;
+    keyword: string | undefined;
+    list: Array<any>;
+  } */
 const initialState:officeType = {
   list: [],
   main_list: [],
@@ -26,10 +33,8 @@ export const  getMainOfficeDB= createAsyncThunk(
     "GET_MAIN_OFFICE",
     async (dong:string, thunkAPI) => {
       try{
-        await instance.get(`/estates?query=${dong}`)
-        .then((res)=>{
-          thunkAPI.dispatch(getMainOffice(res.data));
-        });
+        const response = await instance.get(`/estates?query=${dong}`)
+          thunkAPI.dispatch(getMainOffice(response.data));
       }catch (err){
         return;
       }
@@ -39,10 +44,8 @@ export const  getMainOfficeDB= createAsyncThunk(
     "MAIN_CLICK_LIKE",
     async (estateId:number, thunkAPI) => {
       try{
-        await instance.post(`/estates/${estateId}/like`)
-        .then((res)=>{
+          await instance.post(`/estates/${estateId}/like`)
           thunkAPI.dispatch(mainClickLike(estateId));
-        });
       }catch (err){
         return;
       }
@@ -53,9 +56,7 @@ export const  getMainOfficeDB= createAsyncThunk(
     async (estateId:number, thunkAPI) => {
       try{
         await instance.post(`/estates/${estateId}/unlike`)
-        .then((res)=>{
-          thunkAPI.dispatch(mainDeleteLike(estateId));
-        });
+        thunkAPI.dispatch(mainDeleteLike(estateId));
       }catch (err){
         return;
       }
@@ -66,9 +67,7 @@ export const  getMainOfficeDB= createAsyncThunk(
     async (estateId:number, thunkAPI) => {
       try{
         await instance.post(`/estates/${estateId}/like`)
-        .then((res)=>{
           thunkAPI.dispatch(clickLike(estateId));
-        });
       }catch (err){
         return;
       }
@@ -79,9 +78,7 @@ export const  getMainOfficeDB= createAsyncThunk(
     async (estateId:number, thunkAPI) => {
       try{
         await instance.post(`/estates/${estateId}/unlike`)
-        .then((res)=>{
-          thunkAPI.dispatch(deleteLike(estateId));
-        });
+        thunkAPI.dispatch(deleteLike(estateId));
       }catch (err){
         return;
       }
@@ -92,9 +89,7 @@ export const  getMainOfficeDB= createAsyncThunk(
     async (shareofficeid:number, thunkAPI) => {
       try{
         await instance.post(`/estates/${shareofficeid}/like`)
-        .then((res)=>{
-          thunkAPI.dispatch(shareClickLike(shareofficeid));
-        });
+        thunkAPI.dispatch(shareClickLike(shareofficeid));
       }catch (err){
         return;
       }
@@ -105,9 +100,7 @@ export const  getMainOfficeDB= createAsyncThunk(
     async (shareofficeid:number, thunkAPI) => {
       try{
         await instance.post(`/estates/${shareofficeid}/unlike`)
-        .then((res)=>{
-          thunkAPI.dispatch(shareDeleteLike(shareofficeid));
-        });
+        thunkAPI.dispatch(shareDeleteLike(shareofficeid));
       }catch (err){
         return;
       }
@@ -117,10 +110,8 @@ export const  getMainOfficeDB= createAsyncThunk(
     "ONE_CLICK_LIKE",
     async (estateId:number, thunkAPI) => {
       try{
-        await instance.post(`/estates/${estateId}/like`)
-        .then((res)=>{
-          thunkAPI.dispatch(oneClickLike(res.data));
-        });
+        const response=await instance.post(`/estates/${estateId}/like`)
+          thunkAPI.dispatch(oneClickLike(response.data));
       }catch (err){
         return;
       }
@@ -130,10 +121,29 @@ export const  getMainOfficeDB= createAsyncThunk(
     "ONE_DELETE_LIKE",
     async (estateId:number, thunkAPI) => {
       try{
-        await instance.post(`/estates/${estateId}/unlike`)
-        .then((res)=>{
-          thunkAPI.dispatch(oneDeleteLike(res.data));
-        });
+        const response= await instance.post(`/estates/${estateId}/unlike`)
+        thunkAPI.dispatch(oneDeleteLike(response.data));
+      }catch (err){
+        return;
+      }
+    }
+  )
+  export const  getSOListDB= createAsyncThunk(
+    "GET_MAIN_OFFICE",
+    
+    async (searchInfo: { keyword: string; pageno: number; monthly:number; depositlimit:number;feelimit:number; }, thunkAPI) => {
+      try{
+        thunkAPI.dispatch(is_loaded(false));
+        const responce =await instance.get(`/estates/${searchInfo.pageno}?query=${searchInfo.keyword}&depositlimit=${searchInfo.depositlimit}&feelimit=${searchInfo.feelimit}&monthly=${searchInfo.monthly}`)
+        
+        /*   const searchData: Array<SearchItemDataParams> = [];
+          searchData.push({
+            page:res.data.totalpage,
+            presentpage:res.data.presentpage,
+            keyword:res.data.keyword,
+            list:res.data.estateResponseDtoList
+          }) */
+          thunkAPI.dispatch(getSOList(responce.data));
       }catch (err){
         return;
       }
@@ -221,6 +231,14 @@ export const  getMainOfficeDB= createAsyncThunk(
         state.mylike = false;
         return;
       },
+      getSOList: (state, action: PayloadAction<any>) => {
+        state.mylike = false;
+        return;
+      },
+      is_loaded:(state, action: PayloadAction<any>)=>{
+        state.is_loaded =true;
+        return
+      }
     },
     extraReducers: () => {
       //
@@ -238,6 +256,8 @@ export const  getMainOfficeDB= createAsyncThunk(
     shareDeleteLike,
     oneClickLike,
     oneDeleteLike,
+    getSOList,
+    is_loaded,
  } = officeSlice.actions;
     
   const officeActionsCreators = {
@@ -250,8 +270,7 @@ export const  getMainOfficeDB= createAsyncThunk(
     shareDeleteLikeDB,
     oneClickLikeDB,
     oneDeleteLikeDB,
-    
-    // getSOListDB,
+    getSOListDB,
     // getOneOfficeDB,
     // getShareListDB,
     // getOneShareOfficeDB,

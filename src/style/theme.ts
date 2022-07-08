@@ -1,3 +1,5 @@
+import { DefaultTheme } from "styled-components";
+
 const colors = {
   //font
   title: "#111",
@@ -26,7 +28,10 @@ const fontSizes = {
   xs: "10px",
 };
 
-const theme = {
+export type ColorsTypes = typeof colors;
+export type FontSizeTypes = typeof fontSizes;
+
+const theme :DefaultTheme = {
   colors,
   fontSizes,
 };
