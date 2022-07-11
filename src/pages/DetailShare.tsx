@@ -4,10 +4,11 @@ import styled from "styled-components";
 import { OneMap } from "../components/map/index";
 import { Grid, Button, Text } from "../elements/index";
 import { useParams } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { Bar, LoadSpinner, NotUser } from "../components/shared/home";
-import { actionCreators as officeActions } from "../redux/modules/office";
+import { getOneShareOfficeDB,oneShareDeleteLikeDB,oneShareClickLikeDB } from "../redux/modules/office";
 import { useNavigate } from "react-router-dom";
+import { RootState, useAppDispatch } from "../redux/configStore";
 import {
   ShareOfficeBasicInfo,
   ShareOfficeBtmInfo,
@@ -21,22 +22,22 @@ const DetailShare = () => {
   const navigate = useNavigate();
   const shareofficeid = useParams().shareofficeid;
   const getOneShareOffice = useSelector(
-    (state) => state.office.one_share_office
+    (state:RootState) => state.office.one_share_office
   );
-  const is_loaded = useSelector((state) => state.office.is_loaded);
-  const login = useSelector((state) => state.user.is_login);
-  const is_session = localStorage.getItem("token");
+  const is_loaded = useSelector((state:RootState) => state.office.is_loaded);
+  //const login = useSelector((state:RootState) => state.user.is_login);
+ // const is_session = localStorage.getItem("token");
 
   useEffect(() => {
-    dispatch(officeActions.getOneShareOfficeDB(shareofficeid));
-  }, [shareofficeid]);
-  if (!login || !is_session) {
-    return (
-      <React.Fragment>
-        <NotUser />
-      </React.Fragment>
-    );
-  } else {
+    appDispatch(getOneShareOfficeDB(shareofficeid));
+  }, []);
+  // if (!login || !is_session) {
+  //   return (
+  //     <React.Fragment>
+  //       <NotUser />
+  //     </React.Fragment>
+  //   );
+  // } else {
     return (
       <React.Fragment>
         <Header>
@@ -68,8 +69,8 @@ const DetailShare = () => {
               <Button
                 backgroundColor="none"
                 _onClick={() => {
-                  dispatch(
-                    officeActions.oneShareDeleteLikeDB(
+                  appDispatch(
+                    oneShareDeleteLikeDB(
                       getOneShareOffice.shareofficeid
                     )
                   );
@@ -81,8 +82,8 @@ const DetailShare = () => {
               <Button
                 backgroundColor="none"
                 _onClick={() => {
-                  dispatch(
-                    officeActions.oneShareClickLikeDB(
+                  appDispatch(
+                    oneShareClickLikeDB(
                       getOneShareOffice.shareofficeid
                     )
                   );
@@ -144,7 +145,7 @@ const DetailShare = () => {
         <Bar />
       </React.Fragment>
     );
-  }
+  // }
 };
 const Header = styled.div`
   width: 100%;

@@ -2,8 +2,10 @@ import React from "react";
 import styled from "styled-components";
 import { Text } from "../../elements/index";
 import { ReactComponent as Img } from "../../assets/img.svg";
-
-const ImageCnt = (props) => {
+interface ImageCntProps {
+  children: React.ReactNode | JSX.Element;
+}
+const ImageCnt = (props:ImageCntProps) => {
   const { children } = props;
   return (
     <React.Fragment>

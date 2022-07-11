@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { useSelector, useDispatch } from "react-redux";
-import { actionCreators as officeActions } from "../redux/modules/office";
+import { useSelector } from "react-redux";
+import { getShareListDB } from "../redux/modules/office";
 
 import { MyHeader } from "../components/my/index";
 import { ShareOfficeResult } from "../components/search/index";
 import { Bar, Spinner, NotUser } from "../components/shared/home";
+import { RootState,useAppDispatch } from "../redux/configStore";
 
 const MapShareList = (props) => {
   const appDispatch = useAppDispatch();
@@ -41,8 +42,8 @@ const MapShareList = (props) => {
   }, [target]);
 
   useEffect(() => {
-    dispatch(officeActions.getShareListDB(search, pageno));
-  }, [pageno, search, dispatch]);
+    appDispatch(getShareListDB(search, pageno));
+  }, []);
   const is_session = localStorage.getItem("token");
 
   if (!login || !is_session) {

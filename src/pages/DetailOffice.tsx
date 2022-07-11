@@ -3,11 +3,12 @@ import styled from "styled-components";
 import { OneMap } from "../components/map/index";
 import { Grid, Text, Button } from "../elements/index";
 import { useParams } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { Bar, LoadSpinner, NotUser } from "../components/shared/home";
-import { actionCreators as officeActions } from "../redux/modules/office";
+import { getOneOfficeDB,oneClickLikeDB,oneDeleteLikeDB } from "../redux/modules/office";
 import { ReactComponent as Heart } from "../assets/favourite.svg";
 import { useNavigate } from "react-router-dom";
+import { RootState, useAppDispatch } from "../redux/configStore";
 import {
   OfficeImage,
   OfficeBtmInfo,
@@ -19,24 +20,24 @@ import {
 const DetailOffice = () => {
   const navigate = useNavigate();
   const appDispatch = useAppDispatch();
-  const estateid = useParams().estateId;
-  const getOneOffice = useSelector((state) => state.office.one_office);
+  const estateid:string | undefined = useParams().estateId;
+  const getOneOffice = useSelector((state:RootState) => state.office.one_office);
 
-  const is_loaded = useSelector((state) => state.office.is_loaded);
-  const login = useSelector((state) => state.user.is_login);
-  const is_session = localStorage.getItem("token");
+  const is_loaded = useSelector((state:RootState) => state.office.is_loaded);
+  //const login = useSelector((state:RootState) => state.user.is_login);
+  //const is_session = localStorage.getItem("token");
 
   useEffect(() => {
-    dispatch(officeActions.getOneOfficeDB(estateid));
-  }, [estateid]);
+    appDispatch(getOneOfficeDB(estateid));
+  }, []);
 
-  if (!login || !is_session) {
-    return (
-      <React.Fragment>
-        <NotUser />
-      </React.Fragment>
-    );
-  } else {
+  // if (!login || !is_session) {
+  //   return (
+  //     <React.Fragment>
+  //       <NotUser />
+  //     </React.Fragment>
+  //   );
+  // } else {
     return (
       <React.Fragment>
         <Header>
@@ -68,8 +69,8 @@ const DetailOffice = () => {
               <Button
                 backgroundColor="none"
                 _onClick={() => {
-                  dispatch(
-                    officeActions.oneDeleteLikeDB(getOneOffice.estateid)
+                  appDispatch(
+                    oneDeleteLikeDB(getOneOffice.estateId)
                   );
                 }}
               >
@@ -79,7 +80,7 @@ const DetailOffice = () => {
               <Button
                 backgroundColor="none"
                 _onClick={() => {
-                  dispatch(officeActions.oneClickLikeDB(getOneOffice.estateid));
+                  appDispatch(oneClickLikeDB(getOneOffice.estateId));
                 }}
               >
                 <Heart stroke="#111" fill="none" />
@@ -136,7 +137,7 @@ const DetailOffice = () => {
         <Bar />
       </React.Fragment>
     );
-  }
+  // }
 };
 const Header = styled.div`
   width: 100%;

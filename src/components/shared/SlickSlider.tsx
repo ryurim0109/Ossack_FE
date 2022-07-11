@@ -3,9 +3,11 @@ import styled from "styled-components";
 import Slider from "react-slick";
 import { ReactComponent as Next } from "../../assets/next.svg";
 import { ReactComponent as Prev } from "../../assets/prev.svg";
-import MagicSliderDots from "react-magic-slider-dots";
-
-const SlickSlider = (props) => {
+//import MagicSliderDots from "react-magic-slider-dots";
+interface SlickSliderProps {
+  children: React.ReactNode | JSX.Element;
+}
+const SlickSlider = (props:SlickSliderProps) => {
   const { children } = props;
 
   const settings = {
@@ -26,7 +28,7 @@ const SlickSlider = (props) => {
         <Prev />
       </DivPre>
     ),
-    appendDots: (dots) => {
+/*     appendDots: (dots:any) => {
       return (
         <MagicSliderDots
           dots={dots}
@@ -35,7 +37,7 @@ const SlickSlider = (props) => {
           dotContainerClassName="dotContainer"
         />
       );
-    },
+    }, */
   };
   return (
     <React.Fragment>

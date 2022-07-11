@@ -8,7 +8,7 @@ import styled from "styled-components";
 import banner01 from "../../assets/banner01.png";
 import banner02 from "../../assets/banner02.png";
 
-const Banner = (props) => {
+const Banner = () => {
   const navigate = useNavigate();
   const settings = {
     infinite: true,

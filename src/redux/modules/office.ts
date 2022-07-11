@@ -47,7 +47,11 @@ import { instance } from "../../shared/api";
     price?: string | null;
     detail?:string |null;
     address?:string | null;
-    imageList?:Array<string>
+    imageList?:Array<string>;
+    estateId:string|number;
+    dong?:string |null;
+    shareofficeid:string |number;
+    detail_address?:string | null;
   }
   export interface officeType {
     list: Array<SearchItemDataParams>;
@@ -86,6 +90,8 @@ const initialState:officeType = {
     buildingInfo:null,
     images:[],
     number:null,
+    estateId:1,
+    shareofficeid:1,
 
   },
   one_share_office: {
@@ -117,6 +123,9 @@ const initialState:officeType = {
     detail:null,
     address: null,
     imageList:[],
+    estateId:1,
+    shareofficeid:1,
+    detail_address:null,
 
   },
   mylike:false,
@@ -201,7 +210,7 @@ export const  getMainOfficeDB= createAsyncThunk(
   )
   export const  oneClickLikeDB= createAsyncThunk(
     "ONE_CLICK_LIKE",
-    async (estateId:number, thunkAPI) => {
+    async (estateId:number |string, thunkAPI) => {
       try{
         const response=await instance.post(`/estates/${estateId}/like`)
           thunkAPI.dispatch(oneClickLike(response.data));
@@ -212,10 +221,54 @@ export const  getMainOfficeDB= createAsyncThunk(
   )
   export const  oneDeleteLikeDB = createAsyncThunk(
     "ONE_DELETE_LIKE",
-    async (estateId:number, thunkAPI) => {
+    async (estateId:number|string, thunkAPI) => {
       try{
         const response= await instance.post(`/estates/${estateId}/unlike`)
         thunkAPI.dispatch(oneDeleteLike(response.data));
+      }catch (err){
+        return;
+      }
+    }
+  )
+  export const  oneShareClickLikeDB = createAsyncThunk(
+    "ONE_SHARE_CLICK_LIKE",
+    async (shareofficeid:string | number, thunkAPI) => {
+      try{
+        const response= await instance.get(`/estate/${shareofficeid}`)
+        thunkAPI.dispatch(getOneOffice(response.data));
+      }catch (err){
+        return;
+      }
+    }
+  )
+  export const  oneShareDeleteLikeDB = createAsyncThunk(
+    "ONE_SHARE_DELETE_LIKE",
+    async (shareofficeid:number|string, thunkAPI) => {
+      try{
+        const response= await instance.post(`/estates/${shareofficeid}/unlike`)
+        thunkAPI.dispatch(oneDeleteLike(response.data));
+      }catch (err){
+        return;
+      }
+    }
+  )
+  export const  getOneOfficeDB = createAsyncThunk(
+    "GET_ONE_OFFICE",
+    async (estateId:string | undefined, thunkAPI) => {
+      try{
+        const response= await instance.get(`/estate/${estateId}`)
+        thunkAPI.dispatch(getOneOffice(response.data));
+      }catch (err){
+        return;
+      }
+    }
+  )
+  export const  getOneShareOfficeDB = createAsyncThunk(
+    "GET_ONE_SHARE_OFFICE",
+    async (shareofficeid:string | undefined, thunkAPI) => {
+      try{
+        const response= await instance.get(`/sharedoffice/${shareofficeid}`)
+        thunkAPI.dispatch(getOneShareOffice(response.data));
       }catch (err){
         return;
       }
@@ -349,6 +402,22 @@ export const  getMainOfficeDB= createAsyncThunk(
         state.one_office.mylike = false;
         return;
       },
+      oneShareClickLike: (state, action: PayloadAction<any>) => {
+        state.one_share_office.mylike = true;
+        return;
+      },
+      oneShareDeleteLike: (state, action: PayloadAction<any>) => {
+        state.one_share_office.mylike = false;
+        return;
+      },
+      getOneOffice: (state, action: PayloadAction<any>) => {
+        state.one_office = action.payload.one_office;
+        return;
+      },
+      getOneShareOffice: (state, action: PayloadAction<any>) => {
+        state.one_share_office = action.payload.one_share_office;
+        return;
+      },
       getSOList: (state, { payload }:PayloadAction<SearchItemDataParams>) => {
         const new_searchList = [
           ...state.list,
@@ -397,6 +466,10 @@ export const  getMainOfficeDB= createAsyncThunk(
     getSOList,
     is_loaded,
     getShareList,
+    getOneOffice,
+    getOneShareOffice,
+    oneShareDeleteLike,
+    oneShareClickLike,
  } = officeSlice.actions;
     
   const officeActionsCreators = {
@@ -411,9 +484,10 @@ export const  getMainOfficeDB= createAsyncThunk(
     oneDeleteLikeDB,
     getSOListDB,
     getShareListDB,
-    // getOneOfficeDB,
-    // getShareListDB,
-    // getOneShareOfficeDB,
+    getOneOfficeDB,
+    getOneShareOfficeDB,
+    oneShareDeleteLikeDB,
+    oneShareClickLikeDB,
   };
   
   export { officeActionsCreators };

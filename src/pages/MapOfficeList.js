@@ -1,20 +1,22 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { useSelector, useDispatch } from "react-redux";
-import { actionCreators as officeActions } from "../redux/modules/office";
+import { useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
+import { getSOListDB } from "../redux/modules/office";
 
 import { MyHeader } from "../components/my/index";
 import { MapOfficeResult } from "../components/search/index";
 import { Bar, Spinner, NotUser } from "../components/shared/home";
+import { useAppDispatch,RootState } from "../redux/configStore";
 
 const MapOfficeList = (props) => {
   const appDispatch = useAppDispatch();
-  const search = props.location.search.split("=")[1].split("&")[0];
+  const location = useLocation();
+  const router =location?.search;
 
   const totalPage = useSelector((state) => state?.office?.page);
   const title = useSelector((state) => state?.office?.keyword);
-  const router = useSelector((state) => state.router.location.search);
-  const login = useSelector((state) => state.user.is_login);
+  //const login = useSelector((state) => state.user.is_login);
 
   const [pageno, setPageno] = useState(1);
   const [target, setTarget] = useState(null);
@@ -43,17 +45,17 @@ const MapOfficeList = (props) => {
   }, [target]);
 
   useEffect(() => {
-    dispatch(officeActions.getSOListDB(search, pageno, router));
-  }, [pageno]);
-  const is_session = localStorage.getItem("token");
+    appDispatch(getSOListDB(pageno, router));
+  }, []);
+ // const is_session = localStorage.getItem("token");
 
-  if (!login || !is_session) {
+  /* if (!login || !is_session) {
     return (
       <React.Fragment>
         <NotUser />
       </React.Fragment>
     );
-  } else {
+  } else { */
     return (
       <React.Fragment>
         <MyHeader is_back>{title} 리스트</MyHeader>
@@ -65,7 +67,7 @@ const MapOfficeList = (props) => {
         <Bar />
       </React.Fragment>
     );
-  }
+ /*  } */
 };
 const Outter = styled.div`
   width: 100%;
