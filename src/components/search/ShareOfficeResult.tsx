@@ -1,23 +1,24 @@
 import React from "react";
 import styled from "styled-components";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { Grid, Image, Button, Text } from "../../elements/index";
 import { SlickSlider, ImageCnt } from "../shared/home";
-import { actionCreators as officeActions } from "../../redux/modules/office";
+import { shareDeleteLikeDB,shareClickLikeDB } from "../../redux/modules/office";
 import ossack from "../../assets/ossack02.jpg";
 import { LoadSpinner } from "../shared/home";
 import { useNavigate } from "react-router-dom";
+import { useAppDispatch, RootState } from "../../redux/configStore";
 
-const ShareOfficeResult = (props) => {
+const ShareOfficeResult = () => {
   const appDispatch = useAppDispatch();
   const navigate = useNavigate();
-  const officeData = useSelector((state) => state.office.share_list);
-  const is_loaded = useSelector((state) => state.office.is_loaded);
+  const officeData = useSelector((state:RootState) => state.office.share_list);
+  const is_loaded = useSelector((state:RootState) => state.office.is_loaded);
 
   if (officeData?.length >= 1) {
     return (
       <React.Fragment>
-        {officeData?.map((o, idx) => {
+        {officeData?.map((o:any, idx:number) => {
           return (
             <Grid key={idx}>
               <Grid
@@ -30,7 +31,7 @@ const ShareOfficeResult = (props) => {
                 overflow="hidden"
               >
                 <SlickSlider>
-                  {o?.imageList?.map((image, idx) => {
+                  {o?.imageList?.map((image:string, idx:number) => {
                     return (
                       <Div
                         key={idx}
@@ -67,7 +68,7 @@ const ShareOfficeResult = (props) => {
                     top="8px"
                     color="#FF0000"
                     _onClick={() =>
-                      dispatch(officeActions.shareDeleteLikeDB(o.shareofficeid))
+                      appDispatch(shareDeleteLikeDB(o.shareofficeid))
                     }
                   />
                 ) : (
@@ -78,7 +79,7 @@ const ShareOfficeResult = (props) => {
                     top="8px"
                     color="#fff"
                     _onClick={() =>
-                      dispatch(officeActions.shareClickLikeDB(o.shareofficeid))
+                      appDispatch(shareClickLikeDB(o.shareofficeid))
                     }
                   />
                 )}

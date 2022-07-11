@@ -3,9 +3,10 @@ import styled from "styled-components";
 import { useSelector } from "react-redux";
 import { Grid, Image, Text } from "../../elements/index";
 import defaultImg from "../../assets/default.png";
+import { RootState } from "../../redux/configStore";
 
 const OfficeBasicInfo = () => {
-  const getOneOffice = useSelector((state) => state.office.one_office);
+  const getOneOffice = useSelector((state:RootState) => state.office.one_office);
 
   return (
     <React.Fragment>

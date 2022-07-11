@@ -1,23 +1,24 @@
 import React from "react";
 import styled from "styled-components";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { Grid, Image, Button, Text } from "../../elements/index";
 import { SlickSlider, ImageCnt } from "../shared/home";
-import { actionCreators as officeActions } from "../../redux/modules/office";
+import { deleteLikeDB,clickLikeDB } from "../../redux/modules/office";
 import ossack from "../../assets/ossack02.jpg";
 import { LoadSpinner } from "../shared/home";
 import { useNavigate } from "react-router-dom";
+import { useAppDispatch, RootState } from "../../redux/configStore";
 
-const MapOfficeResult = (props) => {
+const MapOfficeResult = () => {
   const appDispatch = useAppDispatch();
   const navigate = useNavigate();
-  const officeData = useSelector((state) => state?.office?.list);
-  const is_loaded = useSelector((state) => state.office.is_loaded);
+  const officeData = useSelector((state:RootState) => state?.office?.list);
+  const is_loaded = useSelector((state:RootState) => state.office.is_loaded);
 
   if (officeData?.length >= 1) {
     return (
       <React.Fragment>
-        {officeData?.map((o, idx) => {
+        {officeData?.map((o:any, idx:number) => {
           return (
             <Grid key={idx}>
               <Grid
@@ -30,7 +31,7 @@ const MapOfficeResult = (props) => {
                 overflow="hidden"
               >
                 <SlickSlider>
-                  {o?.images?.map((image, idx) => {
+                  {o?.images?.map((image:string, idx:number) => {
                     return (
                       <Div
                         key={idx}
@@ -67,7 +68,7 @@ const MapOfficeResult = (props) => {
                     fill_like
                     color="#FF0000"
                     _onClick={() =>
-                      dispatch(officeActions.deleteLikeDB(o.estateid))
+                      appDispatch(deleteLikeDB(o.estateid))
                     }
                   />
                 ) : (
@@ -78,7 +79,7 @@ const MapOfficeResult = (props) => {
                     is_like
                     color="#fff"
                     _onClick={() =>
-                      dispatch(officeActions.clickLikeDB(o.estateid))
+                      appDispatch(clickLikeDB(o.estateid))
                     }
                   />
                 )}

@@ -2,8 +2,13 @@ import React from "react";
 import styled from "styled-components";
 import { ReactComponent as Close } from "../../assets/close.svg";
 import { useNavigate } from "react-router-dom";
-
-function History({ keywords, onRemoveKeyword, onClearKeywords, activeTab }) {
+interface HistoryProps {
+  onRemoveKeyword:(id:number)=>void;
+  onClearKeywords:()=>void;
+  activeTab: number;
+  keywords:Array<any>;
+}
+function History({ keywords, onRemoveKeyword, onClearKeywords, activeTab }:HistoryProps) {
   const navigate = useNavigate();
   if (keywords.length === 0) {
     return <HistoryContainer>최근 검색된 기록이 없습니다.</HistoryContainer>;
@@ -79,8 +84,10 @@ const KeywordContainer = styled.li`
     margin-bottom: 10px;
   }
 `;
-
-const RemoveButton = styled.button`
+interface RemoveButtonType {
+  onClick?: React.MouseEventHandler<HTMLSpanElement> | undefined;
+}
+const RemoveButton = styled.button<RemoveButtonType>`
   width: 20px;
   height: 20px;
   float: right;

@@ -2,21 +2,24 @@ import React, { useState } from "react";
 import styled, { css } from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { ReactComponent as Search } from "../../assets/search.svg";
-
-function SearchBar({ onAddKeyword, activeTab }) {
+interface SearchBarProps {
+  onAddKeyword:(text:string)=>false | undefined;
+  activeTab: number;
+}
+function SearchBar({ onAddKeyword, activeTab }:SearchBarProps) {
   const [keyword, setKeyword] = useState("");
   const navigate = useNavigate();
 
-  const handleKeyword = (e) => {
+  const handleKeyword = (e:React.ChangeEvent<HTMLInputElement>) => {
     setKeyword(e.target.value);
   };
-  const handleEnter = (e) => {
-    if (keyword && e.keyCode === 13) {
+  const handleEnter = (e:React.KeyboardEvent<HTMLInputElement>) => {
+    if (keyword && e.key === "Enter") {
       onAddKeyword(keyword);
     }
   };
 
-  const Entercheck = (e) => {
+  const Entercheck = (e:React.KeyboardEvent<HTMLInputElement>) => {
     if (keyword && e.key === "Enter") {
       if (!activeTab) {
         navigate(`/map/office?query=${keyword}`);
@@ -104,8 +107,10 @@ const RemoveIcon = styled.span`
 const InputContainer = styled.div`
   position: relative;
 `;
-
-const Input = styled.input`
+interface InputPropsType {
+  active?: boolean;
+}
+const Input = styled.input<InputPropsType>`
   width: 100%;
   background-color: #f5f5f5;
   font-size: ${({ theme }) => theme.fontSizes.large};

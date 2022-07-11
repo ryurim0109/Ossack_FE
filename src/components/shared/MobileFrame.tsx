@@ -22,9 +22,9 @@ const MobileFrame = ({ children, className }: MobileFrameProps) => {
 const WebFrame= styled.div`
   position: relative;
   top: 50%;
-  left: 50%;
+  left: 60%;
   transform: translate(-50%, -50%);
-  width:2000px;
+  width:100%;
   max-height: 100%;
   height: 100vh;
   z-index: 999;
@@ -43,25 +43,21 @@ const WebFrame= styled.div`
       top: 50%;
       transform: translate(-5%, -50%);
   }
-  @media screen and (min-width: 500px) {
-    top: 50%;
-    transform: translate(-40%, -50%);
-    max-width: 375px;
-}
 
 @media screen and (min-width: 900px) {
     top: 50%;
     transform: translate(-15%, -50%);
 }
-    @media screen and (max-width: 500px) {
-      left: 50%;
-    }
 
 @media screen and (min-width: 500px) {
     top: 50%;
     transform: translate(-40%, -50%);
     max-width: 375px;
 }
+@media screen and (max-width: 500px) {
+      left: 50%;
+    }
+
 
 `;
 const Mobile =styled.div`
@@ -85,40 +81,6 @@ const Mobile =styled.div`
     height: 100vh;
     min-width: 340px;
   }
-`;
-const Outter =styled.div`
-
-
-@media screen and (max-width: 500px) {
-  .MobileFullFrame {
-    position: inherit;
-    width: 100%;
-    height: 100vh;
-    min-width: 340px;
-  }
-  .WebFullFrame {
-    left: 50%;
-  }
-}
-
-@media screen and (min-width: 500px) {
-  .WebFullFrame {
-    top: 50%;
-    transform: translate(-40%, -50%);
-    max-width: 375px;
-  }
-}
-
-@media screen and (min-width: 900px) {
-  .WebFullFrame {
-    top: 50%;
-    transform: translate(-15%, -50%);
-  }
-}
-
-
-
-
 `;
 const Container =styled.div `
   width: 100%;

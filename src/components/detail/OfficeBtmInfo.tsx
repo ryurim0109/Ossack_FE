@@ -4,9 +4,10 @@ import styled from "styled-components";
 import { useSelector } from "react-redux";
 import { Grid, Text } from "../../elements/index";
 import { useParams } from "react-router-dom";
+import { RootState } from "../../redux/configStore";
 
 const OfficeBottomInfo = () => {
-  const getOneOffice = useSelector((state) => state.office.one_office);
+  const getOneOffice = useSelector((state:RootState) => state.office.one_office);
   const estateid = useParams().estateId;
   return (
     <React.Fragment>

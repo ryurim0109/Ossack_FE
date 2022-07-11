@@ -1,32 +1,97 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { instance } from "../../shared/api";
 
-export interface officeType {
-    list: Array<any>;
+
+  export interface SearchItemDataParams {
+    totalpage: number;
+    presentpage: number;
+    keyword: string;
+    estateResponseDtoList: Array<string>;
+    mylike?:boolean;
+    estateid?:number;
+    
+  }
+  export interface ShareItemDataParams {
+    totalpage: number;
+    presentpage: number;
+    keyword: string;
+    sharedOfficeResponseDtos: Array<string>;
+    mylike?:boolean;
+    shareofficeid?:number;
+  }
+  export interface LikeParams{
+    mylike:boolean;
+    agent:string | null;
+    personIncharge:string | null;
+    phoneNumber:string| null;
+    area: string | null;
+    capacity: any;
+    management_fee: any;
+    type: string | null;
+    toilet: any;
+    buildingFloor: any;
+    roomFloor: any;
+    parking: any;
+    monthly: string | null;
+    rent_fee: string | null;
+    deposit :string | null;
+    subwayInfo: any;
+  }
+  export interface officeType {
+    list: Array<SearchItemDataParams>;
     main_list: Array<any>;
     hot_list: Array<any>;
-    share_list: Array<any>;
+    share_list: Array<ShareItemDataParams>;
     is_loaded: boolean;
-    one_office: Array<any>;
-    one_share_office: Array<any>;
+    one_office: LikeParams;
+    one_share_office: LikeParams;
     mylike:boolean;
   } 
-
-/*   export interface SearchItemDataParams {
-    page: number | undefined;
-    presentpage: number | undefined;
-    keyword: string | undefined;
-    list: Array<any>;
-  } */
 const initialState:officeType = {
   list: [],
   main_list: [],
   hot_list: [],
   share_list: [],
   is_loaded: false,
-  one_office: [],
-  mylike: false,
-  one_share_office: [],
+  one_office: {
+    mylike: false,
+    agent: null,
+    personIncharge:null,
+    phoneNumber:null,
+    area: null,
+    capacity: null,
+    management_fee: null,
+    type:null,
+    toilet: null,
+    buildingFloor: null,
+    roomFloor: null,
+    monthly:null,
+    parking: null,
+    rent_fee: null,
+    deposit :null,
+    subwayInfo: null,
+
+  },
+  one_share_office: {
+    mylike: false,
+    agent: null,
+    personIncharge:null,
+    phoneNumber:null,
+    area: null,
+    capacity: null,
+    management_fee: null,
+    type:null,
+    toilet: null,
+    buildingFloor: null,
+    roomFloor: null,
+    parking: null,
+    monthly:null,
+    rent_fee: null,
+    deposit :null,
+    subwayInfo: null,
+
+  },
+  mylike:false,
 };
 
 export const  getMainOfficeDB= createAsyncThunk(
@@ -128,22 +193,47 @@ export const  getMainOfficeDB= createAsyncThunk(
       }
     }
   )
+  interface DataType {
+    data: SearchItemDataParams ;
+  }
+  interface ShareType {
+    data:ShareItemDataParams;
+  }
   export const  getSOListDB= createAsyncThunk(
     "GET_MAIN_OFFICE",
     
-    async (searchInfo: { keyword: string; pageno: number; monthly:number; depositlimit:number;feelimit:number; }, thunkAPI) => {
+    async (searchInfo: { keyword: string; pageno: number |1; monthly:number | undefined; depositlimit:number |undefined;feelimit:number|undefined; } ,thunkAPI) => {
       try{
         thunkAPI.dispatch(is_loaded(false));
-        const responce =await instance.get(`/estates/${searchInfo.pageno}?query=${searchInfo.keyword}&depositlimit=${searchInfo.depositlimit}&feelimit=${searchInfo.feelimit}&monthly=${searchInfo.monthly}`)
-        
-        /*   const searchData: Array<SearchItemDataParams> = [];
-          searchData.push({
-            page:res.data.totalpage,
-            presentpage:res.data.presentpage,
-            keyword:res.data.keyword,
-            list:res.data.estateResponseDtoList
-          }) */
-          thunkAPI.dispatch(getSOList(responce.data));
+        const responce: DataType = await instance.get(`/estates/${searchInfo.pageno}?query=${searchInfo.keyword}&depositlimit=${searchInfo.depositlimit}&feelimit=${searchInfo.feelimit}&monthly=${searchInfo.monthly}`)
+          thunkAPI.dispatch(
+            getSOList({
+              totalpage: responce.data.totalpage,
+              presentpage: responce.data.presentpage,
+              keyword: responce.data.keyword,
+              estateResponseDtoList: responce.data.estateResponseDtoList,
+            })
+          );
+      }catch (err){
+        return;
+      }
+    }
+  )
+  export const  getShareListDB= createAsyncThunk(
+    "GET_SEARCH_SHARE_LIST",
+    
+    async (shareInfo: { keyword: string; pageno: number; } ,thunkAPI) => {
+      try{
+        thunkAPI.dispatch(is_loaded(false));
+        const responce: ShareType = await instance.get(`/sharedoffices?query=${shareInfo.keyword}&pagenum=${shareInfo.pageno}`)
+          thunkAPI.dispatch(
+            getShareList({
+              totalpage: responce.data.totalpage,
+              presentpage: responce.data.presentpage,
+              keyword: responce.data.keyword,
+              sharedOfficeResponseDtos: responce.data.sharedOfficeResponseDtos,
+            })
+          );
       }catch (err){
         return;
       }
@@ -224,16 +314,36 @@ export const  getMainOfficeDB= createAsyncThunk(
         return;
       },
       oneClickLike: (state, action: PayloadAction<any>) => {
-        state.mylike = true;
+        state.one_office.mylike = true;
         return;
       },
       oneDeleteLike: (state, action: PayloadAction<any>) => {
-        state.mylike = false;
+        state.one_office.mylike = false;
         return;
       },
-      getSOList: (state, action: PayloadAction<any>) => {
-        state.mylike = false;
-        return;
+      getSOList: (state, { payload }:PayloadAction<SearchItemDataParams>) => {
+        const new_searchList = [
+          ...state.list,
+          {
+            totalpage: payload.totalpage,
+            presentpage: payload.presentpage,
+            keyword: payload.keyword,
+            estateResponseDtoList: payload.estateResponseDtoList,
+          },
+        ];
+        return { ...state, list: new_searchList };
+      },
+      getShareList: (state, { payload }:PayloadAction<ShareItemDataParams>) => {
+        const new_shardList = [
+          ...state.share_list,
+          {
+            totalpage: payload.totalpage,
+            presentpage: payload.presentpage,
+            keyword: payload.keyword,
+            sharedOfficeResponseDtos: payload.sharedOfficeResponseDtos,
+          },
+        ];
+        return { ...state, share_list: new_shardList };
       },
       is_loaded:(state, action: PayloadAction<any>)=>{
         state.is_loaded =true;
@@ -258,6 +368,7 @@ export const  getMainOfficeDB= createAsyncThunk(
     oneDeleteLike,
     getSOList,
     is_loaded,
+    getShareList,
  } = officeSlice.actions;
     
   const officeActionsCreators = {
@@ -271,6 +382,7 @@ export const  getMainOfficeDB= createAsyncThunk(
     oneClickLikeDB,
     oneDeleteLikeDB,
     getSOListDB,
+    getShareListDB,
     // getOneOfficeDB,
     // getShareListDB,
     // getOneShareOfficeDB,

@@ -5,9 +5,10 @@ import { MyHeader } from "../components/my/index";
 //** 최근 검색 기능 추가 - pts20220505 */
 import SearchHistory from "../components/search/SearchHistory";
 import SearchBar from "../components/search/SearchBar";
-import { actionCreators as officeActions } from "../redux/modules/office";
+import { getSOListDB } from "../redux/modules/office";
 import { Bar, NotUser } from "../components/shared/home";
-import { useDispatch, useSelector } from "react-redux";
+import {  useSelector } from "react-redux";
+import { useAppDispatch,RootState } from "../redux/configStore";
 
 import { Grid, Text } from "../elements/index";
 import Tabs from "@material-ui/core/Tabs";
@@ -17,8 +18,8 @@ import Swal from "sweetalert2";
 
 const SearchPage = () => {
   const appDispatch = useAppDispatch();
-  const login = useSelector((state) => state.user.is_login);
-  const is_session = localStorage.getItem("token");
+  //const login = useSelector((state:RootState) => state.user.is_login);
+  //const is_session = localStorage.getItem("token");
 
   const [keywords, setKeywords] = useState(
     JSON.parse(localStorage.getItem("keywords") || "[]")
@@ -27,15 +28,18 @@ const SearchPage = () => {
   useEffect(() => {
     localStorage.setItem("keywords", JSON.stringify(keywords));
   }, [keywords]);
-
+  interface KeywordPropsType {
+    id?: number;
+    text:string;
+  }
   //검색어 추가
-  const handleAddKeyword = (text) => {
-    const newKeyword = {
+  const handleAddKeyword = (text:string) => {
+    const newKeyword: KeywordPropsType = {
       id: Date.now(),
       text: text,
     };
     // 검색 중복저장체크
-    if (!localStorage.getItem("keywords").includes(text) && searchCheck(text)) {
+    if (!localStorage.getItem("keywords")?.includes(text) && searchCheck(text)) {
       setKeywords([newKeyword, ...keywords]);
     }
 
@@ -49,20 +53,26 @@ const SearchPage = () => {
       });
       return false;
     } else {
-      dispatch(officeActions.getSOListDB(newKeyword.text));
+      appDispatch(getSOListDB({
+        keyword: newKeyword.text,
+        pageno: 1,
+        monthly: undefined,
+        depositlimit:undefined,
+        feelimit: undefined,
+      }));
     }
   };
 
   // 검색어 삭제
-  const handleRemoveKeyword = (id) => {
-    const nextKeyword = keywords.filter((thisKeyword) => {
-      return thisKeyword.id != id;
+  const handleRemoveKeyword = (id:number) => {
+    const nextKeyword = keywords.filter((thisKeyword:KeywordPropsType) => {
+      return thisKeyword.id !== id;
     });
     setKeywords(nextKeyword);
   };
 
   // 검색어 전체 삭제
-  const handleClearKeywords = (id) => {
+  const handleClearKeywords = () => {
     setKeywords([]);
   };
 
@@ -70,17 +80,17 @@ const SearchPage = () => {
 
   const [activeTab, setActiveTab] = useState(0);
 
-  const onClickTab = (idx) => {
+  const onClickTab = (idx:number) => {
     setActiveTab(idx);
   };
 
-  if (!login || !is_session) {
+/*   if (!login || !is_session) {
     return (
       <React.Fragment>
         <NotUser />
       </React.Fragment>
     );
-  } else {
+  } else { */
     return (
       <React.Fragment>
         <Outter>
@@ -130,7 +140,7 @@ const SearchPage = () => {
         <Bar />
       </React.Fragment>
     );
-  }
+ /*  } */
 };
 const Outter = styled.div`
   width: 100%;

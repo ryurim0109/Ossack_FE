@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Grid, Text } from "../elements/index";
-import { actionCreators as userActions } from "../redux/modules/user";
+//import { actionCreators as userActions } from "../redux/modules/user";
 import { Bar } from "../components/shared/home";
 import { MyHeader } from "../components/my/index";
-import { useDispatch, useSelector } from "react-redux";
+import {  useSelector } from "react-redux";
+import { useAppDispatch,RootState } from "../redux/configStore";
 
 const WithDraw = () => {
   const appDispatch = useAppDispatch();
-  useEffect(() => {
-    dispatch(userActions.loginCheckApi());
-  }, [dispatch]);
-  const user_info = useSelector((state) => state.user.user);
+  // useEffect(() => {
+  //   appDispatch(loginCheckApi());
+  // }, []);
+  //const user_info = useSelector((:RootState) => state.user.user);
   const [isChecked, setIsChecked] = useState(false);
   const handleChecked = () => {
     if (isChecked === false) {
@@ -27,7 +28,8 @@ const WithDraw = () => {
         <Section>
           <Grid margin="20px 0">
             <Text size="20px" bold>
-              {user_info?.nickname}님,
+              {/* {user_info?.nickname}님, */}
+              게스트님
             </Text>
             <P>오싹 서비스 탈퇴 전에 확인해주세요.</P>
           </Grid>
@@ -89,7 +91,7 @@ const WithDraw = () => {
           <Btn
             disabled={!isChecked}
             onClick={() => {
-              dispatch(userActions.resignDB());
+              //appDispatch(resignDB());
             }}
           >
             계정 영구삭제
