@@ -3,10 +3,13 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Grid, Image } from "../../elements/index";
 
-import { SlickSlider, ImageCnt } from "../../components/shared/home";
+import { SlickSlider, ImageCnt } from "../shared/home";
+import { RootState } from "../../redux/configStore";
 
 const OfficeImage = () => {
-  const getOneOffice = useSelector((state) => state.office.one_office);
+  const getOneShareOffice = useSelector(
+    (state:RootState) => state.office.one_share_office
+  );
 
   return (
     <React.Fragment>
@@ -20,8 +23,8 @@ const OfficeImage = () => {
       >
         <Grid>
           <SlickSlider>
-            {getOneOffice?.images &&
-              getOneOffice?.images?.map((image, idx) => {
+            {getOneShareOffice?.imageList &&
+              getOneShareOffice?.imageList?.map((image, idx) => {
                 return (
                   <Image
                     key={idx}
@@ -41,7 +44,7 @@ const OfficeImage = () => {
             right="8px"
             bottom="8px"
           >
-            <ImageCnt>{getOneOffice?.images?.length}</ImageCnt>
+            <ImageCnt>{getOneShareOffice?.imageList?.length}</ImageCnt>
           </Grid>
         </Grid>
       </Grid>

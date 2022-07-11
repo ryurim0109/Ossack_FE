@@ -3,10 +3,11 @@ import styled from "styled-components";
 import { useSelector } from "react-redux";
 import { Grid, Image, Text } from "../../elements/index";
 import defaultImg from "../../assets/default.png";
+import { RootState } from "../../redux/configStore";
 
 const OfficeBasicInfo = () => {
   const getOneShareOffice = useSelector(
-    (state) => state.office.one_share_office
+    (state:RootState) => state.office.one_share_office
   );
 
   return (

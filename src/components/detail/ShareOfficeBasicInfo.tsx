@@ -2,10 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
 import { Grid } from "../../elements/index";
+import { RootState } from "../../redux/configStore";
 
 const OfficeBasicInfo = () => {
   const getOneShareOffice = useSelector(
-    (state) => state.office.one_share_office
+    (state:RootState) => state.office.one_share_office
   );
 
   return (

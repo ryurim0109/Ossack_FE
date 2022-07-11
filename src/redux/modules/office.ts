@@ -36,6 +36,18 @@ import { instance } from "../../shared/api";
     rent_fee: string | null;
     deposit :string | null;
     subwayInfo: any;
+    buildingDetail:string | null;
+    buildingInfo: string |null;
+    images: Array<string>;
+    number:any;
+    time?:string | null;
+    minimum_days?:string | null;
+    floor?:string | null;
+    name?:string | null;
+    price?: string | null;
+    detail?:string |null;
+    address?:string | null;
+    imageList?:Array<string>
   }
   export interface officeType {
     list: Array<SearchItemDataParams>;
@@ -70,6 +82,10 @@ const initialState:officeType = {
     rent_fee: null,
     deposit :null,
     subwayInfo: null,
+    buildingDetail:null,
+    buildingInfo:null,
+    images:[],
+    number:null,
 
   },
   one_share_office: {
@@ -89,6 +105,18 @@ const initialState:officeType = {
     rent_fee: null,
     deposit :null,
     subwayInfo: null,
+    buildingDetail:null,
+    buildingInfo:null,
+    images:[],
+    number:null,
+    time:null,
+    minimum_days:null,
+    floor:null,
+    name:null,
+    price:null,
+    detail:null,
+    address: null,
+    imageList:[],
 
   },
   mylike:false,

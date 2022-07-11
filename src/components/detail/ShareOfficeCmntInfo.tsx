@@ -1,27 +1,29 @@
 import React, { useRef } from "react";
 import { useSelector } from "react-redux";
 import { Grid, Text } from "../../elements/index";
+import { RootState } from "../../redux/configStore";
 
 import styled from "styled-components";
 
 const CommentInfo = () => {
-  const getOneOffice = useSelector((state) => state.office.one_office);
-  const contentRef = useRef(null);
-  const divBoxRef = useRef(null);
-  const BtnRef = useRef(null);
+  const getOneShareOffice = useSelector(
+    (state:RootState) => state.office.one_share_office
+  );
+  const contentRef = useRef<HTMLDivElement>(null);
+  const divBoxRef = useRef<HTMLDivElement>(null);
+  const BtnRef = useRef<HTMLButtonElement>(null);
 
-  const onClick = (e) => {
-    contentRef.current.classList.add("show");
+  const onClick = (e:React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    contentRef.current?.classList.add("show");
     e.currentTarget.classList.add("hide");
-    divBoxRef.current.classList.add("hide");
+    divBoxRef.current?.classList.add("hide");
   };
-  const onClose = (e) => {
-    contentRef.current.classList.remove("show");
+  const onClose = (e:React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    contentRef.current?.classList.remove("show");
     e.currentTarget.classList.add("hide");
-    BtnRef.current.classList.remove("hide");
-    divBoxRef.current.classList.remove("hide");
+    BtnRef.current?.classList.remove("hide");
+    divBoxRef.current?.classList.remove("hide");
   };
-
   return (
     <React.Fragment>
       <Grid height="auto" bg="#fff" margin="0 0 10px 0" padding="0 0 20px 0">
@@ -46,10 +48,12 @@ const CommentInfo = () => {
           <Grid display="flex" flexDirection="column" justifyContent="center">
             <Grid height="60px">
               <Text size="16px" color="#111">
-                {getOneOffice?.subwayInfo ? getOneOffice?.subwayInfo : null}
+                {getOneShareOffice?.subwayInfo
+                  ? getOneShareOffice?.subwayInfo
+                  : null}
               </Text>
               <Ssp>
-                {getOneOffice?.buildingInfo ? getOneOffice?.buildingInfo : null}
+                {getOneShareOffice?.address ? getOneShareOffice?.address : null}
               </Ssp>
             </Grid>
             <Grid height="40px">
@@ -67,20 +71,18 @@ const CommentInfo = () => {
             <Grid>
               <Text>
                 <Ellipsis ref={contentRef}>
-                  {getOneOffice?.buildingDetail
-                    ?.split("\n")
-                    .map((line, idx) => {
-                      return (
-                        <div key={idx}>
-                          {line} <br />
-                          <CloseBtn onClick={onClose}>
-                            <Text size="16px" color="#3E00FF">
-                              접기
-                            </Text>
-                          </CloseBtn>
-                        </div>
-                      );
-                    })}{" "}
+                  {getOneShareOffice?.detail?.split("\n").map((line, idx) => {
+                    return (
+                      <div key={idx}>
+                        {line} <br />
+                        <CloseBtn onClick={onClose}>
+                          <Text size="16px" color="#3E00FF">
+                            접기
+                          </Text>
+                        </CloseBtn>
+                      </div>
+                    );
+                  })}{" "}
                   <Div ref={divBoxRef} />
                   <Btn onClick={onClick} ref={BtnRef}>
                     <Text size="16px" color="#3E00FF">
@@ -119,7 +121,7 @@ const Ellipsis = styled.div`
   overflow: hidden;
   text-overflow: ellipsis;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 5;
   padding-bottom: 60px;
   &.show {
     display: block;
@@ -150,12 +152,13 @@ const Btn = styled.button`
   position: absolute;
   bottom: 0;
   right: 0;
-  background-color: #fff;
   line-height: 48px;
+  background-color: #fff;
   &.hide {
     display: none;
   }
 `;
+
 const CloseBtn = styled.button`
   width: 100%;
   height: 48px;
