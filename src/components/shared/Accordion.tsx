@@ -2,14 +2,17 @@ import React from "react";
 import styled from "styled-components";
 import { ReactComponent as Down } from "../../assets/arrowbottom.svg";
 import { ReactComponent as Top } from "../../assets/arrowtop.svg";
-
-function Accordion(props) {
-  const parentRef = React.useRef(null);
-  const childRef = React.useRef(null);
+interface AccordionProps {
+  title: string;
+  contents:string;
+}
+function Accordion(props:AccordionProps) {
+  const parentRef = React.useRef<HTMLDivElement>(null);
+  const childRef = React.useRef<HTMLDivElement>(null);
   const [isCollapse, setIsCollapse] = React.useState(false);
 
   const handleButtonClick = React.useCallback(
-    (event) => {
+    (event:React.MouseEvent<HTMLDivElement>) => {
       event.stopPropagation();
       if (parentRef.current === null || childRef.current === null) {
         return;
