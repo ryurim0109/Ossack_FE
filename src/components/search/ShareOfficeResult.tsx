@@ -3,7 +3,10 @@ import styled from "styled-components";
 import { useSelector } from "react-redux";
 import { Grid, Image, Button, Text } from "../../elements/index";
 import { SlickSlider, ImageCnt } from "../shared/home";
-import { shareDeleteLikeDB,shareClickLikeDB } from "../../redux/modules/office";
+import {
+  shareDeleteLikeDB,
+  shareClickLikeDB,
+} from "../../redux/modules/office";
 import ossack from "../../assets/ossack02.jpg";
 import { LoadSpinner } from "../shared/home";
 import { useNavigate } from "react-router-dom";
@@ -12,13 +15,15 @@ import { useAppDispatch, RootState } from "../../redux/configStore";
 const ShareOfficeResult = () => {
   const appDispatch = useAppDispatch();
   const navigate = useNavigate();
-  const officeData = useSelector((state:RootState) => state.office.share_list);
-  const is_loaded = useSelector((state:RootState) => state.office.is_loaded);
+  const officeData = useSelector(
+    (state: RootState) => state.office.share_list.sharedOfficeResponseDtos
+  );
+  const is_loaded = useSelector((state: RootState) => state.office.is_loaded);
 
   if (officeData?.length >= 1) {
     return (
       <React.Fragment>
-        {officeData?.map((o:any, idx:number) => {
+        {officeData?.map((o: any, idx: number) => {
           return (
             <Grid key={idx}>
               <Grid
@@ -31,7 +36,7 @@ const ShareOfficeResult = () => {
                 overflow="hidden"
               >
                 <SlickSlider>
-                  {o?.imageList?.map((image:string, idx:number) => {
+                  {o?.imageList?.map((image: string, idx: number) => {
                     return (
                       <Div
                         key={idx}
