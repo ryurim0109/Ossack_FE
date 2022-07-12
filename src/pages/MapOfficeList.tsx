@@ -13,6 +13,7 @@ const MapOfficeList = () => {
   const appDispatch = useAppDispatch();
   const location = useLocation();
   const router =location?.search;
+  const search =router.split("=")[1];
 
   const totalPage = useSelector((state:RootState) => state?.office?.list.totalpage);
   const title = useSelector((state:RootState) => state?.office?.list?.keyword);
@@ -31,24 +32,25 @@ const MapOfficeList = () => {
       });
       setPageno((pre) => pre + 1);
       setIsLoading(false);
-      observer.observe(entry.targetRef);
+      observer.observe(entry.targetRef.current);
     }
   };
 
   useEffect(() => {
     let observer:any;
-    if (targetRef) {
+    if (targetRef.current) {
       observer = new IntersectionObserver(callback, { threshold: 1 });
-      observer.observe(targetRef);
+      observer.observe(targetRef.current);
     }
     return () => observer && observer.disconnect();
-  }, [targetRef]);
+  }, [targetRef.current]);
 
   useEffect(() => {
     const serach_info={
       pageno:pageno,
+      keyword:search,
     }
-    //appDispatch(getSOListDB(serach_info));
+    appDispatch(getSOListDB(serach_info));
   }, []);
  // const is_session = localStorage.getItem("token");
 

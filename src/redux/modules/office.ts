@@ -62,7 +62,7 @@ import { instance } from "../../shared/api";
     list: SearchItemDataParams;
     main_list: Array<any>;
     hot_list: Array<any>;
-    share_list: Array<ShareItemDataParams>;
+    share_list: ShareItemDataParams;
     is_loaded: boolean;
     one_office: LikeParams;
     one_share_office: LikeParams;
@@ -78,7 +78,13 @@ const initialState:officeType = {
   },
   main_list: [],
   hot_list: [],
-  share_list: [],
+  share_list: {
+    totalpage: 1,
+    presentpage: 1,
+    keyword: "서울시",
+    estateResponseDtoList: [],
+    
+  },
   is_loaded: false,
   one_office: {
     mylike: false,
@@ -296,7 +302,7 @@ export const  getMainOfficeDB= createAsyncThunk(
   export const  getSOListDB= createAsyncThunk(
     "GET_MAIN_OFFICE",
     
-    async (searchInfo: { keyword: string; pageno: number |1; monthly:number | undefined; depositlimit:number |undefined;feelimit:number|undefined; } ,thunkAPI) => {
+    async (searchInfo: { keyword: string; pageno: number |1; monthly?:number | undefined; depositlimit?:number |undefined;feelimit?:number|undefined; } ,thunkAPI) => {
       try{
         thunkAPI.dispatch(is_loaded(false));
         const responce: DataType = await instance.get(`/estates/${searchInfo.pageno}?query=${searchInfo.keyword}&depositlimit=${searchInfo.depositlimit}&feelimit=${searchInfo.feelimit}&monthly=${searchInfo.monthly}`)

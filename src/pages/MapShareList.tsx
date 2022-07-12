@@ -2,18 +2,20 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
 import { getShareListDB } from "../redux/modules/office";
-
+import { useLocation } from "react-router-dom";
 import { MyHeader } from "../components/my/index";
 import { ShareOfficeResult } from "../components/search/index";
 import { Bar, Spinner, NotUser } from "../components/shared/home";
 import { RootState,useAppDispatch } from "../redux/configStore";
 
-const MapShareList = (props) => {
+const MapShareList = () => {
   const appDispatch = useAppDispatch();
-  const search = props.location.search.split("=")[1];
-  const totalPage = useSelector((state) => state?.office?.page);
-  const title = useSelector((state) => state?.office?.keyword);
-  const login = useSelector((state) => state.user.is_login);
+  const location = useLocation();
+  const router =location?.search;
+  const search =router.split("=")[1];
+  const totalPage = useSelector((state:RootState) => state?.office?.share_list.);
+  const title = useSelector((state:RootState) => state?.office?.keyword);
+  const login = useSelector((state:RootState) => state.user.is_login);
 
   const [pageno, setPageno] = useState(1);
   const [target, setTarget] = useState(null);
