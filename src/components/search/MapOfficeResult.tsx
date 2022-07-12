@@ -12,7 +12,7 @@ import { useAppDispatch, RootState } from "../../redux/configStore";
 const MapOfficeResult = () => {
   const appDispatch = useAppDispatch();
   const navigate = useNavigate();
-  const officeData = useSelector((state:RootState) => state?.office?.list);
+  const officeData = useSelector((state:RootState) => state?.office?.list.estateResponseDtoList);
   const is_loaded = useSelector((state:RootState) => state.office.is_loaded);
 
   if (officeData?.length >= 1) {

@@ -1,10 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 import { Button, Grid, Text } from "../../elements/index";
-import { actionCreators as userActions } from "../../redux/modules/user";
-import { useDispatch } from "react-redux";
-
-const LogoutModal = (props) => {
+import { logOutApi } from "../../redux/modules/user";
+import { useAppDispatch } from "../../redux/configStore";
+interface LogoutModalProps {
+  isOpen: boolean;
+  setIsOpen:any;
+}
+const LogoutModal = (props:LogoutModalProps) => {
   const appDispatch = useAppDispatch();
   const { isOpen, setIsOpen } = props;
   const ModalClose = () => {
@@ -39,7 +42,7 @@ const LogoutModal = (props) => {
                 borderRadius="0 0 8px 0"
                 color="#999"
                 _onClick={() => {
-                  dispatch(userActions.logOutApi());
+                  appDispatch(logOutApi());
                 }}
               >
                 로그아웃

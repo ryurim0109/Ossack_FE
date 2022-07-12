@@ -5,35 +5,36 @@ import { Bar, NotUser } from "../components/shared/home";
 import { Grid, Image, Button, Text } from "../elements/index";
 import { ReactComponent as ProEdit } from "../assets/pro_edit.svg";
 import { nickNameRegex } from "../shared/regCheck";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import defaultImg from "../assets/default.png";
 import Swal from "sweetalert2";
-import { actionCreators as userActions } from "../redux/modules/user";
+import { editProfileDB,userImgDeleteDB } from "../redux/modules/user";
 import { useNavigate } from "react-router-dom";
+import { RootState, useAppDispatch } from "../redux/configStore";
 
 const EditProfile = () => {
   const appDispatch = useAppDispatch();
   const navigate = useNavigate();
-  const user_info = useSelector((state) => state.user.user);
-  const [image, setImage] = useState("");
-  const [preview, setPreview] = useState(null);
-  const [nickname, setNickname] = useState(user_info?.nickname);
-  const login = useSelector((state) => state.user.is_login);
-  const is_session = localStorage.getItem("token");
+  const user_Info = useSelector((state:RootState) => state.user.user);
+  const [image, setImage] = useState<any>("");
+  const [preview, setPreview] = useState();
+  const [nickname, setNickname] = useState<any>(user_Info?.nickname);
+  // const login = useSelector((state:RootState) => state.user.is_login);
+  // const is_session = localStorage.getItem("token");
   //사진 미리보기
-  const encodeFileToBase64 = (fileBlob) => {
+  const encodeFileToBase64 = (fileBlob:any) => {
     const reader = new FileReader();
 
     reader.readAsDataURL(fileBlob);
 
-    return new Promise((resolve) => {
+    return new Promise((resolve:any) => {
       reader.onload = () => {
-        setPreview(reader.result);
+        setPreview(reader.result as any);
         resolve();
       };
     });
   };
-  const changeNickname = (e) => {
+  const changeNickname = (e:React.ChangeEvent<HTMLInputElement>) => {
     setNickname(e.target.value);
   };
   const editProfile = () => {
@@ -52,34 +53,42 @@ const EditProfile = () => {
       return;
     }
     if (!nickname) {
-      dispatch(
-        userActions.editProfileDB(
-          user_info.nickname,
-          image,
-          user_info?.imageUrl
+      const userInfo = {
+        nickname:user_Info.nickname,
+        image:image,
+        userimg:user_Info.imageUrl,
+      };
+      appDispatch(
+        editProfileDB(
+          userInfo
         )
       );
     } else {
-      dispatch(userActions.editProfileDB(nickname, image, user_info?.imageUrl));
+      const userInfo = {
+        nickname:nickname,
+        image:image,
+        userimg:user_Info.imageUrl,
+      };
+      appDispatch(editProfileDB(userInfo));
     }
     navigate("/mypage");
   };
   const ImgDelete = () => {
     if (!nickname) {
-      dispatch(userActions.userImgDeleteDB(user_info.nickname));
+      appDispatch(userImgDeleteDB(user_Info.nickname));
     } else {
-      dispatch(userActions.userImgDeleteDB(nickname));
+      appDispatch(userImgDeleteDB(nickname));
     }
     navigate("/mypage");
   };
 
-  if (!login || !is_session) {
-    return (
-      <React.Fragment>
-        <NotUser />
-      </React.Fragment>
-    );
-  } else {
+  // if (!login || !is_session) {
+  //   return (
+  //     <React.Fragment>
+  //       <NotUser />
+  //     </React.Fragment>
+  //   );
+  // } else {
     return (
       <React.Fragment>
         <MyHeader is_my>프로필 변경</MyHeader>
@@ -109,8 +118,8 @@ const EditProfile = () => {
                 src={
                   preview
                     ? preview
-                    : user_info?.imageUrl
-                    ? user_info?.imageUrl
+                    : user_Info?.imageUrl
+                    ? user_Info?.imageUrl
                     : defaultImg
                 }
               />
@@ -122,7 +131,7 @@ const EditProfile = () => {
               type="file"
               id="file_input"
               accept="image/jpeg, image/png, image/jpg"
-              onChange={(e) => {
+              onChange={(e:any) => {
                 encodeFileToBase64(e.target.files[0]);
                 setImage(e.target.files[0]);
               }}
@@ -149,7 +158,7 @@ const EditProfile = () => {
             </Grid>
             <NickInput
               onChange={changeNickname}
-              defaultValue={user_info?.nickname}
+              defaultValue={user_Info?.nickname}
               type="text"
             />
           </Grid>
@@ -180,7 +189,7 @@ const EditProfile = () => {
         <Bar />
       </React.Fragment>
     );
-  }
+  // }
 };
 const Outter = styled.div`
   width: 100%;
@@ -206,7 +215,10 @@ const Outter = styled.div`
     right: 35%;
   }
 `;
-const NickInput = styled.input`
+interface NickInputType {
+  defaultValue: any;
+}
+const NickInput = styled.input<NickInputType>`
   width: 100%;
   height: 48px;
   border-radius: 8px;

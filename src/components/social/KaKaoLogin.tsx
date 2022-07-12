@@ -1,22 +1,22 @@
 import React from "react";
-import { useDispatch } from "react-redux";
-import { actionCreators as userActions } from "../../redux/modules/user";
+import { loginBykakao } from "../../redux/modules/user";
 import Spinner from "../shared/Spinner";
+import { useAppDispatch } from "../../redux/configStore";
 
-const KaKaoLogin = (props) => {
+const KaKaoLogin = () => {
   const appDispatch = useAppDispatch();
 
   // 인가코드
-  let code = new URL(window.location.href).searchParams.get("code");
+  let code:string|null = new URL(window.location.href).searchParams.get("code");
 
   React.useEffect(() => {
     if (code) {
       const kakao = () => {
-        dispatch(userActions.loginBykakao(code));
+        appDispatch(loginBykakao(code));
       };
       kakao();
     }
-  }, [code]);
+  }, []);
 
   return <Spinner />;
 };

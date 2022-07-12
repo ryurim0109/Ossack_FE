@@ -1,7 +1,10 @@
 import React from "react";
 import { Grid, Text } from "../../elements/index";
-
-const Overlay = (props) => {
+interface OverlaynProps {
+  position: any;
+  name:string;
+}
+const Overlay = (props:OverlaynProps) => {
   const { position, name } = props;
 
   return (

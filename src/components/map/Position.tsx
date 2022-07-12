@@ -2,7 +2,13 @@ import React, { useEffect } from "react";
 import {getOfficeData } from "../../redux/modules/map";
 import { useAppDispatch } from "../../redux/configStore";
 
-const Position = (props) => {
+interface PositionProps {
+  pos: any;
+  name:string;
+  router:string;
+  level:any;
+}
+const Position = (props:PositionProps) => {
   const appDispatch = useAppDispatch();
 
   const { pos, level, name, router } = props;
@@ -14,9 +20,9 @@ const Position = (props) => {
   //     dispatch(getOfficeData(pos, level, router));
   //   }
   // }, [pos, level]);
-  useEffect(()=>{
+ /*  useEffect(()=>{
     appDispatch(getOfficeData(pos, level, router));
-  })
+  }) */
 
   return <React.Fragment></React.Fragment>;
 };

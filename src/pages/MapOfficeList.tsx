@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState ,useRef} from "react";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
@@ -9,20 +9,20 @@ import { MapOfficeResult } from "../components/search/index";
 import { Bar, Spinner, NotUser } from "../components/shared/home";
 import { useAppDispatch,RootState } from "../redux/configStore";
 
-const MapOfficeList = (props) => {
+const MapOfficeList = () => {
   const appDispatch = useAppDispatch();
   const location = useLocation();
   const router =location?.search;
 
-  const totalPage = useSelector((state) => state?.office?.page);
-  const title = useSelector((state) => state?.office?.keyword);
+  const totalPage = useSelector((state:RootState) => state?.office?.list.totalpage);
+  const title = useSelector((state:RootState) => state?.office?.list?.keyword);
   //const login = useSelector((state) => state.user.is_login);
 
   const [pageno, setPageno] = useState(1);
-  const [target, setTarget] = useState(null);
+  const targetRef = useRef<HTMLDivElement>(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const callback = async ([entry], observer) => {
+  const callback:any = async ([entry]: any, observer:any) => {
     if (entry.isIntersecting && !isLoading) {
       observer.unobserve(entry.target);
       setIsLoading(true);
@@ -31,21 +31,24 @@ const MapOfficeList = (props) => {
       });
       setPageno((pre) => pre + 1);
       setIsLoading(false);
-      observer.observe(entry.target);
+      observer.observe(entry.targetRef);
     }
   };
 
   useEffect(() => {
-    let observer;
-    if (target) {
+    let observer:any;
+    if (targetRef) {
       observer = new IntersectionObserver(callback, { threshold: 1 });
-      observer.observe(target);
+      observer.observe(targetRef);
     }
     return () => observer && observer.disconnect();
-  }, [target]);
+  }, [targetRef]);
 
   useEffect(() => {
-    appDispatch(getSOListDB(pageno, router));
+    const serach_info={
+      pageno:pageno,
+    }
+    //appDispatch(getSOListDB(serach_info));
   }, []);
  // const is_session = localStorage.getItem("token");
 
@@ -63,7 +66,7 @@ const MapOfficeList = (props) => {
           <MapOfficeResult />
         </Outter>
         {isLoading ? <Spinner /> : null}
-        {totalPage > pageno ? <div ref={setTarget}> </div> : null}
+        {totalPage > pageno ? <div ref={targetRef}> </div> : null}
         <Bar />
       </React.Fragment>
     );

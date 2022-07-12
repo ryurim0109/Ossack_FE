@@ -2,8 +2,13 @@ import React from "react";
 import { Button, Grid, Text } from "../../elements/index";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-
-const MyHeader = (props) => {
+interface MyHeaderProps {
+  children: React.ReactNode | JSX.Element;
+  is_close?: boolean;
+  is_my?:boolean;
+  is_back?:boolean;
+}
+const MyHeader = (props:MyHeaderProps) => {
   const navigate = useNavigate();
   const { children, is_close, is_my, is_back } = props;
   if (is_back) {

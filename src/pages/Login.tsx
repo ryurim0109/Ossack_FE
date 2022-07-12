@@ -10,8 +10,8 @@ import Container from "@mui/material/Container";
 import { Text } from "../elements/index";
 import { useNavigate } from "react-router-dom";
 
-import { useDispatch } from "react-redux";
-import { actionCreators as userActions } from "../redux/modules/user";
+import { useAppDispatch } from "../redux/configStore";
+import { loginApi } from "../redux/modules/user";
 import { TalkTalk } from "../components/shared/home";
 
 const Login = () => {
@@ -23,11 +23,11 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [isActive, setIsActive] = useState(false);
 
-  const handleEmailInput = (event) => {
+  const handleEmailInput = (event:React.ChangeEvent<HTMLInputElement>) => {
     setUserEmail(event.target.value);
   };
 
-  const handlePasswordInput = (event) => {
+  const handlePasswordInput = (event:React.ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
   };
 
@@ -37,13 +37,16 @@ const Login = () => {
       : setIsActive(false);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event:React.ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const userEmail = data.get("userEmail");
     const password = data.get("password");
-
-    dispatch(userActions.loginApi(userEmail, password));
+    const user={
+      userEmail:userEmail,
+      password:password
+    }
+    appDispatch(loginApi(user));
   };
 
   const style = {
@@ -70,10 +73,6 @@ const Login = () => {
           }}
         >
           <Grid
-            display="flex"
-            flexDirection="column"
-            component="h1"
-            variant="h5"
           >
             <Text size="1.250rem" bold>
               <Text color="#3E00FF" bold>

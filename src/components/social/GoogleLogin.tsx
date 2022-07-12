@@ -7,7 +7,7 @@ const GoogleLogin = () => {
   const appDispatch = useAppDispatch();
 
   // 인가코드
-  let code = new URL(window.location.href).searchParams.get("code");
+  let code:string |null = new URL(window.location.href).searchParams.get("code");
 
   React.useEffect(() => {
     if (code) {

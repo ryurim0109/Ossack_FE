@@ -6,7 +6,7 @@ import { instance } from "../../shared/api";
     totalpage: number;
     presentpage: number;
     keyword: string;
-    estateResponseDtoList: Array<string>;
+    estateResponseDtoList: Array<any>;
     mylike?:boolean;
     estateid?:number;
     
@@ -59,7 +59,7 @@ import { instance } from "../../shared/api";
     coordinateResponseDto:coordinateResponseDtoType;
   }
   export interface officeType {
-    list: Array<SearchItemDataParams>;
+    list: SearchItemDataParams;
     main_list: Array<any>;
     hot_list: Array<any>;
     share_list: Array<ShareItemDataParams>;
@@ -69,7 +69,13 @@ import { instance } from "../../shared/api";
     mylike:boolean;
   } 
 const initialState:officeType = {
-  list: [],
+  list: {
+    totalpage: 1,
+    presentpage: 1,
+    keyword: "서울시",
+    estateResponseDtoList: [],
+    
+  },
   main_list: [],
   hot_list: [],
   share_list: [],
@@ -359,24 +365,24 @@ export const  getMainOfficeDB= createAsyncThunk(
       },
       clickLike: (state, action: PayloadAction<any>) => {
         let numArr :Array<any> = [];
-        state.list.filter((val, idx) => {
+        state.list.estateResponseDtoList.filter((val, idx) => {
           if (val.estateid === action.payload.estate_id) {
             return numArr.push(idx);
           }
           return false;
         });
-        state.list[numArr[0]].mylike = true;
+        state.list.estateResponseDtoList[numArr[0]].mylike = true;
         return;
       },
       deleteLike: (state, action: PayloadAction<any>) => {
         let numArr :Array<any> = [];
-        state.list.filter((val, idx) => {
+        state.list.estateResponseDtoList.filter((val, idx) => {
           if (val.estateid === action.payload.estate_id) {
             return numArr.push(idx);
           }
           return false;
         });
-        state.list[numArr[0]].mylike = false;
+        state.list.estateResponseDtoList[numArr[0]].mylike = false;
         return;
       },
       shareClickLike: (state, action: PayloadAction<any>) => {
@@ -426,16 +432,7 @@ export const  getMainOfficeDB= createAsyncThunk(
         return;
       },
       getSOList: (state, { payload }:PayloadAction<SearchItemDataParams>) => {
-        const new_searchList = [
-          ...state.list,
-          {
-            totalpage: payload.totalpage,
-            presentpage: payload.presentpage,
-            keyword: payload.keyword,
-            estateResponseDtoList: payload.estateResponseDtoList,
-          },
-        ];
-        return { ...state, list: new_searchList };
+      
       },
       getShareList: (state, { payload }:PayloadAction<ShareItemDataParams>) => {
         const new_shardList = [

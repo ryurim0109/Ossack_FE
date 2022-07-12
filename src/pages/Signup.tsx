@@ -15,10 +15,10 @@ import { MdKeyboardArrowLeft } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 
 import { emailRegex, passwordRegex, nickNameRegex } from "../shared/regCheck";
-import { actionCreators as userActions } from "../redux/modules/user";
-import { useDispatch, useSelector } from "react-redux";
-import _ from "lodash";
-import Swal from "sweetalert2";
+import { signUpApi } from "../redux/modules/user";
+// import {  useSelector } from "react-redux";
+// import Swal from "sweetalert2";
+import { useAppDispatch, RootState } from "../redux/configStore";
 
 const Signup = () => {
   const appDispatch = useAppDispatch();
@@ -32,7 +32,7 @@ const Signup = () => {
   // 중복체크
   const [userEmailCurrent, setUserEmailCurrent] = useState(false);
   // 리덕스에서 statusCode 가져오기
-  const emailDup = useSelector((state) => state.user.statusCode);
+  //const emailDup = useSelector((state) => state.user.statusCode);
   // 비활성화 여부
   const [userEmail, setUserEmail] = useState("");
   const [nickname, setNickname] = useState("");
@@ -40,29 +40,29 @@ const Signup = () => {
   const [checkPassword, setCheckPassword] = useState("");
   const [isActive, setIsActive] = useState(false);
 
-  const handleEmailInput = (event) => {
+  const handleEmailInput = (event:React.ChangeEvent<HTMLInputElement>) => {
     setUserEmail(event.target.value);
     const userEmailCurrent = event.target.value;
-    setUserEmailCurrent(userEmailCurrent);
+    setUserEmailCurrent(true);
   };
 
-  const handleNickInput = (event) => {
+  const handleNickInput = (event:React.ChangeEvent<HTMLInputElement>) => {
     setNickname(event.target.value);
   };
 
-  const handlePasswordInput = (event) => {
+  const handlePasswordInput = (event:React.ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
   };
 
-  const handleCheckPWDInput = (event) => {
+  const handleCheckPWDInput = (event:React.ChangeEvent<HTMLInputElement>) => {
     setCheckPassword(event.target.value);
   };
 
   const isPassedSignup = () => {
-    if (typeof emailDup === "undefined") {
-      console.log("emailDup : ", emailDup);
-      setEmailError("이메일 중복확인을 해주세요(🔐)");
-    }
+    // if (typeof emailDup === "undefined") {
+    //   console.log("emailDup : ", emailDup);
+    //   setEmailError("이메일 중복확인을 해주세요(🔐)");
+    // }
     return userEmail.includes("@") &&
       password.length >= 5 &&
       checkPassword.length >= 5 &&
@@ -71,7 +71,7 @@ const Signup = () => {
       : setIsActive(false);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e:React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const data = new FormData(e.currentTarget);
@@ -96,46 +96,47 @@ const Signup = () => {
       setPasswordError("비밀번호가 일치하지 않습니다.");
     else setPasswordError("");
 
-    if (!nickNameRegex(nickname) || nickname.length < 1)
+    if (!nickNameRegex(nickname))
       setNickNameError("올바른 이름을 입력해주세요.(글자수 제한 2~10자리)");
     else setNickNameError("");
 
-    if (!emailDup) {
-      Swal.fire({
-        title: "이메일 중복 확인을 해주세요!(🔐)",
-        showCancelButton: false,
-        confirmButtonText: "확인",
-        confirmButtonColor: "#FF5151",
-      });
-      return;
-    }
+    // if (!emailDup) {
+    //   Swal.fire({
+    //     title: "이메일 중복 확인을 해주세요!(🔐)",
+    //     showCancelButton: false,
+    //     confirmButtonText: "확인",
+    //     confirmButtonColor: "#FF5151",
+    //   });
+    //   return;
+    // }
 
     if (
       emailRegex(userEmail) &&
       passwordRegex(password) &&
       password === passwordCheck &&
-      nickNameRegex(nickname) &&
-      emailDup === true
+      nickNameRegex(nickname) 
+      // nickNameRegex(nickname) &&
+      // emailDup === true
     ) {
-      dispatch(userActions.signUpApi(joinData));
+      appDispatch(signUpApi(joinData));
     }
   };
 
-  const checkDup = () => {
-    if (typeof emailDup === "undefined") {
-      setEmailError("이메일 중복확인을 해주세요(🔐)");
-    }
-    setEmailError("");
-    userEmail.includes("@") &&
-    password.length >= 5 &&
-    checkPassword.length >= 5 &&
-    nickname.length >= 1
-      ? setIsActive(true)
-      : setIsActive(false);
+  // const checkDup = () => {
+  //   if (typeof emailDup === "undefined") {
+  //     setEmailError("이메일 중복확인을 해주세요(🔐)");
+  //   }
+  //   setEmailError("");
+  //   userEmail.includes("@") &&
+  //   password.length >= 5 &&
+  //   checkPassword.length >= 5 &&
+  //   nickname.length >= 1
+  //     ? setIsActive(true)
+  //     : setIsActive(false);
 
-    dispatch(userActions.userEmailCheckDB(userEmail));
-    setEmailError("");
-  };
+  //   dispatch(userActions.userEmailCheckDB(userEmail));
+  //   setEmailError("");
+  // };
 
   const style = {
     "& label.Mui-focused": {
@@ -166,7 +167,7 @@ const Signup = () => {
         >
           <MdKeyboardArrowLeft fontSize="28" />
         </BackBtn>
-        <Grid display="flex" flexDirection="column" component="h1" variant="h5">
+        <Grid >
           <Text size="1.250rem" bold>
             <Text color="#3E00FF" bold>
               오싹
@@ -177,7 +178,6 @@ const Signup = () => {
         </Grid>
         <Boxs
           component="form"
-          noValidate
           onSubmit={handleSubmit}
           sx={{ mt: 3 }}
         >
@@ -197,21 +197,6 @@ const Signup = () => {
                   onKeyUp={isPassedSignup}
                   size={"small"}
                 />
-                <Grid
-                  style={{
-                    width: "37px",
-                    height: "37px",
-                    margin: "-39px 0 0px 289px",
-                    zIndex: "10",
-                    position: "absolute",
-                    fontSize: "25px",
-                  }}
-                  onClick={() => {
-                    checkDup();
-                  }}
-                >
-                  🔐
-                </Grid>
               </Grid>
               <FormHelperTexts>{emailError}</FormHelperTexts>
               <Grid item xs={12}>
@@ -271,7 +256,7 @@ const Signup = () => {
                   : { backgroundColor: "#D5D8DB" }
               }
               disabled={
-                userEmail === "" || password === "" || emailDup === ""
+                userEmail === "" || password === ""
                   ? true
                   : false
               }
@@ -292,8 +277,10 @@ const FormHelperTexts = styled(FormHelperText)`
   font-weight: 700;
   color: #d32f2f;
 `;
-
-const Boxs = styled(Box)`
+interface BoxsType {
+  onSubmit: any;
+}
+const Boxs = styled(Box)<BoxsType>`
   padding-bottom: 40px;
 `;
 const BackBtn = styled(Box)`

@@ -1,18 +1,19 @@
 import React, { useEffect } from "react";
 import { Grid, Image, Text } from "../../elements/index";
 import styled from "styled-components";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import defaultImg from "../../assets/default.png";
-import { actionCreators as userActions } from "../../redux/modules/user";
+import { loginCheckApi } from "../../redux/modules/user";
+import { useAppDispatch,RootState } from "../../redux/configStore";
 
 const MyProfile = () => {
   const appDispatch = useAppDispatch();
 
-  const user_info = useSelector((state) => state.user.user);
+  const user_info = useSelector((state:RootState) => state.user.user);
 
   useEffect(() => {
-    dispatch(userActions.loginCheckApi());
-  }, [dispatch]);
+    appDispatch(loginCheckApi());
+  }, []);
 
   return (
     <React.Fragment>

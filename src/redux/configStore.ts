@@ -4,12 +4,14 @@ import { useDispatch } from "react-redux";
 import favoriteSlice from "./modules/favorite";
 import mapSlice from "./modules/map";
 import officeSlice from "./modules/office";
+import userSlice from "./modules/user";
 
 const rootReducer = combineReducers({
   map: mapSlice.reducer,
   // user: User,
   office: officeSlice.reducer,
   favorite: favoriteSlice.reducer,
+  user:userSlice.reducer,
 });
 
 export const store = configureStore({

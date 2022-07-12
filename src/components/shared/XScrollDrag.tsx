@@ -3,9 +3,8 @@ import styled from "styled-components";
 interface XScrollDragProps {
   children: React.ReactNode | JSX.Element;
 }
-export type CustomMouseEvent<T = HTMLElement> = MouseEvent<T>
 
-interface CustomWheelEvent<T = Element> extends MouseEvent<T> {
+interface CustomWheelEvent<Element> extends MouseEvent<Element> {
   deltaMode: number;
   deltaX: number;
   deltaY: number;
@@ -19,7 +18,7 @@ const XScrollDrag = ({ children, ...props }:XScrollDragProps) => {
   const scrollRef = React.useRef<HTMLDivElement>(null);
   let scrollLeftVal:number|undefined = scrollRef.current?.scrollLeft;
 
-  const onDragStart = (e:CustomMouseEvent) => {
+  const onDragStart = (e: MouseEvent<HTMLElement>) => {
     e.preventDefault();
     setIsDrag(true);
     if(scrollLeftVal){
@@ -33,7 +32,7 @@ const XScrollDrag = ({ children, ...props }:XScrollDragProps) => {
     setIsDrag(false);
   };
 
-  const onDragMove = (e:CustomMouseEvent) => {
+  const onDragMove = (e: MouseEvent<HTMLElement>) => {
     if (isDrag) {
       scrollLeftVal = startX - e.pageX;
       // 실질적으로 움직여주는 부분
@@ -60,7 +59,7 @@ const XScrollDrag = ({ children, ...props }:XScrollDragProps) => {
     
   } 
 
-   const onwheel:any= (event:CustomWheelEvent) => {
+   const onwheel: any = (event: CustomWheelEvent<Element>) => {
     if(scrollLeftVal){
       scrollLeftVal += event.deltaY;
     }
