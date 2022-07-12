@@ -17,16 +17,16 @@ import { useSelector } from "react-redux";
 import { Grid, Image, Text } from "../elements/index";
 
 const Member = () => {
-  const login = useSelector((state) => state.user.is_login);
-  const is_session = localStorage.getItem("token");
+  // const login = useSelector((state) => state.user.is_login);
+  // const is_session = localStorage.getItem("token");
 
-  if (!login || !is_session) {
-    return (
-      <React.Fragment>
-        <NotUser />
-      </React.Fragment>
-    );
-  } else {
+  // if (!login || !is_session) {
+  //   return (
+  //     <React.Fragment>
+  //       <NotUser />
+  //     </React.Fragment>
+  //   );
+  // } else {
     return (
       <React.Fragment>
         <MyHeader is_my>오싹 팀원소개</MyHeader>
@@ -207,7 +207,7 @@ const Member = () => {
         <Bar />
       </React.Fragment>
     );
-  }
+  // }
 };
 const Outter = styled.div`
   width: 100%;

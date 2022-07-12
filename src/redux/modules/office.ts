@@ -11,6 +11,10 @@ import { instance } from "../../shared/api";
     estateid?:number;
     
   }
+  export interface coordinateResponseDtoType{
+    lat: number;
+    lng: number;
+  }
   export interface ShareItemDataParams {
     totalpage: number;
     presentpage: number;
@@ -52,6 +56,7 @@ import { instance } from "../../shared/api";
     dong?:string |null;
     shareofficeid:string |number;
     detail_address?:string | null;
+    coordinateResponseDto:coordinateResponseDtoType;
   }
   export interface officeType {
     list: Array<SearchItemDataParams>;
@@ -92,6 +97,7 @@ const initialState:officeType = {
     number:null,
     estateId:1,
     shareofficeid:1,
+    coordinateResponseDto:{lat:37.5173319258532, lng:127.047377408384},
 
   },
   one_share_office: {
@@ -126,6 +132,7 @@ const initialState:officeType = {
     estateId:1,
     shareofficeid:1,
     detail_address:null,
+    coordinateResponseDto:{lat:37.5173319258532, lng:127.047377408384},
 
   },
   mylike:false,

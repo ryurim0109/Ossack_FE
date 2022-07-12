@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const Image = (props) => {
+const Image = (props:any) => {
   const { shape, src, size, radius, align, padding, border } = props;
   const styles = {
     src: src,
@@ -41,8 +41,12 @@ const AspectOutter = styled.div`
   max-width: 100%;
   max-height: 100%;
 `;
-
-const AspectInner = styled.div`
+interface AspectInnerType {
+  padding:string;
+  src:string;
+  radius:string;
+}
+const AspectInner = styled.div<AspectInnerType>`
   position: relative;
   padding-top: ${(props) => (props.padding ? props.padding : "100%")};
   overflow: hidden;
@@ -57,7 +61,12 @@ const AspectInner = styled.div`
     rgba(118, 118, 118, 0) 93.49%
   );
 `;
-const ImageCircle = styled.div`
+interface ImageCircleType {
+  size:string;
+  src:string;
+  border:string;
+}
+const ImageCircle = styled.div<ImageCircleType>`
   display: flex;
   align-items: center;
   justify-content: center;

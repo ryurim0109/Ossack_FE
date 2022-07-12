@@ -6,16 +6,13 @@ import ossack from "../assets/logo02.png";
 
 const Splash = () => {
   const navigate = useNavigate();
-  const timeout = () => {
-    setTimeout(() => {
-      navigate("/start");
-    }, 2000);
-  };
+  let timeout: NodeJS.Timeout;
+  timeout= setTimeout(() => {navigate("/start") }, 2000);
+
   useEffect(() => {
-    timeout();
     return () => {
-      clearTimeout(timeout);
-    };
+      global.clearTimeout(timeout);
+    }
   });
   return (
     <React.Fragment>
@@ -35,7 +32,7 @@ const Splash = () => {
             top="37px"
             right="10%"
           >
-            <P bold>오피스 구할 땐 오싹으로 싹가능</P>
+            <P>오피스 구할 땐 오싹으로 싹가능</P>
           </Grid>
         </Grid>
       </Grid>

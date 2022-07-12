@@ -1,9 +1,9 @@
 import React from "react";
-import { useDispatch } from "react-redux";
-import { actionCreators as userActions } from "../../redux/modules/user";
+import { loginBygoogle } from "../../redux/modules/user";
 import Spinner from "../shared/Spinner";
+import { useAppDispatch } from "../../redux/configStore";
 
-const GoogleLogin = (props) => {
+const GoogleLogin = () => {
   const appDispatch = useAppDispatch();
 
   // 인가코드
@@ -12,11 +12,11 @@ const GoogleLogin = (props) => {
   React.useEffect(() => {
     if (code) {
       const google = () => {
-        dispatch(userActions.loginBygoogle(code));
+        appDispatch(loginBygoogle(code));
       };
       google();
     }
-  }, [code]);
+  }, []);
 
   return <Spinner />;
 };

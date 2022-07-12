@@ -9,17 +9,17 @@ import {
 } from "../components/my/index";
 import { useSelector } from "react-redux";
 
-const MyPage = (props) => {
-  const login = useSelector((state) => state.user.is_login);
-  const is_session = localStorage.getItem("token");
+const MyPage = () => {
+  // const login = useSelector((state) => state.user.is_login);
+  // const is_session = localStorage.getItem("token");
 
-  if (!login || !is_session) {
-    return (
-      <React.Fragment>
-        <NotUser />
-      </React.Fragment>
-    );
-  } else {
+  // if (!login || !is_session) {
+  //   return (
+  //     <React.Fragment>
+  //       <NotUser />
+  //     </React.Fragment>
+  //   );
+  // } else {
     return (
       <React.Fragment>
         <MyHeader>마이 페이지</MyHeader>
@@ -31,7 +31,7 @@ const MyPage = (props) => {
         <Bar />
       </React.Fragment>
     );
-  }
+  // }
 };
 const Outter = styled.div`
   width: 100%;

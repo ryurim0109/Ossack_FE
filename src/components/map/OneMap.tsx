@@ -2,14 +2,17 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
+import { RootState } from "../../redux/configStore";
 
 import onePin from "../../assets/pin.png";
-
+interface KakaoMapProps {
+  shareofficeid?: string |undefined;
+}
 const { kakao } = window;
-const KakaoMap = (props) => {
+const KakaoMap = (props:KakaoMapProps) => {
   const shareOfficeId = props.shareofficeid;
-  const list = useSelector((state) => state?.office?.one_office);
-  const shareList = useSelector((state) => state?.office?.one_share_office);
+  const list = useSelector((state:RootState) => state?.office?.one_office);
+  const shareList = useSelector((state:RootState) => state?.office?.one_share_office);
 
   let is_share = shareOfficeId ? true : false;
 
@@ -24,8 +27,6 @@ const KakaoMap = (props) => {
 
   useEffect(() => {
     let container = document.getElementById("map");
-    container.style.width = "100%";
-    container.style.height = "100%";
     var options = {
       center: new kakao.maps.LatLng(firstY, firstX),
       level: 1,

@@ -18,7 +18,7 @@
       "kakao.maps.d.ts","node"
     ]
   },
-  "include": ["**/*.ts", "**/*.tsx", "src/elements/Button.js"],
+  "include": ["**/*.ts", "**/*.tsx", "src/elements/Button.tsx"],
   "exclude": ["node_modules"],
   "typeRoots": ["types"]
 }

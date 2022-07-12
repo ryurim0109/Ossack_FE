@@ -5,7 +5,7 @@ import { MyHeader } from "../components/my/index";
 import { useSelector } from "react-redux";
 
 const Notice = () => {
-  const login = useSelector((state) => state.user.is_login);
+  // const login = useSelector((state) => state.user.is_login);
   const contents = [
     {
       title: "📢 거래완료된 대상물 과태료 부과 시행 알림",
@@ -25,13 +25,13 @@ const Notice = () => {
   ];
   const is_session = localStorage.getItem("token");
 
-  if (!login || !is_session) {
-    return (
-      <React.Fragment>
-        <NotUser />
-      </React.Fragment>
-    );
-  } else {
+  // if (!login || !is_session) {
+  //   return (
+  //     <React.Fragment>
+  //       <NotUser />
+  //     </React.Fragment>
+  //   );
+  // } else {
     return (
       <React.Fragment>
         <MyHeader is_my> 공지사항</MyHeader>
@@ -47,7 +47,7 @@ const Notice = () => {
         <Bar />
       </React.Fragment>
     );
-  }
+  // }
 };
 const Wrap = styled.div`
   width: 100%;

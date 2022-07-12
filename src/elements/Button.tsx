@@ -6,7 +6,7 @@ import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 import { ReactComponent as Heart } from "../assets/favourite.svg";
 import { ReactComponent as Close } from "../assets/close.svg";
 
-const Button = (props) => {
+const Button = (props:any) => {
   const {
     color,
     _onClick,
@@ -132,8 +132,26 @@ Button.defaultProps = {
   fontSize: null,
   border: null,
 };
-
-const ButtonBox = styled.button`
+interface ButtonBoxType {
+  margin:string;
+  padding:string;
+  width:string;
+  height:string;
+  backgroundColor:string;
+  display:string;
+  borderRadius:string;
+  alignItems:string;
+  justifyContent:string;
+  border:string;
+  hover:string;
+  position:string;
+  top:string;
+  bottom:string;
+  left:string;
+  right:string;
+  fontSize:string;
+}
+const ButtonBox = styled.button<ButtonBoxType>`
   width: ${(props) => props.width};
   color: ${(props) => props.color};
   padding: ${(props) => props.padding};
@@ -165,8 +183,15 @@ const ButtonBox = styled.button`
   flex-shrink: 0;
   display: ${(props) => props.display};
 `;
-
-const IconBox = styled.button`
+interface IconBoxType {
+  position:string;
+  top:string;
+  bottom:string;
+  left:string;
+  right:string;
+  color:string;
+}
+const IconBox = styled.button<IconBoxType>`
   background: none;
   border: none;
   cursor: pointer;

@@ -3,8 +3,11 @@ import { Grid, Text, Button } from "../../elements/index";
 import { useNavigate } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
 import refresh from "../../assets/refresh.svg";
-
-const Filter = (props) => {
+interface FilterProps {
+  isOpen: boolean;
+  setIsOpen:any;
+}
+const Filter = (props:FilterProps) => {
   const navigate = useNavigate();
   const { isOpen, setIsOpen } = props;
   const ModalClose = () => {
@@ -16,26 +19,31 @@ const Filter = (props) => {
   const [rentClick, setRentClick] = useState(null);
   const [rentPrevClick, setRentPrevClick] = useState(null);
 
-  const GetClick = (e) => {
+  const GetClick = (e:any) => {
     setCurrentClick(e.target.id);
   };
 
-  const GetRent = (e) => {
+  const GetRent = (e:any) => {
     setRentClick(e.target.id);
   };
 
   React.useEffect(
-    (e) => {
+    () => {
       if (currentClick !== null) {
         let current = document.getElementById(currentClick);
-        current.style.backgroundColor = "rgba(62, 0, 255, 0.1)";
-        current.style.border = "1px solid #3E00FF";
+        if(current){
+          current.style.backgroundColor = "rgba(62, 0, 255, 0.1)";
+          current.style.border = "1px solid #3E00FF";
+        }
       }
 
       if (prevClick !== null) {
         let prev = document.getElementById(prevClick);
-        prev.style.backgroundColor = "#fff";
-        prev.style.border = "1px solid #E6E7E8";
+        if(prev){
+          prev.style.backgroundColor = "#fff";
+          prev.style.border = "1px solid #E6E7E8";
+        }
+        
       }
 
       setPrevClick(currentClick);
@@ -44,18 +52,22 @@ const Filter = (props) => {
   );
 
   React.useEffect(
-    (e) => {
+    () => {
       if (rentClick !== null) {
         let rent = document.getElementById(rentClick);
         //console.log(rent.innerHTML);
-        rent.style.backgroundColor = "rgba(62, 0, 255, 0.1)";
-        rent.style.border = "1px solid #3E00FF";
+        if(rent){
+          rent.style.backgroundColor = "rgba(62, 0, 255, 0.1)";
+          rent.style.border = "1px solid #3E00FF";
+        }
       }
 
       if (rentPrevClick !== null) {
         let prev = document.getElementById(rentPrevClick);
-        prev.style.backgroundColor = "#fff";
-        prev.style.border = "1px solid #E6E7E8";
+        if(prev){
+          prev.style.backgroundColor = "#fff";
+          prev.style.border = "1px solid #E6E7E8";
+        }
       }
 
       setRentPrevClick(rentClick);
@@ -235,8 +247,10 @@ const FadeOut = keyframes`
         pointer-events: none;
     }
 `;
-
-const Outter = styled.div`
+interface OutterType {
+  isOpen: boolean;
+}
+const Outter = styled.div<OutterType>`
   width: 100%;
   position: absolute;
   bottom: 0;

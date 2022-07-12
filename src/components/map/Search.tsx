@@ -3,9 +3,11 @@ import { Button } from "../../elements/index";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import filterIcon from "../../assets/filter.svg";
-import { Filter } from "../map/index";
-
-const Search = (props) => {
+import { Filter } from "./index";
+interface SearchProps {
+  name: string | undefined;
+}
+const Search = (props:SearchProps) => {
   const navigate = useNavigate();
   const { name } = props;
   const [isOpen, setIsOpen] = useState(false);

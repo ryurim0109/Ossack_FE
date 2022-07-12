@@ -20,7 +20,7 @@ import {
 const DetailShare = () => {
   const appDispatch = useAppDispatch();
   const navigate = useNavigate();
-  const shareofficeid = useParams().shareofficeid;
+  const shareofficeid:string |undefined = useParams().shareofficeid;
   const getOneShareOffice = useSelector(
     (state:RootState) => state.office.one_share_office
   );

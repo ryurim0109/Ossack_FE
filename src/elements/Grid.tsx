@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const Grid = (props) => {
+const Grid = (props:any) => {
   const {
     children,
     _onClick,
@@ -134,8 +134,42 @@ Grid.defaultProps = {
   textIn: null,
   _onClick: () => {},
 };
-
-const GridBox = styled.div`
+interface GridBoxType {
+  margin:string;
+  padding:string;
+  width:string;
+  height:string;
+  bg:string;
+  display:string;
+  flexDirection:string;
+  flexWrap:string;
+  alignItems:string;
+  justifyContent:string;
+  textAlign:string;
+  border:string;
+  borderTop:string;
+  borderRadius:string;
+  borderBottom:string;
+  borderLeft:string;
+  borderRight:string;
+  overflowX:string;
+  overflowY:string;
+  overflow:string;
+  minWidth:string;
+  maxWidth:string;
+  minHeight:string;
+  maxHeight:string;
+  cursor:string;
+  textIn:string;
+  boxShadow:string;
+  position:string;
+  top:string;
+  bottom:string;
+  left:string;
+  right:string;
+  fontSize:string;
+}
+const GridBox = styled.div<GridBoxType>`
   margin: ${(props) => props.margin};
   padding: ${(props) => props.padding};
   width: ${(props) => props.width};
@@ -149,7 +183,6 @@ const GridBox = styled.div`
   justify-content: ${(props) => props.justifyContent};
   text-align: ${(props) => props.textAlign};
   border: ${(props) => props.border};
-  gap: ${(props) => props.gap};
   border-top: ${(props) => props.borderTop};
   border-radius: ${(props) => props.borderRadius};
   border-bottom: ${(props) => props.borderBottom};
@@ -175,17 +208,6 @@ const GridBox = styled.div`
   color: ${(props) => props.color};
   font-size: ${(props) => props.fontSize};
 
-  :hover {
-    ${(props) =>
-      props.hover
-        ? `background-color:${props.hover};
-  cursor: pointer;`
-        : ""}
-    ${(props) => (props.hover_font ? `color : ${props.hover_font}` : null)}
-  }
-  .safari_only {
-    overflow: ${(props) => props.overflow};
-  }
 `;
 
 export default Grid;

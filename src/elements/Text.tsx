@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const Text = (props) => {
+const Text = (props:any) => {
   const {
     children,
     color,
@@ -54,8 +54,19 @@ Text.defaultProps = {
   _onClick: () => {},
   cursor: null,
 };
-
-const ElText = styled.span`
+interface SpanType {
+  size:string;
+  bold:boolean;
+  align:string;
+  margin:string;
+  padding:string;
+  textIndent:string;
+  border:string;
+  lingH:string;
+  cursor:string;
+  borderBottom:string;
+}
+const ElText = styled.span<SpanType>`
   ${(props) => (props.color ? `color:${props.color}` : "color: #111")};
   font-size: ${(props) => props.size};
   font-weight: ${(props) => (props.bold ? "bold" : "400")};

@@ -5,7 +5,7 @@ import { MyHeader } from "../components/my/index";
 import { useSelector } from "react-redux";
 
 const QNA = () => {
-  const login = useSelector((state) => state.user.is_login);
+  //const login = useSelector((state) => state.user.is_login);
 
   const contents = [
     {
@@ -29,15 +29,15 @@ const QNA = () => {
     },
   ];
 
-  const is_session = localStorage.getItem("token");
+ // const is_session = localStorage.getItem("token");
 
-  if (!login || !is_session) {
+ /*  if (!login || !is_session) {
     return (
       <React.Fragment>
         <NotUser />
       </React.Fragment>
     );
-  } else {
+  } else { */
     return (
       <React.Fragment>
         <MyHeader is_my> 자주 묻는 질문</MyHeader>
@@ -53,7 +53,7 @@ const QNA = () => {
         <Bar />
       </React.Fragment>
     );
-  }
+/*   } */
 };
 const Wrap = styled.div`
   width: 100%;

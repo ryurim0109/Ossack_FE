@@ -4,7 +4,6 @@ import styled from "styled-components";
 interface MobileFrameProps {
   children: React.ReactNode | JSX.Element;
   className: string;
-  // any other props you might have
 }
 const MobileFrame = ({ children, className }: MobileFrameProps) => {
   return (
