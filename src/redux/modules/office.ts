@@ -444,11 +444,34 @@ export const officeSlice = createSlice({
       state.one_share_office = action.payload.one_share_office;
       return;
     },
-    getSOList: (state, { payload }: PayloadAction<SearchItemDataParams>) => {},
-    getShareList: (
-      state,
-      { payload }: PayloadAction<ShareItemDataParams>
-    ) => {},
+    getSOList: (state, { payload }: PayloadAction<SearchItemDataParams>) => {
+      if (payload.presentpage > 1 && payload.keyword === state.list.keyword) {
+        state.list.estateResponseDtoList.push(...payload.estateResponseDtoList);
+      } else {
+        state.list.estateResponseDtoList = payload.estateResponseDtoList;
+      }
+      state.list.keyword = payload.keyword;
+      state.list.presentpage = payload.presentpage;
+      state.list.totalpage = payload.totalpage;
+      state.is_loaded = true;
+    },
+    getShareList: (state, { payload }: PayloadAction<ShareItemDataParams>) => {
+      if (
+        payload.presentpage > 1 &&
+        payload.keyword === state.share_list.keyword
+      ) {
+        state.share_list.sharedOfficeResponseDtos.push(
+          ...payload.sharedOfficeResponseDtos
+        );
+      } else {
+        state.share_list.sharedOfficeResponseDtos =
+          payload.sharedOfficeResponseDtos;
+      }
+      state.share_list.keyword = payload.keyword;
+      state.share_list.presentpage = payload.presentpage;
+      state.share_list.totalpage = payload.totalpage;
+      state.is_loaded = true;
+    },
     is_loaded: (state, action: PayloadAction<any>) => {
       state.is_loaded = true;
       return;
