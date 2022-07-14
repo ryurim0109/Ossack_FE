@@ -1,205 +1,228 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { instance } from "../../shared/api";
+import { instance } from '../../shared/api';
 // import { createAction, handleActions } from "redux-actions";
 // import produce from "immer";
 // import { instance, instances } from "../../shared/api";
-import Swal from "sweetalert2";
-export interface UserParams{
-	userEmail:string;
-	nickname:string;
-	imageUrl:string;
+import Swal from 'sweetalert2';
+export interface UserParams {
+	userEmail: string;
+	nickname: string;
+	imageUrl: string;
 }
-export interface UserType{
-	user:UserParams;
+export interface UserType {
+	user: UserParams;
 	is_login: boolean;
+}
+const initialState: UserType = {
+	user: {
+		userEmail: '123@naver.com',
+		nickname: 'ddd',
+		imageUrl: 'https://ossack.s3.ap-northeast-2.amazonaws.com/basicprofile.png',
+	},
 
-}
-const initialState:UserType ={
-    user: {
-		userEmail:"123@naver.com",
-		nickname:"ddd",
-		imageUrl:"https://ossack.s3.ap-northeast-2.amazonaws.com/basicprofile.png",
-		
-		},
-		
-    is_login: false,
-}
+	is_login: false,
+};
 interface DataType {
-    data: UserParams ;
-	status:number;
-	headers:any
-  }
+	data: UserParams;
+	status: number;
+	headers: any;
+}
 export const signUpApi = createAsyncThunk(
 	'SET_USER',
-	async (user:{ userEmail:FormDataEntryValue | null;nickname:FormDataEntryValue | null;password:FormDataEntryValue | null },thunkAPI) => {
+	async (
+		user: {
+			userEmail: FormDataEntryValue | null;
+			nickname: FormDataEntryValue | null;
+			password: FormDataEntryValue | null;
+		},
+		thunkAPI,
+	) => {
 		try {
-			const response:DataType = await instance.post("/user/signup", {
-				        userEmail: user.userEmail,
-				        nickname: user.nickname,
-				        password: user.password,
-				      });
-					  if (response.status === 200) {
-						        Swal.fire("회원가입에 성공했습니다!");
-								window.location.replace('/login');
-								thunkAPI.dispatch(setUser({
-									nickname: response.data.nickname,
-									userEmail: response.data.userEmail,
-									imageUrl: response.data.imageUrl,
-								  }));
-						} 
-						
+			const response: DataType = await instance.post('/user/signup', {
+				userEmail: user.userEmail,
+				nickname: user.nickname,
+				password: user.password,
+			});
+			if (response.status === 200) {
+				Swal.fire('회원가입에 성공했습니다!');
+				window.location.replace('/login');
+				thunkAPI.dispatch(
+					setUser({
+						nickname: response.data.nickname,
+						userEmail: response.data.userEmail,
+						imageUrl: response.data.imageUrl,
+					}),
+				);
+			}
 		} catch (err) {
-			Swal.fire("회원가입에 실패했습니다. 다시 시도해주세요.");
+			Swal.fire('회원가입에 실패했습니다. 다시 시도해주세요.');
 			return;
 		}
 	},
 );
 export const loginApi = createAsyncThunk(
 	'SET_USER',
-	async (user:{ userEmail:FormDataEntryValue|null;password:FormDataEntryValue|null },thunkAPI) => {
+	async (
+		user: {
+			userEmail: FormDataEntryValue | null;
+			password: FormDataEntryValue | null;
+		},
+		thunkAPI,
+	) => {
 		try {
-			const response:DataType = await instance.post("/user/login", {
-				        userEmail: user.userEmail,
-				        password: user.password,
-				      });
-					  if (response.status === 200) {
-								window.location.replace('/main');
-								const token = response.headers.authorization.split("BEARER ");
-        						localStorage.setItem("token", token[1]);
-								thunkAPI.dispatch(setUser({
-									nickname: response.data.nickname,
-									userEmail: response.data.userEmail,
-									imageUrl: response.data.imageUrl,
-								  }));
-						} 
-						
+			const response: DataType = await instance.post('/user/login', {
+				userEmail: user.userEmail,
+				password: user.password,
+			});
+			if (response.status === 200) {
+				window.location.replace('/main');
+				const token = response.headers.authorization.split('BEARER ');
+				localStorage.setItem('token', token[1]);
+				thunkAPI.dispatch(
+					setUser({
+						nickname: response.data.nickname,
+						userEmail: response.data.userEmail,
+						imageUrl: response.data.imageUrl,
+					}),
+				);
+			}
 		} catch (err) {
-			Swal.fire("이메일과 패스워드를 다시 확인해주세요.");
+			Swal.fire('이메일과 패스워드를 다시 확인해주세요.');
 			return;
 		}
 	},
 );
 export const loginCheckApi = createAsyncThunk(
 	'SET_USER',
-	async (_,thunkAPI) => {
+	async (_, thunkAPI) => {
 		try {
-			const response:DataType = await instance.get("/user/islogin")
-					
-			thunkAPI.dispatch(setUser({
-			nickname: response.data.nickname,
-			userEmail: response.data.userEmail,
-			imageUrl: response.data.imageUrl,
-			}));
-						
+			const response: DataType = await instance.get('/user/islogin');
+
+			thunkAPI.dispatch(
+				setUser({
+					nickname: response.data.nickname,
+					userEmail: response.data.userEmail,
+					imageUrl: response.data.imageUrl,
+				}),
+			);
 		} catch (err) {
-			Swal.fire("로그인 여부 확인에 문제가 생겼습니다. 로그인을 다시 해주세요!");
-			localStorage.removeItem("token");
-			window.location.replace("/start");
+			Swal.fire(
+				'로그인 여부 확인에 문제가 생겼습니다. 로그인을 다시 해주세요!',
+			);
+			localStorage.removeItem('token');
+			window.location.replace('/start');
 			return;
 		}
 	},
 );
 export const loginBykakao = createAsyncThunk(
 	'SET_USER',
-	async (code:string|null,thunkAPI) => {
+	async (code: string | null, thunkAPI) => {
 		try {
-			const response:DataType = await instance.get(`/user/kakao/callback?code=${code}`)
-			const token = response.headers.authorization.split("BEARER ");
-        	localStorage.setItem("token", token[1]);
-			try{
-				const response:DataType = await instance.get("/user/islogin");
-				thunkAPI.dispatch(setUser({
-					nickname: response.data.nickname,
-					userEmail: response.data.userEmail,
-					imageUrl: response.data.imageUrl,
-					}));
-			}catch{
+			const response: DataType = await instance.get(
+				`/user/kakao/callback?code=${code}`,
+			);
+			const token = response.headers.authorization.split('BEARER ');
+			localStorage.setItem('token', token[1]);
+			try {
+				const response: DataType = await instance.get('/user/islogin');
+				thunkAPI.dispatch(
+					setUser({
+						nickname: response.data.nickname,
+						userEmail: response.data.userEmail,
+						imageUrl: response.data.imageUrl,
+					}),
+				);
+			} catch {
 				return;
-			}	
-						
+			}
 		} catch (err) {
-			Swal.fire("로그인 여부 확인에 문제가 생겼습니다. 로그인을 다시 해주세요!");
-			localStorage.removeItem("token");
-			window.location.replace("/start");
+			Swal.fire(
+				'로그인 여부 확인에 문제가 생겼습니다. 로그인을 다시 해주세요!',
+			);
+			localStorage.removeItem('token');
+			window.location.replace('/start');
 			return;
 		}
 	},
 );
 export const loginBygoogle = createAsyncThunk(
 	'SET_USER',
-	async (code:string | null,thunkAPI) => {
+	async (code: string | null, thunkAPI) => {
 		try {
-			const response:DataType = await instance.get(`/user/google/callback?code=${code}`)
-			const token = response.headers.authorization.split("BEARER ");
-        	localStorage.setItem("token", token[1]);
-			try{
-				const response:DataType = await instance.get("/user/islogin");
-				thunkAPI.dispatch(setUser({
-					nickname: response.data.nickname,
-					userEmail: response.data.userEmail,
-					imageUrl: response.data.imageUrl,
-					}));
-			}catch{
+			const response: DataType = await instance.get(
+				`/user/google/callback?code=${code}`,
+			);
+			const token = response.headers.authorization.split('BEARER ');
+			localStorage.setItem('token', token[1]);
+			try {
+				const response: DataType = await instance.get('/user/islogin');
+				thunkAPI.dispatch(
+					setUser({
+						nickname: response.data.nickname,
+						userEmail: response.data.userEmail,
+						imageUrl: response.data.imageUrl,
+					}),
+				);
+			} catch {
 				return;
-			}	
-						
+			}
 		} catch (err) {
-			Swal.fire("로그인 여부 확인에 문제가 생겼습니다. 로그인을 다시 해주세요!");
-			localStorage.removeItem("token");
-			window.location.replace("/start");
+			Swal.fire(
+				'로그인 여부 확인에 문제가 생겼습니다. 로그인을 다시 해주세요!',
+			);
+			localStorage.removeItem('token');
+			window.location.replace('/start');
 			return;
 		}
 	},
 );
-export const logOutApi = createAsyncThunk(
-	'LOGOUT',
-	async (_,thunkAPI) => {
-		try {
-			localStorage.removeItem("token");
-			thunkAPI.dispatch(logOut());
-			window.location.replace("/start");		
-		} catch (err) {
-			return;
-		}
-	},
-);
-export const resignDB = createAsyncThunk(
-	'RESIGN',
-	async (_) => {
-		try {
-			await instance.put(`/user/withdraw`)
-			localStorage.removeItem("token");
-			window.location.replace("/start");		
-		} catch (err) {
-			return;
-		}
-	},
-);
+export const logOutApi = createAsyncThunk('LOGOUT', async (_, thunkAPI) => {
+	try {
+		localStorage.removeItem('token');
+		thunkAPI.dispatch(logOut());
+		window.location.replace('/start');
+	} catch (err) {
+		return;
+	}
+});
+export const resignDB = createAsyncThunk('RESIGN', async (_) => {
+	try {
+		await instance.put(`/user/withdraw`);
+		localStorage.removeItem('token');
+		window.location.replace('/start');
+	} catch (err) {
+		return;
+	}
+});
 export const editProfileDB = createAsyncThunk(
 	'SET_USERIMG',
-	async (userInfo:{nickname:string, image:string | null, userimg:string},thunkAPI) => {
-
+	async (
+		userInfo: { nickname: string; image: string | null; userimg: string },
+		thunkAPI,
+	) => {
 		try {
 			const file = new FormData();
 			if (userInfo.image) {
-			  file.append("imageFile", userInfo.image);
-			  file.append("nickname", userInfo.nickname);
-			  file.append("profileImgUrl", userInfo.userimg);
+				file.append('imageFile', userInfo.image);
+				file.append('nickname', userInfo.nickname);
+				file.append('profileImgUrl', userInfo.userimg);
 			} else if (!userInfo.image) {
-			  file.append("imageFile", new File([], "", { type: "text/plane" }));
-			  file.append("nickname", userInfo.nickname);
-			  file.append("profileImgUrl", userInfo.userimg);
+				file.append('imageFile', new File([], '', { type: 'text/plane' }));
+				file.append('nickname', userInfo.nickname);
+				file.append('profileImgUrl', userInfo.userimg);
 			}
-			await instance.put("/user/profile", file)
-			try{
-				const response:DataType = await instance.get("/user/islogin");
-				thunkAPI.dispatch(user_img({
-					imageUrl: response.data.imageUrl,
-					}));
-			}catch{
+			await instance.put('/user/profile', file);
+			try {
+				const response: DataType = await instance.get('/user/islogin');
+				thunkAPI.dispatch(
+					user_img({
+						imageUrl: response.data.imageUrl,
+					}),
+				);
+			} catch {
 				return;
-			}	
-						
+			}
 		} catch (err) {
 			return;
 		}
@@ -207,23 +230,23 @@ export const editProfileDB = createAsyncThunk(
 );
 export const userImgDeleteDB = createAsyncThunk(
 	'SET_USERIMG',
-	async (nickname:string,thunkAPI) => {
-
+	async (nickname: string, thunkAPI) => {
 		try {
 			const file = new FormData();
-			file.append("imageFile", new File([], "", { type: "text/plane" }));
-			file.append("nickname", nickname);
-			file.append("profileImgUrl", "");
-			await instance.put("/user/profile", file)
-			try{
-				const response:DataType = await instance.get("/user/islogin");
-				thunkAPI.dispatch(user_img({
-					imageUrl: response.data.imageUrl,
-					}));
-			}catch{
+			file.append('imageFile', new File([], '', { type: 'text/plane' }));
+			file.append('nickname', nickname);
+			file.append('profileImgUrl', '');
+			await instance.put('/user/profile', file);
+			try {
+				const response: DataType = await instance.get('/user/islogin');
+				thunkAPI.dispatch(
+					user_img({
+						imageUrl: response.data.imageUrl,
+					}),
+				);
+			} catch {
 				return;
-			}	
-						
+			}
 		} catch (err) {
 			return;
 		}
@@ -234,19 +257,19 @@ export const userSlice = createSlice({
 	initialState,
 	reducers: {
 		setUser: (state, action: PayloadAction<any>) => {
-			state.user =action.payload.user;
-			state.is_login =true;
+			state.user = action.payload.user;
+			state.is_login = true;
 			return;
-		},	
+		},
 		user_img: (state, action: PayloadAction<any>) => {
-			if(state.user){
+			if (state.user) {
 				state.user = { ...state.user, imageUrl: action.payload.user.imageUrl };
 			}
 			return;
 		},
 		logOut: (state) => {
 			state.is_login = false;
-        	localStorage.clear();
+			localStorage.clear();
 			return;
 		},
 	},
@@ -255,11 +278,10 @@ export const userSlice = createSlice({
 	},
 });
 export default userSlice;
-export const { setUser,logOut,user_img } =
-userSlice.actions;
+export const { setUser, logOut, user_img } = userSlice.actions;
 
 const userActionsCreators = {
-    signUpApi,
+	signUpApi,
 	loginApi,
 	loginCheckApi,
 	loginBykakao,

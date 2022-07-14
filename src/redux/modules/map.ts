@@ -1,81 +1,108 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { instance } from "../../shared/api";
+import { instance } from '../../shared/api';
 
-// export interface ListItemDataParams {
-//     office_list: Array<any>;
-//     share_list: Array<any>;
-//   }
 export interface MapType {
-    office_list: any;
-    share_list: any;
-    is_loaded: boolean;
-  }
+	office_list: any;
+	share_list: any;
+	is_loaded: boolean;
+}
 
-  const initialState: MapType = {
-            office_list: [],
-            share_list: [],
-          is_loaded: false,
-  };
+const initialState: MapType = {
+	office_list: [],
+	share_list: [],
+	is_loaded: false,
+};
 
-  export interface PosType {
-    SWlat : any;
-    SWlng : any;
-    NElat : any;
-    NElng : any;
-    swLatLng: object | any;
-    lat: any;
-    lng: any;
-    neLatLng : any;
-  }
+export const getOfficeData = createAsyncThunk(
+	'SET_OFFICE_LIST',
+	//pos, level, router, monthly
+	async (
+		mapInfo: {
+			level: number;
+			SWlat: number;
+			SWlng: number;
+			NElat: number;
+			NElng: number;
+			depositlimit: string | undefined;
+			feelimit: string | undefined;
+			monthly?: string | undefined;
+		},
+		thunkAPI,
+	) => {
+		try {
+			thunkAPI.dispatch(isLoaded(false));
+			// const SWlat = data.pos.swLatLng.lat;
+			// const SWlng = data.pos.swLatLng.lng;
+			// const NElat = data.pos.neLatLng.lat;
+			// const NElng = data.pos.neLatLng.lng;
+			const response = await instance.get(
+				`/map?level=${mapInfo.level}&SWlat=${mapInfo.SWlat}&SWlng=${mapInfo.SWlng}&NElat=${mapInfo.NElat}&NElng=${mapInfo.NElng}&depositlimit=${mapInfo.depositlimit}&feelimit=${mapInfo.feelimit}&monthly=${mapInfo.monthly}`,
+			);
+			thunkAPI.dispatch(setOfficeList(response.data));
+		} catch (err) {
+			return;
+		}
+	},
+);
+export const getShareData = createAsyncThunk(
+	'SET_OFFICE_LIST',
+	//pos, level,
+	async (
+		shareMapInfo: {
+			level: number;
+			SWlat: number;
+			SWlng: number;
+			NElat: number;
+			NElng: number;
+		},
+		thunkAPI,
+	) => {
+		try {
+			thunkAPI.dispatch(isLoaded(false));
+			// const SWlat = data.pos.swLatLng.lat;
+			// const SWlng = data.pos.swLatLng.lng;
+			// const NElat = data.pos.neLatLng.lat;
+			// const NElng = data.pos.neLatLng.lng;
+			const response = await instance.get(
+				`/map/sharedoffice?level=${shareMapInfo.level}&SWlat=${shareMapInfo.SWlat}&SWlng=${shareMapInfo.SWlng}&NElat=${shareMapInfo.NElat}&NElng=${shareMapInfo.NElng}`,
+			);
+			thunkAPI.dispatch(setShareList(response.data));
+		} catch (err) {
+			return;
+		}
+	},
+);
+export const mapSlice = createSlice({
+	name: 'mapReducer',
+	initialState,
+	reducers: {
+		setOfficeList: (state, action: PayloadAction<any>) => {
+			state.office_list = action.payload.office_list;
+			state.is_loaded = true;
+			return;
+		},
+		setShareList: (state, action: PayloadAction<any>) => {
+			state.share_list = action.payload.share_list;
+			state.is_loaded = true;
+			return;
+		},
+		isLoaded: (state, action: PayloadAction<any>) => {
+			state.is_loaded = true;
+			return;
+		},
+	},
+	extraReducers: () => {
+		//
+	},
+});
 
-  export interface PositionDataType {
-    pos:PosType;
-    level: number;
-    router?: any;
-    monthly?: any| null;
-  }
+export default mapSlice;
 
-  export const  getOfficeData= createAsyncThunk(
-    "SET_OFFICE_LIST",
-    //pos, level, router, monthly
-    async (data:PositionDataType , thunkAPI) => {
-      try{
+export const { setOfficeList, setShareList, isLoaded } = mapSlice.actions;
 
-        console.log(data)
-            // const SWlat = data.pos.swLatLng.lat;
-            // const SWlng = data.pos.swLatLng.lng;
-            // const NElat = data.pos.neLatLng.lat;
-            // const NElng = data.pos.neLatLng.lng;
-      //const response = await instance.get(`/map?level=${level}&SWlat=${SWlat}&SWlng=${SWlng}&NElat=${NElat}&NElng=${NElng}&depositlimit=${depositlimit}&feelimit=${feelimit}&monthly=${monthly}`)
-       
-       
-      }catch (err){
-        return;
-      }
-    }
-  )
-
-  export const mapSlice = createSlice({
-    name: 'mapReducer',
-    initialState,
-    reducers: {
-        setOfficeList: (state, action: PayloadAction<any>) => {
-        state.office_list = action.payload.office_list;
-        state.is_loaded = true;
-        return;
-      },
-    },
-    extraReducers: () => {
-      //
-    },
-  });
-
-  export default mapSlice;
-
-  export const { setOfficeList} = mapSlice.actions;
-  
 const mapActionsCreators = {
-    getOfficeData
+	getOfficeData,
+	getShareData,
 };
 
 export { mapActionsCreators };
