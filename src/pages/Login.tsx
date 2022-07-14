@@ -15,20 +15,7 @@ const Login = () => {
 
 	const [userEmail, setUserEmail] = useText();
 	const [userPassword, setUserPassword] = useText();
-	//console.log(userEmail, userPassword);
-
-	// 비활성화 여부
-	// const [userEmail, setUserEmail] = useState('');
-	// const [password, setPassword] = useState('');
 	// const [isActive, setIsActive] = useState(false);
-
-	// const handleEmailInput = (event: React.ChangeEvent<HTMLInputElement>) => {
-	// 	setUserEmail(event.target.value);
-	// };
-
-	// const handlePasswordInput = (event: React.ChangeEvent<HTMLInputElement>) => {
-	// 	setPassword(event.target.value);
-	// };
 
 	// const isPassedLogin = () => {
 	// 	return userEmail.includes('@') && password.length >= 5
@@ -96,7 +83,6 @@ const InnerText = styled.div`
 const InnerInputBox = styled.div`
 	width: 100%;
 	height: 187px;
-	background-color: yellow;
 	display: flex;
 	justify-content: space-between;
 	flex-direction: column;
