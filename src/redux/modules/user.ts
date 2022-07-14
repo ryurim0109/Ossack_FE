@@ -64,8 +64,8 @@ export const loginApi = createAsyncThunk(
 	'SET_USER',
 	async (
 		user: {
-			userEmail: FormDataEntryValue | null;
-			password: FormDataEntryValue | null;
+			userEmail: any;
+			password: any;
 		},
 		thunkAPI,
 	) => {
