@@ -1,30 +1,41 @@
-import { configureStore, combineReducers } from "@reduxjs/toolkit";
-import logger from "redux-logger";
-import { useDispatch } from "react-redux";
-import favoriteSlice from "./modules/favorite";
-import mapSlice from "./modules/map";
-import officeSlice from "./modules/office";
-import userSlice from "./modules/user";
+//사가
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
+import createSagaMiddleware from 'redux-saga';
+import rootSaga from './saga/saga';
+
+import map from './modules/map';
 
 const rootReducer = combineReducers({
-  map: mapSlice.reducer,
-  // user: User,
-  office: officeSlice.reducer,
-  favorite: favoriteSlice.reducer,
-  user:userSlice.reducer,
+	map,
 });
 
-export const store = configureStore({
-  reducer: rootReducer,
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({ serializableCheck: false }).concat(logger),
-    devTools: process.env.NODE_ENV !== "production",
-});
+const env = process.env.NODE_ENV;
 
-export type RootState = ReturnType<typeof store.getState>;
+const configureStore = () => {
+	const sagaMiddleware = createSagaMiddleware();
+	const middlewares = [
+		sagaMiddleware,
+		(store: any) => (next: any) => (action: any) => {
+			next(action);
+		},
+	];
 
-export type AppDispatch = typeof store.dispatch;
+	if (env === 'development') {
+		const { logger } = require('redux-logger');
+		middlewares.push(logger);
+	}
+	const composeEnhancers =
+		typeof window === 'object' &&
+		(window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+			? (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
+			: compose;
 
-export const useAppDispatch = () => useDispatch<AppDispatch>();
+	const enhancer = composeEnhancers(applyMiddleware(...middlewares));
 
-export default store;
+	const store = createStore(rootReducer, enhancer);
+	(store as any).sagaTask = sagaMiddleware.run(rootSaga);
+
+	return store;
+};
+//export default withRedux(configureStore)(withReduxSaga(Root));
+export default configureStore();
